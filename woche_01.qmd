@@ -26,25 +26,40 @@ Wenn ein Gesamtvorgang aus $k$ nacheinander folgenden, unabhängigen Entscheidun
 
 $$N = n_1 \cdot n_2 \cdot \dots \cdot n_k$$
 
+## 2. Variationen
+Eine Auswahl von Objekten, bei der die Reihenfolge wichtig ist. Hierbei gibt es zwei Fälle:
+
+**Ohne Zurücklegen:**.  
+Ein Zahlenschloss, bei dem jede Zahl nur einmal gewählt werden kann $(N = 10*9*8)$ für ein 3-stelliges Schloss.
+
+**Mit Zurücklegen:**.  
+Ein Zahlenschloss, bei dem jede Zahl mehrfach gewählt werden kann. $(N = 10*10*10)$ für ein 3-stelliges Schloss.
+
 ## 2. Permutationen (Anordnungen)
-Wie viele Möglichkeiten gibt es, $n$ unterscheidbare Objekte in einer bestimmten Reihenfolge anzuordnen?
+Wie viele Möglichkeiten gibt es, $n$ unterscheidbare Objekte in einer bestimmten Reihenfolge anzuordnen? Beispiel: Anordnung von 3 Büchern auf einem Regal: $3! = 6$ Möglichkeiten.
 
 **Formel:**
 $$P(n) = n!$$
-*(Dabei ist $n! = n \cdot (n-1) \cdot \dots \cdot 1$)*
+
+**In R:** `factorial(n)`
 
 ## 3. Kombinationen (Auswahl)
-Hier untersuchen wir, wie viele Möglichkeiten es gibt, $k$ Objekte aus einer Menge von $n$ Objekten auszuwählen.
+Hier untersuchen wir, wie viele Möglichkeiten es gibt, $k$ Objekte aus einer Menge von $n$ Objekten auszuwählen. Dabei ist die Reihenfolge egal (ziehen von einstelligen Nummern: 012 ist das gleiche wie 021 oder 210).
 
-### Ohne Zurücklegen, ohne Reihenfolge
-Typisches Beispiel: Lotto oder die Auswahl einer Delegation aus einer Gruppe.
-**Formel:**
+**Ohne Zurücklegen**.  
+Typisches Beispiel: Lotto oder die Auswahl von 2 Pizzabelägen aus 6 möglichen, Pilze+Salami ist das gleiche wie Salami+Pilze.   
+**Formel (Binomialkoeffizient):**
 $$\binom{n}{k} = \frac{n!}{k!(n-k)!}$$
 
-### Mit Zurücklegen, ohne Reihenfolge
-Beispiel: Auswahl von Objekten, die nach der Ziehung wieder zurückgelegt werden, wobei nur die Anzahl pro Kategorie zählt.
+**In R:** `choose(n, k)`
+
+
+**Mit Zurücklegen**.  
+Beispiel: Auswahl von Objekten, die nach der Ziehung wieder zurückgelegt werden, wobei nur die Anzahl pro Kategorie zählt. Beispiel: Auswahl von 3 Kugeln aus einer Urne mit 5 verschiedenen Farben, wobei jede Farbe mehrfach gezogen werden kann (z.B. 2 rote und 1 blaue Kugel).   
 **Formel:**
 $$\binom{n+k-1}{k}$$
+
+**In R:** `choose(n + k - 1, k)`
 
 ---
 
