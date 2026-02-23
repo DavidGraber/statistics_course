@@ -21,21 +21,21 @@ Der Unterschied lässt sich am besten anhand eines Urnenmodells verdeutlichen:
 
 Die Kombinatorik hilft uns, die Gesamtzahl möglicher Ausgänge $N$ zu bestimmen. Dies ist die Voraussetzung, um später Wahrscheinlichkeiten nach Laplace berechnen zu können.
 
-## 1. Die Produktregel
+## Die Produktregel
 Wenn ein Gesamtvorgang aus $k$ nacheinander folgenden, unabhängigen Entscheidungen besteht, wobei es für die $i$-te Entscheidung $n_i$ Möglichkeiten gibt, berechnet sich die Gesamtzahl durch:
 
 $$N = n_1 \cdot n_2 \cdot \dots \cdot n_k$$
 
-## 2. Variationen
+## Variationen
 Eine Auswahl von Objekten, bei der die Reihenfolge wichtig ist. Hierbei gibt es zwei Fälle:
 
-**Ohne Zurücklegen:**.  
-Ein Zahlenschloss, bei dem jede Zahl nur einmal gewählt werden kann $(N = 10*9*8)$ für ein 3-stelliges Schloss.
+**Ohne Zurücklegen:**   
+Ein Zahlenschloss, bei dem jede Zahl nur einmal gewählt werden kann. Für ein 3-stelliges Schloss $(N = 10*9*8)$
 
-**Mit Zurücklegen:**.  
-Ein Zahlenschloss, bei dem jede Zahl mehrfach gewählt werden kann. $(N = 10*10*10)$ für ein 3-stelliges Schloss.
+**Mit Zurücklegen:**   
+Ein Zahlenschloss, bei dem jede Zahl mehrfach gewählt werden kann. Für ein 3-stelliges Schloss $(N = 10*10*10)$
 
-## 2. Permutationen (Anordnungen)
+## Permutationen (Anordnungen)
 Wie viele Möglichkeiten gibt es, $n$ unterscheidbare Objekte in einer bestimmten Reihenfolge anzuordnen? Beispiel: Anordnung von 3 Büchern auf einem Regal: $3! = 6$ Möglichkeiten.
 
 **Formel:**
@@ -43,7 +43,7 @@ $$P(n) = n!$$
 
 **In R:** `factorial(n)`
 
-## 3. Kombinationen (Auswahl)
+## Kombinationen (Auswahl)
 Hier untersuchen wir, wie viele Möglichkeiten es gibt, $k$ Objekte aus einer Menge von $n$ Objekten auszuwählen. Dabei ist die Reihenfolge egal (ziehen von einstelligen Nummern: 012 ist das gleiche wie 021 oder 210).
 
 **Ohne Zurücklegen**.  

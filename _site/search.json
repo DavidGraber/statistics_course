@@ -17,22 +17,22 @@
     "objectID": "woche_01.html#die-produktregel",
     "href": "woche_01.html#die-produktregel",
     "title": "Woche 1: Einführung & Kombinatorik",
-    "section": "2.1 1. Die Produktregel",
-    "text": "2.1 1. Die Produktregel\nWenn ein Gesamtvorgang aus \\(k\\) nacheinander folgenden, unabhängigen Entscheidungen besteht, wobei es für die \\(i\\)-te Entscheidung \\(n_i\\) Möglichkeiten gibt, berechnet sich die Gesamtzahl durch:\n\\[N = n_1 \\cdot n_2 \\cdot \\dots \\cdot n_k\\]"
+    "section": "2.1 Die Produktregel",
+    "text": "2.1 Die Produktregel\nWenn ein Gesamtvorgang aus \\(k\\) nacheinander folgenden, unabhängigen Entscheidungen besteht, wobei es für die \\(i\\)-te Entscheidung \\(n_i\\) Möglichkeiten gibt, berechnet sich die Gesamtzahl durch:\n\\[N = n_1 \\cdot n_2 \\cdot \\dots \\cdot n_k\\]"
   },
   {
     "objectID": "woche_01.html#permutationen-anordnungen",
     "href": "woche_01.html#permutationen-anordnungen",
     "title": "Woche 1: Einführung & Kombinatorik",
-    "section": "2.3 2. Permutationen (Anordnungen)",
-    "text": "2.3 2. Permutationen (Anordnungen)\nWie viele Möglichkeiten gibt es, \\(n\\) unterscheidbare Objekte in einer bestimmten Reihenfolge anzuordnen? Beispiel: Anordnung von 3 Büchern auf einem Regal: \\(3! = 6\\) Möglichkeiten.\nFormel: \\[P(n) = n!\\]\nIn R: factorial(n)"
+    "section": "2.3 Permutationen (Anordnungen)",
+    "text": "2.3 Permutationen (Anordnungen)\nWie viele Möglichkeiten gibt es, \\(n\\) unterscheidbare Objekte in einer bestimmten Reihenfolge anzuordnen? Beispiel: Anordnung von 3 Büchern auf einem Regal: \\(3! = 6\\) Möglichkeiten.\nFormel: \\[P(n) = n!\\]\nIn R: factorial(n)"
   },
   {
     "objectID": "woche_01.html#kombinationen-auswahl",
     "href": "woche_01.html#kombinationen-auswahl",
     "title": "Woche 1: Einführung & Kombinatorik",
-    "section": "2.4 3. Kombinationen (Auswahl)",
-    "text": "2.4 3. Kombinationen (Auswahl)\nHier untersuchen wir, wie viele Möglichkeiten es gibt, \\(k\\) Objekte aus einer Menge von \\(n\\) Objekten auszuwählen. Dabei ist die Reihenfolge egal (ziehen von einstelligen Nummern: 012 ist das gleiche wie 021 oder 210).\nOhne Zurücklegen.\nTypisches Beispiel: Lotto oder die Auswahl von 2 Pizzabelägen aus 6 möglichen, Pilze+Salami ist das gleiche wie Salami+Pilze.\nFormel (Binomialkoeffizient): \\[\\binom{n}{k} = \\frac{n!}{k!(n-k)!}\\]\nIn R: choose(n, k)\nMit Zurücklegen.\nBeispiel: Auswahl von Objekten, die nach der Ziehung wieder zurückgelegt werden, wobei nur die Anzahl pro Kategorie zählt. Beispiel: Auswahl von 3 Kugeln aus einer Urne mit 5 verschiedenen Farben, wobei jede Farbe mehrfach gezogen werden kann (z.B. 2 rote und 1 blaue Kugel).\nFormel: \\[\\binom{n+k-1}{k}\\]\nIn R: choose(n + k - 1, k)"
+    "section": "2.4 Kombinationen (Auswahl)",
+    "text": "2.4 Kombinationen (Auswahl)\nHier untersuchen wir, wie viele Möglichkeiten es gibt, \\(k\\) Objekte aus einer Menge von \\(n\\) Objekten auszuwählen. Dabei ist die Reihenfolge egal (ziehen von einstelligen Nummern: 012 ist das gleiche wie 021 oder 210).\nOhne Zurücklegen.\nTypisches Beispiel: Lotto oder die Auswahl von 2 Pizzabelägen aus 6 möglichen, Pilze+Salami ist das gleiche wie Salami+Pilze.\nFormel (Binomialkoeffizient): \\[\\binom{n}{k} = \\frac{n!}{k!(n-k)!}\\]\nIn R: choose(n, k)\nMit Zurücklegen.\nBeispiel: Auswahl von Objekten, die nach der Ziehung wieder zurückgelegt werden, wobei nur die Anzahl pro Kategorie zählt. Beispiel: Auswahl von 3 Kugeln aus einer Urne mit 5 verschiedenen Farben, wobei jede Farbe mehrfach gezogen werden kann (z.B. 2 rote und 1 blaue Kugel).\nFormel: \\[\\binom{n+k-1}{k}\\]\nIn R: choose(n + k - 1, k)"
   },
   {
     "objectID": "index.html",
@@ -52,7 +52,7 @@
     "objectID": "woche_01.html#variationen",
     "href": "woche_01.html#variationen",
     "title": "Woche 1: Einführung & Kombinatorik",
-    "section": "2.2 2. Variationen",
-    "text": "2.2 2. Variationen\nEine Auswahl von Objekten, bei der die Reihenfolge wichtig ist. Hierbei gibt es zwei Fälle:\nOhne Zurücklegen:.\nEin Zahlenschloss, bei dem jede Zahl nur einmal gewählt werden kann \\((N = 10*9*8)\\) für ein 3-stelliges Schloss.\nMit Zurücklegen:.\nEin Zahlenschloss, bei dem jede Zahl mehrfach gewählt werden kann. \\((N = 10*10*10)\\) für ein 3-stelliges Schloss."
+    "section": "2.2 Variationen",
+    "text": "2.2 Variationen\nEine Auswahl von Objekten, bei der die Reihenfolge wichtig ist. Hierbei gibt es zwei Fälle:\nOhne Zurücklegen:\nEin Zahlenschloss, bei dem jede Zahl nur einmal gewählt werden kann. Für ein 3-stelliges Schloss \\((N = 10*9*8)\\)\nMit Zurücklegen:\nEin Zahlenschloss, bei dem jede Zahl mehrfach gewählt werden kann. Für ein 3-stelliges Schloss \\((N = 10*10*10)\\)"
   }
 ]
