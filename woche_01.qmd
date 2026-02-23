@@ -1,0 +1,65 @@
+---
+title: "Woche 1: Einführung & Kombinatorik"
+---
+
+# Einführung in die Statistik
+
+In dieser ersten Woche klären wir die fundamentale Frage: Was unterscheidet Statistik von der Wahrscheinlichkeitsrechnung?
+
+## Statistik vs. Wahrscheinlichkeitsrechnung
+
+Der Unterschied lässt sich am besten anhand eines Urnenmodells verdeutlichen:
+
+* **Wahrscheinlichkeitsrechnung:** Wir kennen das Modell (wir wissen, was in der Urne ist) und berechnen die Wahrscheinlichkeit für bestimmte Daten (was wir ziehen werden).
+    * *Frage:* "Was werden wir mit welcher Wahrscheinlichkeit in den Händen halten?"
+* **Statistik:** Wir haben Daten (die gezogenen Kugeln) und ziehen Rückschlüsse auf das zugrunde liegende Modell oder dessen Parameter.
+    * *Frage:* "Was können wir basierend auf den Daten über den Inhalt der Urne aussagen?"
+
+---
+
+# Grundprinzipien der Kombinatorik
+
+Die Kombinatorik hilft uns, die Gesamtzahl möglicher Ausgänge $N$ zu bestimmen. Dies ist die Voraussetzung, um später Wahrscheinlichkeiten nach Laplace berechnen zu können.
+
+## 1. Die Produktregel
+Wenn ein Gesamtvorgang aus $k$ nacheinander folgenden, unabhängigen Entscheidungen besteht, wobei es für die $i$-te Entscheidung $n_i$ Möglichkeiten gibt, berechnet sich die Gesamtzahl durch:
+
+$$N = n_1 \cdot n_2 \cdot \dots \cdot n_k$$
+
+## 2. Permutationen (Anordnungen)
+Wie viele Möglichkeiten gibt es, $n$ unterscheidbare Objekte in einer bestimmten Reihenfolge anzuordnen?
+
+**Formel:**
+$$P(n) = n!$$
+*(Dabei ist $n! = n \cdot (n-1) \cdot \dots \cdot 1$)*
+
+## 3. Kombinationen (Auswahl)
+Hier untersuchen wir, wie viele Möglichkeiten es gibt, $k$ Objekte aus einer Menge von $n$ Objekten auszuwählen.
+
+### Ohne Zurücklegen, ohne Reihenfolge
+Typisches Beispiel: Lotto oder die Auswahl einer Delegation aus einer Gruppe.
+**Formel:**
+$$\binom{n}{k} = \frac{n!}{k!(n-k)!}$$
+
+### Mit Zurücklegen, ohne Reihenfolge
+Beispiel: Auswahl von Objekten, die nach der Ziehung wieder zurückgelegt werden, wobei nur die Anzahl pro Kategorie zählt.
+**Formel:**
+$$\binom{n+k-1}{k}$$
+
+---
+
+# Formel-Überblick
+
+Die folgende Tabelle dient als Entscheidungshilfe, welche Formel für welches Problem anzuwenden ist:
+
+| Typ | Reihenfolge wichtig? | Wiederholung erlaubt? | Formel |
+| :--- | :---: | :---: | :---: |
+| **Permutation** | Ja | Nein | $n!$ |
+| **Variation** | Ja | Nein | $\frac{n!}{(n-k)!}$ |
+| **Kombination** | Nein | Nein | $\binom{n}{k}$ |
+| **Kombination** | Nein | Ja | $\binom{n+k-1}{k}$ |
+
+::: {.callout-tip}
+### Tipp für die Prüfung
+Fragen Sie sich immer zuerst: Kommt es auf die Reihenfolge an? Wenn nein, landen Sie fast immer beim Binomialkoeffizienten $\binom{n}{k}$.
+:::

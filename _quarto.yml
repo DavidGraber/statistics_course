@@ -1,0 +1,18 @@
+project:
+  type: website
+
+website:
+  title: "Statistik & Wahrscheinlichkeit"
+  navbar:
+    left:
+      - href: index.qmd
+        text: Home
+      - href: woche_01.qmd
+        text: "Woche 1: Kombinatorik"
+
+format:
+  html:
+    theme: cosmo
+    toc: true
+    code-fold: true
+    number-sections: true

@@ -1,0 +1,7 @@
+# Willkommen zum Statistik-Kurs
+
+Dieses digitale Skript wird jede Woche erweitert. Hier finden Sie alle wichtigen Formeln, Definitionen und Beispiele aus den Vorlesungen.
+
+## Semesterplan
+- **Woche 1:** Einführung & Kombinatorik
+- **Woche 2:** (folgt bald...)
