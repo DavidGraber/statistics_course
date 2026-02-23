@@ -21,27 +21,6 @@
     "text": "2.1 1. Die Produktregel\nWenn ein Gesamtvorgang aus \\(k\\) nacheinander folgenden, unabhängigen Entscheidungen besteht, wobei es für die \\(i\\)-te Entscheidung \\(n_i\\) Möglichkeiten gibt, berechnet sich die Gesamtzahl durch:\n\\[N = n_1 \\cdot n_2 \\cdot \\dots \\cdot n_k\\]"
   },
   {
-    "objectID": "woche_01.html#permutationen",
-    "href": "woche_01.html#permutationen",
-    "title": "1 Einführung & Kombinatorik",
-    "section": "",
-    "text": "Anordnung von \\(n\\) unterscheidbaren Objekten. Formel: \\[P(n) = n!\\]"
-  },
-  {
-    "objectID": "woche_01.html#kombinationen-die-wichtigsten-fälle",
-    "href": "woche_01.html#kombinationen-die-wichtigsten-fälle",
-    "title": "1 Einführung & Kombinatorik",
-    "section": "",
-    "text": "Wahl von \\(k\\) Elementen aus einer Menge \\(n\\) (z.B. Lotto oder die “Lady Tasting Tea”). Formel: \\[\\binom{n}{k} = \\frac{n!}{k!(n-k)!}\\]\n\n\n\n(z.B. Auswahl von 5 Gummibärchen aus einer Tüte mit 3 Farben). Formel: \\[\\binom{n+k-1}{k}\\]"
-  },
-  {
-    "objectID": "woche_01.html#zusammenfassung-der-formeln",
-    "href": "woche_01.html#zusammenfassung-der-formeln",
-    "title": "1 Einführung & Kombinatorik",
-    "section": "",
-    "text": "Typ\nReihenfolge wichtig?\nWiederholung?\nFormel\n\n\n\n\nPermutation\nJa\nNein\n\\(n!\\)\n\n\nVariation\nJa\nNein\n\\(\\frac{n!}{(n-k)!}\\)\n\n\nKombination\nNein\nNein\n\\(\\binom{n}{k}\\)\n\n\nKombination\nNein\nJa\n\\(\\binom{n+k-1}{k}\\)"
-  },
-  {
     "objectID": "woche_01.html#permutationen-anordnungen",
     "href": "woche_01.html#permutationen-anordnungen",
     "title": "Woche 1: Einführung & Kombinatorik",
