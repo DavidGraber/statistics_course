@@ -40,7 +40,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-0b37c64f34216b628666a8dac638b53b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-5b4ad623e5705c0698d39aec6f10cf02.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -148,13 +148,10 @@ window.Quarto = {
   </ul></li>
   <li><a href="#grundprinzipien-der-kombinatorik" id="toc-grundprinzipien-der-kombinatorik" class="nav-link" data-scroll-target="#grundprinzipien-der-kombinatorik"><span class="header-section-number">2</span> Grundprinzipien der Kombinatorik</a>
   <ul class="collapse">
-  <li><a href="#die-produktregel" id="toc-die-produktregel" class="nav-link" data-scroll-target="#die-produktregel"><span class="header-section-number">2.1</span> 1. Die Produktregel</a></li>
-  <li><a href="#permutationen-anordnungen" id="toc-permutationen-anordnungen" class="nav-link" data-scroll-target="#permutationen-anordnungen"><span class="header-section-number">2.2</span> 2. Permutationen (Anordnungen)</a></li>
-  <li><a href="#kombinationen-auswahl" id="toc-kombinationen-auswahl" class="nav-link" data-scroll-target="#kombinationen-auswahl"><span class="header-section-number">2.3</span> 3. Kombinationen (Auswahl)</a>
-  <ul class="collapse">
-  <li><a href="#ohne-zurücklegen-ohne-reihenfolge" id="toc-ohne-zurücklegen-ohne-reihenfolge" class="nav-link" data-scroll-target="#ohne-zurücklegen-ohne-reihenfolge"><span class="header-section-number">2.3.1</span> Ohne Zurücklegen, ohne Reihenfolge</a></li>
-  <li><a href="#mit-zurücklegen-ohne-reihenfolge" id="toc-mit-zurücklegen-ohne-reihenfolge" class="nav-link" data-scroll-target="#mit-zurücklegen-ohne-reihenfolge"><span class="header-section-number">2.3.2</span> Mit Zurücklegen, ohne Reihenfolge</a></li>
-  </ul></li>
+  <li><a href="#die-produktregel" id="toc-die-produktregel" class="nav-link" data-scroll-target="#die-produktregel"><span class="header-section-number">2.1</span> Die Produktregel</a></li>
+  <li><a href="#variationen" id="toc-variationen" class="nav-link" data-scroll-target="#variationen"><span class="header-section-number">2.2</span> Variationen</a></li>
+  <li><a href="#permutationen-anordnungen" id="toc-permutationen-anordnungen" class="nav-link" data-scroll-target="#permutationen-anordnungen"><span class="header-section-number">2.3</span> Permutationen (Anordnungen)</a></li>
+  <li><a href="#kombinationen-auswahl" id="toc-kombinationen-auswahl" class="nav-link" data-scroll-target="#kombinationen-auswahl"><span class="header-section-number">2.4</span> Kombinationen (Auswahl)</a></li>
   </ul></li>
   <li><a href="#formel-überblick" id="toc-formel-überblick" class="nav-link" data-scroll-target="#formel-überblick"><span class="header-section-number">3</span> Formel-Überblick</a></li>
   </ul>
@@ -205,27 +202,36 @@ window.Quarto = {
 <h1 data-number="2"><span class="header-section-number">2</span> Grundprinzipien der Kombinatorik</h1>
 <p>Die Kombinatorik hilft uns, die Gesamtzahl möglicher Ausgänge <span class="math inline">\(N\)</span> zu bestimmen. Dies ist die Voraussetzung, um später Wahrscheinlichkeiten nach Laplace berechnen zu können.</p>
 <section id="die-produktregel" class="level2" data-number="2.1">
-<h2 data-number="2.1" class="anchored" data-anchor-id="die-produktregel"><span class="header-section-number">2.1</span> 1. Die Produktregel</h2>
+<h2 data-number="2.1" class="anchored" data-anchor-id="die-produktregel"><span class="header-section-number">2.1</span> Die Produktregel</h2>
 <p>Wenn ein Gesamtvorgang aus <span class="math inline">\(k\)</span> nacheinander folgenden, unabhängigen Entscheidungen besteht, wobei es für die <span class="math inline">\(i\)</span>-te Entscheidung <span class="math inline">\(n_i\)</span> Möglichkeiten gibt, berechnet sich die Gesamtzahl durch:</p>
 <p><span class="math display">\[N = n_1 \cdot n_2 \cdot \dots \cdot n_k\]</span></p>
 </section>
-<section id="permutationen-anordnungen" class="level2" data-number="2.2">
-<h2 data-number="2.2" class="anchored" data-anchor-id="permutationen-anordnungen"><span class="header-section-number">2.2</span> 2. Permutationen (Anordnungen)</h2>
-<p>Wie viele Möglichkeiten gibt es, <span class="math inline">\(n\)</span> unterscheidbare Objekte in einer bestimmten Reihenfolge anzuordnen?</p>
-<p><strong>Formel:</strong> <span class="math display">\[P(n) = n!\]</span> <em>(Dabei ist <span class="math inline">\(n! = n \cdot (n-1) \cdot \dots \cdot 1\)</span>)</em></p>
+<section id="variationen" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="variationen"><span class="header-section-number">2.2</span> Variationen</h2>
+<p>Eine Auswahl von Objekten, bei der die Reihenfolge wichtig ist. Hierbei gibt es zwei Fälle:</p>
+<p><strong>Ohne Zurücklegen:</strong><br>
+Ein Zahlenschloss, bei dem jede Zahl nur einmal gewählt werden kann. Für ein 3-stelliges Schloss <span class="math inline">\((N = 10*9*8)\)</span></p>
+<p><strong>Mit Zurücklegen:</strong><br>
+Ein Zahlenschloss, bei dem jede Zahl mehrfach gewählt werden kann. Für ein 3-stelliges Schloss <span class="math inline">\((N = 10*10*10)\)</span></p>
 </section>
-<section id="kombinationen-auswahl" class="level2" data-number="2.3">
-<h2 data-number="2.3" class="anchored" data-anchor-id="kombinationen-auswahl"><span class="header-section-number">2.3</span> 3. Kombinationen (Auswahl)</h2>
-<p>Hier untersuchen wir, wie viele Möglichkeiten es gibt, <span class="math inline">\(k\)</span> Objekte aus einer Menge von <span class="math inline">\(n\)</span> Objekten auszuwählen.</p>
-<section id="ohne-zurücklegen-ohne-reihenfolge" class="level3" data-number="2.3.1">
-<h3 data-number="2.3.1" class="anchored" data-anchor-id="ohne-zurücklegen-ohne-reihenfolge"><span class="header-section-number">2.3.1</span> Ohne Zurücklegen, ohne Reihenfolge</h3>
-<p>Typisches Beispiel: Lotto oder die Auswahl einer Delegation aus einer Gruppe. <strong>Formel:</strong> <span class="math display">\[\binom{n}{k} = \frac{n!}{k!(n-k)!}\]</span></p>
+<section id="permutationen-anordnungen" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="permutationen-anordnungen"><span class="header-section-number">2.3</span> Permutationen (Anordnungen)</h2>
+<p>Wie viele Möglichkeiten gibt es, <span class="math inline">\(n\)</span> unterscheidbare Objekte in einer bestimmten Reihenfolge anzuordnen? Beispiel: Anordnung von 3 Büchern auf einem Regal: <span class="math inline">\(3! = 6\)</span> Möglichkeiten.</p>
+<p><strong>Formel:</strong> <span class="math display">\[P(n) = n!\]</span></p>
+<p><strong>In R:</strong> <code>factorial(n)</code></p>
 </section>
-<section id="mit-zurücklegen-ohne-reihenfolge" class="level3" data-number="2.3.2">
-<h3 data-number="2.3.2" class="anchored" data-anchor-id="mit-zurücklegen-ohne-reihenfolge"><span class="header-section-number">2.3.2</span> Mit Zurücklegen, ohne Reihenfolge</h3>
-<p>Beispiel: Auswahl von Objekten, die nach der Ziehung wieder zurückgelegt werden, wobei nur die Anzahl pro Kategorie zählt. <strong>Formel:</strong> <span class="math display">\[\binom{n+k-1}{k}\]</span></p>
+<section id="kombinationen-auswahl" class="level2" data-number="2.4">
+<h2 data-number="2.4" class="anchored" data-anchor-id="kombinationen-auswahl"><span class="header-section-number">2.4</span> Kombinationen (Auswahl)</h2>
+<p>Hier untersuchen wir, wie viele Möglichkeiten es gibt, <span class="math inline">\(k\)</span> Objekte aus einer Menge von <span class="math inline">\(n\)</span> Objekten auszuwählen. Dabei ist die Reihenfolge egal (ziehen von einstelligen Nummern: 012 ist das gleiche wie 021 oder 210).</p>
+<p><strong>Ohne Zurücklegen</strong>.<br>
+Typisches Beispiel: Lotto oder die Auswahl von 2 Pizzabelägen aus 6 möglichen, Pilze+Salami ist das gleiche wie Salami+Pilze.<br>
+<strong>Formel (Binomialkoeffizient):</strong> <span class="math display">\[\binom{n}{k} = \frac{n!}{k!(n-k)!}\]</span></p>
+<p><strong>In R:</strong> <code>choose(n, k)</code></p>
+<p><strong>Mit Zurücklegen</strong>.<br>
+Beispiel: Auswahl von Objekten, die nach der Ziehung wieder zurückgelegt werden, wobei nur die Anzahl pro Kategorie zählt. Beispiel: Auswahl von 3 Kugeln aus einer Urne mit 5 verschiedenen Farben, wobei jede Farbe mehrfach gezogen werden kann (z.B. 2 rote und 1 blaue Kugel).<br>
+<strong>Formel:</strong> <span class="math display">\[\binom{n+k-1}{k}\]</span></p>
+<p><strong>In R:</strong> <code>choose(n + k - 1, k)</code></p>
 <hr>
-</section>
 </section>
 </section>
 <section id="formel-überblick" class="level1" data-number="3">
