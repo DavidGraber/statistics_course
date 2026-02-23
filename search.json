@@ -1,0 +1,51 @@
+[
+  {
+    "objectID": "woche_01.html",
+    "href": "woche_01.html",
+    "title": "Woche 1: Einführung & Kombinatorik",
+    "section": "",
+    "text": "In dieser ersten Woche klären wir die fundamentale Frage: Was unterscheidet Statistik von der Wahrscheinlichkeitsrechnung?\n\n\nDer Unterschied lässt sich am besten anhand eines Urnenmodells verdeutlichen:\n\nWahrscheinlichkeitsrechnung: Wir kennen das Modell (wir wissen, was in der Urne ist) und berechnen die Wahrscheinlichkeit für bestimmte Daten (was wir ziehen werden).\n\nFrage: “Was werden wir mit welcher Wahrscheinlichkeit in den Händen halten?”\n\nStatistik: Wir haben Daten (die gezogenen Kugeln) und ziehen Rückschlüsse auf das zugrunde liegende Modell oder dessen Parameter.\n\nFrage: “Was können wir basierend auf den Daten über den Inhalt der Urne aussagen?”"
+  },
+  {
+    "objectID": "woche_01.html#statistik-vs.-wahrscheinlichkeitsrechnung",
+    "href": "woche_01.html#statistik-vs.-wahrscheinlichkeitsrechnung",
+    "title": "Woche 1: Einführung & Kombinatorik",
+    "section": "",
+    "text": "Der Unterschied lässt sich am besten anhand eines Urnenmodells verdeutlichen:\n\nWahrscheinlichkeitsrechnung: Wir kennen das Modell (wir wissen, was in der Urne ist) und berechnen die Wahrscheinlichkeit für bestimmte Daten (was wir ziehen werden).\n\nFrage: “Was werden wir mit welcher Wahrscheinlichkeit in den Händen halten?”\n\nStatistik: Wir haben Daten (die gezogenen Kugeln) und ziehen Rückschlüsse auf das zugrunde liegende Modell oder dessen Parameter.\n\nFrage: “Was können wir basierend auf den Daten über den Inhalt der Urne aussagen?”"
+  },
+  {
+    "objectID": "woche_01.html#die-produktregel",
+    "href": "woche_01.html#die-produktregel",
+    "title": "Woche 1: Einführung & Kombinatorik",
+    "section": "2.1 1. Die Produktregel",
+    "text": "2.1 1. Die Produktregel\nWenn ein Gesamtvorgang aus \\(k\\) nacheinander folgenden, unabhängigen Entscheidungen besteht, wobei es für die \\(i\\)-te Entscheidung \\(n_i\\) Möglichkeiten gibt, berechnet sich die Gesamtzahl durch:\n\\[N = n_1 \\cdot n_2 \\cdot \\dots \\cdot n_k\\]"
+  },
+  {
+    "objectID": "woche_01.html#permutationen-anordnungen",
+    "href": "woche_01.html#permutationen-anordnungen",
+    "title": "Woche 1: Einführung & Kombinatorik",
+    "section": "2.2 2. Permutationen (Anordnungen)",
+    "text": "2.2 2. Permutationen (Anordnungen)\nWie viele Möglichkeiten gibt es, \\(n\\) unterscheidbare Objekte in einer bestimmten Reihenfolge anzuordnen?\nFormel: \\[P(n) = n!\\] (Dabei ist \\(n! = n \\cdot (n-1) \\cdot \\dots \\cdot 1\\))"
+  },
+  {
+    "objectID": "woche_01.html#kombinationen-auswahl",
+    "href": "woche_01.html#kombinationen-auswahl",
+    "title": "Woche 1: Einführung & Kombinatorik",
+    "section": "2.3 3. Kombinationen (Auswahl)",
+    "text": "2.3 3. Kombinationen (Auswahl)\nHier untersuchen wir, wie viele Möglichkeiten es gibt, \\(k\\) Objekte aus einer Menge von \\(n\\) Objekten auszuwählen.\n\n2.3.1 Ohne Zurücklegen, ohne Reihenfolge\nTypisches Beispiel: Lotto oder die Auswahl einer Delegation aus einer Gruppe. Formel: \\[\\binom{n}{k} = \\frac{n!}{k!(n-k)!}\\]\n\n\n2.3.2 Mit Zurücklegen, ohne Reihenfolge\nBeispiel: Auswahl von Objekten, die nach der Ziehung wieder zurückgelegt werden, wobei nur die Anzahl pro Kategorie zählt. Formel: \\[\\binom{n+k-1}{k}\\]"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "1 Willkommen zum Statistik-Kurs",
+    "section": "",
+    "text": "Dieses digitale Skript wird jede Woche erweitert. Hier finden Sie alle wichtigen Formeln, Definitionen und Beispiele aus den Vorlesungen.\n\n\n\nWoche 1: Einführung & Kombinatorik\nWoche 2: (folgt bald…)"
+  },
+  {
+    "objectID": "index.html#semesterplan",
+    "href": "index.html#semesterplan",
+    "title": "1 Willkommen zum Statistik-Kurs",
+    "section": "",
+    "text": "Woche 1: Einführung & Kombinatorik\nWoche 2: (folgt bald…)"
+  }
+]
