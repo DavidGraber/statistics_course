@@ -67,12 +67,15 @@ $$\binom{n+k-1}{k}$$
 
 Die folgende Tabelle dient als Entscheidungshilfe, welche Formel für welches Problem anzuwenden ist:
 
-| Typ | Reihenfolge wichtig? | Wiederholung erlaubt? | Formel |
+| Typ | Reihenfolge wichtig? | Mit Zurücklegen? | Formel |
 | :--- | :---: | :---: | :---: |
 | **Permutation** | Ja | Nein | $n!$ |
 | **Variation** | Ja | Nein | $\frac{n!}{(n-k)!}$ |
+| **Variation** | Ja | Ja | $n^k$|
 | **Kombination** | Nein | Nein | $\binom{n}{k}$ |
 | **Kombination** | Nein | Ja | $\binom{n+k-1}{k}$ |
+
+wobei $n$ für die Anzahl der Objekte steht (z.B Anzahl Ziffern 0-9) und $k$ die Anzahl der Auswahlen darstellt (z.B Stellen auf dem Zahlenschloss).
 
 ::: {.callout-tip}
 ### Tipp für die Prüfung
