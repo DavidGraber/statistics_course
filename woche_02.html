@@ -130,6 +130,10 @@ window.Quarto = {
     <a class="nav-link active" href="./woche_02.html" aria-current="page"> 
 <span class="menu-text">Woche 2: Wahrscheinlichkeitsrechnung</span></a>
   </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./woche_03.html"> 
+<span class="menu-text">Woche 2: Bedingte Wahrscheinlichkeiten</span></a>
+  </li>  
 </ul>
           </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
@@ -152,12 +156,6 @@ window.Quarto = {
   <ul class="collapse">
   <li><a href="#laplace-experimente" id="toc-laplace-experimente" class="nav-link" data-scroll-target="#laplace-experimente"><span class="header-section-number">3.1</span> Laplace-Experimente</a></li>
   </ul></li>
-  <li><a href="#bedingte-wahrscheinlichkeiten-satz-von-bayes" id="toc-bedingte-wahrscheinlichkeiten-satz-von-bayes" class="nav-link" data-scroll-target="#bedingte-wahrscheinlichkeiten-satz-von-bayes"><span class="header-section-number">4</span> Bedingte Wahrscheinlichkeiten &amp; Satz von Bayes</a>
-  <ul class="collapse">
-  <li><a href="#satz-der-totalen-wahrscheinlichkeit" id="toc-satz-der-totalen-wahrscheinlichkeit" class="nav-link" data-scroll-target="#satz-der-totalen-wahrscheinlichkeit"><span class="header-section-number">4.1</span> Satz der totalen Wahrscheinlichkeit</a></li>
-  <li><a href="#satz-von-bayes" id="toc-satz-von-bayes" class="nav-link" data-scroll-target="#satz-von-bayes"><span class="header-section-number">4.2</span> Satz von Bayes</a></li>
-  </ul></li>
-  <li><a href="#unabhängigkeit-von-ereignissen" id="toc-unabhängigkeit-von-ereignissen" class="nav-link" data-scroll-target="#unabhängigkeit-von-ereignissen"><span class="header-section-number">5</span> Unabhängigkeit von Ereignissen</a></li>
   </ul>
 </nav>
     </div>
@@ -264,32 +262,9 @@ window.Quarto = {
 <p><strong>Formel:</strong> <span class="math display">\[\mathbb{P}[A] = \frac{|A|}{|\Omega|} = \frac{\text{Anzahl günstige Ausgänge}}{\text{Anzahl mögliche Ausgänge}}\]</span></p>
 <p><em>Beispiel:</em> Wahrscheinlichkeit für eine gerade Zahl beim fairen Würfelwurf: <span class="math inline">\(\mathbb{P}[A] = 3 / 6 = 0.5\)</span>.</p>
 <hr>
-</section>
-</section>
-<section id="bedingte-wahrscheinlichkeiten-satz-von-bayes" class="level1" data-number="4">
-<h1 data-number="4"><span class="header-section-number">4</span> Bedingte Wahrscheinlichkeiten &amp; Satz von Bayes</h1>
-<p>Oft bekommen wir neue Informationen, die unsere Einschätzung verändern. Die <strong>bedingte Wahrscheinlichkeit</strong> <span class="math inline">\(\mathbb{P}[A|B]\)</span> beschreibt die Wahrscheinlichkeit von <span class="math inline">\(A\)</span>, unter der Voraussetzung, dass <span class="math inline">\(B\)</span> bereits eingetreten ist.</p>
-<p><strong>Formel:</strong> <span class="math display">\[\mathbb{P}[A|B] = \frac{\mathbb{P}[A \cap B]}{\mathbb{P}[B]}\]</span></p>
-<section id="satz-der-totalen-wahrscheinlichkeit" class="level2" data-number="4.1">
-<h2 data-number="4.1" class="anchored" data-anchor-id="satz-der-totalen-wahrscheinlichkeit"><span class="header-section-number">4.1</span> Satz der totalen Wahrscheinlichkeit</h2>
-<p>Um <span class="math inline">\(\mathbb{P}[A]\)</span> zu berechnen, können wir das Problem in disjunkte Fälle (z.B. Fall <span class="math inline">\(B\)</span> und Fall <span class="math inline">\(B^c\)</span>) aufteilen und gewichten: <span class="math display">\[\mathbb{P}[A] = \mathbb{P}[A|B] \cdot \mathbb{P}[B] + \mathbb{P}[A|B^c] \cdot \mathbb{P}[B^c]\]</span></p>
-<p>Wir kennen die Fälle <span class="math inline">\(B\)</span> und <span class="math inline">\(B^c\)</span>, deren Wahrscheinlichkeiten ( <span class="math inline">\(\mathbb{P}[B^c], \mathbb{P}[B]\)</span> ) und die bedingten Wahrscheinlichkeiten ( <span class="math inline">\(\mathbb{P}[A|B^c], \mathbb{P}[A|B]\)</span> ). Die Formel liefert daraus dann <span class="math inline">\(\mathbb{P}[A]\)</span>.</p>
-<p><em>Beispiel:</em> Ereignis <span class="math inline">\(A\)</span>: Wir ziehen als zweite Kugel eine rote Kugel. Ereignis <span class="math inline">\(B\)</span>: Wir ziehen als erste Kugel eine rote Kugel. Dann können wir die Wahrscheinlichkeit für <span class="math inline">\(A\)</span> berechnen, indem wir die Fälle <span class="math inline">\(B\)</span> und <span class="math inline">\(B^c\)</span> betrachten.</p>
-</section>
-<section id="satz-von-bayes" class="level2" data-number="4.2">
-<h2 data-number="4.2" class="anchored" data-anchor-id="satz-von-bayes"><span class="header-section-number">4.2</span> Satz von Bayes</h2>
-<p>Dieser Satz erlaubt es uns, bedingte Wahrscheinlichkeiten “umzudrehen”, also von <span class="math inline">\(\mathbb{P}[A|B]\)</span> auf <span class="math inline">\(\mathbb{P}[B|A]\)</span> zu schliessen: <span class="math display">\[\mathbb{P}[A|B] = \frac{\mathbb{P}[B|A] \cdot \mathbb{P}[A]}{\mathbb{P}[B]}\]</span></p>
-<p><em>Klassisches Beispiel (Medizinischer Test):</em> Auch wenn ein HIV-Test sehr genau ist, ist die Wahrscheinlichkeit, tatsächlich infiziert zu sein, wenn der Test positiv ausfällt, oft überraschend tief, falls die Krankheit in der Gesamtbevölkerung sehr selten ist.</p>
-<hr>
-</section>
-</section>
-<section id="unabhängigkeit-von-ereignissen" class="level1" data-number="5">
-<h1 data-number="5"><span class="header-section-number">5</span> Unabhängigkeit von Ereignissen</h1>
-<p>Zwei Ereignisse <span class="math inline">\(A\)</span> und <span class="math inline">\(B\)</span> sind <strong>unabhängig</strong>, wenn das Eintreten des einen Ereignisses keinen Einfluss auf die Wahrscheinlichkeit des anderen hat.</p>
-<p><strong>Bedingung für Unabhängigkeit:</strong> Die Wahrscheinlichkeit des gemeinsamen Eintretens von <span class="math inline">\(A\)</span> und <span class="math inline">\(B\)</span> ist gleich dem Produkt ihrer Einzelwahrscheinlichkeiten: <span class="math display">\[\mathbb{P}[A \cap B] = \mathbb{P}[A] \cdot \mathbb{P}[B]\]</span></p>
-<p>Wenn Ereignisse unabhängig sind, gilt logischerweise auch: <span class="math inline">\(\mathbb{P}[A|B] = \mathbb{P}[A]\)</span>.</p>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->

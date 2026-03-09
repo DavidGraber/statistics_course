@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Statistik &amp; Wahrscheinlichkeit</title>
+<title>Woche 3: Bedingte Wahrscheinlichkeiten – Statistik &amp; Wahrscheinlichkeit</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -69,6 +69,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -90,7 +119,7 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="./index.html" aria-current="page"> 
+    <a class="nav-link" href="./index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
@@ -102,7 +131,7 @@ ul.task-list li input[type="checkbox"] {
 <span class="menu-text">Woche 2: Wahrscheinlichkeitsrechnung</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./woche_03.html"> 
+    <a class="nav-link active" href="./woche_03.html" aria-current="page"> 
 <span class="menu-text">Woche 2: Bedingte Wahrscheinlichkeiten</span></a>
   </li>  
 </ul>
@@ -121,32 +150,61 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#willkommen-zum-statistik-kurs" id="toc-willkommen-zum-statistik-kurs" class="nav-link active" data-scroll-target="#willkommen-zum-statistik-kurs"><span class="header-section-number">1</span> Willkommen zum Statistik-Kurs</a>
+  <li><a href="#bedingte-wahrscheinlichkeiten-satz-von-bayes" id="toc-bedingte-wahrscheinlichkeiten-satz-von-bayes" class="nav-link active" data-scroll-target="#bedingte-wahrscheinlichkeiten-satz-von-bayes"><span class="header-section-number">1</span> Bedingte Wahrscheinlichkeiten &amp; Satz von Bayes</a>
   <ul class="collapse">
-  <li><a href="#semesterplan" id="toc-semesterplan" class="nav-link" data-scroll-target="#semesterplan"><span class="header-section-number">1.1</span> Semesterplan</a></li>
+  <li><a href="#satz-der-totalen-wahrscheinlichkeit" id="toc-satz-der-totalen-wahrscheinlichkeit" class="nav-link" data-scroll-target="#satz-der-totalen-wahrscheinlichkeit"><span class="header-section-number">1.1</span> Satz der totalen Wahrscheinlichkeit</a></li>
+  <li><a href="#satz-von-bayes" id="toc-satz-von-bayes" class="nav-link" data-scroll-target="#satz-von-bayes"><span class="header-section-number">1.2</span> Satz von Bayes</a></li>
   </ul></li>
+  <li><a href="#unabhängigkeit-von-ereignissen" id="toc-unabhängigkeit-von-ereignissen" class="nav-link" data-scroll-target="#unabhängigkeit-von-ereignissen"><span class="header-section-number">2</span> Unabhängigkeit von Ereignissen</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Woche 3: Bedingte Wahrscheinlichkeiten</h1>
+</div>
 
 
 
+<div class="quarto-title-meta">
 
-<section id="willkommen-zum-statistik-kurs" class="level1" data-number="1">
-<h1 data-number="1"><span class="header-section-number">1</span> Willkommen zum Statistik-Kurs</h1>
-<p>Dieses digitale Skript wird jede Woche erweitert. Hier finden Sie alle wichtigen Formeln, Definitionen und Beispiele aus den Vorlesungen.</p>
-<section id="semesterplan" class="level2" data-number="1.1">
-<h2 data-number="1.1" class="anchored" data-anchor-id="semesterplan"><span class="header-section-number">1.1</span> Semesterplan</h2>
-<ul>
-<li><strong>Woche 1:</strong> Einführung &amp; Kombinatorik</li>
-<li><strong>Woche 2:</strong> Wahrscheinlichkeitsrechnung</li>
-<li><strong>Woche 3:</strong> Bedingte Wahrscheinlichkeiten</li>
-</ul>
+    
+  
+    
+  </div>
+  
 
 
+</header>
+
+
+<section id="bedingte-wahrscheinlichkeiten-satz-von-bayes" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Bedingte Wahrscheinlichkeiten &amp; Satz von Bayes</h1>
+<p>Oft bekommen wir neue Informationen, die unsere Einschätzung verändern. Die <strong>bedingte Wahrscheinlichkeit</strong> <span class="math inline">\(\mathbb{P}[A|B]\)</span> beschreibt die Wahrscheinlichkeit von <span class="math inline">\(A\)</span>, unter der Voraussetzung, dass <span class="math inline">\(B\)</span> bereits eingetreten ist.</p>
+<p><strong>Formel:</strong> <span class="math display">\[\mathbb{P}[A|B] = \frac{\mathbb{P}[A \cap B]}{\mathbb{P}[B]}\]</span></p>
+<section id="satz-der-totalen-wahrscheinlichkeit" class="level2" data-number="1.1">
+<h2 data-number="1.1" class="anchored" data-anchor-id="satz-der-totalen-wahrscheinlichkeit"><span class="header-section-number">1.1</span> Satz der totalen Wahrscheinlichkeit</h2>
+<p>Um <span class="math inline">\(\mathbb{P}[A]\)</span> zu berechnen, können wir das Problem in disjunkte Fälle (z.B. Fall <span class="math inline">\(B\)</span> und Fall <span class="math inline">\(B^c\)</span>) aufteilen und gewichten: <span class="math display">\[\mathbb{P}[A] = \mathbb{P}[A|B] \cdot \mathbb{P}[B] + \mathbb{P}[A|B^c] \cdot \mathbb{P}[B^c]\]</span></p>
+<p>Wir kennen die Fälle <span class="math inline">\(B\)</span> und <span class="math inline">\(B^c\)</span>, deren Wahrscheinlichkeiten ( <span class="math inline">\(\mathbb{P}[B^c], \mathbb{P}[B]\)</span> ) und die bedingten Wahrscheinlichkeiten ( <span class="math inline">\(\mathbb{P}[A|B^c], \mathbb{P}[A|B]\)</span> ). Die Formel liefert daraus dann <span class="math inline">\(\mathbb{P}[A]\)</span>.</p>
+<p><em>Beispiel:</em> Ereignis <span class="math inline">\(A\)</span>: Wir ziehen als zweite Kugel eine rote Kugel. Ereignis <span class="math inline">\(B\)</span>: Wir ziehen als erste Kugel eine rote Kugel. Dann können wir die Wahrscheinlichkeit für <span class="math inline">\(A\)</span> berechnen, indem wir die Fälle <span class="math inline">\(B\)</span> und <span class="math inline">\(B^c\)</span> betrachten.</p>
 </section>
+<section id="satz-von-bayes" class="level2" data-number="1.2">
+<h2 data-number="1.2" class="anchored" data-anchor-id="satz-von-bayes"><span class="header-section-number">1.2</span> Satz von Bayes</h2>
+<p>Dieser Satz erlaubt es uns, bedingte Wahrscheinlichkeiten “umzudrehen”, also von <span class="math inline">\(\mathbb{P}[A|B]\)</span> auf <span class="math inline">\(\mathbb{P}[B|A]\)</span> zu schliessen: <span class="math display">\[\mathbb{P}[A|B] = \frac{\mathbb{P}[B|A] \cdot \mathbb{P}[A]}{\mathbb{P}[B]}\]</span></p>
+<p><em>Klassisches Beispiel (Medizinischer Test):</em> Auch wenn ein HIV-Test sehr genau ist, ist die Wahrscheinlichkeit, tatsächlich infiziert zu sein, wenn der Test positiv ausfällt, oft überraschend tief, falls die Krankheit in der Gesamtbevölkerung sehr selten ist.</p>
+<hr>
+</section>
+</section>
+<section id="unabhängigkeit-von-ereignissen" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> Unabhängigkeit von Ereignissen</h1>
+<p>Zwei Ereignisse <span class="math inline">\(A\)</span> und <span class="math inline">\(B\)</span> sind <strong>unabhängig</strong>, wenn das Eintreten des einen Ereignisses keinen Einfluss auf die Wahrscheinlichkeit des anderen hat.</p>
+<p><strong>Bedingung für Unabhängigkeit:</strong> Die Wahrscheinlichkeit des gemeinsamen Eintretens von <span class="math inline">\(A\)</span> und <span class="math inline">\(B\)</span> ist gleich dem Produkt ihrer Einzelwahrscheinlichkeiten: <span class="math display">\[\mathbb{P}[A \cap B] = \mathbb{P}[A] \cdot \mathbb{P}[B]\]</span></p>
+<p>Wenn Ereignisse unabhängig sind, gilt logischerweise auch: <span class="math inline">\(\mathbb{P}[A|B] = \mathbb{P}[A]\)</span>.</p>
+
+
 </section>
 
 </main> <!-- /main -->

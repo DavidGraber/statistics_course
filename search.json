@@ -42,20 +42,6 @@
     "text": "2.4 Kombinationen (Auswahl)\nHier untersuchen wir, wie viele Möglichkeiten es gibt, \\(k\\) Objekte aus einer Menge von \\(n\\) Objekten auszuwählen. Dabei ist die Reihenfolge egal (ziehen von einstelligen Nummern: 012 ist das gleiche wie 021 oder 210).\nOhne Zurücklegen.\nTypisches Beispiel: Lotto oder die Auswahl von 2 Pizzabelägen aus 6 möglichen, Pilze+Salami ist das gleiche wie Salami+Pilze.\nFormel (Binomialkoeffizient): \\[\\binom{n}{k} = \\frac{n!}{k!(n-k)!}\\]\nIn R: choose(n, k)\nMit Zurücklegen.\nBeispiel: Auswahl von Objekten, die nach der Ziehung wieder zurückgelegt werden, wobei nur die Anzahl pro Kategorie zählt. Beispiel: Auswahl von 3 Kugeln aus einer Urne mit 5 verschiedenen Farben, wobei jede Farbe mehrfach gezogen werden kann (z.B. 2 rote und 1 blaue Kugel).\nFormel: \\[\\binom{n+k-1}{k}\\]\nIn R: choose(n + k - 1, k)"
   },
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "1 Willkommen zum Statistik-Kurs",
-    "section": "",
-    "text": "Dieses digitale Skript wird jede Woche erweitert. Hier finden Sie alle wichtigen Formeln, Definitionen und Beispiele aus den Vorlesungen.\n\n\n\nWoche 1: Einführung & Kombinatorik\nWoche 2: Wahrscheinlichkeitsrechnung"
-  },
-  {
-    "objectID": "index.html#semesterplan",
-    "href": "index.html#semesterplan",
-    "title": "1 Willkommen zum Statistik-Kurs",
-    "section": "",
-    "text": "Woche 1: Einführung & Kombinatorik\nWoche 2: Wahrscheinlichkeitsrechnung"
-  },
-  {
     "objectID": "woche_02.html",
     "href": "woche_02.html",
     "title": "Woche 2: Wahrscheinlichkeitsrechnung",
@@ -70,17 +56,38 @@
     "text": "3.1 Laplace-Experimente\nEin Laplace-Experiment liegt vor, wenn jeder mögliche Ausgang (\\(\\omega\\)) absolut gleich wahrscheinlich ist.\nFormel: \\[\\mathbb{P}[A] = \\frac{|A|}{|\\Omega|} = \\frac{\\text{Anzahl günstige Ausgänge}}{\\text{Anzahl mögliche Ausgänge}}\\]\nBeispiel: Wahrscheinlichkeit für eine gerade Zahl beim fairen Würfelwurf: \\(\\mathbb{P}[A] = 3 / 6 = 0.5\\)."
   },
   {
-    "objectID": "woche_02.html#satz-der-totalen-wahrscheinlichkeit",
-    "href": "woche_02.html#satz-der-totalen-wahrscheinlichkeit",
-    "title": "Woche 2: Wahrscheinlichkeitsrechnung",
-    "section": "4.1 Satz der totalen Wahrscheinlichkeit",
-    "text": "4.1 Satz der totalen Wahrscheinlichkeit\nUm \\(\\mathbb{P}[A]\\) zu berechnen, können wir das Problem in disjunkte Fälle (z.B. Fall \\(B\\) und Fall \\(B^c\\)) aufteilen und gewichten: \\[\\mathbb{P}[A] = \\mathbb{P}[A|B] \\cdot \\mathbb{P}[B] + \\mathbb{P}[A|B^c] \\cdot \\mathbb{P}[B^c]\\]\nWir kennen die Fälle \\(B\\) und \\(B^c\\), deren Wahrscheinlichkeiten ( \\(\\mathbb{P}[B^c], \\mathbb{P}[B]\\) ) und die bedingten Wahrscheinlichkeiten ( \\(\\mathbb{P}[A|B^c], \\mathbb{P}[A|B]\\) ). Die Formel liefert daraus dann \\(\\mathbb{P}[A]\\).\nBeispiel: Ereignis \\(A\\): Wir ziehen als zweite Kugel eine rote Kugel. Ereignis \\(B\\): Wir ziehen als erste Kugel eine rote Kugel. Dann können wir die Wahrscheinlichkeit für \\(A\\) berechnen, indem wir die Fälle \\(B\\) und \\(B^c\\) betrachten."
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "1 Willkommen zum Statistik-Kurs",
+    "section": "",
+    "text": "Dieses digitale Skript wird jede Woche erweitert. Hier finden Sie alle wichtigen Formeln, Definitionen und Beispiele aus den Vorlesungen.\n\n\n\nWoche 1: Einführung & Kombinatorik\nWoche 2: Wahrscheinlichkeitsrechnung\nWoche 3: Bedingte Wahrscheinlichkeiten"
   },
   {
-    "objectID": "woche_02.html#satz-von-bayes",
-    "href": "woche_02.html#satz-von-bayes",
-    "title": "Woche 2: Wahrscheinlichkeitsrechnung",
-    "section": "4.2 Satz von Bayes",
-    "text": "4.2 Satz von Bayes\nDieser Satz erlaubt es uns, bedingte Wahrscheinlichkeiten “umzudrehen”, also von \\(\\mathbb{P}[A|B]\\) auf \\(\\mathbb{P}[B|A]\\) zu schliessen: \\[\\mathbb{P}[A|B] = \\frac{\\mathbb{P}[B|A] \\cdot \\mathbb{P}[A]}{\\mathbb{P}[B]}\\]\nKlassisches Beispiel (Medizinischer Test): Auch wenn ein HIV-Test sehr genau ist, ist die Wahrscheinlichkeit, tatsächlich infiziert zu sein, wenn der Test positiv ausfällt, oft überraschend tief, falls die Krankheit in der Gesamtbevölkerung sehr selten ist."
+    "objectID": "index.html#semesterplan",
+    "href": "index.html#semesterplan",
+    "title": "1 Willkommen zum Statistik-Kurs",
+    "section": "",
+    "text": "Woche 1: Einführung & Kombinatorik\nWoche 2: Wahrscheinlichkeitsrechnung\nWoche 3: Bedingte Wahrscheinlichkeiten"
+  },
+  {
+    "objectID": "woche_03.html",
+    "href": "woche_03.html",
+    "title": "Woche 3: Bedingte Wahrscheinlichkeiten",
+    "section": "",
+    "text": "Oft bekommen wir neue Informationen, die unsere Einschätzung verändern. Die bedingte Wahrscheinlichkeit \\(\\mathbb{P}[A|B]\\) beschreibt die Wahrscheinlichkeit von \\(A\\), unter der Voraussetzung, dass \\(B\\) bereits eingetreten ist.\nFormel: \\[\\mathbb{P}[A|B] = \\frac{\\mathbb{P}[A \\cap B]}{\\mathbb{P}[B]}\\]\n\n\nUm \\(\\mathbb{P}[A]\\) zu berechnen, können wir das Problem in disjunkte Fälle (z.B. Fall \\(B\\) und Fall \\(B^c\\)) aufteilen und gewichten: \\[\\mathbb{P}[A] = \\mathbb{P}[A|B] \\cdot \\mathbb{P}[B] + \\mathbb{P}[A|B^c] \\cdot \\mathbb{P}[B^c]\\]\nWir kennen die Fälle \\(B\\) und \\(B^c\\), deren Wahrscheinlichkeiten ( \\(\\mathbb{P}[B^c], \\mathbb{P}[B]\\) ) und die bedingten Wahrscheinlichkeiten ( \\(\\mathbb{P}[A|B^c], \\mathbb{P}[A|B]\\) ). Die Formel liefert daraus dann \\(\\mathbb{P}[A]\\).\nBeispiel: Ereignis \\(A\\): Wir ziehen als zweite Kugel eine rote Kugel. Ereignis \\(B\\): Wir ziehen als erste Kugel eine rote Kugel. Dann können wir die Wahrscheinlichkeit für \\(A\\) berechnen, indem wir die Fälle \\(B\\) und \\(B^c\\) betrachten.\n\n\n\nDieser Satz erlaubt es uns, bedingte Wahrscheinlichkeiten “umzudrehen”, also von \\(\\mathbb{P}[A|B]\\) auf \\(\\mathbb{P}[B|A]\\) zu schliessen: \\[\\mathbb{P}[A|B] = \\frac{\\mathbb{P}[B|A] \\cdot \\mathbb{P}[A]}{\\mathbb{P}[B]}\\]\nKlassisches Beispiel (Medizinischer Test): Auch wenn ein HIV-Test sehr genau ist, ist die Wahrscheinlichkeit, tatsächlich infiziert zu sein, wenn der Test positiv ausfällt, oft überraschend tief, falls die Krankheit in der Gesamtbevölkerung sehr selten ist."
+  },
+  {
+    "objectID": "woche_03.html#satz-der-totalen-wahrscheinlichkeit",
+    "href": "woche_03.html#satz-der-totalen-wahrscheinlichkeit",
+    "title": "Woche 3: Bedingte Wahrscheinlichkeiten",
+    "section": "",
+    "text": "Um \\(\\mathbb{P}[A]\\) zu berechnen, können wir das Problem in disjunkte Fälle (z.B. Fall \\(B\\) und Fall \\(B^c\\)) aufteilen und gewichten: \\[\\mathbb{P}[A] = \\mathbb{P}[A|B] \\cdot \\mathbb{P}[B] + \\mathbb{P}[A|B^c] \\cdot \\mathbb{P}[B^c]\\]\nWir kennen die Fälle \\(B\\) und \\(B^c\\), deren Wahrscheinlichkeiten ( \\(\\mathbb{P}[B^c], \\mathbb{P}[B]\\) ) und die bedingten Wahrscheinlichkeiten ( \\(\\mathbb{P}[A|B^c], \\mathbb{P}[A|B]\\) ). Die Formel liefert daraus dann \\(\\mathbb{P}[A]\\).\nBeispiel: Ereignis \\(A\\): Wir ziehen als zweite Kugel eine rote Kugel. Ereignis \\(B\\): Wir ziehen als erste Kugel eine rote Kugel. Dann können wir die Wahrscheinlichkeit für \\(A\\) berechnen, indem wir die Fälle \\(B\\) und \\(B^c\\) betrachten."
+  },
+  {
+    "objectID": "woche_03.html#satz-von-bayes",
+    "href": "woche_03.html#satz-von-bayes",
+    "title": "Woche 3: Bedingte Wahrscheinlichkeiten",
+    "section": "",
+    "text": "Dieser Satz erlaubt es uns, bedingte Wahrscheinlichkeiten “umzudrehen”, also von \\(\\mathbb{P}[A|B]\\) auf \\(\\mathbb{P}[B|A]\\) zu schliessen: \\[\\mathbb{P}[A|B] = \\frac{\\mathbb{P}[B|A] \\cdot \\mathbb{P}[A]}{\\mathbb{P}[B]}\\]\nKlassisches Beispiel (Medizinischer Test): Auch wenn ein HIV-Test sehr genau ist, ist die Wahrscheinlichkeit, tatsächlich infiziert zu sein, wenn der Test positiv ausfällt, oft überraschend tief, falls die Krankheit in der Gesamtbevölkerung sehr selten ist."
   }
 ]
