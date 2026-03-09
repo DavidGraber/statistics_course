@@ -1,0 +1,63 @@
+---
+title: "Woche 2: Wahrscheinlichkeitsrechnung"
+---
+
+# Zufallsexperimente und Ereignisse
+
+Die Wahrscheinlichkeitsrechnung beschäftigt sich mit **Zufallsexperimenten** – das sind Vorgänge, deren Ausgang nicht exakt vorhersagbar ist. Um damit zu rechnen, brauchen wir einige Grundbegriffe:
+
+* **Elementarereignis ($\omega$):** Ein einzelner, konkreter Ausgang eines Experiments.
+* **Grundmenge / Grundraum ($\Omega$):** Die Menge aller möglichen Ausgänge eines Experiments.
+* **Ereignis ($A$):** Eine Sammlung von bestimmten Elementarereignissen. Formal ist ein Ereignis eine Teilmenge der Grundmenge ($A \subseteq \Omega$).
+
+**Beispiel Würfelwurf:**
+
+* Grundmenge: $\Omega = \{1, 2, 3, 4, 5, 6\}$
+* Ereignis $A$ ("eine gerade Zahl würfeln"): $A = \{2, 4, 6\}$
+
+---
+
+# Mengenoperationen
+
+Da Ereignisse Mengen sind, können wir sie mit Mengenoperationen verknüpfen:
+
+| Operation | Notation | Bedeutung |
+| :--- | :---: | :--- |
+| **Schnittmenge** | $A \cap B$ | $A$ **und** $B$ treten beide gleichzeitig ein. |
+| **Vereinigung** | $A \cup B$ | $A$ **oder** $B$ (oder beide) treten ein. |
+| **Gegenereignis** | $A^c$ | $A$ tritt **nicht** ein ($A^c = \Omega \setminus A$). |
+
+**Disjunkte Ereignisse:**
+
+Zwei Ereignisse heissen disjunkt, wenn sie sich gegenseitig ausschliessen und niemals gemeinsam eintreten können ($A \cap B = \emptyset$).
+
+> **Tipp für Umformungen (De Morgan'sche Regeln):**
+
+> 1. $(A \cap B)^c = A^c \cup B^c$
+> 2. $(A \cup B)^c = A^c \cap B^c$
+
+---
+
+# Wahrscheinlichkeiten und Kolmogorow-Axiome
+
+Die Wahrscheinlichkeit $\mathbb{P}[A]$ gibt auf einer Skala von 0 bis 1 an, wie sicher ein Ereignis $A$ eintritt. Nach den Kolmogorow-Axiomen gilt:
+
+1. **Sicheres Ereignis:** $\mathbb{P}[\Omega] = 1$
+2. Die Wahrscheinlichkeit der Vereinigung von *disjunkten* Ereignissen ist die Summe ihrer Einzelwahrscheinlichkeiten.
+
+Daraus ergeben sich wichtige **Rechenregeln**:
+
+* **Gegenereignis:** $\mathbb{P}[A^c] = 1 - \mathbb{P}[A]$
+* **Differenzregel:** $P(A \setminus B) = P(A) - P(A \cap B)$
+* **Summenregel:** $\mathbb{P}[A \cup B] = \mathbb{P}[A] + \mathbb{P}[B] - \mathbb{P}[A \cap B]$
+
+
+## Laplace-Experimente
+Ein Laplace-Experiment liegt vor, wenn **jeder** mögliche Ausgang ($\omega$) absolut gleich wahrscheinlich ist.
+
+**Formel:**
+$$\mathbb{P}[A] = \frac{|A|}{|\Omega|} = \frac{\text{Anzahl günstige Ausgänge}}{\text{Anzahl mögliche Ausgänge}}$$
+
+*Beispiel:* Wahrscheinlichkeit für eine gerade Zahl beim fairen Würfelwurf: $\mathbb{P}[A] = 3 / 6 = 0.5$.
+
+---

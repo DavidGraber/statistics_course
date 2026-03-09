@@ -9,6 +9,10 @@ website:
         text: Home
       - href: woche_01.qmd
         text: "Woche 1: Kombinatorik"
+      - href: woche_02.qmd
+        text: "Woche 2: Wahrscheinlichkeitsrechnung"
+      - href: woche_03.qmd
+        text: "Woche 2: Bedingte Wahrscheinlichkeiten"
 
 format:
   html:
