@@ -28,7 +28,7 @@ innen sprechen 30% Französisch, von den Betriebswirtschaftler:innen sind es 50%
     - $B$ = Betriebswirtschaftler:in 
 - Wahrscheinlichkeiten: 
     - $\mathbb{P}[I] = 0.6$
-    - $\mathbb{P}[I^c] = 0.4$
+    - $\mathbb{P}[B] = 0.4$
 
 Der Satz der totalen Wahrscheinlichkeit erlaubt es uns, die Wahrscheinlichkeit zu berechnen, dass eine zufällig ausgewählte Person Französisch spricht, indem wir die Fälle $I$ und $B$ separat betrachten:
 $$\mathbb{P}[\text{F}] = \mathbb{P}[\text{F}|B] \cdot \mathbb{P}[B] + \mathbb{P}[\text{F}|I] \cdot \mathbb{P}[I] = 0.3 \cdot 0.6 + 0.5 \cdot 0.4 = 0.38$$
