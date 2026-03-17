@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Woche 3: Bedingte Wahrscheinlichkeiten – Statistik &amp; Wahrscheinlichkeit</title>
+<title>woche_05 – Statistik &amp; Wahrscheinlichkeit</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -131,7 +131,7 @@ window.Quarto = {
 <span class="menu-text">Woche 2: Wahrscheinlichkeitsrechnung</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="./woche_03.html" aria-current="page"> 
+    <a class="nav-link" href="./woche_03.html"> 
 <span class="menu-text">Woche 3: Bedingte Wahrscheinlichkeiten</span></a>
   </li>  
   <li class="nav-item">
@@ -154,91 +154,55 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#bedingte-wahrscheinlichkeiten-satz-von-bayes" id="toc-bedingte-wahrscheinlichkeiten-satz-von-bayes" class="nav-link active" data-scroll-target="#bedingte-wahrscheinlichkeiten-satz-von-bayes"><span class="header-section-number">1</span> Bedingte Wahrscheinlichkeiten &amp; Satz von Bayes</a>
+  <li><a href="#wichtige-kennzahlen" id="toc-wichtige-kennzahlen" class="nav-link active" data-scroll-target="#wichtige-kennzahlen"><span class="header-section-number">1</span> Wichtige Kennzahlen</a></li>
+  <li><a href="#spezielle-verteilungen" id="toc-spezielle-verteilungen" class="nav-link" data-scroll-target="#spezielle-verteilungen"><span class="header-section-number">2</span> Spezielle Verteilungen</a>
   <ul class="collapse">
-  <li><a href="#satz-der-totalen-wahrscheinlichkeit" id="toc-satz-der-totalen-wahrscheinlichkeit" class="nav-link" data-scroll-target="#satz-der-totalen-wahrscheinlichkeit"><span class="header-section-number">1.1</span> Satz der totalen Wahrscheinlichkeit</a>
-  <ul class="collapse">
-  <li><a href="#beispiel-1" id="toc-beispiel-1" class="nav-link" data-scroll-target="#beispiel-1"><span class="header-section-number">1.1.1</span> Beispiel 1:</a></li>
-  <li><a href="#beispiel-2" id="toc-beispiel-2" class="nav-link" data-scroll-target="#beispiel-2"><span class="header-section-number">1.1.2</span> Beispiel 2:</a></li>
+  <li><a href="#die-binomialverteilung-diskret" id="toc-die-binomialverteilung-diskret" class="nav-link" data-scroll-target="#die-binomialverteilung-diskret"><span class="header-section-number">2.0.1</span> 1. Die Binomialverteilung (Diskret)</a></li>
+  <li><a href="#die-normalverteilung-stetig" id="toc-die-normalverteilung-stetig" class="nav-link" data-scroll-target="#die-normalverteilung-stetig"><span class="header-section-number">2.0.2</span> 2. Die Normalverteilung (Stetig)</a></li>
   </ul></li>
-  <li><a href="#satz-von-bayes" id="toc-satz-von-bayes" class="nav-link" data-scroll-target="#satz-von-bayes"><span class="header-section-number">1.2</span> Satz von Bayes</a></li>
-  </ul></li>
-  <li><a href="#unabhängigkeit-von-ereignissen" id="toc-unabhängigkeit-von-ereignissen" class="nav-link" data-scroll-target="#unabhängigkeit-von-ereignissen"><span class="header-section-number">2</span> Unabhängigkeit von Ereignissen</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
-
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
-<h1 class="title">Woche 3: Bedingte Wahrscheinlichkeiten</h1>
-</div>
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
 
 
 
-<div class="quarto-title-meta">
 
-    
-  
-    
-  </div>
-  
-
-
-</header>
-
-
-<section id="bedingte-wahrscheinlichkeiten-satz-von-bayes" class="level1" data-number="1">
-<h1 data-number="1"><span class="header-section-number">1</span> Bedingte Wahrscheinlichkeiten &amp; Satz von Bayes</h1>
-<p>Oft bekommen wir neue Informationen, die unsere Einschätzung verändern. Die <strong>bedingte Wahrscheinlichkeit</strong> <span class="math inline">\(\mathbb{P}[A|B]\)</span> beschreibt die Wahrscheinlichkeit von <span class="math inline">\(A\)</span>, unter der Voraussetzung, dass <span class="math inline">\(B\)</span> bereits eingetreten ist.</p>
-<p><strong>Formel:</strong> <span class="math display">\[\mathbb{P}[A|B] = \frac{\mathbb{P}[A \cap B]}{\mathbb{P}[B]}\]</span></p>
-<section id="satz-der-totalen-wahrscheinlichkeit" class="level2" data-number="1.1">
-<h2 data-number="1.1" class="anchored" data-anchor-id="satz-der-totalen-wahrscheinlichkeit"><span class="header-section-number">1.1</span> Satz der totalen Wahrscheinlichkeit</h2>
-<p>Um <span class="math inline">\(\mathbb{P}[A]\)</span> zu berechnen, können wir das Problem in disjunkte Fälle (z.B. Fall <span class="math inline">\(B\)</span> und Fall <span class="math inline">\(B^c\)</span>) aufteilen und gewichten: <span class="math display">\[\mathbb{P}[A] = \mathbb{P}[A|B] \cdot \mathbb{P}[B] + \mathbb{P}[A|B^c] \cdot \mathbb{P}[B^c]\]</span></p>
-<p>Wir kennen die Fälle <span class="math inline">\(B\)</span> und <span class="math inline">\(B^c\)</span>, deren Wahrscheinlichkeiten ( <span class="math inline">\(\mathbb{P}[B^c], \mathbb{P}[B]\)</span> ) und die bedingten Wahrscheinlichkeiten ( <span class="math inline">\(\mathbb{P}[A|B^c], \mathbb{P}[A|B]\)</span> ). Die Formel liefert daraus dann <span class="math inline">\(\mathbb{P}[A]\)</span>.</p>
-<section id="beispiel-1" class="level3" data-number="1.1.1">
-<h3 data-number="1.1.1" class="anchored" data-anchor-id="beispiel-1"><span class="header-section-number">1.1.1</span> Beispiel 1:</h3>
-<p>Ereignis <span class="math inline">\(A\)</span>: Wir ziehen als zweite Kugel eine rote Kugel. Ereignis <span class="math inline">\(B\)</span>: Wir ziehen als erste Kugel eine rote Kugel. Dann können wir die Wahrscheinlichkeit für <span class="math inline">\(A\)</span> berechnen, indem wir die Fälle <span class="math inline">\(B\)</span> und <span class="math inline">\(B^c\)</span> betrachten.</p>
-</section>
-<section id="beispiel-2" class="level3" data-number="1.1.2">
-<h3 data-number="1.1.2" class="anchored" data-anchor-id="beispiel-2"><span class="header-section-number">1.1.2</span> Beispiel 2:</h3>
-<p>In einer Firma arbeiten 60% Ingenieur:innen und 40% Betriebswirtschaftler:innen. Von den Ingenieur: innen sprechen 30% Französisch, von den Betriebswirtschaftler:innen sind es 50%.</p>
-<ul>
-<li>Disjunkte Fälle (niemand ist beides, also disjunkt, schliessen sich gegenseitig aus):
-<ul>
-<li><span class="math inline">\(I\)</span> = Ingenieur:in,</li>
-<li><span class="math inline">\(B\)</span> = Betriebswirtschaftler:in</li>
-</ul></li>
-<li>Wahrscheinlichkeiten:
-<ul>
-<li><span class="math inline">\(\mathbb{P}[I] = 0.6\)</span></li>
-<li><span class="math inline">\(\mathbb{P}[B] = 0.4\)</span></li>
-</ul></li>
-</ul>
-<p>Der Satz der totalen Wahrscheinlichkeit erlaubt es uns, die Wahrscheinlichkeit zu berechnen, dass eine zufällig ausgewählte Person Französisch spricht, indem wir die Fälle <span class="math inline">\(I\)</span> und <span class="math inline">\(B\)</span> separat betrachten: <span class="math display">\[\mathbb{P}[\text{F}] = \mathbb{P}[\text{F}|B] \cdot \mathbb{P}[B] + \mathbb{P}[\text{F}|I] \cdot \mathbb{P}[I] = 0.3 \cdot 0.6 + 0.5 \cdot 0.4 = 0.38\]</span></p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="images/satz_der_totalen_wahrsch.png" class="img-fluid figure-img"></p>
-<figcaption>Visuelle Erläuterung</figcaption>
-</figure>
-</div>
-</section>
-</section>
-<section id="satz-von-bayes" class="level2" data-number="1.2">
-<h2 data-number="1.2" class="anchored" data-anchor-id="satz-von-bayes"><span class="header-section-number">1.2</span> Satz von Bayes</h2>
-<p>Dieser Satz erlaubt es uns, bedingte Wahrscheinlichkeiten “umzudrehen”, also von <span class="math inline">\(\mathbb{P}[A|B]\)</span> auf <span class="math inline">\(\mathbb{P}[B|A]\)</span> zu schliessen: <span class="math display">\[\mathbb{P}[A|B] = \frac{\mathbb{P}[B|A] \cdot \mathbb{P}[A]}{\mathbb{P}[B]}\]</span></p>
-<p><em>Klassisches Beispiel (Medizinischer Test):</em> Auch wenn ein HIV-Test sehr genau ist, ist die Wahrscheinlichkeit, tatsächlich infiziert zu sein, wenn der Test positiv ausfällt, oft überraschend tief, falls die Krankheit in der Gesamtbevölkerung sehr selten ist.</p>
+<section id="wichtige-kennzahlen" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Wichtige Kennzahlen</h1>
+<p>Anstatt immer die gesamte Verteilung anzuschauen, fassen wir sie oft mit zwei wichtigen Parametern zusammen:</p>
+<p><strong>1. Erwartungswert (<span class="math inline">\(E(X)\)</span> oder <span class="math inline">\(\mu\)</span>):</strong> Der “Schwerpunkt” der Verteilung. Er sagt uns: “Welchen Wert erwarten wir im Durchschnitt, wenn wir das Experiment unendlich oft wiederholen?”</p>
+<p><strong>2. Varianz (<span class="math inline">\(Var(X)\)</span> oder <span class="math inline">\(\sigma^2\)</span>) &amp; Standardabweichung (<span class="math inline">\(\sigma\)</span>):</strong> Ein Mass für die Streuung. Wie weit weichen die tatsächlichen Werte im Durchschnitt vom Erwartungswert ab? Die Standardabweichung ist einfach die Wurzel der Varianz (<span class="math inline">\(\sigma = \sqrt{Var(X)}\)</span>) und hat den Vorteil, dass sie in derselben Einheit wie die Daten vorliegt.</p>
 <hr>
 </section>
+<section id="spezielle-verteilungen" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> Spezielle Verteilungen</h1>
+<section id="die-binomialverteilung-diskret" class="level3" data-number="2.0.1">
+<h3 data-number="2.0.1" class="anchored" data-anchor-id="die-binomialverteilung-diskret"><span class="header-section-number">2.0.1</span> 1. Die Binomialverteilung (Diskret)</h3>
+<p>Wird verwendet, wenn wir ein Experiment mit genau zwei Ausgängen (Erfolg/Misserfolg) <span class="math inline">\(n\)</span>-mal unabhängig voneinander wiederholen und die Anzahl der Erfolge <span class="math inline">\(k\)</span> zählen. * Parameter: <span class="math inline">\(n\)</span> (Anzahl Versuche), <span class="math inline">\(p\)</span> (Erfolgswahrscheinlichkeit) * Formel für genau <span class="math inline">\(k\)</span> Erfolge: <span class="math display">\[P(X = k) = \binom{n}{k} \cdot p^k \cdot (1-p)^{n-k}\]</span></p>
+<p><strong>In R:</strong> * Wahrscheinlichkeit <span class="math inline">\(P(X = k)\)</span>: <code>dbinom(k, size = n, prob = p)</code> * Kumulierte Wahrscheinlichkeit <span class="math inline">\(P(X \le k)\)</span>: <code>pbinom(k, size = n, prob = p)</code></p>
 </section>
-<section id="unabhängigkeit-von-ereignissen" class="level1" data-number="2">
-<h1 data-number="2"><span class="header-section-number">2</span> Unabhängigkeit von Ereignissen</h1>
-<p>Zwei Ereignisse <span class="math inline">\(A\)</span> und <span class="math inline">\(B\)</span> sind <strong>unabhängig</strong>, wenn das Eintreten des einen Ereignisses keinen Einfluss auf die Wahrscheinlichkeit des anderen hat.</p>
-<p><strong>Bedingung für Unabhängigkeit:</strong> Die Wahrscheinlichkeit des gemeinsamen Eintretens von <span class="math inline">\(A\)</span> und <span class="math inline">\(B\)</span> ist gleich dem Produkt ihrer Einzelwahrscheinlichkeiten: <span class="math display">\[\mathbb{P}[A \cap B] = \mathbb{P}[A] \cdot \mathbb{P}[B]\]</span></p>
-<p>Wenn Ereignisse unabhängig sind, gilt logischerweise auch: <span class="math inline">\(\mathbb{P}[A|B] = \mathbb{P}[A]\)</span>.</p>
+<section id="die-normalverteilung-stetig" class="level3" data-number="2.0.2">
+<h3 data-number="2.0.2" class="anchored" data-anchor-id="die-normalverteilung-stetig"><span class="header-section-number">2.0.2</span> 2. Die Normalverteilung (Stetig)</h3>
+<p>Die berühmte “Glockenkurve” (Gauss-Verteilung). Sehr viele Phänomene in der Natur und Gesellschaft sind (näherungsweise) normalverteilt. * Parameter: <span class="math inline">\(\mu\)</span> (Erwartungswert, Zentrum der Glocke), <span class="math inline">\(\sigma\)</span> (Standardabweichung, Breite der Glocke) * <em>Standardnormalverteilung:</em> Eine spezielle Normalverteilung mit <span class="math inline">\(\mu = 0\)</span> und <span class="math inline">\(\sigma = 1\)</span>. Jede Normalverteilung kann in diese standardisiert (z-transformiert) werden: <span class="math display">\[Z = \frac{X - \mu}{\sigma}\]</span></p>
+<p><strong>In R:</strong> * Wert der Dichtefunktion an der Stelle <span class="math inline">\(x\)</span>: <code>dnorm(x, mean = mu, sd = sigma)</code> * Kumulierte Wahrscheinlichkeit <span class="math inline">\(P(X \le x)\)</span> (Fläche nach links): <code>pnorm(x, mean = mu, sd = sigma)</code></p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Tipp für die Prüfung und R
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Achten Sie in R genau auf den Unterschied zwischen <code>d</code> (density/Wahrscheinlichkeit für genauen Wert bei diskreten) und <code>p</code> (probability/kumulierte Wahrscheinlichkeit für “kleiner gleich”). Wenn nach “höchstens 3 Erfolgen” gefragt wird, brauchen Sie <code>pbinom(3, ...)</code>. Wenn nach “genau 3 Erfolgen” gefragt wird, <code>dbinom(3, ...)</code>. ::: –&gt;</p>
 
 
+</div>
+</div>
+</section>
 </section>
 
 </main> <!-- /main -->

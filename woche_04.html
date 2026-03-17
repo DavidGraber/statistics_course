@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Woche 3: Bedingte Wahrscheinlichkeiten – Statistik &amp; Wahrscheinlichkeit</title>
+<title>Woche 4: Zufallsvariablen &amp; Verteilungen – Statistik &amp; Wahrscheinlichkeit</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -131,11 +131,11 @@ window.Quarto = {
 <span class="menu-text">Woche 2: Wahrscheinlichkeitsrechnung</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="./woche_03.html" aria-current="page"> 
+    <a class="nav-link" href="./woche_03.html"> 
 <span class="menu-text">Woche 3: Bedingte Wahrscheinlichkeiten</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./woche_04.html"> 
+    <a class="nav-link active" href="./woche_04.html" aria-current="page"> 
 <span class="menu-text">Woche 4: Zufallsvariablen &amp; Verteilungen</span></a>
   </li>  
 </ul>
@@ -154,16 +154,14 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#bedingte-wahrscheinlichkeiten-satz-von-bayes" id="toc-bedingte-wahrscheinlichkeiten-satz-von-bayes" class="nav-link active" data-scroll-target="#bedingte-wahrscheinlichkeiten-satz-von-bayes"><span class="header-section-number">1</span> Bedingte Wahrscheinlichkeiten &amp; Satz von Bayes</a>
+  <li><a href="#was-ist-eine-zufallsvariable" id="toc-was-ist-eine-zufallsvariable" class="nav-link active" data-scroll-target="#was-ist-eine-zufallsvariable"><span class="header-section-number">1</span> Was ist eine Zufallsvariable?</a></li>
+  <li><a href="#wahrscheinlichkeits--und-verteilungsfunktion" id="toc-wahrscheinlichkeits--und-verteilungsfunktion" class="nav-link" data-scroll-target="#wahrscheinlichkeits--und-verteilungsfunktion"><span class="header-section-number">2</span> Wahrscheinlichkeits- und Verteilungsfunktion</a>
   <ul class="collapse">
-  <li><a href="#satz-der-totalen-wahrscheinlichkeit" id="toc-satz-der-totalen-wahrscheinlichkeit" class="nav-link" data-scroll-target="#satz-der-totalen-wahrscheinlichkeit"><span class="header-section-number">1.1</span> Satz der totalen Wahrscheinlichkeit</a>
-  <ul class="collapse">
-  <li><a href="#beispiel-1" id="toc-beispiel-1" class="nav-link" data-scroll-target="#beispiel-1"><span class="header-section-number">1.1.1</span> Beispiel 1:</a></li>
-  <li><a href="#beispiel-2" id="toc-beispiel-2" class="nav-link" data-scroll-target="#beispiel-2"><span class="header-section-number">1.1.2</span> Beispiel 2:</a></li>
+  <li><a href="#bei-diskreten-zufallsvariablen" id="toc-bei-diskreten-zufallsvariablen" class="nav-link" data-scroll-target="#bei-diskreten-zufallsvariablen"><span class="header-section-number">2.1</span> Bei diskreten Zufallsvariablen</a></li>
+  <li><a href="#bei-stetigen-zufallsvariablen" id="toc-bei-stetigen-zufallsvariablen" class="nav-link" data-scroll-target="#bei-stetigen-zufallsvariablen"><span class="header-section-number">2.2</span> Bei stetigen Zufallsvariablen</a></li>
+  <li><a href="#visuelle-zusammenfassung" id="toc-visuelle-zusammenfassung" class="nav-link" data-scroll-target="#visuelle-zusammenfassung"><span class="header-section-number">2.3</span> Visuelle Zusammenfassung</a></li>
   </ul></li>
-  <li><a href="#satz-von-bayes" id="toc-satz-von-bayes" class="nav-link" data-scroll-target="#satz-von-bayes"><span class="header-section-number">1.2</span> Satz von Bayes</a></li>
-  </ul></li>
-  <li><a href="#unabhängigkeit-von-ereignissen" id="toc-unabhängigkeit-von-ereignissen" class="nav-link" data-scroll-target="#unabhängigkeit-von-ereignissen"><span class="header-section-number">2</span> Unabhängigkeit von Ereignissen</a></li>
+  <li><a href="#unabhängigkeit-von-zufallsvariablen" id="toc-unabhängigkeit-von-zufallsvariablen" class="nav-link" data-scroll-target="#unabhängigkeit-von-zufallsvariablen"><span class="header-section-number">3</span> Unabhängigkeit von Zufallsvariablen</a></li>
   </ul>
 </nav>
     </div>
@@ -172,7 +170,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Woche 3: Bedingte Wahrscheinlichkeiten</h1>
+<h1 class="title">Woche 4: Zufallsvariablen &amp; Verteilungen</h1>
 </div>
 
 
@@ -189,54 +187,60 @@ window.Quarto = {
 </header>
 
 
-<section id="bedingte-wahrscheinlichkeiten-satz-von-bayes" class="level1" data-number="1">
-<h1 data-number="1"><span class="header-section-number">1</span> Bedingte Wahrscheinlichkeiten &amp; Satz von Bayes</h1>
-<p>Oft bekommen wir neue Informationen, die unsere Einschätzung verändern. Die <strong>bedingte Wahrscheinlichkeit</strong> <span class="math inline">\(\mathbb{P}[A|B]\)</span> beschreibt die Wahrscheinlichkeit von <span class="math inline">\(A\)</span>, unter der Voraussetzung, dass <span class="math inline">\(B\)</span> bereits eingetreten ist.</p>
-<p><strong>Formel:</strong> <span class="math display">\[\mathbb{P}[A|B] = \frac{\mathbb{P}[A \cap B]}{\mathbb{P}[B]}\]</span></p>
-<section id="satz-der-totalen-wahrscheinlichkeit" class="level2" data-number="1.1">
-<h2 data-number="1.1" class="anchored" data-anchor-id="satz-der-totalen-wahrscheinlichkeit"><span class="header-section-number">1.1</span> Satz der totalen Wahrscheinlichkeit</h2>
-<p>Um <span class="math inline">\(\mathbb{P}[A]\)</span> zu berechnen, können wir das Problem in disjunkte Fälle (z.B. Fall <span class="math inline">\(B\)</span> und Fall <span class="math inline">\(B^c\)</span>) aufteilen und gewichten: <span class="math display">\[\mathbb{P}[A] = \mathbb{P}[A|B] \cdot \mathbb{P}[B] + \mathbb{P}[A|B^c] \cdot \mathbb{P}[B^c]\]</span></p>
-<p>Wir kennen die Fälle <span class="math inline">\(B\)</span> und <span class="math inline">\(B^c\)</span>, deren Wahrscheinlichkeiten ( <span class="math inline">\(\mathbb{P}[B^c], \mathbb{P}[B]\)</span> ) und die bedingten Wahrscheinlichkeiten ( <span class="math inline">\(\mathbb{P}[A|B^c], \mathbb{P}[A|B]\)</span> ). Die Formel liefert daraus dann <span class="math inline">\(\mathbb{P}[A]\)</span>.</p>
-<section id="beispiel-1" class="level3" data-number="1.1.1">
-<h3 data-number="1.1.1" class="anchored" data-anchor-id="beispiel-1"><span class="header-section-number">1.1.1</span> Beispiel 1:</h3>
-<p>Ereignis <span class="math inline">\(A\)</span>: Wir ziehen als zweite Kugel eine rote Kugel. Ereignis <span class="math inline">\(B\)</span>: Wir ziehen als erste Kugel eine rote Kugel. Dann können wir die Wahrscheinlichkeit für <span class="math inline">\(A\)</span> berechnen, indem wir die Fälle <span class="math inline">\(B\)</span> und <span class="math inline">\(B^c\)</span> betrachten.</p>
-</section>
-<section id="beispiel-2" class="level3" data-number="1.1.2">
-<h3 data-number="1.1.2" class="anchored" data-anchor-id="beispiel-2"><span class="header-section-number">1.1.2</span> Beispiel 2:</h3>
-<p>In einer Firma arbeiten 60% Ingenieur:innen und 40% Betriebswirtschaftler:innen. Von den Ingenieur: innen sprechen 30% Französisch, von den Betriebswirtschaftler:innen sind es 50%.</p>
+<section id="was-ist-eine-zufallsvariable" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Was ist eine Zufallsvariable?</h1>
+<p>Eine <strong>Zufallsvariable</strong> (oft mit grossen Buchstaben wie <span class="math inline">\(X\)</span>, <span class="math inline">\(Y\)</span> bezeichnet) ist im Prinzip eine Übersetzungsmaschine: Sie ordnet den abstrakten Ergebnissen eines Zufallsexperiments (der Grundmenge <span class="math inline">\(\Omega\)</span>) reelle Zahlen zu.</p>
+<p>Wir unterscheiden zwei Haupttypen:</p>
 <ul>
-<li>Disjunkte Fälle (niemand ist beides, also disjunkt, schliessen sich gegenseitig aus):
+<li><strong>Diskrete Zufallsvariablen:</strong> Können nur bestimmte, zählbare Werte annehmen (oft ganze Zahlen).
 <ul>
-<li><span class="math inline">\(I\)</span> = Ingenieur:in,</li>
-<li><span class="math inline">\(B\)</span> = Betriebswirtschaftler:in</li>
+<li><em>Beispiel:</em> Anzahl der geworfenen “Köpfe” bei 10 Münzwürfen (<span class="math inline">\(X \in \{0, 1, 2, \dots, 10\}\)</span>).</li>
 </ul></li>
-<li>Wahrscheinlichkeiten:
+<li><strong>Stetige (kontinuierliche) Zufallsvariablen:</strong> Können jeden beliebigen Wert in einem bestimmten Intervall annehmen (Messwerte).
 <ul>
-<li><span class="math inline">\(\mathbb{P}[I] = 0.6\)</span></li>
-<li><span class="math inline">\(\mathbb{P}[B] = 0.4\)</span></li>
+<li><em>Beispiel:</em> Die exakte Wartezeit auf den Bus in Minuten (<span class="math inline">\(X = 4.352\dots\)</span>).</li>
 </ul></li>
 </ul>
-<p>Der Satz der totalen Wahrscheinlichkeit erlaubt es uns, die Wahrscheinlichkeit zu berechnen, dass eine zufällig ausgewählte Person Französisch spricht, indem wir die Fälle <span class="math inline">\(I\)</span> und <span class="math inline">\(B\)</span> separat betrachten: <span class="math display">\[\mathbb{P}[\text{F}] = \mathbb{P}[\text{F}|B] \cdot \mathbb{P}[B] + \mathbb{P}[\text{F}|I] \cdot \mathbb{P}[I] = 0.3 \cdot 0.6 + 0.5 \cdot 0.4 = 0.38\]</span></p>
+<hr>
+</section>
+<section id="wahrscheinlichkeits--und-verteilungsfunktion" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> Wahrscheinlichkeits- und Verteilungsfunktion</h1>
+<p>Um zu beschreiben, wie wahrscheinlich die verschiedenen Werte einer Zufallsvariablen sind, nutzen wir Funktionen.</p>
+<section id="bei-diskreten-zufallsvariablen" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="bei-diskreten-zufallsvariablen"><span class="header-section-number">2.1</span> Bei diskreten Zufallsvariablen</h2>
+<ul>
+<li><p><strong>Wahrscheinlichkeitsfunktion:</strong> Gibt die exakte Wahrscheinlichkeit an, dass die Zufallsvariable <span class="math inline">\(X\)</span> einen ganz bestimmten Wert <span class="math inline">\(x\)</span> annimmt. <span class="math display">\[P(X = x)\]</span></p></li>
+<li><p><strong>Verteilungsfunktion (kumulativ):</strong> Kumuliert (summiert) die Wahrscheinlichkeiten bis zu einem bestimmten Wert <span class="math inline">\(x\)</span>. <span class="math display">\[F(x) = P(X \le x)\]</span></p>
+<p>Die Kurve “beginnt” somit bei <span class="math inline">\(y=0\)</span> und “endet” bei <span class="math inline">\(y=1\)</span> und ist monoton wachsend (geht nie wieder abwärts in Richtung von höheren X).</p></li>
+</ul>
+</section>
+<section id="bei-stetigen-zufallsvariablen" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="bei-stetigen-zufallsvariablen"><span class="header-section-number">2.2</span> Bei stetigen Zufallsvariablen</h2>
+<ul>
+<li><strong>Dichtefunktion:</strong> Da ein stetiger Wert unendlich viele Nachkommastellen hat, ist die Wahrscheinlichkeit für einen <em>exakten</em> Wert immer null (<span class="math inline">\(P(X = x) = 0\)</span>). Die Dichtefunktion beschreibt stattdessen die “Kurve”. Die Gesamtfläche unter der Kurve ist immer exakt 1.</li>
+<li><strong>Verteilungsfunktion (kumulativ):</strong> Die Kurve ist ebenfalls monoton wachsend und gibt die Fläche unter der Dichtefunktion bis zum Wert <span class="math inline">\(x\)</span> an. Berechnet wird dies über das Integral der Dichtefunktion. <span class="math display">\[F(x) = \int_{-\infty}^{x} f(t) \, dt\]</span></li>
+</ul>
+</section>
+<section id="visuelle-zusammenfassung" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="visuelle-zusammenfassung"><span class="header-section-number">2.3</span> Visuelle Zusammenfassung</h2>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="images/satz_der_totalen_wahrsch.png" class="img-fluid figure-img"></p>
-<figcaption>Visuelle Erläuterung</figcaption>
+<p><img src="images/verteilungsfunktionen.png" class="img-fluid figure-img"></p>
+<figcaption>Visuelle Zusammenfassung (by Tobias Peter)</figcaption>
 </figure>
 </div>
 </section>
 </section>
-<section id="satz-von-bayes" class="level2" data-number="1.2">
-<h2 data-number="1.2" class="anchored" data-anchor-id="satz-von-bayes"><span class="header-section-number">1.2</span> Satz von Bayes</h2>
-<p>Dieser Satz erlaubt es uns, bedingte Wahrscheinlichkeiten “umzudrehen”, also von <span class="math inline">\(\mathbb{P}[A|B]\)</span> auf <span class="math inline">\(\mathbb{P}[B|A]\)</span> zu schliessen: <span class="math display">\[\mathbb{P}[A|B] = \frac{\mathbb{P}[B|A] \cdot \mathbb{P}[A]}{\mathbb{P}[B]}\]</span></p>
-<p><em>Klassisches Beispiel (Medizinischer Test):</em> Auch wenn ein HIV-Test sehr genau ist, ist die Wahrscheinlichkeit, tatsächlich infiziert zu sein, wenn der Test positiv ausfällt, oft überraschend tief, falls die Krankheit in der Gesamtbevölkerung sehr selten ist.</p>
+<section id="unabhängigkeit-von-zufallsvariablen" class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> Unabhängigkeit von Zufallsvariablen</h1>
+<p>Zwei Zufallsvariablen <span class="math inline">\(X\)</span> und <span class="math inline">\(Y\)</span> sind <strong>unabhängig</strong>, wenn das Eintreten der einen Zufallsvariablen absolut keinen Einfluss auf die Wahrscheinlichkeitsverteilung der anderen hat.</p>
+<p><strong>Formal gilt für unabhängige Zufallsvariablen:</strong></p>
+<ul>
+<li><p><strong>Gemeinsame Wahrscheinlichkeit:</strong> Die Wahrscheinlichkeit, dass beide Ereignisse eintreten, ist das Produkt ihrer Einzelwahrscheinlichkeiten: <span class="math display">\[P(X \le x \text{ und } Y \le y) = P(X \le x) \cdot P(Y \le y)\]</span></p>
+<p>oder ausgedrückt in der Verteilungsfunktion</p>
+<p><span class="math display">\[F_{X,Y}(x,y) = F_X(x) \cdot F_Y(y)\]</span></p></li>
+</ul>
 <hr>
-</section>
-</section>
-<section id="unabhängigkeit-von-ereignissen" class="level1" data-number="2">
-<h1 data-number="2"><span class="header-section-number">2</span> Unabhängigkeit von Ereignissen</h1>
-<p>Zwei Ereignisse <span class="math inline">\(A\)</span> und <span class="math inline">\(B\)</span> sind <strong>unabhängig</strong>, wenn das Eintreten des einen Ereignisses keinen Einfluss auf die Wahrscheinlichkeit des anderen hat.</p>
-<p><strong>Bedingung für Unabhängigkeit:</strong> Die Wahrscheinlichkeit des gemeinsamen Eintretens von <span class="math inline">\(A\)</span> und <span class="math inline">\(B\)</span> ist gleich dem Produkt ihrer Einzelwahrscheinlichkeiten: <span class="math display">\[\mathbb{P}[A \cap B] = \mathbb{P}[A] \cdot \mathbb{P}[B]\]</span></p>
-<p>Wenn Ereignisse unabhängig sind, gilt logischerweise auch: <span class="math inline">\(\mathbb{P}[A|B] = \mathbb{P}[A]\)</span>.</p>
 
 
 </section>

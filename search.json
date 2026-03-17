@@ -1,5 +1,12 @@
 [
   {
+    "objectID": "woche_05.html",
+    "href": "woche_05.html",
+    "title": "1 Wichtige Kennzahlen",
+    "section": "",
+    "text": "1 Wichtige Kennzahlen\nAnstatt immer die gesamte Verteilung anzuschauen, fassen wir sie oft mit zwei wichtigen Parametern zusammen:\n1. Erwartungswert (\\(E(X)\\) oder \\(\\mu\\)): Der “Schwerpunkt” der Verteilung. Er sagt uns: “Welchen Wert erwarten wir im Durchschnitt, wenn wir das Experiment unendlich oft wiederholen?”\n2. Varianz (\\(Var(X)\\) oder \\(\\sigma^2\\)) & Standardabweichung (\\(\\sigma\\)): Ein Mass für die Streuung. Wie weit weichen die tatsächlichen Werte im Durchschnitt vom Erwartungswert ab? Die Standardabweichung ist einfach die Wurzel der Varianz (\\(\\sigma = \\sqrt{Var(X)}\\)) und hat den Vorteil, dass sie in derselben Einheit wie die Daten vorliegt.\n\n\n\n2 Spezielle Verteilungen\n\n2.0.1 1. Die Binomialverteilung (Diskret)\nWird verwendet, wenn wir ein Experiment mit genau zwei Ausgängen (Erfolg/Misserfolg) \\(n\\)-mal unabhängig voneinander wiederholen und die Anzahl der Erfolge \\(k\\) zählen. * Parameter: \\(n\\) (Anzahl Versuche), \\(p\\) (Erfolgswahrscheinlichkeit) * Formel für genau \\(k\\) Erfolge: \\[P(X = k) = \\binom{n}{k} \\cdot p^k \\cdot (1-p)^{n-k}\\]\nIn R: * Wahrscheinlichkeit \\(P(X = k)\\): dbinom(k, size = n, prob = p) * Kumulierte Wahrscheinlichkeit \\(P(X \\le k)\\): pbinom(k, size = n, prob = p)\n\n\n2.0.2 2. Die Normalverteilung (Stetig)\nDie berühmte “Glockenkurve” (Gauss-Verteilung). Sehr viele Phänomene in der Natur und Gesellschaft sind (näherungsweise) normalverteilt. * Parameter: \\(\\mu\\) (Erwartungswert, Zentrum der Glocke), \\(\\sigma\\) (Standardabweichung, Breite der Glocke) * Standardnormalverteilung: Eine spezielle Normalverteilung mit \\(\\mu = 0\\) und \\(\\sigma = 1\\). Jede Normalverteilung kann in diese standardisiert (z-transformiert) werden: \\[Z = \\frac{X - \\mu}{\\sigma}\\]\nIn R: * Wert der Dichtefunktion an der Stelle \\(x\\): dnorm(x, mean = mu, sd = sigma) * Kumulierte Wahrscheinlichkeit \\(P(X \\le x)\\) (Fläche nach links): pnorm(x, mean = mu, sd = sigma)\n\n\n\n\n\n\nTipTipp für die Prüfung und R\n\n\n\nAchten Sie in R genau auf den Unterschied zwischen d (density/Wahrscheinlichkeit für genauen Wert bei diskreten) und p (probability/kumulierte Wahrscheinlichkeit für “kleiner gleich”). Wenn nach “höchstens 3 Erfolgen” gefragt wird, brauchen Sie pbinom(3, ...). Wenn nach “genau 3 Erfolgen” gefragt wird, dbinom(3, ...). ::: –&gt;"
+  },
+  {
     "objectID": "woche_01.html",
     "href": "woche_01.html",
     "title": "Woche 1: Einführung & Kombinatorik",
@@ -60,14 +67,14 @@
     "href": "index.html",
     "title": "1 Willkommen zum Statistik-Kurs",
     "section": "",
-    "text": "Dieses digitale Skript wird jede Woche erweitert. Hier finden Sie alle wichtigen Formeln, Definitionen und Beispiele aus den Vorlesungen.\n\n\n\nWoche 1: Einführung & Kombinatorik\nWoche 2: Wahrscheinlichkeitsrechnung\nWoche 3: Bedingte Wahrscheinlichkeiten"
+    "text": "Dieses digitale Skript wird jede Woche erweitert. Hier finden Sie alle wichtigen Formeln, Definitionen und Beispiele aus den Vorlesungen.\n\n\n\nWoche 1: Einführung & Kombinatorik\nWoche 2: Wahrscheinlichkeitsrechnung\nWoche 3: Bedingte Wahrscheinlichkeiten\nWoche 4: Zufallsvariablen & Verteilungen"
   },
   {
     "objectID": "index.html#semesterplan",
     "href": "index.html#semesterplan",
     "title": "1 Willkommen zum Statistik-Kurs",
     "section": "",
-    "text": "Woche 1: Einführung & Kombinatorik\nWoche 2: Wahrscheinlichkeitsrechnung\nWoche 3: Bedingte Wahrscheinlichkeiten"
+    "text": "Woche 1: Einführung & Kombinatorik\nWoche 2: Wahrscheinlichkeitsrechnung\nWoche 3: Bedingte Wahrscheinlichkeiten\nWoche 4: Zufallsvariablen & Verteilungen"
   },
   {
     "objectID": "woche_03.html",
@@ -89,5 +96,33 @@
     "title": "Woche 3: Bedingte Wahrscheinlichkeiten",
     "section": "",
     "text": "Dieser Satz erlaubt es uns, bedingte Wahrscheinlichkeiten “umzudrehen”, also von \\(\\mathbb{P}[A|B]\\) auf \\(\\mathbb{P}[B|A]\\) zu schliessen: \\[\\mathbb{P}[A|B] = \\frac{\\mathbb{P}[B|A] \\cdot \\mathbb{P}[A]}{\\mathbb{P}[B]}\\]\nKlassisches Beispiel (Medizinischer Test): Auch wenn ein HIV-Test sehr genau ist, ist die Wahrscheinlichkeit, tatsächlich infiziert zu sein, wenn der Test positiv ausfällt, oft überraschend tief, falls die Krankheit in der Gesamtbevölkerung sehr selten ist."
+  },
+  {
+    "objectID": "woche_04.html",
+    "href": "woche_04.html",
+    "title": "Woche 4: Zufallsvariablen & Verteilungen",
+    "section": "",
+    "text": "Eine Zufallsvariable (oft mit grossen Buchstaben wie \\(X\\), \\(Y\\) bezeichnet) ist im Prinzip eine Übersetzungsmaschine: Sie ordnet den abstrakten Ergebnissen eines Zufallsexperiments (der Grundmenge \\(\\Omega\\)) reelle Zahlen zu.\nWir unterscheiden zwei Haupttypen:\n\nDiskrete Zufallsvariablen: Können nur bestimmte, zählbare Werte annehmen (oft ganze Zahlen).\n\nBeispiel: Anzahl der geworfenen “Köpfe” bei 10 Münzwürfen (\\(X \\in \\{0, 1, 2, \\dots, 10\\}\\)).\n\nStetige (kontinuierliche) Zufallsvariablen: Können jeden beliebigen Wert in einem bestimmten Intervall annehmen (Messwerte).\n\nBeispiel: Die exakte Wartezeit auf den Bus in Minuten (\\(X = 4.352\\dots\\))."
+  },
+  {
+    "objectID": "woche_04.html#bei-diskreten-zufallsvariablen",
+    "href": "woche_04.html#bei-diskreten-zufallsvariablen",
+    "title": "Woche 4: Zufallsvariablen & Verteilungen",
+    "section": "2.1 Bei diskreten Zufallsvariablen",
+    "text": "2.1 Bei diskreten Zufallsvariablen\n\nWahrscheinlichkeitsfunktion: Gibt die exakte Wahrscheinlichkeit an, dass die Zufallsvariable \\(X\\) einen ganz bestimmten Wert \\(x\\) annimmt. \\[P(X = x)\\]\nVerteilungsfunktion (kumulativ): Kumuliert (summiert) die Wahrscheinlichkeiten bis zu einem bestimmten Wert \\(x\\). \\[F(x) = P(X \\le x)\\]\nDie Kurve “beginnt” somit bei \\(y=0\\) und “endet” bei \\(y=1\\) und ist monoton wachsend (geht nie wieder abwärts in Richtung von höheren X)."
+  },
+  {
+    "objectID": "woche_04.html#bei-stetigen-zufallsvariablen",
+    "href": "woche_04.html#bei-stetigen-zufallsvariablen",
+    "title": "Woche 4: Zufallsvariablen & Verteilungen",
+    "section": "2.2 Bei stetigen Zufallsvariablen",
+    "text": "2.2 Bei stetigen Zufallsvariablen\n\nDichtefunktion: Da ein stetiger Wert unendlich viele Nachkommastellen hat, ist die Wahrscheinlichkeit für einen exakten Wert immer null (\\(P(X = x) = 0\\)). Die Dichtefunktion beschreibt stattdessen die “Kurve”. Die Gesamtfläche unter der Kurve ist immer exakt 1.\nVerteilungsfunktion (kumulativ): Die Kurve ist ebenfalls monoton wachsend und gibt die Fläche unter der Dichtefunktion bis zum Wert \\(x\\) an. Berechnet wird dies über das Integral der Dichtefunktion. \\[F(x) = \\int_{-\\infty}^{x} f(t) \\, dt\\]"
+  },
+  {
+    "objectID": "woche_04.html#visuelle-zusammenfassung",
+    "href": "woche_04.html#visuelle-zusammenfassung",
+    "title": "Woche 4: Zufallsvariablen & Verteilungen",
+    "section": "2.3 Visuelle Zusammenfassung",
+    "text": "2.3 Visuelle Zusammenfassung\n\n\n\nVisuelle Zusammenfassung (by Tobias Peter)"
   }
 ]

@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://DavidGraber.github.io/statistics_course/woche_05.html</loc>
+    <lastmod>2026-03-17T07:14:51.115Z</lastmod>
+  </url>
+  <url>
     <loc>https://DavidGraber.github.io/statistics_course/woche_01.html</loc>
     <lastmod>2026-02-25T09:02:25.345Z</lastmod>
   </url>
@@ -10,10 +14,14 @@
   </url>
   <url>
     <loc>https://DavidGraber.github.io/statistics_course/index.html</loc>
-    <lastmod>2026-03-09T12:16:56.843Z</lastmod>
+    <lastmod>2026-03-17T06:06:30.251Z</lastmod>
   </url>
   <url>
     <loc>https://DavidGraber.github.io/statistics_course/woche_03.html</loc>
     <lastmod>2026-03-11T12:11:15.277Z</lastmod>
+  </url>
+  <url>
+    <loc>https://DavidGraber.github.io/statistics_course/woche_04.html</loc>
+    <lastmod>2026-03-17T07:14:51.115Z</lastmod>
   </url>
 </urlset>
