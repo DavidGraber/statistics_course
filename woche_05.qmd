@@ -1,0 +1,39 @@
+
+# Wichtige Kennzahlen
+
+Anstatt immer die gesamte Verteilung anzuschauen, fassen wir sie oft mit zwei wichtigen Parametern zusammen:
+
+**1. Erwartungswert ($E(X)$ oder $\mu$):**
+Der "Schwerpunkt" der Verteilung. Er sagt uns: "Welchen Wert erwarten wir im Durchschnitt, wenn wir das Experiment unendlich oft wiederholen?"
+
+**2. Varianz ($Var(X)$ oder $\sigma^2$) & Standardabweichung ($\sigma$):**
+Ein Mass für die Streuung. Wie weit weichen die tatsächlichen Werte im Durchschnitt vom Erwartungswert ab? Die Standardabweichung ist einfach die Wurzel der Varianz ($\sigma = \sqrt{Var(X)}$) und hat den Vorteil, dass sie in derselben Einheit wie die Daten vorliegt.
+
+---
+
+# Spezielle Verteilungen
+
+### 1. Die Binomialverteilung (Diskret)
+Wird verwendet, wenn wir ein Experiment mit genau zwei Ausgängen (Erfolg/Misserfolg) $n$-mal unabhängig voneinander wiederholen und die Anzahl der Erfolge $k$ zählen.
+* Parameter: $n$ (Anzahl Versuche), $p$ (Erfolgswahrscheinlichkeit)
+* Formel für genau $k$ Erfolge:
+  $$P(X = k) = \binom{n}{k} \cdot p^k \cdot (1-p)^{n-k}$$
+
+**In R:**
+* Wahrscheinlichkeit $P(X = k)$: `dbinom(k, size = n, prob = p)`
+* Kumulierte Wahrscheinlichkeit $P(X \le k)$: `pbinom(k, size = n, prob = p)`
+
+### 2. Die Normalverteilung (Stetig)
+Die berühmte "Glockenkurve" (Gauss-Verteilung). Sehr viele Phänomene in der Natur und Gesellschaft sind (näherungsweise) normalverteilt. 
+* Parameter: $\mu$ (Erwartungswert, Zentrum der Glocke), $\sigma$ (Standardabweichung, Breite der Glocke)
+* *Standardnormalverteilung:* Eine spezielle Normalverteilung mit $\mu = 0$ und $\sigma = 1$. Jede Normalverteilung kann in diese standardisiert (z-transformiert) werden:
+  $$Z = \frac{X - \mu}{\sigma}$$
+
+**In R:**
+* Wert der Dichtefunktion an der Stelle $x$: `dnorm(x, mean = mu, sd = sigma)`
+* Kumulierte Wahrscheinlichkeit $P(X \le x)$ (Fläche nach links): `pnorm(x, mean = mu, sd = sigma)`
+
+::: {.callout-tip}
+### Tipp für die Prüfung und R
+Achten Sie in R genau auf den Unterschied zwischen `d` (density/Wahrscheinlichkeit für genauen Wert bei diskreten) und `p` (probability/kumulierte Wahrscheinlichkeit für "kleiner gleich"). Wenn nach "höchstens 3 Erfolgen" gefragt wird, brauchen Sie `pbinom(3, ...)`. Wenn nach "genau 3 Erfolgen" gefragt wird, `dbinom(3, ...)`.
+::: -->

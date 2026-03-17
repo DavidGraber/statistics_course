@@ -13,6 +13,8 @@ website:
         text: "Woche 2: Wahrscheinlichkeitsrechnung"
       - href: woche_03.qmd
         text: "Woche 3: Bedingte Wahrscheinlichkeiten"
+      - href: woche_04.qmd
+        text: "Woche 4: Zufallsvariablen & Verteilungen"
 
 format:
   html:

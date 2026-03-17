@@ -6,3 +6,4 @@ Dieses digitale Skript wird jede Woche erweitert. Hier finden Sie alle wichtigen
 - **Woche 1:** Einführung & Kombinatorik
 - **Woche 2:** Wahrscheinlichkeitsrechnung
 - **Woche 3:** Bedingte Wahrscheinlichkeiten
+- **Woche 4:** Zufallsvariablen & Verteilungen
