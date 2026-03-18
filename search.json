@@ -116,7 +116,7 @@
     "href": "woche_04.html#bei-stetigen-zufallsvariablen",
     "title": "Woche 4: Zufallsvariablen & Verteilungen",
     "section": "2.2 Bei stetigen Zufallsvariablen",
-    "text": "2.2 Bei stetigen Zufallsvariablen\n\nDichtefunktion: Da ein stetiger Wert unendlich viele Nachkommastellen hat, ist die Wahrscheinlichkeit für einen exakten Wert immer null (\\(P(X = x) = 0\\)). Die Dichtefunktion beschreibt stattdessen die “Kurve”. Die Gesamtfläche unter der Kurve ist immer exakt 1.\nVerteilungsfunktion (kumulativ): Die Kurve ist ebenfalls monoton wachsend und gibt die Fläche unter der Dichtefunktion bis zum Wert \\(x\\) an. Berechnet wird dies über das Integral der Dichtefunktion. \\[F(x) = \\int_{-\\infty}^{x} f(t) \\, dt\\]"
+    "text": "2.2 Bei stetigen Zufallsvariablen\n\nDichtefunktion \\(\\varphi(x)\\): Da ein stetiger Wert unendlich viele Nachkommastellen hat, ist die Wahrscheinlichkeit für einen exakten Wert immer null (\\(P(X = x) = 0\\)). Die Dichtefunktion beschreibt stattdessen die “Kurve”. Die Gesamtfläche unter der Kurve ist immer exakt 1.\nVerteilungsfunktion \\(F_X(x)\\): Die Kurve ist ebenfalls monoton wachsend und gibt die Fläche unter der Dichtefunktion bis zum Wert \\(x\\) an. Berechnet wird dies über das Integral der Dichtefunktion. \\[F(x) = \\int_{-\\infty}^{x} \\varphi(t) \\, dt\\]"
   },
   {
     "objectID": "woche_04.html#visuelle-zusammenfassung",
