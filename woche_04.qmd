@@ -28,9 +28,9 @@ Um zu beschreiben, wie wahrscheinlich die verschiedenen Werte einer Zufallsvaria
   Die Kurve "beginnt" somit bei $y=0$ und "endet" bei $y=1$ und ist monoton wachsend (geht nie wieder abwärts in Richtung von höheren X).
 
 ## Bei stetigen Zufallsvariablen
-* **Dichtefunktion:** Da ein stetiger Wert unendlich viele Nachkommastellen hat, ist die Wahrscheinlichkeit für einen *exakten* Wert immer null ($P(X = x) = 0$). Die Dichtefunktion beschreibt stattdessen die "Kurve". Die Gesamtfläche unter der Kurve ist immer exakt 1.
-* **Verteilungsfunktion (kumulativ):** Die Kurve ist ebenfalls monoton wachsend und gibt die Fläche unter der Dichtefunktion bis zum Wert $x$ an. Berechnet wird dies über das Integral der Dichtefunktion.
-$$F(x) = \int_{-\infty}^{x} f(t) \, dt$$
+* **Dichtefunktion $\varphi(x)$:** Da ein stetiger Wert unendlich viele Nachkommastellen hat, ist die Wahrscheinlichkeit für einen *exakten* Wert immer null ($P(X = x) = 0$). Die Dichtefunktion beschreibt stattdessen die "Kurve". Die Gesamtfläche unter der Kurve ist immer exakt 1.
+* **Verteilungsfunktion $F_X(x)$:** Die Kurve ist ebenfalls monoton wachsend und gibt die Fläche unter der Dichtefunktion bis zum Wert $x$ an. Berechnet wird dies über das Integral der Dichtefunktion.
+$$F(x) = \int_{-\infty}^{x} \varphi(t) \, dt$$
 
 ## Visuelle Zusammenfassung
 ![Visuelle Zusammenfassung (by Tobias Peter)](images/verteilungsfunktionen.png)
