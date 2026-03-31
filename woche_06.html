@@ -142,6 +142,10 @@ window.Quarto = {
     <a class="nav-link" href="./woche_05.html"> 
 <span class="menu-text">Woche 5: Erwartungswert &amp; Varianz</span></a>
   </li>  
+  <li class="nav-item">
+    <a class="nav-link active" href="./woche_06.html" aria-current="page"> 
+<span class="menu-text">Woche 6: Standardverteilungen</span></a>
+  </li>  
 </ul>
           </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
@@ -158,10 +162,17 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#spezielle-verteilungen" id="toc-spezielle-verteilungen" class="nav-link active" data-scroll-target="#spezielle-verteilungen"><span class="header-section-number">1</span> Spezielle Verteilungen</a>
+  <li><a href="#diskrete-standardverteilungen" id="toc-diskrete-standardverteilungen" class="nav-link active" data-scroll-target="#diskrete-standardverteilungen"><span class="header-section-number">1</span> Diskrete Standardverteilungen</a>
   <ul class="collapse">
-  <li><a href="#die-binomialverteilung-diskret" id="toc-die-binomialverteilung-diskret" class="nav-link" data-scroll-target="#die-binomialverteilung-diskret"><span class="header-section-number">1.0.1</span> 1. Die Binomialverteilung (Diskret)</a></li>
-  <li><a href="#die-normalverteilung-stetig" id="toc-die-normalverteilung-stetig" class="nav-link" data-scroll-target="#die-normalverteilung-stetig"><span class="header-section-number">1.0.2</span> 2. Die Normalverteilung (Stetig)</a></li>
+  <li><a href="#die-binomialverteilung-diskret" id="toc-die-binomialverteilung-diskret" class="nav-link" data-scroll-target="#die-binomialverteilung-diskret"><span class="header-section-number">1.1</span> Die Binomialverteilung (Diskret)</a></li>
+  <li><a href="#die-poisson-verteilung-diskret" id="toc-die-poisson-verteilung-diskret" class="nav-link" data-scroll-target="#die-poisson-verteilung-diskret"><span class="header-section-number">1.2</span> Die Poisson-Verteilung (Diskret)</a></li>
+  </ul></li>
+  <li><a href="#stetige-standardverteilungen" id="toc-stetige-standardverteilungen" class="nav-link" data-scroll-target="#stetige-standardverteilungen"><span class="header-section-number">2</span> Stetige Standardverteilungen</a>
+  <ul class="collapse">
+  <li><a href="#die-gleichverteilung-uniforme-verteilung-stetig" id="toc-die-gleichverteilung-uniforme-verteilung-stetig" class="nav-link" data-scroll-target="#die-gleichverteilung-uniforme-verteilung-stetig"><span class="header-section-number">2.1</span> Die Gleichverteilung (Uniforme Verteilung, Stetig)</a></li>
+  <li><a href="#die-exponentialverteilung-stetig" id="toc-die-exponentialverteilung-stetig" class="nav-link" data-scroll-target="#die-exponentialverteilung-stetig"><span class="header-section-number">2.2</span> Die Exponentialverteilung (Stetig)</a></li>
+  <li><a href="#die-normalverteilung-gaussverteilung-stetig" id="toc-die-normalverteilung-gaussverteilung-stetig" class="nav-link" data-scroll-target="#die-normalverteilung-gaussverteilung-stetig"><span class="header-section-number">2.3</span> Die Normalverteilung (Gaussverteilung, Stetig)</a></li>
+  <li><a href="#quantile" id="toc-quantile" class="nav-link" data-scroll-target="#quantile"><span class="header-section-number">2.4</span> Quantile</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -188,17 +199,104 @@ window.Quarto = {
 </header>
 
 
-<section id="spezielle-verteilungen" class="level1" data-number="1">
-<h1 data-number="1"><span class="header-section-number">1</span> Spezielle Verteilungen</h1>
-<section id="die-binomialverteilung-diskret" class="level3" data-number="1.0.1">
-<h3 data-number="1.0.1" class="anchored" data-anchor-id="die-binomialverteilung-diskret"><span class="header-section-number">1.0.1</span> 1. Die Binomialverteilung (Diskret)</h3>
-<p>Wird verwendet, wenn wir ein Experiment mit genau zwei Ausgängen (Erfolg/Misserfolg) <span class="math inline">\(n\)</span>-mal unabhängig voneinander wiederholen und die Anzahl der Erfolge <span class="math inline">\(k\)</span> zählen. * Parameter: <span class="math inline">\(n\)</span> (Anzahl Versuche), <span class="math inline">\(p\)</span> (Erfolgswahrscheinlichkeit) * Formel für genau <span class="math inline">\(k\)</span> Erfolge: <span class="math display">\[P(X = k) = \binom{n}{k} \cdot p^k \cdot (1-p)^{n-k}\]</span></p>
-<p><strong>In R:</strong> * Wahrscheinlichkeit <span class="math inline">\(P(X = k)\)</span>: <code>dbinom(k, size = n, prob = p)</code> * Kumulierte Wahrscheinlichkeit <span class="math inline">\(P(X \le k)\)</span>: <code>pbinom(k, size = n, prob = p)</code></p>
+<section id="diskrete-standardverteilungen" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Diskrete Standardverteilungen</h1>
+<p>In der Statistik gibt es einige wichtige Standardverteilungen, die häufig verwendet werden, um verschiedene Arten von Daten und Phänomenen zu modellieren. In dieser Woche konzentrieren wir uns auf die Binomialverteilung, die Poisson-Verteilung und die Normalverteilung. Jede dieser Verteilungen hat ihre eigenen Eigenschaften, Parameter und Anwendungsbereiche.</p>
+<section id="die-binomialverteilung-diskret" class="level2" data-number="1.1">
+<h2 data-number="1.1" class="anchored" data-anchor-id="die-binomialverteilung-diskret"><span class="header-section-number">1.1</span> Die Binomialverteilung (Diskret)</h2>
+<p>Wird verwendet, wenn wir ein Experiment mit genau zwei Ausgängen (Erfolg/Misserfolg) <span class="math inline">\(n\)</span>-mal unabhängig voneinander wiederholen und die Anzahl der Erfolge <span class="math inline">\(k\)</span> zählen.</p>
+<ul>
+<li>Parameter: <span class="math inline">\(n\)</span> (Anzahl Versuche), <span class="math inline">\(p\)</span> (Erfolgswahrscheinlichkeit)</li>
+<li>Formel für genau <span class="math inline">\(k\)</span> Erfolge: <span class="math display">\[P(X = k) = \binom{n}{k} \cdot p^k \cdot (1-p)^{n-k}\]</span></li>
+</ul>
+<p>Der Erwartungswert der Binomialverteilung ist <span class="math inline">\(E[X] = n \cdot p\)</span> und die Varianz ist <span class="math inline">\(Var(X) = n \cdot p \cdot (1-p)\)</span>.</p>
+<p><strong>In R:</strong></p>
+<ul>
+<li><code>dbinom(k, size = n, prob = p)</code> Wahrscheinlichkeitfunktion <span class="math inline">\(P(X = k)\)</span>. Gibt die Wahrscheinlichkeit zurück, genau <code>k</code> Erfolge in <code>n</code> Versuchen mit Erfolgswahrscheinlichkeit <code>p</code> zu erzielen. <code>k</code> beschreibt die Anzahl der Erfolge, <code>size</code> gibt die Anzahl der Versuche an, und <code>prob</code> ist die Erfolgswahrscheinlichkeit pro Versuch.</li>
+<li><code>pbinom(k, size = n, prob = p)</code> Verteilungsfunktion (kumulierte Wahrscheinlichkeit) <span class="math inline">\(P(X \le k)\)</span>. Gibt die Wahrscheinlichkeit zurück, höchstens <code>k</code> Erfolge zu erzielen. <code>k</code> ist die Anzahl der Erfolge, <code>size</code> die Anzahl der Versuche, und <code>prob</code> die Erfolgswahrscheinlichkeit pro Versuch.</li>
+<li><code>rbinom(k, size = n, prob = p)</code> generiert <code>n</code> Zufallszahlen aus der Binomialverteilung mit Wahrscheinlichkeit <code>p</code> und Anzahl Versuche <code>n</code>.’ Was ist n und was ist die size? In <code>rbinom</code>, <code>n</code> ist die Anzahl der Zufallszahlen, die generiert werden sollen, während <code>size</code> die Anzahl der Versuche pro Zufallszahl angibt (also das <code>n</code> in der Binomialverteilung). Zum Beispiel, <code>rbinom(10, size = 5, prob = 0.3)</code> generiert 10 Zufallszahlen, wobei jede Zahl die Anzahl der Erfolge in 5 Versuchen mit einer Erfolgswahrscheinlichkeit von 0.3 darstellt.</li>
+</ul>
+<p><strong>Beispiel:</strong> Wir treffen einen Basketballkorb mit 80% Wahrscheinlichkeit. Wie hoch ist die Wahrscheinlichkeit, dass wir in 10 Würfen genau 7 Körbe treffen? Das können wir mit <code>dbinom(7, size = 10, prob = 0.8)</code> berechnen.</p>
 </section>
-<section id="die-normalverteilung-stetig" class="level3" data-number="1.0.2">
-<h3 data-number="1.0.2" class="anchored" data-anchor-id="die-normalverteilung-stetig"><span class="header-section-number">1.0.2</span> 2. Die Normalverteilung (Stetig)</h3>
-<p>Die berühmte “Glockenkurve” (Gauss-Verteilung). Sehr viele Phänomene in der Natur und Gesellschaft sind (näherungsweise) normalverteilt. * Parameter: <span class="math inline">\(\mu\)</span> (Erwartungswert, Zentrum der Glocke), <span class="math inline">\(\sigma\)</span> (Standardabweichung, Breite der Glocke) * <em>Standardnormalverteilung:</em> Eine spezielle Normalverteilung mit <span class="math inline">\(\mu = 0\)</span> und <span class="math inline">\(\sigma = 1\)</span>. Jede Normalverteilung kann in diese standardisiert (z-transformiert) werden: <span class="math display">\[Z = \frac{X - \mu}{\sigma}\]</span></p>
-<p><strong>In R:</strong> * Wert der Dichtefunktion an der Stelle <span class="math inline">\(x\)</span>: <code>dnorm(x, mean = mu, sd = sigma)</code> * Kumulierte Wahrscheinlichkeit <span class="math inline">\(P(X \le x)\)</span> (Fläche nach links): <code>pnorm(x, mean = mu, sd = sigma)</code></p>
+<section id="die-poisson-verteilung-diskret" class="level2" data-number="1.2">
+<h2 data-number="1.2" class="anchored" data-anchor-id="die-poisson-verteilung-diskret"><span class="header-section-number">1.2</span> Die Poisson-Verteilung (Diskret)</h2>
+<p>Wird verwendet, um die Anzahl der Ereignisse in einem festen Zeitraum oder Raum zu modellieren, wenn diese Ereignisse mit einer bekannten durchschnittlichen Rate <span class="math inline">\(\lambda\)</span> auftreten und unabhängig voneinander sind.</p>
+<ul>
+<li>Parameter: <span class="math inline">\(\lambda\)</span> (durchschnittliche Anzahl Ereignisse pro Intervall)</li>
+<li>Formel für genau <span class="math inline">\(k\)</span> Ereignisse: <span class="math display">\[P(X = k) = \frac{\lambda^k \cdot e^{-\lambda}}{k!}\]</span></li>
+</ul>
+<p>Der Erwartungswert und die Varianz der Poisson-Verteilung sind beide gleich <span class="math inline">\(\lambda\)</span>.</p>
+<p><strong>In R:</strong></p>
+<ul>
+<li><code>dpois(k, lambda = lambda)</code> Wahrscheinlichkeitfunktion <span class="math inline">\(P(X = k)\)</span>. Gibt die Wahrscheinlichkeit zurück, genau <code>k</code> Ereignisse mit durchschnittlicher Rate <code>lambda</code> zu erzielen.</li>
+<li><code>ppois(k, lambda = lambda)</code> Verteilungsfunktion (kumulierte Wahrscheinlichkeit) <span class="math inline">\(P(X \le k)\)</span>. Gibt die Wahrscheinlichkeit zurück, höchstens <code>k</code> Ereignisse mit durchschnittlicher Rate <code>lambda</code> zu erzielen.</li>
+<li><code>rpois(n, lambda = lambda)</code> generiert <code>n</code> Zufallszahlen aus der Poisson-Verteilung mit durchschnittlicher Rate <code>lambda</code>. Zum Beispiel, <code>rpois(10, lambda = 3)</code> generiert 10 Zufallszahlen, wobei jede Zahl die Anzahl der Ereignisse in einem Intervall mit durchschnittlicher Rate von 3 darstellt.</li>
+</ul>
+<p><strong>Beispiel:</strong> In einem Callcenter kommen durchschnittlich 5 Anrufe pro Stunde an. Wie hoch ist die Wahrscheinlichkeit, dass in einer Stunde genau 3 Anrufe eingehen? Das können wir mit <code>dpois(3, lambda = 5)</code> berechnen.</p>
+</section>
+</section>
+<section id="stetige-standardverteilungen" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> Stetige Standardverteilungen</h1>
+<p>Stetige Verteilungen modellieren Phänomene, die unendlich viele Werte annehmen können, wie zum Beispiel die Körpergröße von Menschen oder die Zeit, die benötigt wird, um eine Aufgabe zu erledigen. In dieser Kategorie sind die Normalverteilung, die Exponentialverteilung und die Gleichverteilung besonders wichtig.</p>
+<section id="die-gleichverteilung-uniforme-verteilung-stetig" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="die-gleichverteilung-uniforme-verteilung-stetig"><span class="header-section-number">2.1</span> Die Gleichverteilung (Uniforme Verteilung, Stetig)</h2>
+<p>Die Gleichverteilung beschreibt eine Situation, in der alle Werte in einem bestimmten Intervall <span class="math inline">\([a, b]\)</span> gleich wahrscheinlich sind.</p>
+<ul>
+<li><p>Parameter: <span class="math inline">\(a\)</span> (untere Grenze), <span class="math inline">\(b\)</span> (obere Grenze)</p></li>
+<li><p>Dichtefunktion: <span class="math display">\[\varphi(x) = \begin{cases}\frac{1}{b-a} &amp; \text{für } a \le x \le b \\ 0 &amp; \text{sonst}\end{cases}\]</span></p></li>
+<li><p>Verteilungsfunktion: <span class="math display">\[F(x) = \begin{cases}0 &amp; \text{für } x &lt; a \\ \frac{x-a}{b-a} &amp; \text{für } a \le x \le b \\ 1 &amp; \text{für } x &gt; b\end{cases}\]</span></p></li>
+</ul>
+<p>Der Erwartungswert der Gleichverteilung ist <span class="math inline">\(E[X] = \frac{a + b}{2}\)</span> (Durchschnitt von a und b), und die Varianz ist <span class="math inline">\(Var(X) = \frac{(b - a)^2}{12}\)</span>.</p>
+<p><strong>In R:</strong></p>
+<ul>
+<li><code>dunif(x, min = a, max = b)</code> Dichtefunktion <span class="math inline">\(\varphi(x)\)</span>. Gibt die Dichte der Gleichverteilung an der Stelle <code>x</code> zurück. <code>min</code> und <code>max</code> geben die unteren und oberen Grenzen des Intervalls an.</li>
+<li><code>punif(x, min = a, max = b)</code> Verteilungsfunktion <span class="math inline">\(F(x)\)</span>. Gibt die kumulierte Wahrscheinlichkeit zurück, dass eine Zufallsvariable aus der Gleichverteilung einen Wert kleiner oder gleich <code>x</code> annimmt. <code>min</code> und <code>max</code> geben die unteren und oberen Grenzen des Intervalls an.</li>
+<li><code>runif(n, min = a, max = b)</code> generiert <code>n</code> Zufallszahlen aus der Gleichverteilung mit den angegebenen Grenzen <code>a</code> und <code>b</code>. Zum Beispiel, <code>runif(10, min = 0, max = 1)</code> generiert 10 Zufallszahlen zwischen 0 und 1.</li>
+</ul>
+<p><strong>Beispiel:</strong> Die Zeit, die ein Kunde in einem Geschäft verbringt, ist gleichmäßig zwischen 5 und 15 Minuten verteilt. Wie hoch ist die Wahrscheinlichkeit, dass ein Kunde weniger als 8 Minuten im Geschäft verbringt? Das können wir mit <code>punif(8, min = 5, max = 15)</code> berechnen.</p>
+</section>
+<section id="die-exponentialverteilung-stetig" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="die-exponentialverteilung-stetig"><span class="header-section-number">2.2</span> Die Exponentialverteilung (Stetig)</h2>
+<p>Die Exponentialverteilung modelliert die Zeit zwischen Ereignissen in einem Poisson-Prozess, also die Zeit, die vergeht, bis ein bestimmtes Ereignis eintritt. Beispielsweise könnte sie die Zeit bis zum nächsten Anruf in einem Callcenter oder die Lebensdauer eines elektronischen Geräts modellieren.</p>
+<ul>
+<li>Parameter: <span class="math inline">\(\lambda\)</span> (Rate, durchschnittliche Anzahl Ereignisse pro Zeiteinheit)</li>
+<li>Dichtefunktion: <span class="math display">\[\varphi(x) = \begin{cases}\lambda e^{-\lambda x} &amp; \text{für } x \ge 0 \\ 0 &amp; \text{sonst}\end{cases}\]</span></li>
+<li>Verteilungsfunktion: <span class="math display">\[F(x) = \begin{cases} 1 - e^{-\lambda x} &amp; \text{für } x \ge 0 \\ 0 &amp; \text{sonst} \end{cases}\]</span></li>
+</ul>
+<p>Der Erwartungswert der Exponentialverteilung ist <span class="math inline">\(E[X] = \frac{1}{\lambda}\)</span>, und die Varianz ist <span class="math inline">\(Var(X) = \frac{1}{\lambda^2}\)</span>.</p>
+<p><strong>In R:</strong></p>
+<ul>
+<li><code>dexp(x, rate = lambda)</code> Dichtefunktion <span class="math inline">\(\varphi(x)\)</span>. Gibt die Dichte der Exponentialverteilung an der Stelle <code>x</code> zurück. <code>rate</code> gibt die Rate <span class="math inline">\(\lambda\)</span> an.</li>
+<li><code>pexp(x, rate = lambda)</code> Verteilungsfunktion <span class="math inline">\(F(x)\)</span>. Gibt die kumulierte Wahrscheinlichkeit zurück, dass eine Zufallsvariable aus der Exponentialverteilung einen Wert kleiner oder gleich <code>x</code> annimmt. <code>rate</code> gibt die Rate <span class="math inline">\(\lambda\)</span> an.</li>
+<li><code>rexp(n, rate = lambda)</code> generiert <code>n</code> Zufallszahlen aus der Exponentialverteilung mit der angegebenen Rate <code>lambda</code>. Zum Beispiel, <code>rexp(10, rate = 2)</code> generiert 10 Zufallszahlen aus der Exponentialverteilung mit Rate 2.</li>
+</ul>
+<p><strong>Beispiel:</strong> Die Zeit, die ein Kunde in einem Geschäft verbringt, folgt einer Exponentialverteilung mit einer durchschnittlichen Verweildauer von 10 Minuten (also <span class="math inline">\(\lambda = \frac{1}{10}\)</span>). Wie hoch ist die Wahrscheinlichkeit, dass ein Kunde weniger als 5 Minuten im Geschäft verbringt? Das können wir mit <code>pexp(5, rate = 1/10)</code> berechnen.</p>
+</section>
+<section id="die-normalverteilung-gaussverteilung-stetig" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="die-normalverteilung-gaussverteilung-stetig"><span class="header-section-number">2.3</span> Die Normalverteilung (Gaussverteilung, Stetig)</h2>
+<p>Die berühmte “Glockenkurve” (Gauss-Verteilung). Sehr viele Phänomene in der Natur und Gesellschaft sind (näherungsweise) normalverteilt.</p>
+<ul>
+<li>Parameter: <span class="math inline">\(\mu\)</span> (Erwartungswert, Zentrum der Glocke), <span class="math inline">\(\sigma\)</span> (Standardabweichung, Breite der Glocke)</li>
+<li><em>Standardnormalverteilung:</em> Eine spezielle Normalverteilung mit <span class="math inline">\(\mu = 0\)</span> und <span class="math inline">\(\sigma = 1\)</span>.</li>
+</ul>
+<p><strong>In R:</strong></p>
+<ul>
+<li><code>dnorm(x, mean = mu, sd = sigma)</code> Dichtefunktion <span class="math inline">\(\varphi(x)\)</span>. Gibt die Dichte der Normalverteilung an der Stelle <code>x</code> zurück. <code>mean</code> und <code>sd</code> geben den Erwartungswert <span class="math inline">\(\mu\)</span> und die Standardabweichung <span class="math inline">\(\sigma\)</span> an.</li>
+<li><code>pnorm(x, mean = mu, sd = sigma)</code> Verteilungsfunktion <span class="math inline">\(F(x)\)</span>. Gibt die kumulierte Wahrscheinlichkeit zurück, dass eine Zufallsvariable aus der Normalverteilung einen Wert kleiner oder gleich <code>x</code> annimmt. <code>mean</code> und <code>sd</code> geben den Erwartungswert <span class="math inline">\(\mu\)</span> und die Standardabweichung <span class="math inline">\(\sigma\)</span> an.</li>
+<li><code>rnorm(n, mean = mu, sd = sigma)</code> generiert <code>n</code> Zufallszahlen aus der Normalverteilung mit den angegebenen Parametern <code>mu</code> und <code>sigma</code>. Zum Beispiel, <code>rnorm(10, mean = 0, sd = 1)</code> generiert 10 Zufallszahlen aus der Standardnormalverteilung.</li>
+</ul>
+</section>
+<section id="quantile" class="level2" data-number="2.4">
+<h2 data-number="2.4" class="anchored" data-anchor-id="quantile"><span class="header-section-number">2.4</span> Quantile</h2>
+<p>Quantile sind Werte, die eine Verteilung in bestimmte Teile aufteilen. Zum Beispiel teilt das 0.5-Quantil (auch Median genannt) die Verteilung in zwei Hälften: 50% der Werte liegen darunter und 50% darüber. In R können Sie Quantile mit der Funktion <code>qnorm(p, mean = mu, sd = sigma)</code> für die Normalverteilung berechnen, wobei <code>p</code> das gewünschte Quantil ist (z.B. 0.95 für das 95%-Quantil).</p>
+<p><strong>Quantile der Verteilungen in R:</strong> Wir können die Quantile für die verschiedenen Verteilungen mit den entsprechenden <code>q</code>-Funktionen berechnen:</p>
+<ul>
+<li><code>qbinom(p, size = n, prob = p)</code> für die Binomialverteilung</li>
+<li><code>qpois(p, lambda = lambda)</code> für die Poisson-Verteilung</li>
+<li><code>qunif(p, min = a, max = b)</code> für die Gleichverteilung</li>
+<li><code>qexp(p, rate = lambda)</code> für die Exponentialverteilung</li>
+<li><code>qnorm(p, mean = mu, sd = sigma)</code> für die Normalverteilung</li>
+</ul>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
