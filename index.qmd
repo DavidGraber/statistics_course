@@ -8,3 +8,4 @@ Dieses digitale Skript wird jede Woche erweitert. Hier finden Sie alle wichtigen
 - **Woche 3:** Bedingte Wahrscheinlichkeiten
 - **Woche 4:** Zufallsvariablen & Verteilungen
 - **Woche 5:** Erwartungswert & Varianz
+- **Woche 6:** Standardverteilungen

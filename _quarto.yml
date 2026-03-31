@@ -17,6 +17,8 @@ website:
         text: "Woche 4: Zufallsvariablen & Verteilungen"
       - href: woche_05.qmd
         text: "Woche 5: Erwartungswert & Varianz"
+      - href: woche_06.qmd
+        text: "Woche 6: Standardverteilungen"
 
 format:
   html:
