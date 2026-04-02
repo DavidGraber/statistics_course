@@ -1,5 +1,5 @@
 ---
-title: "Woche 4: Grenzwertsätze"
+title: "Woche 7: Grenzwertsätze"
 ---
 
 # i.i.d. Zufallsvariablen
