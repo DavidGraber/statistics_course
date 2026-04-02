@@ -1,0 +1,64 @@
+---
+title: "Woche 4: Grenzwertsätze"
+---
+
+# i.i.d. Zufallsvariablen
+
+Bevor wir uns die Grenzwertsätze ansehen, brauchen wir eine wichtige Grundlage: **i.i.d.-Zufallsvariablen**. Das steht für *Independent and Identically Distributed*. Zufallsvariablen erfüllen diese Eigenschaft, wenn:
+
+1. Sie absolut **unabhängig** voneinander sind.
+2. Sie alle exakt **dieselbe Verteilung** (also denselben Erwartungswert und dieselbe Varianz) besitzen.
+
+*Beispiel:* Mehrfaches Würfeln. Jeder Wurf ist unabhängig vom vorherigen, und bei jedem Wurf haben wir exakt die gleichen Wahrscheinlichkeiten für die Zahlen 1 bis 6.
+
+---
+
+# Das Gesetz der grossen Zahlen (GGZ)
+
+Das GGZ besagt anschaulich: Je mehr Daten wir sammeln, desto präziser wird unser Mittelwert. Formal ausgedrückt: Das arithmetische Mittel $\overline{X}_n$ einer Folge von i.i.d.-Zufallsvariablen konvergiert für wachsende Stichprobengrössen $n$ gegen den theoretischen (wahren) Erwartungswert $\mu$.
+
+* **Kleine Stichproben ($n$ ist klein):** Der Durchschnitt schwankt noch stark.
+* **Grosse Stichproben ($n$ ist gross):** Der Durchschnitt stabilisiert sich ganz nah am wahren Wert.
+
+::: {.callout-warning}
+### Achtung: Spielerfehlschluss (Gambler's Fallacy)
+Ein häufiger Fehler beim Roulette: Wenn 10-mal Rot gefallen ist, setzen viele alles auf Schwarz in dem Glauben, es sei nun "fällig". Das ist falsch! Das Gesetz der grossen Zahlen beschreibt nur das **langfristige Verhalten** und macht absolut keine Vorhersagen für das nächste Einzelereignis.
+:::
+
+---
+
+# Der zentrale Grenzwertsatz (ZGS)
+
+Warum in der Praxis (z. B. bei Messungen im Labor) extrem oft die Normalverteilung ("Glockenkurve") auftaucht, beantwortet der zentrale Grenzwertsatz. 
+
+Wenn sich ein Gesamtwert aus der Summe vieler unabhängiger, kleiner Einzelkomponenten (z. B. verschiedene Fehlerquellen wie Temperatur, Rauschen, Rundung) zusammensetzt, dann ist diese Summe annähernd **normalverteilt**. Das gilt faszinierenderweise auch dann, wenn die ursprünglichen Einzelereignisse selbst gar nicht normalverteilt waren.
+
+Formal bedeutet das, dass eine standardisierte Summe $Z_n$ für ein sehr grosses $n$ gegen die Standardnormalverteilung $N(0, 1)$ konvergiert.
+
+---
+
+# Normalapproximation in der Praxis
+
+Der ZGS erlaubt es uns, Summen und Mittelwerte bei einer ausreichend grossen Stichprobe (grosses $n$) durch die Normalverteilung anzunähern (Approximation).
+
+Wenn wir $n$ unabhängige Zufallsvariablen mit Erwartungswert $\mu$ und Varianz $\sigma^2$ haben, gelten für grosses $n$ folgende Formeln:
+
+## Approximation für die Summe ($S_n$)
+Die Summe aller Werte nähert sich einer Normalverteilung an:
+$$S_n \approx N(n \cdot \mu, n \cdot \sigma^2)$$ 
+
+## Approximation für das arithmetische Mittel ($\overline{X}_n$)
+Teilen wir die Summe durch $n$, erhalten wir den Durchschnitt. Die Varianz wird hierbei durch $n$ geteilt, was bedeutet: Je grösser die Stichprobe, desto weniger streut der Mittelwert!
+$$\overline{X}_n \approx N\left(\mu, \frac{\sigma^2}{n}\right)$$ 
+
+### Beispiel: Chemische Reaktion & R-Code
+Wir führen 100 Reaktionen durch ($n = 100$). Eine einzelne Reaktion dauert im Schnitt 5 Minuten ($\mu = 5$) mit einer Varianz von $\sigma^2 = 25$.
+
+* **Erwartungswert der Gesamtsumme:** $n \cdot \mu = 100 \cdot 5 = 500$ Minuten.
+* **Varianz der Gesamtsumme:** $n \cdot \sigma^2 = 100 \cdot 25 = 2500$ (Standardabweichung $\sigma$ ist somit $\sqrt{2500} = 50$).
+
+Wie gross ist die Wahrscheinlichkeit, dass alle 100 Reaktionen *zusammen* weniger als 490 Minuten dauern?
+Mit der Normalapproximation rechnen wir dies mit einer $N(500, 50^2)$ Verteilung aus:
+
+**In R:**
+`pnorm(490, mean = 500, sd = 50)`

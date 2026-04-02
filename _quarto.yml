@@ -19,6 +19,8 @@ website:
         text: "Woche 5: Erwartungswert & Varianz"
       - href: woche_06.qmd
         text: "Woche 6: Standardverteilungen"
+      - href: woche_07.qmd
+        text: "Woche 7: Grenzwertsätze"
 
 format:
   html:
