@@ -49,81 +49,32 @@
     "text": "2.4 Quantile\nQuantile sind Werte, die eine Verteilung in bestimmte Teile aufteilen. Zum Beispiel teilt das 0.5-Quantil (auch Median genannt) die Verteilung in zwei Hälften: 50% der Werte liegen darunter und 50% darüber. In R können Sie Quantile mit der Funktion qnorm(p, mean = mu, sd = sigma) für die Normalverteilung berechnen, wobei p das gewünschte Quantil ist (z.B. 0.95 für das 95%-Quantil).\nQuantile der Verteilungen in R: Wir können die Quantile für die verschiedenen Verteilungen mit den entsprechenden q-Funktionen berechnen:\n\nqbinom(p, size = n, prob = p) für die Binomialverteilung\nqpois(p, lambda = lambda) für die Poisson-Verteilung\nqunif(p, min = a, max = b) für die Gleichverteilung\nqexp(p, rate = lambda) für die Exponentialverteilung\nqnorm(p, mean = mu, sd = sigma) für die Normalverteilung\n\n\n\n\n\n\n\nTipTipp für die Prüfung und R\n\n\n\nAchten Sie in R genau auf den Unterschied zwischen d (density/Wahrscheinlichkeit für genauen Wert bei diskreten) und p (probability/kumulierte Wahrscheinlichkeit für “kleiner gleich”). Wenn nach “höchstens 3 Erfolgen” gefragt wird, brauchen Sie pbinom(3, ...). Wenn nach “genau 3 Erfolgen” gefragt wird, dbinom(3, ...)."
   },
   {
-    "objectID": "woche_04.html",
-    "href": "woche_04.html",
-    "title": "Woche 4: Zufallsvariablen & Verteilungen",
+    "objectID": "woche_05.html",
+    "href": "woche_05.html",
+    "title": "Woche 5: Erwartungswert & Varianz",
     "section": "",
-    "text": "Eine Zufallsvariable (oft mit grossen Buchstaben wie \\(X\\), \\(Y\\) bezeichnet) ist im Prinzip eine Übersetzungsmaschine: Sie ordnet den abstrakten Ergebnissen eines Zufallsexperiments (der Grundmenge \\(\\Omega\\)) reelle Zahlen zu.\nWir unterscheiden zwei Haupttypen:\n\nDiskrete Zufallsvariablen: Können nur bestimmte, zählbare Werte annehmen (oft ganze Zahlen).\n\nBeispiel: Anzahl der geworfenen “Köpfe” bei 10 Münzwürfen (\\(X \\in \\{0, 1, 2, \\dots, 10\\}\\)).\n\nStetige (kontinuierliche) Zufallsvariablen: Können jeden beliebigen Wert in einem bestimmten Intervall annehmen (Messwerte).\n\nBeispiel: Die exakte Wartezeit auf den Bus in Minuten (\\(X = 4.352\\dots\\))."
+    "text": "Anstatt immer die gesamte Verteilung anzuschauen, fassen wir sie oft mit Parametern zusammen, die das “Zentrum” und die “Breite” der Verteilung beschreiben.\n\n\nDer Erwartungswert ist der “Schwerpunkt” der Verteilung. Er sagt uns: “Welchen Wert erwarten wir im Durchschnitt, wenn wir das Experiment unendlich oft wiederholen?” Die Berechnung unterscheidet sich je nach Typ der Zufallsvariablen:\n\nFür diskrete Zufallsvariablen: Wir multiplizieren jeden möglichen Wert \\(x_i\\) mit seiner Wahrscheinlichkeit und summieren das Ganze auf. \\[E(X) = \\sum_{i} x_i \\cdot P(X = x_i)\\]\nFür stetige Zufallsvariablen: Da wir kontinuierliche Werte haben, wird die Summe zu einem Integral. Wir integrieren über das Produkt aus dem Wert \\(x\\) und der Dichtefunktion \\(\\varphi(x)\\). \\[E(X) = \\int_{-\\infty}^{\\infty} x \\cdot \\varphi(x) \\, dx\\]\n\n\n\n\nDie Varianz ist ein Mass für die Streuung. Sie gibt an, wie stark die tatsächlichen Werte im Durchschnitt vom Erwartungswert abweichen (genauer: die durchschnittliche quadrierte Abweichung).\n\nAllgemeine Definition: \\(Var(X) = E[(X - E[X])^2]\\)\nIn Worten: Der Erwartungswert beschreibt die quadrierte durchschnittliche Abweichung \\((X - E[X])^2\\) vom Erwartungswert einer Zufallsvariable X, also den Erwartungswert (durchschnitt) der quadrierten Abweichung vom Erwartungswert.\nBeispiel Würfelwurf (Erwartungswert \\(E[X] = 3.5\\)):\n\nFür die Augenzahl 1: \\((1 - 3.5)^2 = 6.25\\)\n\nFür die Augenzahl 2: \\((2 - 3.5)^2 = 2.25\\)\n\nFür die Augenzahl 3: \\((3 - 3.5)^2 = 0.25\\)\n\nFür die Augenzahl 4: \\((4 - 3.5)^2 = 0.25\\)\n\nFür die Augenzahl 5: \\((5 - 3.5)^2 = 2.25\\)\n\nFür die Augenzahl 6: \\((6 - 3.5)^2 = 6.25\\)\nDie Varianz im Würfelwurf wäre dann der gewichtete Durchschnitt dieser quadrierten Abweichungen \\[Var(X) = 1/6\\cdot(6.25 + 2.25 + 0.25 + 0.25 + 2.25 + 6.25) = 17.5/6 = 2.91\\]\n\nVerschiebungssatz (oft leichter zu rechnen): \\(Var(X) = E[X^2] - E[X]^2\\).\nBeispiel Würfelwurf:\n\nBeim ersten Term werden die Augenzahlen quadriert:\n\\(E[X^2] = 1/6\\cdot(1^2+2^2+3^2+4^2+5^2+6^2) = 1/6\\cdot91 = 15.16\\).\n\nBeim zweiten Term wird der einfache Erwartungswert des Würfelwurfes quadriert:\n\\(E[X]^2 = 3.5^2 = 12.25\\).\n\nDie Varianz im Würfelwurf lautet \\(15.16-12.25 = 2.91\\)\n\n\n\n\n\\(Var(\\lambda \\cdot X) = \\lambda^2 \\cdot Var(X)\\) wenn \\(\\lambda\\) eine Konstante ist\n\\(Var(X+Y) = Var(X) + Var(Y)\\) wenn X und Y unabhängig sind\n\n\n\n\n\nDie Standardabweichung ist dann einfach die Quadratwurzel aus der Varianz: \\[\\sigma = \\sqrt{Var(X)}\\] Warum Standardabweichung? Die Varianz hat quadrierte Einheiten (z.B. \\(m^2\\)). Durch das Ziehen der Wurzel hat die Standardabweichung wieder dieselbe Einheit wie die ursprünglichen Daten (z.B. \\(m\\)), was sie für uns viel anschaulicher macht."
   },
   {
-    "objectID": "woche_04.html#bei-diskreten-zufallsvariablen",
-    "href": "woche_04.html#bei-diskreten-zufallsvariablen",
-    "title": "Woche 4: Zufallsvariablen & Verteilungen",
-    "section": "2.1 Bei diskreten Zufallsvariablen",
-    "text": "2.1 Bei diskreten Zufallsvariablen\n\nWahrscheinlichkeitsfunktion: Gibt die exakte Wahrscheinlichkeit an, dass die Zufallsvariable \\(X\\) einen ganz bestimmten Wert \\(x\\) annimmt. \\[P(X = x)\\]\nVerteilungsfunktion (kumulativ): Kumuliert (summiert) die Wahrscheinlichkeiten bis zu einem bestimmten Wert \\(x\\). \\[F(x) = P(X \\le x)\\]\nDie Kurve “beginnt” somit bei \\(y=0\\) und “endet” bei \\(y=1\\) und ist monoton wachsend (geht nie wieder abwärts in Richtung von höheren X)."
-  },
-  {
-    "objectID": "woche_04.html#bei-stetigen-zufallsvariablen",
-    "href": "woche_04.html#bei-stetigen-zufallsvariablen",
-    "title": "Woche 4: Zufallsvariablen & Verteilungen",
-    "section": "2.2 Bei stetigen Zufallsvariablen",
-    "text": "2.2 Bei stetigen Zufallsvariablen\n\nDichtefunktion \\(\\varphi(x)\\): Da ein stetiger Wert unendlich viele Nachkommastellen hat, ist die Wahrscheinlichkeit für einen exakten Wert immer null (\\(P(X = x) = 0\\)). Die Dichtefunktion beschreibt stattdessen die “Kurve”. Die Gesamtfläche unter der Kurve ist immer exakt 1.\nVerteilungsfunktion \\(F_X(x)\\): Die Kurve ist ebenfalls monoton wachsend und gibt die Fläche unter der Dichtefunktion bis zum Wert \\(x\\) an. Berechnet wird dies über das Integral der Dichtefunktion. \\[F(x) = \\int_{-\\infty}^{x} \\varphi(t) \\, dt\\]"
-  },
-  {
-    "objectID": "woche_04.html#visuelle-zusammenfassung",
-    "href": "woche_04.html#visuelle-zusammenfassung",
-    "title": "Woche 4: Zufallsvariablen & Verteilungen",
-    "section": "2.3 Visuelle Zusammenfassung",
-    "text": "2.3 Visuelle Zusammenfassung\n\n\n\nVisuelle Zusammenfassung (by Tobias Peter)"
-  },
-  {
-    "objectID": "woche_03.html",
-    "href": "woche_03.html",
-    "title": "Woche 3: Bedingte Wahrscheinlichkeiten",
+    "objectID": "woche_05.html#erwartungswert-ex-oder-mu",
+    "href": "woche_05.html#erwartungswert-ex-oder-mu",
+    "title": "Woche 5: Erwartungswert & Varianz",
     "section": "",
-    "text": "Oft bekommen wir neue Informationen, die unsere Einschätzung verändern. Die bedingte Wahrscheinlichkeit \\(\\mathbb{P}[A|B]\\) beschreibt die Wahrscheinlichkeit von \\(A\\), unter der Voraussetzung, dass \\(B\\) bereits eingetreten ist.\nFormel: \\[\\mathbb{P}[A|B] = \\frac{\\mathbb{P}[A \\cap B]}{\\mathbb{P}[B]}\\]\n\n\nUm \\(\\mathbb{P}[A]\\) zu berechnen, können wir das Problem in disjunkte Fälle (z.B. Fall \\(B\\) und Fall \\(B^c\\)) aufteilen und gewichten: \\[\\mathbb{P}[A] = \\mathbb{P}[A|B] \\cdot \\mathbb{P}[B] + \\mathbb{P}[A|B^c] \\cdot \\mathbb{P}[B^c]\\]\nWir kennen die Fälle \\(B\\) und \\(B^c\\), deren Wahrscheinlichkeiten ( \\(\\mathbb{P}[B^c], \\mathbb{P}[B]\\) ) und die bedingten Wahrscheinlichkeiten ( \\(\\mathbb{P}[A|B^c], \\mathbb{P}[A|B]\\) ). Die Formel liefert daraus dann \\(\\mathbb{P}[A]\\).\n\n\nEreignis \\(A\\): Wir ziehen als zweite Kugel eine rote Kugel. Ereignis \\(B\\): Wir ziehen als erste Kugel eine rote Kugel. Dann können wir die Wahrscheinlichkeit für \\(A\\) berechnen, indem wir die Fälle \\(B\\) und \\(B^c\\) betrachten.\n\n\n\nIn einer Firma arbeiten 60% Ingenieur:innen und 40% Betriebswirtschaftler:innen. Von den Ingenieur: innen sprechen 30% Französisch, von den Betriebswirtschaftler:innen sind es 50%.\n\nDisjunkte Fälle (niemand ist beides, also disjunkt, schliessen sich gegenseitig aus):\n\n\\(I\\) = Ingenieur:in,\n\\(B\\) = Betriebswirtschaftler:in\n\nWahrscheinlichkeiten:\n\n\\(\\mathbb{P}[I] = 0.6\\)\n\\(\\mathbb{P}[B] = 0.4\\)\n\n\nDer Satz der totalen Wahrscheinlichkeit erlaubt es uns, die Wahrscheinlichkeit zu berechnen, dass eine zufällig ausgewählte Person Französisch spricht, indem wir die Fälle \\(I\\) und \\(B\\) separat betrachten: \\[\\mathbb{P}[\\text{F}] = \\mathbb{P}[\\text{F}|B] \\cdot \\mathbb{P}[B] + \\mathbb{P}[\\text{F}|I] \\cdot \\mathbb{P}[I] = 0.3 \\cdot 0.6 + 0.5 \\cdot 0.4 = 0.38\\]\n\n\n\nVisuelle Erläuterung\n\n\n\n\n\n\nDieser Satz erlaubt es uns, bedingte Wahrscheinlichkeiten “umzudrehen”, also von \\(\\mathbb{P}[A|B]\\) auf \\(\\mathbb{P}[B|A]\\) zu schliessen: \\[\\mathbb{P}[A|B] = \\frac{\\mathbb{P}[B|A] \\cdot \\mathbb{P}[A]}{\\mathbb{P}[B]}\\]\nKlassisches Beispiel (Medizinischer Test): Auch wenn ein HIV-Test sehr genau ist, ist die Wahrscheinlichkeit, tatsächlich infiziert zu sein, wenn der Test positiv ausfällt, oft überraschend tief, falls die Krankheit in der Gesamtbevölkerung sehr selten ist."
+    "text": "Der Erwartungswert ist der “Schwerpunkt” der Verteilung. Er sagt uns: “Welchen Wert erwarten wir im Durchschnitt, wenn wir das Experiment unendlich oft wiederholen?” Die Berechnung unterscheidet sich je nach Typ der Zufallsvariablen:\n\nFür diskrete Zufallsvariablen: Wir multiplizieren jeden möglichen Wert \\(x_i\\) mit seiner Wahrscheinlichkeit und summieren das Ganze auf. \\[E(X) = \\sum_{i} x_i \\cdot P(X = x_i)\\]\nFür stetige Zufallsvariablen: Da wir kontinuierliche Werte haben, wird die Summe zu einem Integral. Wir integrieren über das Produkt aus dem Wert \\(x\\) und der Dichtefunktion \\(\\varphi(x)\\). \\[E(X) = \\int_{-\\infty}^{\\infty} x \\cdot \\varphi(x) \\, dx\\]"
   },
   {
-    "objectID": "woche_03.html#satz-der-totalen-wahrscheinlichkeit",
-    "href": "woche_03.html#satz-der-totalen-wahrscheinlichkeit",
-    "title": "Woche 3: Bedingte Wahrscheinlichkeiten",
+    "objectID": "woche_05.html#varianz",
+    "href": "woche_05.html#varianz",
+    "title": "Woche 5: Erwartungswert & Varianz",
     "section": "",
-    "text": "Um \\(\\mathbb{P}[A]\\) zu berechnen, können wir das Problem in disjunkte Fälle (z.B. Fall \\(B\\) und Fall \\(B^c\\)) aufteilen und gewichten: \\[\\mathbb{P}[A] = \\mathbb{P}[A|B] \\cdot \\mathbb{P}[B] + \\mathbb{P}[A|B^c] \\cdot \\mathbb{P}[B^c]\\]\nWir kennen die Fälle \\(B\\) und \\(B^c\\), deren Wahrscheinlichkeiten ( \\(\\mathbb{P}[B^c], \\mathbb{P}[B]\\) ) und die bedingten Wahrscheinlichkeiten ( \\(\\mathbb{P}[A|B^c], \\mathbb{P}[A|B]\\) ). Die Formel liefert daraus dann \\(\\mathbb{P}[A]\\).\n\n\nEreignis \\(A\\): Wir ziehen als zweite Kugel eine rote Kugel. Ereignis \\(B\\): Wir ziehen als erste Kugel eine rote Kugel. Dann können wir die Wahrscheinlichkeit für \\(A\\) berechnen, indem wir die Fälle \\(B\\) und \\(B^c\\) betrachten.\n\n\n\nIn einer Firma arbeiten 60% Ingenieur:innen und 40% Betriebswirtschaftler:innen. Von den Ingenieur: innen sprechen 30% Französisch, von den Betriebswirtschaftler:innen sind es 50%.\n\nDisjunkte Fälle (niemand ist beides, also disjunkt, schliessen sich gegenseitig aus):\n\n\\(I\\) = Ingenieur:in,\n\\(B\\) = Betriebswirtschaftler:in\n\nWahrscheinlichkeiten:\n\n\\(\\mathbb{P}[I] = 0.6\\)\n\\(\\mathbb{P}[B] = 0.4\\)\n\n\nDer Satz der totalen Wahrscheinlichkeit erlaubt es uns, die Wahrscheinlichkeit zu berechnen, dass eine zufällig ausgewählte Person Französisch spricht, indem wir die Fälle \\(I\\) und \\(B\\) separat betrachten: \\[\\mathbb{P}[\\text{F}] = \\mathbb{P}[\\text{F}|B] \\cdot \\mathbb{P}[B] + \\mathbb{P}[\\text{F}|I] \\cdot \\mathbb{P}[I] = 0.3 \\cdot 0.6 + 0.5 \\cdot 0.4 = 0.38\\]\n\n\n\nVisuelle Erläuterung"
+    "text": "Die Varianz ist ein Mass für die Streuung. Sie gibt an, wie stark die tatsächlichen Werte im Durchschnitt vom Erwartungswert abweichen (genauer: die durchschnittliche quadrierte Abweichung).\n\nAllgemeine Definition: \\(Var(X) = E[(X - E[X])^2]\\)\nIn Worten: Der Erwartungswert beschreibt die quadrierte durchschnittliche Abweichung \\((X - E[X])^2\\) vom Erwartungswert einer Zufallsvariable X, also den Erwartungswert (durchschnitt) der quadrierten Abweichung vom Erwartungswert.\nBeispiel Würfelwurf (Erwartungswert \\(E[X] = 3.5\\)):\n\nFür die Augenzahl 1: \\((1 - 3.5)^2 = 6.25\\)\n\nFür die Augenzahl 2: \\((2 - 3.5)^2 = 2.25\\)\n\nFür die Augenzahl 3: \\((3 - 3.5)^2 = 0.25\\)\n\nFür die Augenzahl 4: \\((4 - 3.5)^2 = 0.25\\)\n\nFür die Augenzahl 5: \\((5 - 3.5)^2 = 2.25\\)\n\nFür die Augenzahl 6: \\((6 - 3.5)^2 = 6.25\\)\nDie Varianz im Würfelwurf wäre dann der gewichtete Durchschnitt dieser quadrierten Abweichungen \\[Var(X) = 1/6\\cdot(6.25 + 2.25 + 0.25 + 0.25 + 2.25 + 6.25) = 17.5/6 = 2.91\\]\n\nVerschiebungssatz (oft leichter zu rechnen): \\(Var(X) = E[X^2] - E[X]^2\\).\nBeispiel Würfelwurf:\n\nBeim ersten Term werden die Augenzahlen quadriert:\n\\(E[X^2] = 1/6\\cdot(1^2+2^2+3^2+4^2+5^2+6^2) = 1/6\\cdot91 = 15.16\\).\n\nBeim zweiten Term wird der einfache Erwartungswert des Würfelwurfes quadriert:\n\\(E[X]^2 = 3.5^2 = 12.25\\).\n\nDie Varianz im Würfelwurf lautet \\(15.16-12.25 = 2.91\\)\n\n\n\n\n\\(Var(\\lambda \\cdot X) = \\lambda^2 \\cdot Var(X)\\) wenn \\(\\lambda\\) eine Konstante ist\n\\(Var(X+Y) = Var(X) + Var(Y)\\) wenn X und Y unabhängig sind"
   },
   {
-    "objectID": "woche_03.html#satz-von-bayes",
-    "href": "woche_03.html#satz-von-bayes",
-    "title": "Woche 3: Bedingte Wahrscheinlichkeiten",
+    "objectID": "woche_05.html#standardabweichung",
+    "href": "woche_05.html#standardabweichung",
+    "title": "Woche 5: Erwartungswert & Varianz",
     "section": "",
-    "text": "Dieser Satz erlaubt es uns, bedingte Wahrscheinlichkeiten “umzudrehen”, also von \\(\\mathbb{P}[A|B]\\) auf \\(\\mathbb{P}[B|A]\\) zu schliessen: \\[\\mathbb{P}[A|B] = \\frac{\\mathbb{P}[B|A] \\cdot \\mathbb{P}[A]}{\\mathbb{P}[B]}\\]\nKlassisches Beispiel (Medizinischer Test): Auch wenn ein HIV-Test sehr genau ist, ist die Wahrscheinlichkeit, tatsächlich infiziert zu sein, wenn der Test positiv ausfällt, oft überraschend tief, falls die Krankheit in der Gesamtbevölkerung sehr selten ist."
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "1 Willkommen zum Statistik-Kurs",
-    "section": "",
-    "text": "Dieses digitale Skript wird jede Woche erweitert. Hier finden Sie alle wichtigen Formeln, Definitionen und Beispiele aus den Vorlesungen.\n\n\n\nWoche 1: Einführung & Kombinatorik\nWoche 2: Wahrscheinlichkeitsrechnung\nWoche 3: Bedingte Wahrscheinlichkeiten\nWoche 4: Zufallsvariablen & Verteilungen\nWoche 5: Erwartungswert & Varianz\nWoche 6: Standardverteilungen"
-  },
-  {
-    "objectID": "index.html#semesterplan",
-    "href": "index.html#semesterplan",
-    "title": "1 Willkommen zum Statistik-Kurs",
-    "section": "",
-    "text": "Woche 1: Einführung & Kombinatorik\nWoche 2: Wahrscheinlichkeitsrechnung\nWoche 3: Bedingte Wahrscheinlichkeiten\nWoche 4: Zufallsvariablen & Verteilungen\nWoche 5: Erwartungswert & Varianz\nWoche 6: Standardverteilungen"
-  },
-  {
-    "objectID": "woche_02.html",
-    "href": "woche_02.html",
-    "title": "Woche 2: Wahrscheinlichkeitsrechnung",
-    "section": "",
-    "text": "Die Wahrscheinlichkeitsrechnung beschäftigt sich mit Zufallsexperimenten – das sind Vorgänge, deren Ausgang nicht exakt vorhersagbar ist. Um damit zu rechnen, brauchen wir einige Grundbegriffe:\n\nElementarereignis (\\(\\omega\\)): Ein einzelner, konkreter Ausgang eines Experiments.\nGrundmenge / Grundraum (\\(\\Omega\\)): Die Menge aller möglichen Ausgänge eines Experiments.\nEreignis (\\(A\\)): Eine Sammlung von bestimmten Elementarereignissen. Formal ist ein Ereignis eine Teilmenge der Grundmenge (\\(A \\subseteq \\Omega\\)).\n\nBeispiel Würfelwurf:\n\nGrundmenge: \\(\\Omega = \\{1, 2, 3, 4, 5, 6\\}\\)\nEreignis \\(A\\) (“eine gerade Zahl würfeln”): \\(A = \\{2, 4, 6\\}\\)"
-  },
-  {
-    "objectID": "woche_02.html#laplace-experimente",
-    "href": "woche_02.html#laplace-experimente",
-    "title": "Woche 2: Wahrscheinlichkeitsrechnung",
-    "section": "3.1 Laplace-Experimente",
-    "text": "3.1 Laplace-Experimente\nEin Laplace-Experiment liegt vor, wenn jeder mögliche Ausgang (\\(\\omega\\)) absolut gleich wahrscheinlich ist.\nFormel: \\[\\mathbb{P}[A] = \\frac{|A|}{|\\Omega|} = \\frac{\\text{Anzahl günstige Ausgänge}}{\\text{Anzahl mögliche Ausgänge}}\\]\nBeispiel: Wahrscheinlichkeit für eine gerade Zahl beim fairen Würfelwurf: \\(\\mathbb{P}[A] = 3 / 6 = 0.5\\)."
+    "text": "Die Standardabweichung ist dann einfach die Quadratwurzel aus der Varianz: \\[\\sigma = \\sqrt{Var(X)}\\] Warum Standardabweichung? Die Varianz hat quadrierte Einheiten (z.B. \\(m^2\\)). Durch das Ziehen der Wurzel hat die Standardabweichung wieder dieselbe Einheit wie die ursprünglichen Daten (z.B. \\(m\\)), was sie für uns viel anschaulicher macht."
   },
   {
     "objectID": "woche_01.html",
@@ -168,31 +119,101 @@
     "text": "2.4 Kombinationen (Auswahl)\nHier untersuchen wir, wie viele Möglichkeiten es gibt, \\(k\\) Objekte aus einer Menge von \\(n\\) Objekten auszuwählen. Dabei ist die Reihenfolge egal (ziehen von einstelligen Nummern: 012 ist das gleiche wie 021 oder 210).\nOhne Zurücklegen.\nTypisches Beispiel: Lotto oder die Auswahl von 2 Pizzabelägen aus 6 möglichen, Pilze+Salami ist das gleiche wie Salami+Pilze.\nFormel (Binomialkoeffizient): \\[\\binom{n}{k} = \\frac{n!}{k!(n-k)!}\\]\nIn R: choose(n, k)\nMit Zurücklegen.\nBeispiel: Auswahl von Objekten, die nach der Ziehung wieder zurückgelegt werden, wobei nur die Anzahl pro Kategorie zählt. Beispiel: Auswahl von 3 Kugeln aus einer Urne mit 5 verschiedenen Farben, wobei jede Farbe mehrfach gezogen werden kann (z.B. 2 rote und 1 blaue Kugel).\nFormel: \\[\\binom{n+k-1}{k}\\]\nIn R: choose(n + k - 1, k)"
   },
   {
-    "objectID": "woche_05.html",
-    "href": "woche_05.html",
-    "title": "Woche 5: Erwartungswert & Varianz",
+    "objectID": "woche_02.html",
+    "href": "woche_02.html",
+    "title": "Woche 2: Wahrscheinlichkeitsrechnung",
     "section": "",
-    "text": "Anstatt immer die gesamte Verteilung anzuschauen, fassen wir sie oft mit Parametern zusammen, die das “Zentrum” und die “Breite” der Verteilung beschreiben.\n\n\nDer Erwartungswert ist der “Schwerpunkt” der Verteilung. Er sagt uns: “Welchen Wert erwarten wir im Durchschnitt, wenn wir das Experiment unendlich oft wiederholen?” Die Berechnung unterscheidet sich je nach Typ der Zufallsvariablen:\n\nFür diskrete Zufallsvariablen: Wir multiplizieren jeden möglichen Wert \\(x_i\\) mit seiner Wahrscheinlichkeit und summieren das Ganze auf. \\[E(X) = \\sum_{i} x_i \\cdot P(X = x_i)\\]\nFür stetige Zufallsvariablen: Da wir kontinuierliche Werte haben, wird die Summe zu einem Integral. Wir integrieren über das Produkt aus dem Wert \\(x\\) und der Dichtefunktion \\(\\varphi(x)\\). \\[E(X) = \\int_{-\\infty}^{\\infty} x \\cdot \\varphi(x) \\, dx\\]\n\n\n\n\nDie Varianz ist ein Mass für die Streuung. Sie gibt an, wie stark die tatsächlichen Werte im Durchschnitt vom Erwartungswert abweichen (genauer: die durchschnittliche quadrierte Abweichung).\n\nAllgemeine Definition: \\(Var(X) = E[(X - E[X])^2]\\)\nIn Worten: Der Erwartungswert beschreibt die quadrierte durchschnittliche Abweichung \\((X - E[X])^2\\) vom Erwartungswert einer Zufallsvariable X, also den Erwartungswert (durchschnitt) der quadrierten Abweichung vom Erwartungswert.\nBeispiel Würfelwurf (Erwartungswert \\(E[X] = 3.5\\)):\n\nFür die Augenzahl 1: \\((1 - 3.5)^2 = 6.25\\)\n\nFür die Augenzahl 2: \\((2 - 3.5)^2 = 2.25\\)\n\nFür die Augenzahl 3: \\((3 - 3.5)^2 = 0.25\\)\n\nFür die Augenzahl 4: \\((4 - 3.5)^2 = 0.25\\)\n\nFür die Augenzahl 5: \\((5 - 3.5)^2 = 2.25\\)\n\nFür die Augenzahl 6: \\((6 - 3.5)^2 = 6.25\\)\nDie Varianz im Würfelwurf wäre dann der gewichtete Durchschnitt dieser quadrierten Abweichungen \\[Var(X) = 1/6\\cdot(6.25 + 2.25 + 0.25 + 0.25 + 2.25 + 6.25) = 17.5/6 = 2.91\\]\n\nVerschiebungssatz (oft leichter zu rechnen): \\(Var(X) = E[X^2] - E[X]^2\\).\nBeispiel Würfelwurf:\n\nBeim ersten Term werden die Augenzahlen quadriert:\n\\(E[X^2] = 1/6\\cdot(1^2+2^2+3^2+4^2+5^2+6^2) = 1/6\\cdot91 = 15.16\\).\n\nBeim zweiten Term wird der einfache Erwartungswert des Würfelwurfes quadriert:\n\\(E[X]^2 = 3.5^2 = 12.25\\).\n\nDie Varianz im Würfelwurf lautet \\(15.16-12.25 = 2.91\\)\n\n\n\n\n\\(Var(\\lambda \\cdot X) = \\lambda^2 \\cdot Var(X)\\) wenn \\(\\lambda\\) eine Konstante ist\n\\(Var(X+Y) = Var(X) + Var(Y)\\) wenn X und Y unabhängig sind\n\n\n\n\n\nDie Standardabweichung ist dann einfach die Quadratwurzel aus der Varianz: \\[\\sigma = \\sqrt{Var(X)}\\] Warum Standardabweichung? Die Varianz hat quadrierte Einheiten (z.B. \\(m^2\\)). Durch das Ziehen der Wurzel hat die Standardabweichung wieder dieselbe Einheit wie die ursprünglichen Daten (z.B. \\(m\\)), was sie für uns viel anschaulicher macht."
+    "text": "Die Wahrscheinlichkeitsrechnung beschäftigt sich mit Zufallsexperimenten – das sind Vorgänge, deren Ausgang nicht exakt vorhersagbar ist. Um damit zu rechnen, brauchen wir einige Grundbegriffe:\n\nElementarereignis (\\(\\omega\\)): Ein einzelner, konkreter Ausgang eines Experiments.\nGrundmenge / Grundraum (\\(\\Omega\\)): Die Menge aller möglichen Ausgänge eines Experiments.\nEreignis (\\(A\\)): Eine Sammlung von bestimmten Elementarereignissen. Formal ist ein Ereignis eine Teilmenge der Grundmenge (\\(A \\subseteq \\Omega\\)).\n\nBeispiel Würfelwurf:\n\nGrundmenge: \\(\\Omega = \\{1, 2, 3, 4, 5, 6\\}\\)\nEreignis \\(A\\) (“eine gerade Zahl würfeln”): \\(A = \\{2, 4, 6\\}\\)"
   },
   {
-    "objectID": "woche_05.html#erwartungswert-ex-oder-mu",
-    "href": "woche_05.html#erwartungswert-ex-oder-mu",
-    "title": "Woche 5: Erwartungswert & Varianz",
-    "section": "",
-    "text": "Der Erwartungswert ist der “Schwerpunkt” der Verteilung. Er sagt uns: “Welchen Wert erwarten wir im Durchschnitt, wenn wir das Experiment unendlich oft wiederholen?” Die Berechnung unterscheidet sich je nach Typ der Zufallsvariablen:\n\nFür diskrete Zufallsvariablen: Wir multiplizieren jeden möglichen Wert \\(x_i\\) mit seiner Wahrscheinlichkeit und summieren das Ganze auf. \\[E(X) = \\sum_{i} x_i \\cdot P(X = x_i)\\]\nFür stetige Zufallsvariablen: Da wir kontinuierliche Werte haben, wird die Summe zu einem Integral. Wir integrieren über das Produkt aus dem Wert \\(x\\) und der Dichtefunktion \\(\\varphi(x)\\). \\[E(X) = \\int_{-\\infty}^{\\infty} x \\cdot \\varphi(x) \\, dx\\]"
+    "objectID": "woche_02.html#laplace-experimente",
+    "href": "woche_02.html#laplace-experimente",
+    "title": "Woche 2: Wahrscheinlichkeitsrechnung",
+    "section": "3.1 Laplace-Experimente",
+    "text": "3.1 Laplace-Experimente\nEin Laplace-Experiment liegt vor, wenn jeder mögliche Ausgang (\\(\\omega\\)) absolut gleich wahrscheinlich ist.\nFormel: \\[\\mathbb{P}[A] = \\frac{|A|}{|\\Omega|} = \\frac{\\text{Anzahl günstige Ausgänge}}{\\text{Anzahl mögliche Ausgänge}}\\]\nBeispiel: Wahrscheinlichkeit für eine gerade Zahl beim fairen Würfelwurf: \\(\\mathbb{P}[A] = 3 / 6 = 0.5\\)."
   },
   {
-    "objectID": "woche_05.html#varianz",
-    "href": "woche_05.html#varianz",
-    "title": "Woche 5: Erwartungswert & Varianz",
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "1 Willkommen zum Statistik-Kurs",
     "section": "",
-    "text": "Die Varianz ist ein Mass für die Streuung. Sie gibt an, wie stark die tatsächlichen Werte im Durchschnitt vom Erwartungswert abweichen (genauer: die durchschnittliche quadrierte Abweichung).\n\nAllgemeine Definition: \\(Var(X) = E[(X - E[X])^2]\\)\nIn Worten: Der Erwartungswert beschreibt die quadrierte durchschnittliche Abweichung \\((X - E[X])^2\\) vom Erwartungswert einer Zufallsvariable X, also den Erwartungswert (durchschnitt) der quadrierten Abweichung vom Erwartungswert.\nBeispiel Würfelwurf (Erwartungswert \\(E[X] = 3.5\\)):\n\nFür die Augenzahl 1: \\((1 - 3.5)^2 = 6.25\\)\n\nFür die Augenzahl 2: \\((2 - 3.5)^2 = 2.25\\)\n\nFür die Augenzahl 3: \\((3 - 3.5)^2 = 0.25\\)\n\nFür die Augenzahl 4: \\((4 - 3.5)^2 = 0.25\\)\n\nFür die Augenzahl 5: \\((5 - 3.5)^2 = 2.25\\)\n\nFür die Augenzahl 6: \\((6 - 3.5)^2 = 6.25\\)\nDie Varianz im Würfelwurf wäre dann der gewichtete Durchschnitt dieser quadrierten Abweichungen \\[Var(X) = 1/6\\cdot(6.25 + 2.25 + 0.25 + 0.25 + 2.25 + 6.25) = 17.5/6 = 2.91\\]\n\nVerschiebungssatz (oft leichter zu rechnen): \\(Var(X) = E[X^2] - E[X]^2\\).\nBeispiel Würfelwurf:\n\nBeim ersten Term werden die Augenzahlen quadriert:\n\\(E[X^2] = 1/6\\cdot(1^2+2^2+3^2+4^2+5^2+6^2) = 1/6\\cdot91 = 15.16\\).\n\nBeim zweiten Term wird der einfache Erwartungswert des Würfelwurfes quadriert:\n\\(E[X]^2 = 3.5^2 = 12.25\\).\n\nDie Varianz im Würfelwurf lautet \\(15.16-12.25 = 2.91\\)\n\n\n\n\n\\(Var(\\lambda \\cdot X) = \\lambda^2 \\cdot Var(X)\\) wenn \\(\\lambda\\) eine Konstante ist\n\\(Var(X+Y) = Var(X) + Var(Y)\\) wenn X und Y unabhängig sind"
+    "text": "Dieses digitale Skript wird jede Woche erweitert. Hier finden Sie alle wichtigen Formeln, Definitionen und Beispiele aus den Vorlesungen.\n\n\n\nWoche 1: Einführung & Kombinatorik\nWoche 2: Wahrscheinlichkeitsrechnung\nWoche 3: Bedingte Wahrscheinlichkeiten\nWoche 4: Zufallsvariablen & Verteilungen\nWoche 5: Erwartungswert & Varianz\nWoche 6: Standardverteilungen\nWoche 7: Grenzwertsätze"
   },
   {
-    "objectID": "woche_05.html#standardabweichung",
-    "href": "woche_05.html#standardabweichung",
-    "title": "Woche 5: Erwartungswert & Varianz",
+    "objectID": "index.html#semesterplan",
+    "href": "index.html#semesterplan",
+    "title": "1 Willkommen zum Statistik-Kurs",
     "section": "",
-    "text": "Die Standardabweichung ist dann einfach die Quadratwurzel aus der Varianz: \\[\\sigma = \\sqrt{Var(X)}\\] Warum Standardabweichung? Die Varianz hat quadrierte Einheiten (z.B. \\(m^2\\)). Durch das Ziehen der Wurzel hat die Standardabweichung wieder dieselbe Einheit wie die ursprünglichen Daten (z.B. \\(m\\)), was sie für uns viel anschaulicher macht."
+    "text": "Woche 1: Einführung & Kombinatorik\nWoche 2: Wahrscheinlichkeitsrechnung\nWoche 3: Bedingte Wahrscheinlichkeiten\nWoche 4: Zufallsvariablen & Verteilungen\nWoche 5: Erwartungswert & Varianz\nWoche 6: Standardverteilungen\nWoche 7: Grenzwertsätze"
+  },
+  {
+    "objectID": "woche_03.html",
+    "href": "woche_03.html",
+    "title": "Woche 3: Bedingte Wahrscheinlichkeiten",
+    "section": "",
+    "text": "Oft bekommen wir neue Informationen, die unsere Einschätzung verändern. Die bedingte Wahrscheinlichkeit \\(\\mathbb{P}[A|B]\\) beschreibt die Wahrscheinlichkeit von \\(A\\), unter der Voraussetzung, dass \\(B\\) bereits eingetreten ist.\nFormel: \\[\\mathbb{P}[A|B] = \\frac{\\mathbb{P}[A \\cap B]}{\\mathbb{P}[B]}\\]\n\n\nUm \\(\\mathbb{P}[A]\\) zu berechnen, können wir das Problem in disjunkte Fälle (z.B. Fall \\(B\\) und Fall \\(B^c\\)) aufteilen und gewichten: \\[\\mathbb{P}[A] = \\mathbb{P}[A|B] \\cdot \\mathbb{P}[B] + \\mathbb{P}[A|B^c] \\cdot \\mathbb{P}[B^c]\\]\nWir kennen die Fälle \\(B\\) und \\(B^c\\), deren Wahrscheinlichkeiten ( \\(\\mathbb{P}[B^c], \\mathbb{P}[B]\\) ) und die bedingten Wahrscheinlichkeiten ( \\(\\mathbb{P}[A|B^c], \\mathbb{P}[A|B]\\) ). Die Formel liefert daraus dann \\(\\mathbb{P}[A]\\).\n\n\nEreignis \\(A\\): Wir ziehen als zweite Kugel eine rote Kugel. Ereignis \\(B\\): Wir ziehen als erste Kugel eine rote Kugel. Dann können wir die Wahrscheinlichkeit für \\(A\\) berechnen, indem wir die Fälle \\(B\\) und \\(B^c\\) betrachten.\n\n\n\nIn einer Firma arbeiten 60% Ingenieur:innen und 40% Betriebswirtschaftler:innen. Von den Ingenieur: innen sprechen 30% Französisch, von den Betriebswirtschaftler:innen sind es 50%.\n\nDisjunkte Fälle (niemand ist beides, also disjunkt, schliessen sich gegenseitig aus):\n\n\\(I\\) = Ingenieur:in,\n\\(B\\) = Betriebswirtschaftler:in\n\nWahrscheinlichkeiten:\n\n\\(\\mathbb{P}[I] = 0.6\\)\n\\(\\mathbb{P}[B] = 0.4\\)\n\n\nDer Satz der totalen Wahrscheinlichkeit erlaubt es uns, die Wahrscheinlichkeit zu berechnen, dass eine zufällig ausgewählte Person Französisch spricht, indem wir die Fälle \\(I\\) und \\(B\\) separat betrachten: \\[\\mathbb{P}[\\text{F}] = \\mathbb{P}[\\text{F}|B] \\cdot \\mathbb{P}[B] + \\mathbb{P}[\\text{F}|I] \\cdot \\mathbb{P}[I] = 0.3 \\cdot 0.6 + 0.5 \\cdot 0.4 = 0.38\\]\n\n\n\nVisuelle Erläuterung\n\n\n\n\n\n\nDieser Satz erlaubt es uns, bedingte Wahrscheinlichkeiten “umzudrehen”, also von \\(\\mathbb{P}[A|B]\\) auf \\(\\mathbb{P}[B|A]\\) zu schliessen: \\[\\mathbb{P}[A|B] = \\frac{\\mathbb{P}[B|A] \\cdot \\mathbb{P}[A]}{\\mathbb{P}[B]}\\]\nKlassisches Beispiel (Medizinischer Test): Auch wenn ein HIV-Test sehr genau ist, ist die Wahrscheinlichkeit, tatsächlich infiziert zu sein, wenn der Test positiv ausfällt, oft überraschend tief, falls die Krankheit in der Gesamtbevölkerung sehr selten ist."
+  },
+  {
+    "objectID": "woche_03.html#satz-der-totalen-wahrscheinlichkeit",
+    "href": "woche_03.html#satz-der-totalen-wahrscheinlichkeit",
+    "title": "Woche 3: Bedingte Wahrscheinlichkeiten",
+    "section": "",
+    "text": "Um \\(\\mathbb{P}[A]\\) zu berechnen, können wir das Problem in disjunkte Fälle (z.B. Fall \\(B\\) und Fall \\(B^c\\)) aufteilen und gewichten: \\[\\mathbb{P}[A] = \\mathbb{P}[A|B] \\cdot \\mathbb{P}[B] + \\mathbb{P}[A|B^c] \\cdot \\mathbb{P}[B^c]\\]\nWir kennen die Fälle \\(B\\) und \\(B^c\\), deren Wahrscheinlichkeiten ( \\(\\mathbb{P}[B^c], \\mathbb{P}[B]\\) ) und die bedingten Wahrscheinlichkeiten ( \\(\\mathbb{P}[A|B^c], \\mathbb{P}[A|B]\\) ). Die Formel liefert daraus dann \\(\\mathbb{P}[A]\\).\n\n\nEreignis \\(A\\): Wir ziehen als zweite Kugel eine rote Kugel. Ereignis \\(B\\): Wir ziehen als erste Kugel eine rote Kugel. Dann können wir die Wahrscheinlichkeit für \\(A\\) berechnen, indem wir die Fälle \\(B\\) und \\(B^c\\) betrachten.\n\n\n\nIn einer Firma arbeiten 60% Ingenieur:innen und 40% Betriebswirtschaftler:innen. Von den Ingenieur: innen sprechen 30% Französisch, von den Betriebswirtschaftler:innen sind es 50%.\n\nDisjunkte Fälle (niemand ist beides, also disjunkt, schliessen sich gegenseitig aus):\n\n\\(I\\) = Ingenieur:in,\n\\(B\\) = Betriebswirtschaftler:in\n\nWahrscheinlichkeiten:\n\n\\(\\mathbb{P}[I] = 0.6\\)\n\\(\\mathbb{P}[B] = 0.4\\)\n\n\nDer Satz der totalen Wahrscheinlichkeit erlaubt es uns, die Wahrscheinlichkeit zu berechnen, dass eine zufällig ausgewählte Person Französisch spricht, indem wir die Fälle \\(I\\) und \\(B\\) separat betrachten: \\[\\mathbb{P}[\\text{F}] = \\mathbb{P}[\\text{F}|B] \\cdot \\mathbb{P}[B] + \\mathbb{P}[\\text{F}|I] \\cdot \\mathbb{P}[I] = 0.3 \\cdot 0.6 + 0.5 \\cdot 0.4 = 0.38\\]\n\n\n\nVisuelle Erläuterung"
+  },
+  {
+    "objectID": "woche_03.html#satz-von-bayes",
+    "href": "woche_03.html#satz-von-bayes",
+    "title": "Woche 3: Bedingte Wahrscheinlichkeiten",
+    "section": "",
+    "text": "Dieser Satz erlaubt es uns, bedingte Wahrscheinlichkeiten “umzudrehen”, also von \\(\\mathbb{P}[A|B]\\) auf \\(\\mathbb{P}[B|A]\\) zu schliessen: \\[\\mathbb{P}[A|B] = \\frac{\\mathbb{P}[B|A] \\cdot \\mathbb{P}[A]}{\\mathbb{P}[B]}\\]\nKlassisches Beispiel (Medizinischer Test): Auch wenn ein HIV-Test sehr genau ist, ist die Wahrscheinlichkeit, tatsächlich infiziert zu sein, wenn der Test positiv ausfällt, oft überraschend tief, falls die Krankheit in der Gesamtbevölkerung sehr selten ist."
+  },
+  {
+    "objectID": "woche_04.html",
+    "href": "woche_04.html",
+    "title": "Woche 4: Zufallsvariablen & Verteilungen",
+    "section": "",
+    "text": "Eine Zufallsvariable (oft mit grossen Buchstaben wie \\(X\\), \\(Y\\) bezeichnet) ist im Prinzip eine Übersetzungsmaschine: Sie ordnet den abstrakten Ergebnissen eines Zufallsexperiments (der Grundmenge \\(\\Omega\\)) reelle Zahlen zu.\nWir unterscheiden zwei Haupttypen:\n\nDiskrete Zufallsvariablen: Können nur bestimmte, zählbare Werte annehmen (oft ganze Zahlen).\n\nBeispiel: Anzahl der geworfenen “Köpfe” bei 10 Münzwürfen (\\(X \\in \\{0, 1, 2, \\dots, 10\\}\\)).\n\nStetige (kontinuierliche) Zufallsvariablen: Können jeden beliebigen Wert in einem bestimmten Intervall annehmen (Messwerte).\n\nBeispiel: Die exakte Wartezeit auf den Bus in Minuten (\\(X = 4.352\\dots\\))."
+  },
+  {
+    "objectID": "woche_04.html#bei-diskreten-zufallsvariablen",
+    "href": "woche_04.html#bei-diskreten-zufallsvariablen",
+    "title": "Woche 4: Zufallsvariablen & Verteilungen",
+    "section": "2.1 Bei diskreten Zufallsvariablen",
+    "text": "2.1 Bei diskreten Zufallsvariablen\n\nWahrscheinlichkeitsfunktion: Gibt die exakte Wahrscheinlichkeit an, dass die Zufallsvariable \\(X\\) einen ganz bestimmten Wert \\(x\\) annimmt. \\[P(X = x)\\]\nVerteilungsfunktion (kumulativ): Kumuliert (summiert) die Wahrscheinlichkeiten bis zu einem bestimmten Wert \\(x\\). \\[F(x) = P(X \\le x)\\]\nDie Kurve “beginnt” somit bei \\(y=0\\) und “endet” bei \\(y=1\\) und ist monoton wachsend (geht nie wieder abwärts in Richtung von höheren X)."
+  },
+  {
+    "objectID": "woche_04.html#bei-stetigen-zufallsvariablen",
+    "href": "woche_04.html#bei-stetigen-zufallsvariablen",
+    "title": "Woche 4: Zufallsvariablen & Verteilungen",
+    "section": "2.2 Bei stetigen Zufallsvariablen",
+    "text": "2.2 Bei stetigen Zufallsvariablen\n\nDichtefunktion \\(\\varphi(x)\\): Da ein stetiger Wert unendlich viele Nachkommastellen hat, ist die Wahrscheinlichkeit für einen exakten Wert immer null (\\(P(X = x) = 0\\)). Die Dichtefunktion beschreibt stattdessen die “Kurve”. Die Gesamtfläche unter der Kurve ist immer exakt 1.\nVerteilungsfunktion \\(F_X(x)\\): Die Kurve ist ebenfalls monoton wachsend und gibt die Fläche unter der Dichtefunktion bis zum Wert \\(x\\) an. Berechnet wird dies über das Integral der Dichtefunktion. \\[F(x) = \\int_{-\\infty}^{x} \\varphi(t) \\, dt\\]"
+  },
+  {
+    "objectID": "woche_04.html#visuelle-zusammenfassung",
+    "href": "woche_04.html#visuelle-zusammenfassung",
+    "title": "Woche 4: Zufallsvariablen & Verteilungen",
+    "section": "2.3 Visuelle Zusammenfassung",
+    "text": "2.3 Visuelle Zusammenfassung\n\n\n\nVisuelle Zusammenfassung (by Tobias Peter)"
+  },
+  {
+    "objectID": "woche_07.html",
+    "href": "woche_07.html",
+    "title": "Woche 4: Grenzwertsätze",
+    "section": "",
+    "text": "Bevor wir uns die Grenzwertsätze ansehen, brauchen wir eine wichtige Grundlage: i.i.d.-Zufallsvariablen. Das steht für Independent and Identically Distributed. Zufallsvariablen erfüllen diese Eigenschaft, wenn:\n\nSie absolut unabhängig voneinander sind.\nSie alle exakt dieselbe Verteilung (also denselben Erwartungswert und dieselbe Varianz) besitzen.\n\nBeispiel: Mehrfaches Würfeln. Jeder Wurf ist unabhängig vom vorherigen, und bei jedem Wurf haben wir exakt die gleichen Wahrscheinlichkeiten für die Zahlen 1 bis 6."
+  },
+  {
+    "objectID": "woche_07.html#approximation-für-die-summe-s_n",
+    "href": "woche_07.html#approximation-für-die-summe-s_n",
+    "title": "Woche 4: Grenzwertsätze",
+    "section": "4.1 Approximation für die Summe (\\(S_n\\))",
+    "text": "4.1 Approximation für die Summe (\\(S_n\\))\nDie Summe aller Werte nähert sich einer Normalverteilung an: \\[S_n \\approx N(n \\cdot \\mu, n \\cdot \\sigma^2)\\]"
+  },
+  {
+    "objectID": "woche_07.html#approximation-für-das-arithmetische-mittel-overlinex_n",
+    "href": "woche_07.html#approximation-für-das-arithmetische-mittel-overlinex_n",
+    "title": "Woche 4: Grenzwertsätze",
+    "section": "4.2 Approximation für das arithmetische Mittel (\\(\\overline{X}_n\\))",
+    "text": "4.2 Approximation für das arithmetische Mittel (\\(\\overline{X}_n\\))\nTeilen wir die Summe durch \\(n\\), erhalten wir den Durchschnitt. Die Varianz wird hierbei durch \\(n\\) geteilt, was bedeutet: Je grösser die Stichprobe, desto weniger streut der Mittelwert! \\[\\overline{X}_n \\approx N\\left(\\mu, \\frac{\\sigma^2}{n}\\right)\\]\n\n4.2.1 Beispiel: Chemische Reaktion & R-Code\nWir führen 100 Reaktionen durch (\\(n = 100\\)). Eine einzelne Reaktion dauert im Schnitt 5 Minuten (\\(\\mu = 5\\)) mit einer Varianz von \\(\\sigma^2 = 25\\).\n\nErwartungswert der Gesamtsumme: \\(n \\cdot \\mu = 100 \\cdot 5 = 500\\) Minuten.\nVarianz der Gesamtsumme: \\(n \\cdot \\sigma^2 = 100 \\cdot 25 = 2500\\) (Standardabweichung \\(\\sigma\\) ist somit \\(\\sqrt{2500} = 50\\)).\n\nWie gross ist die Wahrscheinlichkeit, dass alle 100 Reaktionen zusammen weniger als 490 Minuten dauern? Mit der Normalapproximation rechnen wir dies mit einer \\(N(500, 50^2)\\) Verteilung aus:\nIn R: pnorm(490, mean = 500, sd = 50)"
   }
 ]

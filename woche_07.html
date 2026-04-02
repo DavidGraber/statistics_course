@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Woche 2: Wahrscheinlichkeitsrechnung – Statistik &amp; Wahrscheinlichkeit</title>
+<title>Woche 4: Grenzwertsätze – Statistik &amp; Wahrscheinlichkeit</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -127,7 +127,7 @@ window.Quarto = {
 <span class="menu-text">Woche 1: Kombinatorik</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="./woche_02.html" aria-current="page"> 
+    <a class="nav-link" href="./woche_02.html"> 
 <span class="menu-text">Woche 2: Wahrscheinlichkeitsrechnung</span></a>
   </li>  
   <li class="nav-item">
@@ -147,7 +147,7 @@ window.Quarto = {
 <span class="menu-text">Woche 6: Standardverteilungen</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./woche_07.html"> 
+    <a class="nav-link active" href="./woche_07.html" aria-current="page"> 
 <span class="menu-text">Woche 7: Grenzwertsätze</span></a>
   </li>  
 </ul>
@@ -166,11 +166,16 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#zufallsexperimente-und-ereignisse" id="toc-zufallsexperimente-und-ereignisse" class="nav-link active" data-scroll-target="#zufallsexperimente-und-ereignisse"><span class="header-section-number">1</span> Zufallsexperimente und Ereignisse</a></li>
-  <li><a href="#mengenoperationen" id="toc-mengenoperationen" class="nav-link" data-scroll-target="#mengenoperationen"><span class="header-section-number">2</span> Mengenoperationen</a></li>
-  <li><a href="#wahrscheinlichkeiten-und-kolmogorow-axiome" id="toc-wahrscheinlichkeiten-und-kolmogorow-axiome" class="nav-link" data-scroll-target="#wahrscheinlichkeiten-und-kolmogorow-axiome"><span class="header-section-number">3</span> Wahrscheinlichkeiten und Kolmogorow-Axiome</a>
+  <li><a href="#i.i.d.-zufallsvariablen" id="toc-i.i.d.-zufallsvariablen" class="nav-link active" data-scroll-target="#i.i.d.-zufallsvariablen"><span class="header-section-number">1</span> i.i.d. Zufallsvariablen</a></li>
+  <li><a href="#das-gesetz-der-grossen-zahlen-ggz" id="toc-das-gesetz-der-grossen-zahlen-ggz" class="nav-link" data-scroll-target="#das-gesetz-der-grossen-zahlen-ggz"><span class="header-section-number">2</span> Das Gesetz der grossen Zahlen (GGZ)</a></li>
+  <li><a href="#der-zentrale-grenzwertsatz-zgs" id="toc-der-zentrale-grenzwertsatz-zgs" class="nav-link" data-scroll-target="#der-zentrale-grenzwertsatz-zgs"><span class="header-section-number">3</span> Der zentrale Grenzwertsatz (ZGS)</a></li>
+  <li><a href="#normalapproximation-in-der-praxis" id="toc-normalapproximation-in-der-praxis" class="nav-link" data-scroll-target="#normalapproximation-in-der-praxis"><span class="header-section-number">4</span> Normalapproximation in der Praxis</a>
   <ul class="collapse">
-  <li><a href="#laplace-experimente" id="toc-laplace-experimente" class="nav-link" data-scroll-target="#laplace-experimente"><span class="header-section-number">3.1</span> Laplace-Experimente</a></li>
+  <li><a href="#approximation-für-die-summe-s_n" id="toc-approximation-für-die-summe-s_n" class="nav-link" data-scroll-target="#approximation-für-die-summe-s_n"><span class="header-section-number">4.1</span> Approximation für die Summe (<span class="math inline">\(S_n\)</span>)</a></li>
+  <li><a href="#approximation-für-das-arithmetische-mittel-overlinex_n" id="toc-approximation-für-das-arithmetische-mittel-overlinex_n" class="nav-link" data-scroll-target="#approximation-für-das-arithmetische-mittel-overlinex_n"><span class="header-section-number">4.2</span> Approximation für das arithmetische Mittel (<span class="math inline">\(\overline{X}_n\)</span>)</a>
+  <ul class="collapse">
+  <li><a href="#beispiel-chemische-reaktion-r-code" id="toc-beispiel-chemische-reaktion-r-code" class="nav-link" data-scroll-target="#beispiel-chemische-reaktion-r-code"><span class="header-section-number">4.2.1</span> Beispiel: Chemische Reaktion &amp; R-Code</a></li>
+  </ul></li>
   </ul></li>
   </ul>
 </nav>
@@ -180,7 +185,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Woche 2: Wahrscheinlichkeitsrechnung</h1>
+<h1 class="title">Woche 4: Grenzwertsätze</h1>
 </div>
 
 
@@ -197,89 +202,68 @@ window.Quarto = {
 </header>
 
 
-<section id="zufallsexperimente-und-ereignisse" class="level1" data-number="1">
-<h1 data-number="1"><span class="header-section-number">1</span> Zufallsexperimente und Ereignisse</h1>
-<p>Die Wahrscheinlichkeitsrechnung beschäftigt sich mit <strong>Zufallsexperimenten</strong> – das sind Vorgänge, deren Ausgang nicht exakt vorhersagbar ist. Um damit zu rechnen, brauchen wir einige Grundbegriffe:</p>
-<ul>
-<li><strong>Elementarereignis (<span class="math inline">\(\omega\)</span>):</strong> Ein einzelner, konkreter Ausgang eines Experiments.</li>
-<li><strong>Grundmenge / Grundraum (<span class="math inline">\(\Omega\)</span>):</strong> Die Menge aller möglichen Ausgänge eines Experiments.</li>
-<li><strong>Ereignis (<span class="math inline">\(A\)</span>):</strong> Eine Sammlung von bestimmten Elementarereignissen. Formal ist ein Ereignis eine Teilmenge der Grundmenge (<span class="math inline">\(A \subseteq \Omega\)</span>).</li>
-</ul>
-<p><strong>Beispiel Würfelwurf:</strong></p>
-<ul>
-<li>Grundmenge: <span class="math inline">\(\Omega = \{1, 2, 3, 4, 5, 6\}\)</span></li>
-<li>Ereignis <span class="math inline">\(A\)</span> (“eine gerade Zahl würfeln”): <span class="math inline">\(A = \{2, 4, 6\}\)</span></li>
-</ul>
+<section id="i.i.d.-zufallsvariablen" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> i.i.d. Zufallsvariablen</h1>
+<p>Bevor wir uns die Grenzwertsätze ansehen, brauchen wir eine wichtige Grundlage: <strong>i.i.d.-Zufallsvariablen</strong>. Das steht für <em>Independent and Identically Distributed</em>. Zufallsvariablen erfüllen diese Eigenschaft, wenn:</p>
+<ol type="1">
+<li>Sie absolut <strong>unabhängig</strong> voneinander sind.</li>
+<li>Sie alle exakt <strong>dieselbe Verteilung</strong> (also denselben Erwartungswert und dieselbe Varianz) besitzen.</li>
+</ol>
+<p><em>Beispiel:</em> Mehrfaches Würfeln. Jeder Wurf ist unabhängig vom vorherigen, und bei jedem Wurf haben wir exakt die gleichen Wahrscheinlichkeiten für die Zahlen 1 bis 6.</p>
 <hr>
 </section>
-<section id="mengenoperationen" class="level1" data-number="2">
-<h1 data-number="2"><span class="header-section-number">2</span> Mengenoperationen</h1>
-<p>Da Ereignisse Mengen sind, können wir sie mit Mengenoperationen verknüpfen:</p>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 30%">
-<col style="width: 38%">
-<col style="width: 30%">
-</colgroup>
-<thead>
-<tr class="header">
-<th style="text-align: left;">Operation</th>
-<th style="text-align: center;">Notation</th>
-<th style="text-align: left;">Bedeutung</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;"><strong>Schnittmenge</strong></td>
-<td style="text-align: center;"><span class="math inline">\(A \cap B\)</span></td>
-<td style="text-align: left;"><span class="math inline">\(A\)</span> <strong>und</strong> <span class="math inline">\(B\)</span> treten beide gleichzeitig ein.</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;"><strong>Vereinigung</strong></td>
-<td style="text-align: center;"><span class="math inline">\(A \cup B\)</span></td>
-<td style="text-align: left;"><span class="math inline">\(A\)</span> <strong>oder</strong> <span class="math inline">\(B\)</span> (oder beide) treten ein.</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;"><strong>Gegenereignis</strong></td>
-<td style="text-align: center;"><span class="math inline">\(A^c\)</span></td>
-<td style="text-align: left;"><span class="math inline">\(A\)</span> tritt <strong>nicht</strong> ein (<span class="math inline">\(A^c = \Omega \setminus A\)</span>).</td>
-</tr>
-</tbody>
-</table>
-<p><strong>Disjunkte Ereignisse:</strong></p>
-<p>Zwei Ereignisse heissen disjunkt, wenn sie sich gegenseitig ausschliessen und niemals gemeinsam eintreten können (<span class="math inline">\(A \cap B = \emptyset\)</span>).</p>
-<blockquote class="blockquote">
-<p><strong>Tipp für Umformungen (De Morgan’sche Regeln):</strong></p>
-</blockquote>
-<blockquote class="blockquote">
-<ol type="1">
-<li><span class="math inline">\((A \cap B)^c = A^c \cup B^c\)</span></li>
-<li><span class="math inline">\((A \cup B)^c = A^c \cap B^c\)</span></li>
-</ol>
-</blockquote>
+<section id="das-gesetz-der-grossen-zahlen-ggz" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> Das Gesetz der grossen Zahlen (GGZ)</h1>
+<p>Das GGZ besagt anschaulich: Je mehr Daten wir sammeln, desto präziser wird unser Mittelwert. Formal ausgedrückt: Das arithmetische Mittel <span class="math inline">\(\overline{X}_n\)</span> einer Folge von i.i.d.-Zufallsvariablen konvergiert für wachsende Stichprobengrössen <span class="math inline">\(n\)</span> gegen den theoretischen (wahren) Erwartungswert <span class="math inline">\(\mu\)</span>.</p>
+<ul>
+<li><strong>Kleine Stichproben (<span class="math inline">\(n\)</span> ist klein):</strong> Der Durchschnitt schwankt noch stark.</li>
+<li><strong>Grosse Stichproben (<span class="math inline">\(n\)</span> ist gross):</strong> Der Durchschnitt stabilisiert sich ganz nah am wahren Wert.</li>
+</ul>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Warning</span>Achtung: Spielerfehlschluss (Gambler’s Fallacy)
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Ein häufiger Fehler beim Roulette: Wenn 10-mal Rot gefallen ist, setzen viele alles auf Schwarz in dem Glauben, es sei nun “fällig”. Das ist falsch! Das Gesetz der grossen Zahlen beschreibt nur das <strong>langfristige Verhalten</strong> und macht absolut keine Vorhersagen für das nächste Einzelereignis.</p>
+</div>
+</div>
 <hr>
 </section>
-<section id="wahrscheinlichkeiten-und-kolmogorow-axiome" class="level1" data-number="3">
-<h1 data-number="3"><span class="header-section-number">3</span> Wahrscheinlichkeiten und Kolmogorow-Axiome</h1>
-<p>Die Wahrscheinlichkeit <span class="math inline">\(\mathbb{P}[A]\)</span> gibt auf einer Skala von 0 bis 1 an, wie sicher ein Ereignis <span class="math inline">\(A\)</span> eintritt. Nach den Kolmogorow-Axiomen gilt:</p>
-<ol type="1">
-<li><strong>Sicheres Ereignis:</strong> <span class="math inline">\(\mathbb{P}[\Omega] = 1\)</span></li>
-<li>Die Wahrscheinlichkeit der Vereinigung von <em>disjunkten</em> Ereignissen ist die Summe ihrer Einzelwahrscheinlichkeiten.</li>
-</ol>
-<p>Daraus ergeben sich wichtige <strong>Rechenregeln</strong>:</p>
-<ul>
-<li><strong>Gegenereignis:</strong> <span class="math inline">\(\mathbb{P}[A^c] = 1 - \mathbb{P}[A]\)</span></li>
-<li><strong>Differenzregel:</strong> <span class="math inline">\(P(A \setminus B) = P(A) - P(A \cap B)\)</span></li>
-<li><strong>Summenregel:</strong> <span class="math inline">\(\mathbb{P}[A \cup B] = \mathbb{P}[A] + \mathbb{P}[B] - \mathbb{P}[A \cap B]\)</span></li>
-</ul>
-<section id="laplace-experimente" class="level2" data-number="3.1">
-<h2 data-number="3.1" class="anchored" data-anchor-id="laplace-experimente"><span class="header-section-number">3.1</span> Laplace-Experimente</h2>
-<p>Ein Laplace-Experiment liegt vor, wenn <strong>jeder</strong> mögliche Ausgang (<span class="math inline">\(\omega\)</span>) absolut gleich wahrscheinlich ist.</p>
-<p><strong>Formel:</strong> <span class="math display">\[\mathbb{P}[A] = \frac{|A|}{|\Omega|} = \frac{\text{Anzahl günstige Ausgänge}}{\text{Anzahl mögliche Ausgänge}}\]</span></p>
-<p><em>Beispiel:</em> Wahrscheinlichkeit für eine gerade Zahl beim fairen Würfelwurf: <span class="math inline">\(\mathbb{P}[A] = 3 / 6 = 0.5\)</span>.</p>
+<section id="der-zentrale-grenzwertsatz-zgs" class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> Der zentrale Grenzwertsatz (ZGS)</h1>
+<p>Warum in der Praxis (z. B. bei Messungen im Labor) extrem oft die Normalverteilung (“Glockenkurve”) auftaucht, beantwortet der zentrale Grenzwertsatz.</p>
+<p>Wenn sich ein Gesamtwert aus der Summe vieler unabhängiger, kleiner Einzelkomponenten (z. B. verschiedene Fehlerquellen wie Temperatur, Rauschen, Rundung) zusammensetzt, dann ist diese Summe annähernd <strong>normalverteilt</strong>. Das gilt faszinierenderweise auch dann, wenn die ursprünglichen Einzelereignisse selbst gar nicht normalverteilt waren.</p>
+<p>Formal bedeutet das, dass eine standardisierte Summe <span class="math inline">\(Z_n\)</span> für ein sehr grosses <span class="math inline">\(n\)</span> gegen die Standardnormalverteilung <span class="math inline">\(N(0, 1)\)</span> konvergiert.</p>
 <hr>
+</section>
+<section id="normalapproximation-in-der-praxis" class="level1" data-number="4">
+<h1 data-number="4"><span class="header-section-number">4</span> Normalapproximation in der Praxis</h1>
+<p>Der ZGS erlaubt es uns, Summen und Mittelwerte bei einer ausreichend grossen Stichprobe (grosses <span class="math inline">\(n\)</span>) durch die Normalverteilung anzunähern (Approximation).</p>
+<p>Wenn wir <span class="math inline">\(n\)</span> unabhängige Zufallsvariablen mit Erwartungswert <span class="math inline">\(\mu\)</span> und Varianz <span class="math inline">\(\sigma^2\)</span> haben, gelten für grosses <span class="math inline">\(n\)</span> folgende Formeln:</p>
+<section id="approximation-für-die-summe-s_n" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="approximation-für-die-summe-s_n"><span class="header-section-number">4.1</span> Approximation für die Summe (<span class="math inline">\(S_n\)</span>)</h2>
+<p>Die Summe aller Werte nähert sich einer Normalverteilung an: <span class="math display">\[S_n \approx N(n \cdot \mu, n \cdot \sigma^2)\]</span></p>
+</section>
+<section id="approximation-für-das-arithmetische-mittel-overlinex_n" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="approximation-für-das-arithmetische-mittel-overlinex_n"><span class="header-section-number">4.2</span> Approximation für das arithmetische Mittel (<span class="math inline">\(\overline{X}_n\)</span>)</h2>
+<p>Teilen wir die Summe durch <span class="math inline">\(n\)</span>, erhalten wir den Durchschnitt. Die Varianz wird hierbei durch <span class="math inline">\(n\)</span> geteilt, was bedeutet: Je grösser die Stichprobe, desto weniger streut der Mittelwert! <span class="math display">\[\overline{X}_n \approx N\left(\mu, \frac{\sigma^2}{n}\right)\]</span></p>
+<section id="beispiel-chemische-reaktion-r-code" class="level3" data-number="4.2.1">
+<h3 data-number="4.2.1" class="anchored" data-anchor-id="beispiel-chemische-reaktion-r-code"><span class="header-section-number">4.2.1</span> Beispiel: Chemische Reaktion &amp; R-Code</h3>
+<p>Wir führen 100 Reaktionen durch (<span class="math inline">\(n = 100\)</span>). Eine einzelne Reaktion dauert im Schnitt 5 Minuten (<span class="math inline">\(\mu = 5\)</span>) mit einer Varianz von <span class="math inline">\(\sigma^2 = 25\)</span>.</p>
+<ul>
+<li><strong>Erwartungswert der Gesamtsumme:</strong> <span class="math inline">\(n \cdot \mu = 100 \cdot 5 = 500\)</span> Minuten.</li>
+<li><strong>Varianz der Gesamtsumme:</strong> <span class="math inline">\(n \cdot \sigma^2 = 100 \cdot 25 = 2500\)</span> (Standardabweichung <span class="math inline">\(\sigma\)</span> ist somit <span class="math inline">\(\sqrt{2500} = 50\)</span>).</li>
+</ul>
+<p>Wie gross ist die Wahrscheinlichkeit, dass alle 100 Reaktionen <em>zusammen</em> weniger als 490 Minuten dauern? Mit der Normalapproximation rechnen wir dies mit einer <span class="math inline">\(N(500, 50^2)\)</span> Verteilung aus:</p>
+<p><strong>In R:</strong> <code>pnorm(490, mean = 500, sd = 50)</code></p>
 
 
+</section>
 </section>
 </section>
 
