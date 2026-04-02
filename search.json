@@ -198,21 +198,21 @@
   {
     "objectID": "woche_07.html",
     "href": "woche_07.html",
-    "title": "Woche 4: Grenzwertsätze",
+    "title": "Woche 7: Grenzwertsätze",
     "section": "",
     "text": "Bevor wir uns die Grenzwertsätze ansehen, brauchen wir eine wichtige Grundlage: i.i.d.-Zufallsvariablen. Das steht für Independent and Identically Distributed. Zufallsvariablen erfüllen diese Eigenschaft, wenn:\n\nSie absolut unabhängig voneinander sind.\nSie alle exakt dieselbe Verteilung (also denselben Erwartungswert und dieselbe Varianz) besitzen.\n\nBeispiel: Mehrfaches Würfeln. Jeder Wurf ist unabhängig vom vorherigen, und bei jedem Wurf haben wir exakt die gleichen Wahrscheinlichkeiten für die Zahlen 1 bis 6."
   },
   {
     "objectID": "woche_07.html#approximation-für-die-summe-s_n",
     "href": "woche_07.html#approximation-für-die-summe-s_n",
-    "title": "Woche 4: Grenzwertsätze",
+    "title": "Woche 7: Grenzwertsätze",
     "section": "4.1 Approximation für die Summe (\\(S_n\\))",
     "text": "4.1 Approximation für die Summe (\\(S_n\\))\nDie Summe aller Werte nähert sich einer Normalverteilung an: \\[S_n \\approx N(n \\cdot \\mu, n \\cdot \\sigma^2)\\]"
   },
   {
     "objectID": "woche_07.html#approximation-für-das-arithmetische-mittel-overlinex_n",
     "href": "woche_07.html#approximation-für-das-arithmetische-mittel-overlinex_n",
-    "title": "Woche 4: Grenzwertsätze",
+    "title": "Woche 7: Grenzwertsätze",
     "section": "4.2 Approximation für das arithmetische Mittel (\\(\\overline{X}_n\\))",
     "text": "4.2 Approximation für das arithmetische Mittel (\\(\\overline{X}_n\\))\nTeilen wir die Summe durch \\(n\\), erhalten wir den Durchschnitt. Die Varianz wird hierbei durch \\(n\\) geteilt, was bedeutet: Je grösser die Stichprobe, desto weniger streut der Mittelwert! \\[\\overline{X}_n \\approx N\\left(\\mu, \\frac{\\sigma^2}{n}\\right)\\]\n\n4.2.1 Beispiel: Chemische Reaktion & R-Code\nWir führen 100 Reaktionen durch (\\(n = 100\\)). Eine einzelne Reaktion dauert im Schnitt 5 Minuten (\\(\\mu = 5\\)) mit einer Varianz von \\(\\sigma^2 = 25\\).\n\nErwartungswert der Gesamtsumme: \\(n \\cdot \\mu = 100 \\cdot 5 = 500\\) Minuten.\nVarianz der Gesamtsumme: \\(n \\cdot \\sigma^2 = 100 \\cdot 25 = 2500\\) (Standardabweichung \\(\\sigma\\) ist somit \\(\\sqrt{2500} = 50\\)).\n\nWie gross ist die Wahrscheinlichkeit, dass alle 100 Reaktionen zusammen weniger als 490 Minuten dauern? Mit der Normalapproximation rechnen wir dies mit einer \\(N(500, 50^2)\\) Verteilung aus:\nIn R: pnorm(490, mean = 500, sd = 50)"
   }
