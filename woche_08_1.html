@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Woche 2: Wahrscheinlichkeitsrechnung – Statistik &amp; Wahrscheinlichkeit</title>
+<title>Woche 8_1: Deskriptive Statistik – Statistik &amp; Wahrscheinlichkeit</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -19,6 +19,41 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -127,7 +162,7 @@ window.Quarto = {
 <span class="menu-text">Woche 1: Kombinatorik</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="./woche_02.html" aria-current="page"> 
+    <a class="nav-link" href="./woche_02.html"> 
 <span class="menu-text">Woche 2: Wahrscheinlichkeitsrechnung</span></a>
   </li>  
   <li class="nav-item">
@@ -151,7 +186,7 @@ window.Quarto = {
 <span class="menu-text">Woche 7: Grenzwertsätze</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./woche_08_1.html"> 
+    <a class="nav-link active" href="./woche_08_1.html" aria-current="page"> 
 <span class="menu-text">Woche 8_1: Deskriptive Statistik</span></a>
   </li>  
   <li class="nav-item">
@@ -174,12 +209,15 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#zufallsexperimente-und-ereignisse" id="toc-zufallsexperimente-und-ereignisse" class="nav-link active" data-scroll-target="#zufallsexperimente-und-ereignisse"><span class="header-section-number">1</span> Zufallsexperimente und Ereignisse</a></li>
-  <li><a href="#mengenoperationen" id="toc-mengenoperationen" class="nav-link" data-scroll-target="#mengenoperationen"><span class="header-section-number">2</span> Mengenoperationen</a></li>
-  <li><a href="#wahrscheinlichkeiten-und-kolmogorow-axiome" id="toc-wahrscheinlichkeiten-und-kolmogorow-axiome" class="nav-link" data-scroll-target="#wahrscheinlichkeiten-und-kolmogorow-axiome"><span class="header-section-number">3</span> Wahrscheinlichkeiten und Kolmogorow-Axiome</a>
+  <li><a href="#einführung-und-grundbegriffe" id="toc-einführung-und-grundbegriffe" class="nav-link active" data-scroll-target="#einführung-und-grundbegriffe"><span class="header-section-number">1</span> Einführung und Grundbegriffe</a></li>
+  <li><a href="#skalenniveaus" id="toc-skalenniveaus" class="nav-link" data-scroll-target="#skalenniveaus"><span class="header-section-number">2</span> Skalenniveaus</a></li>
+  <li><a href="#lagemasse-zentrale-tendenzen" id="toc-lagemasse-zentrale-tendenzen" class="nav-link" data-scroll-target="#lagemasse-zentrale-tendenzen"><span class="header-section-number">3</span> Lagemasse (Zentrale Tendenzen)</a>
   <ul class="collapse">
-  <li><a href="#laplace-experimente" id="toc-laplace-experimente" class="nav-link" data-scroll-target="#laplace-experimente"><span class="header-section-number">3.1</span> Laplace-Experimente</a></li>
+  <li><a href="#arithmetisches-mittel-barx" id="toc-arithmetisches-mittel-barx" class="nav-link" data-scroll-target="#arithmetisches-mittel-barx"><span class="header-section-number">3.1</span> Arithmetisches Mittel (<span class="math inline">\(\bar{x}\)</span>)</a></li>
+  <li><a href="#median-q_0.5" id="toc-median-q_0.5" class="nav-link" data-scroll-target="#median-q_0.5"><span class="header-section-number">3.2</span> Median (<span class="math inline">\(q_{0.5}\)</span>)</a></li>
   </ul></li>
+  <li><a href="#streuungsmasse" id="toc-streuungsmasse" class="nav-link" data-scroll-target="#streuungsmasse"><span class="header-section-number">4</span> Streuungsmasse</a></li>
+  <li><a href="#visualisierungen-der-box-plot" id="toc-visualisierungen-der-box-plot" class="nav-link" data-scroll-target="#visualisierungen-der-box-plot"><span class="header-section-number">5</span> Visualisierungen: Der Box-Plot</a></li>
   </ul>
 </nav>
     </div>
@@ -188,7 +226,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Woche 2: Wahrscheinlichkeitsrechnung</h1>
+<h1 class="title">Woche 8_1: Deskriptive Statistik</h1>
 </div>
 
 
@@ -205,90 +243,107 @@ window.Quarto = {
 </header>
 
 
-<section id="zufallsexperimente-und-ereignisse" class="level1" data-number="1">
-<h1 data-number="1"><span class="header-section-number">1</span> Zufallsexperimente und Ereignisse</h1>
-<p>Die Wahrscheinlichkeitsrechnung beschäftigt sich mit <strong>Zufallsexperimenten</strong> – das sind Vorgänge, deren Ausgang nicht exakt vorhersagbar ist. Um damit zu rechnen, brauchen wir einige Grundbegriffe:</p>
+<section id="einführung-und-grundbegriffe" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Einführung und Grundbegriffe</h1>
+<p>Die deskriptive (beschreibende) Statistik hat zum Ziel, grosse Datenmengen übersichtlich zusammenzufassen und deren charakteristische Merkmale durch Tabellen, Kennzahlen und Grafiken darzustellen.</p>
 <ul>
-<li><strong>Elementarereignis (<span class="math inline">\(\omega\)</span>):</strong> Ein einzelner, konkreter Ausgang eines Experiments.</li>
-<li><strong>Grundmenge / Grundraum (<span class="math inline">\(\Omega\)</span>):</strong> Die Menge aller möglichen Ausgänge eines Experiments.</li>
-<li><strong>Ereignis (<span class="math inline">\(A\)</span>):</strong> Eine Sammlung von bestimmten Elementarereignissen. Formal ist ein Ereignis eine Teilmenge der Grundmenge (<span class="math inline">\(A \subseteq \Omega\)</span>).</li>
-</ul>
-<p><strong>Beispiel Würfelwurf:</strong></p>
-<ul>
-<li>Grundmenge: <span class="math inline">\(\Omega = \{1, 2, 3, 4, 5, 6\}\)</span></li>
-<li>Ereignis <span class="math inline">\(A\)</span> (“eine gerade Zahl würfeln”): <span class="math inline">\(A = \{2, 4, 6\}\)</span></li>
+<li><strong>Grundgesamtheit (N):</strong> Die Menge aller Objekte, über die wir eine Aussage treffen wollen.</li>
+<li><strong>Stichprobe (n):</strong> Eine Teilmenge der Grundgesamtheit, die tatsächlich untersucht wird.</li>
+<li><strong>Merkmal (Variable):</strong> Die Eigenschaft, die gemessen wird (z. B. Körpergrösse).</li>
+<li><strong>Merkmalsausprägung:</strong> Der konkrete Wert, den ein Merkmal annehmen kann (z. B. 1.80 m).</li>
 </ul>
 <hr>
 </section>
-<section id="mengenoperationen" class="level1" data-number="2">
-<h1 data-number="2"><span class="header-section-number">2</span> Mengenoperationen</h1>
-<p>Da Ereignisse Mengen sind, können wir sie mit Mengenoperationen verknüpfen:</p>
+<section id="skalenniveaus" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> Skalenniveaus</h1>
+<p>Bevor wir rechnen, müssen wir wissen, welche Operationen bei unseren Daten überhaupt erlaubt sind. Man unterscheidet drei Hauptstufen:</p>
 <table class="caption-top table">
 <colgroup>
-<col style="width: 30%">
-<col style="width: 38%">
-<col style="width: 30%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
 </colgroup>
 <thead>
 <tr class="header">
-<th style="text-align: left;">Operation</th>
-<th style="text-align: center;">Notation</th>
-<th style="text-align: left;">Bedeutung</th>
+<th style="text-align: left;">Skalenniveau</th>
+<th style="text-align: left;">Eigenschaften</th>
+<th style="text-align: left;">Beispiele</th>
+<th style="text-align: left;">Erlaubte Operationen</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;"><strong>Schnittmenge</strong></td>
-<td style="text-align: center;"><span class="math inline">\(A \cap B\)</span></td>
-<td style="text-align: left;"><span class="math inline">\(A\)</span> <strong>und</strong> <span class="math inline">\(B\)</span> treten beide gleichzeitig ein.</td>
+<td style="text-align: left;"><strong>Nominal</strong></td>
+<td style="text-align: left;">Kategorien ohne Rangfolge</td>
+<td style="text-align: left;">Haarfarbe, Geschlecht</td>
+<td style="text-align: left;">Häufigkeiten, Modus</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;"><strong>Vereinigung</strong></td>
-<td style="text-align: center;"><span class="math inline">\(A \cup B\)</span></td>
-<td style="text-align: left;"><span class="math inline">\(A\)</span> <strong>oder</strong> <span class="math inline">\(B\)</span> (oder beide) treten ein.</td>
+<td style="text-align: left;"><strong>Ordinal</strong></td>
+<td style="text-align: left;">Rangfolge vorhanden, Abstände unklar</td>
+<td style="text-align: left;">Schulnoten, Beliebtheit</td>
+<td style="text-align: left;">Median, Quantile</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;"><strong>Gegenereignis</strong></td>
-<td style="text-align: center;"><span class="math inline">\(A^c\)</span></td>
-<td style="text-align: left;"><span class="math inline">\(A\)</span> tritt <strong>nicht</strong> ein (<span class="math inline">\(A^c = \Omega \setminus A\)</span>).</td>
+<td style="text-align: left;"><strong>Metrisch</strong></td>
+<td style="text-align: left;">Rangfolge + messbare Abstände</td>
+<td style="text-align: left;">Alter, Einkommen, Gewicht</td>
+<td style="text-align: left;">Mittelwert, Varianz</td>
 </tr>
 </tbody>
 </table>
-<p><strong>Disjunkte Ereignisse:</strong></p>
-<p>Zwei Ereignisse heissen disjunkt, wenn sie sich gegenseitig ausschliessen und niemals gemeinsam eintreten können (<span class="math inline">\(A \cap B = \emptyset\)</span>).</p>
-<blockquote class="blockquote">
-<p><strong>Tipp für Umformungen (De Morgan’sche Regeln):</strong></p>
-</blockquote>
-<blockquote class="blockquote">
-<ol type="1">
-<li><span class="math inline">\((A \cap B)^c = A^c \cup B^c\)</span></li>
-<li><span class="math inline">\((A \cup B)^c = A^c \cap B^c\)</span></li>
-</ol>
-</blockquote>
 <hr>
 </section>
-<section id="wahrscheinlichkeiten-und-kolmogorow-axiome" class="level1" data-number="3">
-<h1 data-number="3"><span class="header-section-number">3</span> Wahrscheinlichkeiten und Kolmogorow-Axiome</h1>
-<p>Die Wahrscheinlichkeit <span class="math inline">\(\mathbb{P}[A]\)</span> gibt auf einer Skala von 0 bis 1 an, wie sicher ein Ereignis <span class="math inline">\(A\)</span> eintritt. Nach den Kolmogorow-Axiomen gilt:</p>
-<ol type="1">
-<li><strong>Sicheres Ereignis:</strong> <span class="math inline">\(\mathbb{P}[\Omega] = 1\)</span></li>
-<li>Die Wahrscheinlichkeit der Vereinigung von <em>disjunkten</em> Ereignissen ist die Summe ihrer Einzelwahrscheinlichkeiten.</li>
-</ol>
-<p>Daraus ergeben sich wichtige <strong>Rechenregeln</strong>:</p>
+<section id="lagemasse-zentrale-tendenzen" class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> Lagemasse (Zentrale Tendenzen)</h1>
+<p>Lagemasse beschreiben, wo sich das “Zentrum” der Daten befindet.</p>
+<section id="arithmetisches-mittel-barx" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="arithmetisches-mittel-barx"><span class="header-section-number">3.1</span> Arithmetisches Mittel (<span class="math inline">\(\bar{x}\)</span>)</h2>
+<p>Der klassische Durchschnitt. Er ist sehr anfällig gegenüber Ausreissern. <span class="math display">\[\bar{x} = \frac{1}{n} \sum_{i=1}^{n} x_i\]</span> <strong>In R:</strong> <code>mean(x)</code></p>
+</section>
+<section id="median-q_0.5" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="median-q_0.5"><span class="header-section-number">3.2</span> Median (<span class="math inline">\(q_{0.5}\)</span>)</h2>
+<p>Der Wert, der die sortierte Datenreihe genau in zwei Hälften teilt. Er ist robust gegenüber Ausreissern. <strong>In R:</strong> <code>median(x)</code></p>
+<hr>
+</section>
+</section>
+<section id="streuungsmasse" class="level1" data-number="4">
+<h1 data-number="4"><span class="header-section-number">4</span> Streuungsmasse</h1>
+<p>Streuungsmasse geben an, wie weit die Daten um das Zentrum herum verteilt sind.</p>
 <ul>
-<li><strong>Gegenereignis:</strong> <span class="math inline">\(\mathbb{P}[A^c] = 1 - \mathbb{P}[A]\)</span></li>
-<li><strong>Differenzregel:</strong> <span class="math inline">\(P(A \setminus B) = P(A) - P(A \cap B)\)</span></li>
-<li><strong>Summenregel:</strong> <span class="math inline">\(\mathbb{P}[A \cup B] = \mathbb{P}[A] + \mathbb{P}[B] - \mathbb{P}[A \cap B]\)</span></li>
+<li><strong>Spannweite (Range):</strong> Differenz zwischen Maximum und Minimum.</li>
+<li><strong>Interquartilsabstand (IQR):</strong> Bereich, in dem die mittleren 50% der Daten liegen (<span class="math inline">\(IQR = q_{0.75} - q_{0.25}\)</span>).
+<ul>
+<li><strong>In R:</strong> <code>IQR(x)</code></li>
+</ul></li>
+<li><strong>Empirische Varianz (<span class="math inline">\(s^2\)</span>):</strong> Durchschnittliche quadrierte Abweichung vom Mittelwert.
+<ul>
+<li><strong>In R:</strong> <code>var(x)</code></li>
+</ul></li>
+<li><strong>Standardabweichung (<span class="math inline">\(s\)</span>):</strong> Wurzel der Varianz (gleiche Einheit wie die Daten).
+<ul>
+<li><strong>In R:</strong> <code>sd(x)</code></li>
+</ul></li>
 </ul>
-<section id="laplace-experimente" class="level2" data-number="3.1">
-<h2 data-number="3.1" class="anchored" data-anchor-id="laplace-experimente"><span class="header-section-number">3.1</span> Laplace-Experimente</h2>
-<p>Ein Laplace-Experiment liegt vor, wenn <strong>jeder</strong> mögliche Ausgang (<span class="math inline">\(\omega\)</span>) absolut gleich wahrscheinlich ist.</p>
-<p><strong>Formel:</strong> <span class="math display">\[\mathbb{P}[A] = \frac{|A|}{|\Omega|} = \frac{\text{Anzahl günstige Ausgänge}}{\text{Anzahl mögliche Ausgänge}}\]</span></p>
-<p><em>Beispiel:</em> Wahrscheinlichkeit für eine gerade Zahl beim fairen Würfelwurf: <span class="math inline">\(\mathbb{P}[A] = 3 / 6 = 0.5\)</span>.</p>
 <hr>
-
-
 </section>
+<section id="visualisierungen-der-box-plot" class="level1" data-number="5">
+<h1 data-number="5"><span class="header-section-number">5</span> Visualisierungen: Der Box-Plot</h1>
+<p>Ein Box-Plot fasst fünf wichtige Kennzahlen visuell zusammen und hilft, Ausreisser zu identifizieren:</p>
+<ol type="1">
+<li><strong>Box:</strong> Reicht vom 25%-Quantil bis zum 75%-Quantil (entspricht dem IQR).</li>
+<li><strong>Median:</strong> Die Linie innerhalb der Box.</li>
+<li><strong>Whiskers (Antennen):</strong> Zeigen die Streuung ausserhalb der Box. Nach der <strong>Tukey-Regel</strong> enden sie maximal beim 1.5-fachen des IQR.</li>
+<li><strong>Ausreisser:</strong> Werte ausserhalb der Whiskers werden als einzelne Punkte dargestellt.</li>
+</ol>
+<p><strong>In R Basis:</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(x)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>In R (mit ggplot2):</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(data, <span class="fu">aes</span>(<span class="at">y =</span> wert)) <span class="sc">+</span> <span class="fu">geom_boxplot</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+
+
 </section>
 
 </main> <!-- /main -->

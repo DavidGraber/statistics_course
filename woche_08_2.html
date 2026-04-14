@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Woche 2: Wahrscheinlichkeitsrechnung – Statistik &amp; Wahrscheinlichkeit</title>
+<title>Woche 8_2: Schätzer &amp; Konfidenzintervalle – Statistik &amp; Wahrscheinlichkeit</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -19,6 +19,41 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -127,7 +162,7 @@ window.Quarto = {
 <span class="menu-text">Woche 1: Kombinatorik</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="./woche_02.html" aria-current="page"> 
+    <a class="nav-link" href="./woche_02.html"> 
 <span class="menu-text">Woche 2: Wahrscheinlichkeitsrechnung</span></a>
   </li>  
   <li class="nav-item">
@@ -155,7 +190,7 @@ window.Quarto = {
 <span class="menu-text">Woche 8_1: Deskriptive Statistik</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./woche_08_2.html"> 
+    <a class="nav-link active" href="./woche_08_2.html" aria-current="page"> 
 <span class="menu-text">Woche 8_2: Schätzer &amp; Konfidenzintervalle</span></a>
   </li>  
 </ul>
@@ -174,11 +209,18 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#zufallsexperimente-und-ereignisse" id="toc-zufallsexperimente-und-ereignisse" class="nav-link active" data-scroll-target="#zufallsexperimente-und-ereignisse"><span class="header-section-number">1</span> Zufallsexperimente und Ereignisse</a></li>
-  <li><a href="#mengenoperationen" id="toc-mengenoperationen" class="nav-link" data-scroll-target="#mengenoperationen"><span class="header-section-number">2</span> Mengenoperationen</a></li>
-  <li><a href="#wahrscheinlichkeiten-und-kolmogorow-axiome" id="toc-wahrscheinlichkeiten-und-kolmogorow-axiome" class="nav-link" data-scroll-target="#wahrscheinlichkeiten-und-kolmogorow-axiome"><span class="header-section-number">3</span> Wahrscheinlichkeiten und Kolmogorow-Axiome</a>
+  <li><a href="#das-schätzproblem-und-stichproben" id="toc-das-schätzproblem-und-stichproben" class="nav-link active" data-scroll-target="#das-schätzproblem-und-stichproben"><span class="header-section-number">1</span> Das Schätzproblem und Stichproben</a></li>
+  <li><a href="#eigenschaften-von-schätzern" id="toc-eigenschaften-von-schätzern" class="nav-link" data-scroll-target="#eigenschaften-von-schätzern"><span class="header-section-number">2</span> Eigenschaften von Schätzern</a></li>
+  <li><a href="#wichtige-punktschätzer-in-der-praxis" id="toc-wichtige-punktschätzer-in-der-praxis" class="nav-link" data-scroll-target="#wichtige-punktschätzer-in-der-praxis"><span class="header-section-number">3</span> Wichtige Punktschätzer in der Praxis</a>
   <ul class="collapse">
-  <li><a href="#laplace-experimente" id="toc-laplace-experimente" class="nav-link" data-scroll-target="#laplace-experimente"><span class="header-section-number">3.1</span> Laplace-Experimente</a></li>
+  <li><a href="#normalverteilung" id="toc-normalverteilung" class="nav-link" data-scroll-target="#normalverteilung"><span class="header-section-number">3.1</span> 1. Normalverteilung</a></li>
+  <li><a href="#bernoulli-verteilung-anteilsschätzung" id="toc-bernoulli-verteilung-anteilsschätzung" class="nav-link" data-scroll-target="#bernoulli-verteilung-anteilsschätzung"><span class="header-section-number">3.2</span> 2. Bernoulli-Verteilung (Anteilsschätzung)</a></li>
+  <li><a href="#poisson-verteilung-dichteschätzung" id="toc-poisson-verteilung-dichteschätzung" class="nav-link" data-scroll-target="#poisson-verteilung-dichteschätzung"><span class="header-section-number">3.3</span> 3. Poisson-Verteilung (Dichteschätzung)</a></li>
+  </ul></li>
+  <li><a href="#konfidenzintervalle-vertrauensintervalle" id="toc-konfidenzintervalle-vertrauensintervalle" class="nav-link" data-scroll-target="#konfidenzintervalle-vertrauensintervalle"><span class="header-section-number">4</span> Konfidenzintervalle (Vertrauensintervalle)</a>
+  <ul class="collapse">
+  <li><a href="#konfidenzintervall-für-den-erwartungswert-normalverteilung" id="toc-konfidenzintervall-für-den-erwartungswert-normalverteilung" class="nav-link" data-scroll-target="#konfidenzintervall-für-den-erwartungswert-normalverteilung"><span class="header-section-number">4.1</span> Konfidenzintervall für den Erwartungswert (Normalverteilung)</a></li>
+  <li><a href="#konfidenzintervallschätzung-für-verschiedene-verteilungen" id="toc-konfidenzintervallschätzung-für-verschiedene-verteilungen" class="nav-link" data-scroll-target="#konfidenzintervallschätzung-für-verschiedene-verteilungen"><span class="header-section-number">4.2</span> Konfidenzintervallschätzung für verschiedene Verteilungen</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -188,7 +230,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Woche 2: Wahrscheinlichkeitsrechnung</h1>
+<h1 class="title">Woche 8_2: Schätzer &amp; Konfidenzintervalle</h1>
 </div>
 
 
@@ -205,87 +247,102 @@ window.Quarto = {
 </header>
 
 
-<section id="zufallsexperimente-und-ereignisse" class="level1" data-number="1">
-<h1 data-number="1"><span class="header-section-number">1</span> Zufallsexperimente und Ereignisse</h1>
-<p>Die Wahrscheinlichkeitsrechnung beschäftigt sich mit <strong>Zufallsexperimenten</strong> – das sind Vorgänge, deren Ausgang nicht exakt vorhersagbar ist. Um damit zu rechnen, brauchen wir einige Grundbegriffe:</p>
+<section id="das-schätzproblem-und-stichproben" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Das Schätzproblem und Stichproben</h1>
+<p>Oft wissen wir aus Erfahrung, dass Daten einer bestimmten Verteilung folgen (z.B. Normalverteilung), aber die genauen Parameter (wie der Erwartungswert <span class="math inline">\(\mu\)</span> oder die Varianz <span class="math inline">\(\sigma^2\)</span>) sind unbekannt und müssen aus Daten geschätzt werden.</p>
 <ul>
-<li><strong>Elementarereignis (<span class="math inline">\(\omega\)</span>):</strong> Ein einzelner, konkreter Ausgang eines Experiments.</li>
-<li><strong>Grundmenge / Grundraum (<span class="math inline">\(\Omega\)</span>):</strong> Die Menge aller möglichen Ausgänge eines Experiments.</li>
-<li><strong>Ereignis (<span class="math inline">\(A\)</span>):</strong> Eine Sammlung von bestimmten Elementarereignissen. Formal ist ein Ereignis eine Teilmenge der Grundmenge (<span class="math inline">\(A \subseteq \Omega\)</span>).</li>
-</ul>
-<p><strong>Beispiel Würfelwurf:</strong></p>
-<ul>
-<li>Grundmenge: <span class="math inline">\(\Omega = \{1, 2, 3, 4, 5, 6\}\)</span></li>
-<li>Ereignis <span class="math inline">\(A\)</span> (“eine gerade Zahl würfeln”): <span class="math inline">\(A = \{2, 4, 6\}\)</span></li>
+<li><strong>Stichprobe:</strong> Eine Folge von <span class="math inline">\(n\)</span> unabhängigen und identisch verteilten (i.i.d.) Zufallsvariablen <span class="math inline">\(X_i\)</span>, die verwendet wird, um den unbekannten, fixen Parameter aus Beobachtungen zu bestimmen.</li>
 </ul>
 <hr>
 </section>
-<section id="mengenoperationen" class="level1" data-number="2">
-<h1 data-number="2"><span class="header-section-number">2</span> Mengenoperationen</h1>
-<p>Da Ereignisse Mengen sind, können wir sie mit Mengenoperationen verknüpfen:</p>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 30%">
-<col style="width: 38%">
-<col style="width: 30%">
-</colgroup>
-<thead>
-<tr class="header">
-<th style="text-align: left;">Operation</th>
-<th style="text-align: center;">Notation</th>
-<th style="text-align: left;">Bedeutung</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;"><strong>Schnittmenge</strong></td>
-<td style="text-align: center;"><span class="math inline">\(A \cap B\)</span></td>
-<td style="text-align: left;"><span class="math inline">\(A\)</span> <strong>und</strong> <span class="math inline">\(B\)</span> treten beide gleichzeitig ein.</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;"><strong>Vereinigung</strong></td>
-<td style="text-align: center;"><span class="math inline">\(A \cup B\)</span></td>
-<td style="text-align: left;"><span class="math inline">\(A\)</span> <strong>oder</strong> <span class="math inline">\(B\)</span> (oder beide) treten ein.</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;"><strong>Gegenereignis</strong></td>
-<td style="text-align: center;"><span class="math inline">\(A^c\)</span></td>
-<td style="text-align: left;"><span class="math inline">\(A\)</span> tritt <strong>nicht</strong> ein (<span class="math inline">\(A^c = \Omega \setminus A\)</span>).</td>
-</tr>
-</tbody>
-</table>
-<p><strong>Disjunkte Ereignisse:</strong></p>
-<p>Zwei Ereignisse heissen disjunkt, wenn sie sich gegenseitig ausschliessen und niemals gemeinsam eintreten können (<span class="math inline">\(A \cap B = \emptyset\)</span>).</p>
-<blockquote class="blockquote">
-<p><strong>Tipp für Umformungen (De Morgan’sche Regeln):</strong></p>
-</blockquote>
-<blockquote class="blockquote">
-<ol type="1">
-<li><span class="math inline">\((A \cap B)^c = A^c \cup B^c\)</span></li>
-<li><span class="math inline">\((A \cup B)^c = A^c \cap B^c\)</span></li>
-</ol>
-</blockquote>
+<section id="eigenschaften-von-schätzern" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> Eigenschaften von Schätzern</h1>
+<p>Ein Schätzer ist selbst wieder eine Zufallsvariable, da sein Wert von der zufällig gezogenen Stichprobe abhängt. Ein “guter” Schätzer sollte bestimmte mathematische Eigenschaften erfüllen:</p>
+<ul>
+<li><strong>Konsistenz:</strong> Wenn wir die Stichprobe vergrössern (<span class="math inline">\(n \rightarrow \infty\)</span>), soll der geschätzte Wert gegen den wahren Parameterwert streben.</li>
+<li><strong>Erwartungstreue (Unbiasedness):</strong> Der Erwartungswert des Schätzers selbst muss mit dem wahren Parameter übereinstimmen (<span class="math inline">\(\mathbb{E}[\hat{\theta}] = \theta\)</span>).</li>
+</ul>
 <hr>
 </section>
-<section id="wahrscheinlichkeiten-und-kolmogorow-axiome" class="level1" data-number="3">
-<h1 data-number="3"><span class="header-section-number">3</span> Wahrscheinlichkeiten und Kolmogorow-Axiome</h1>
-<p>Die Wahrscheinlichkeit <span class="math inline">\(\mathbb{P}[A]\)</span> gibt auf einer Skala von 0 bis 1 an, wie sicher ein Ereignis <span class="math inline">\(A\)</span> eintritt. Nach den Kolmogorow-Axiomen gilt:</p>
-<ol type="1">
-<li><strong>Sicheres Ereignis:</strong> <span class="math inline">\(\mathbb{P}[\Omega] = 1\)</span></li>
-<li>Die Wahrscheinlichkeit der Vereinigung von <em>disjunkten</em> Ereignissen ist die Summe ihrer Einzelwahrscheinlichkeiten.</li>
-</ol>
-<p>Daraus ergeben sich wichtige <strong>Rechenregeln</strong>:</p>
+<section id="wichtige-punktschätzer-in-der-praxis" class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> Wichtige Punktschätzer in der Praxis</h1>
+<p>Je nach zugrundeliegender Verteilung nutzen wir unterschiedliche Formeln, um unsere Parameter erwartungstreu zu schätzen.</p>
+<section id="normalverteilung" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="normalverteilung"><span class="header-section-number">3.1</span> 1. Normalverteilung</h2>
 <ul>
-<li><strong>Gegenereignis:</strong> <span class="math inline">\(\mathbb{P}[A^c] = 1 - \mathbb{P}[A]\)</span></li>
-<li><strong>Differenzregel:</strong> <span class="math inline">\(P(A \setminus B) = P(A) - P(A \cap B)\)</span></li>
-<li><strong>Summenregel:</strong> <span class="math inline">\(\mathbb{P}[A \cup B] = \mathbb{P}[A] + \mathbb{P}[B] - \mathbb{P}[A \cap B]\)</span></li>
+<li><strong>Erwartungswert (<span class="math inline">\(\mu\)</span>):</strong> Der beste Schätzer ist das arithmetische Mittel <span class="math inline">\(\hat{\mu} = \frac{1}{n}\sum_{i=1}^{n}X_i\)</span>. Dieser Schätzer ist erwartungstreu.</li>
+<li><strong>Varianz (<span class="math inline">\(\sigma^2\)</span>):</strong> Die Stichprobenvarianz wird mit <span class="math inline">\(\sigma^2 = \frac{1}{n-1}\sum_{i=1}^{n}(X_i-\hat{\mu})^2\)</span> berechnet.<br>
+<em>Wichtig:</em> Wir teilen durch <span class="math inline">\(n-1\)</span> (und nicht durch <span class="math inline">\(n\)</span>), damit der Schätzer erwartungstreu ist und die wahre Varianz nicht systematisch unterschätzt wird.</li>
 </ul>
-<section id="laplace-experimente" class="level2" data-number="3.1">
-<h2 data-number="3.1" class="anchored" data-anchor-id="laplace-experimente"><span class="header-section-number">3.1</span> Laplace-Experimente</h2>
-<p>Ein Laplace-Experiment liegt vor, wenn <strong>jeder</strong> mögliche Ausgang (<span class="math inline">\(\omega\)</span>) absolut gleich wahrscheinlich ist.</p>
-<p><strong>Formel:</strong> <span class="math display">\[\mathbb{P}[A] = \frac{|A|}{|\Omega|} = \frac{\text{Anzahl günstige Ausgänge}}{\text{Anzahl mögliche Ausgänge}}\]</span></p>
-<p><em>Beispiel:</em> Wahrscheinlichkeit für eine gerade Zahl beim fairen Würfelwurf: <span class="math inline">\(\mathbb{P}[A] = 3 / 6 = 0.5\)</span>.</p>
+</section>
+<section id="bernoulli-verteilung-anteilsschätzung" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="bernoulli-verteilung-anteilsschätzung"><span class="header-section-number">3.2</span> 2. Bernoulli-Verteilung (Anteilsschätzung)</h2>
+<ul>
+<li>Wir wollen eine Erfolgswahrscheinlichkeit <span class="math inline">\(p\)</span> schätzen (z.B. Anteil defekter Bauteile).</li>
+<li>Der erwartungstreue Schätzer ist der Stichprobenmittelwert <span class="math inline">\(\hat{p} = \frac{k}{n}\)</span>, wobei <span class="math inline">\(k\)</span> die Anzahl der Erfolge und <span class="math inline">\(n\)</span> die Anzahl der Versuche ist.</li>
+<li><em>Beispiel:</em> Bei 100 Münzwürfen (<span class="math inline">\(n=100\)</span>) erhalten wir 62-mal Zahl (<span class="math inline">\(k=62\)</span>). Die Schätzung lautet <span class="math inline">\(\hat{p} = 0.62\)</span>.</li>
+</ul>
+</section>
+<section id="poisson-verteilung-dichteschätzung" class="level2" data-number="3.3">
+<h2 data-number="3.3" class="anchored" data-anchor-id="poisson-verteilung-dichteschätzung"><span class="header-section-number">3.3</span> 3. Poisson-Verteilung (Dichteschätzung)</h2>
+<ul>
+<li>Wir modellieren Ereignisse in einem festen Zeit-/Raumintervall (z.B. Anrufe im Callcenter pro Stunde).</li>
+<li>Der erwartungstreue Schätzer für die Rate <span class="math inline">\(\lambda\)</span> ist <span class="math inline">\(\hat{\lambda} = \frac{\sum_{i=1}^{n}k_i}{n}\)</span> (Gesamtzahl der Ereignisse geteilt durch die Anzahl der Beobachtungsperioden).</li>
+</ul>
 <hr>
+</section>
+</section>
+<section id="konfidenzintervalle-vertrauensintervalle" class="level1" data-number="4">
+<h1 data-number="4"><span class="header-section-number">4</span> Konfidenzintervalle (Vertrauensintervalle)</h1>
+<p>Da ein Punktschätzer im schlimmsten Fall deutlich vom wahren Wert abweichen kann, geben wir ein Intervall an, um die Ungenauigkeit zu quantifizieren.</p>
+<ul>
+<li>Ein <span class="math inline">\((1-\alpha)\)</span>-Konfidenzintervall <span class="math inline">\([L, R]\)</span> enthält den wahren, fixen Parameter mit einer Wahrscheinlichkeit von <span class="math inline">\((1-\alpha)\)</span> (dem Konfidenzniveau).</li>
+<li><strong>Achtung:</strong> Der Parameter selbst ist nicht zufällig. Stattdessen sind die Grenzen des Intervalls zufällig, da sie von der Stichprobe abhängen.</li>
+<li>Intervalle können <strong>zweiseitig</strong>, <strong>linksseitig</strong> oder <strong>rechtsseitig</strong> bestimmt werden.</li>
+</ul>
+<section id="konfidenzintervall-für-den-erwartungswert-normalverteilung" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="konfidenzintervall-für-den-erwartungswert-normalverteilung"><span class="header-section-number">4.1</span> Konfidenzintervall für den Erwartungswert (Normalverteilung)</h2>
+<ul>
+<li><strong>Bei bekannter Varianz (<span class="math inline">\(\sigma^2\)</span>):</strong> Wir verwenden die Quantile <span class="math inline">\(x_-\)</span> und <span class="math inline">\(x_+\)</span> der Standardnormalverteilung. Das Intervall lautet <span class="math inline">\([\overline{X}-\frac{\sigma}{\sqrt{n}}x_+, \overline{X}-\frac{\sigma}{\sqrt{n}}x_-]\)</span>.</li>
+<li><strong>Bei unbekannter Varianz:</strong> Die Varianz muss mit <span class="math inline">\(\sigma^2\)</span> aus den Daten geschätzt werden. Dadurch ändert sich die theoretische Verteilung: Wir müssen nun die <strong>t-Verteilung</strong> mit <span class="math inline">\(n-1\)</span> Freiheitsgraden verwenden anstatt der Standardnormalverteilung.</li>
+</ul>
+</section>
+<section id="konfidenzintervallschätzung-für-verschiedene-verteilungen" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="konfidenzintervallschätzung-für-verschiedene-verteilungen"><span class="header-section-number">4.2</span> Konfidenzintervallschätzung für verschiedene Verteilungen</h2>
+<p><strong>Normalverteilung:</strong> Das Intervall für den Erwartungswert <span class="math inline">\(\mu\)</span> wird mit der t-Verteilung berechnet, wenn die Varianz unbekannt ist.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Stichprobenwerte eingeben</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">170.3</span>, <span class="fl">165.1</span>, <span class="fl">172.0</span>, <span class="fl">157.4</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Punktschätzer berechnen</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>mu_hat <span class="ot">&lt;-</span> <span class="fu">mean</span>(x)      <span class="co"># Arithmetisches Mittel</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>sigma2_hat <span class="ot">&lt;-</span> <span class="fu">var</span>(x)   <span class="co"># Stichprobenvarianz (n-1 korrigiert)</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co"># 80%-Konfidenzintervall für den Erwartungswert (zweiseitig)</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Da die Varianz unbekannt ist, verwendet R automatisch die t-Verteilung.</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(x, <span class="at">conf.level =</span> <span class="fl">0.80</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>Binomialverteilung:</strong> Das Intervall für den Anteil <span class="math inline">\(p\)</span> wird mit der Binomialverteilung berechnet.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Daten aus der Umfrage</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>ja_stimmen <span class="ot">&lt;-</span> <span class="dv">527</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>n_befragte <span class="ot">&lt;-</span> <span class="dv">1000</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Anteilsschätzung und 75%-Konfidenzintervall</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="fu">binom.test</span>(<span class="at">x =</span> ja_stimmen, </span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>           <span class="at">n =</span> n_befragte, </span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>           <span class="at">conf.level =</span> <span class="fl">0.75</span>, </span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>           <span class="at">alternative =</span> <span class="st">"two.sided"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>*<strong>Poissonverteilung:</strong> Das Intervall für die Rate <span class="math inline">\(\lambda\)</span> wird mit der Poissonverteilung berechnet.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Beobachtungen der letzten 5 Jahre</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>tote_pro_jahr <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">312</span>, <span class="dv">292</span>, <span class="dv">321</span>, <span class="dv">275</span>, <span class="dv">300</span>)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Gesamtzahl der Ereignisse (x) und Anzahl der Beobachtungszeiträume (T)</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>x_total <span class="ot">&lt;-</span> <span class="fu">sum</span>(tote_pro_jahr) <span class="co"># 1500 Ereignisse</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>T_jahre <span class="ot">&lt;-</span> <span class="fu">length</span>(tote_pro_jahr) <span class="co"># 5 Jahre</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Schätzung der Rate (Lambda) und 90%-Konfidenzintervall</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="fu">poisson.test</span>(<span class="at">x =</span> x_total, </span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>             <span class="at">T =</span> T_jahre, </span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>             <span class="at">conf.level =</span> <span class="fl">0.90</span>, </span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>             <span class="at">alternative =</span> <span class="st">"two.sided"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 
 
 </section>
