@@ -21,6 +21,10 @@ website:
         text: "Woche 6: Standardverteilungen"
       - href: woche_07.qmd
         text: "Woche 7: Grenzwertsätze"
+      - href: woche_08_1.qmd
+        text: "Woche 8_1: Deskriptive Statistik"
+      - href: woche_08_2.qmd
+        text: "Woche 8_2: Schätzer & Konfidenzintervalle"
 
 format:
   html:

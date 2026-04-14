@@ -1,0 +1,97 @@
+---
+title: "Woche 8_2: Schätzer & Konfidenzintervalle"
+---
+
+# Das Schätzproblem und Stichproben
+
+Oft wissen wir aus Erfahrung, dass Daten einer bestimmten Verteilung folgen (z.B. Normalverteilung), aber die genauen Parameter (wie der Erwartungswert $\mu$ oder die Varianz $\sigma^2$) sind unbekannt und müssen aus Daten geschätzt werden. 
+
+* **Stichprobe:** Eine Folge von $n$ unabhängigen und identisch verteilten (i.i.d.) Zufallsvariablen $X_i$, die verwendet wird, um den unbekannten, fixen Parameter aus Beobachtungen zu bestimmen.
+
+---
+
+# Eigenschaften von Schätzern
+
+Ein Schätzer ist selbst wieder eine Zufallsvariable, da sein Wert von der zufällig gezogenen Stichprobe abhängt. Ein "guter" Schätzer sollte bestimmte mathematische Eigenschaften erfüllen:
+
+* **Konsistenz:** Wenn wir die Stichprobe vergrössern ($n \rightarrow \infty$), soll der geschätzte Wert gegen den wahren Parameterwert streben.
+* **Erwartungstreue (Unbiasedness):** Der Erwartungswert des Schätzers selbst muss mit dem wahren Parameter übereinstimmen ($\mathbb{E}[\hat{\theta}] = \theta$).
+
+---
+
+# Wichtige Punktschätzer in der Praxis
+
+Je nach zugrundeliegender Verteilung nutzen wir unterschiedliche Formeln, um unsere Parameter erwartungstreu zu schätzen.
+
+## 1. Normalverteilung
+* **Erwartungswert ($\mu$):** Der beste Schätzer ist das arithmetische Mittel $\hat{\mu} = \frac{1}{n}\sum_{i=1}^{n}X_i$. Dieser Schätzer ist erwartungstreu.
+* **Varianz ($\sigma^2$):** Die Stichprobenvarianz wird mit $\sigma^2 = \frac{1}{n-1}\sum_{i=1}^{n}(X_i-\hat{\mu})^2$ berechnet.  
+  *Wichtig:* Wir teilen durch $n-1$ (und nicht durch $n$), damit der Schätzer erwartungstreu ist und die wahre Varianz nicht systematisch unterschätzt wird.
+
+## 2. Bernoulli-Verteilung (Anteilsschätzung)
+* Wir wollen eine Erfolgswahrscheinlichkeit $p$ schätzen (z.B. Anteil defekter Bauteile).
+* Der erwartungstreue Schätzer ist der Stichprobenmittelwert $\hat{p} = \frac{k}{n}$, wobei $k$ die Anzahl der Erfolge und $n$ die Anzahl der Versuche ist.
+* *Beispiel:* Bei 100 Münzwürfen ($n=100$) erhalten wir 62-mal Zahl ($k=62$). Die Schätzung lautet $\hat{p} = 0.62$.
+
+## 3. Poisson-Verteilung (Dichteschätzung)
+* Wir modellieren Ereignisse in einem festen Zeit-/Raumintervall (z.B. Anrufe im Callcenter pro Stunde).
+* Der erwartungstreue Schätzer für die Rate $\lambda$ ist $\hat{\lambda} = \frac{\sum_{i=1}^{n}k_i}{n}$ (Gesamtzahl der Ereignisse geteilt durch die Anzahl der Beobachtungsperioden).
+
+---
+
+# Konfidenzintervalle (Vertrauensintervalle)
+
+Da ein Punktschätzer im schlimmsten Fall deutlich vom wahren Wert abweichen kann, geben wir ein Intervall an, um die Ungenauigkeit zu quantifizieren.
+
+* Ein $(1-\alpha)$-Konfidenzintervall $[L, R]$ enthält den wahren, fixen Parameter mit einer Wahrscheinlichkeit von $(1-\alpha)$ (dem Konfidenzniveau). 
+* **Achtung:** Der Parameter selbst ist nicht zufällig. Stattdessen sind die Grenzen des Intervalls zufällig, da sie von der Stichprobe abhängen.
+* Intervalle können **zweiseitig**, **linksseitig** oder **rechtsseitig** bestimmt werden.
+
+## Konfidenzintervall für den Erwartungswert (Normalverteilung)
+* **Bei bekannter Varianz ($\sigma^2$):** Wir verwenden die Quantile $x_-$ und $x_+$ der Standardnormalverteilung. Das Intervall lautet $[\overline{X}-\frac{\sigma}{\sqrt{n}}x_+, \overline{X}-\frac{\sigma}{\sqrt{n}}x_-]$.
+* **Bei unbekannter Varianz:** Die Varianz muss mit $\sigma^2$ aus den Daten geschätzt werden. Dadurch ändert sich die theoretische Verteilung: Wir müssen nun die **t-Verteilung** mit $n-1$ Freiheitsgraden verwenden anstatt der Standardnormalverteilung.
+
+## Konfidenzintervallschätzung für verschiedene Verteilungen
+
+**Normalverteilung:** Das Intervall für den Erwartungswert $\mu$ wird mit der t-Verteilung berechnet, wenn die Varianz unbekannt ist.
+```r
+# Stichprobenwerte eingeben
+x <- c(170.3, 165.1, 172.0, 157.4)
+
+# Punktschätzer berechnen
+mu_hat <- mean(x)      # Arithmetisches Mittel
+sigma2_hat <- var(x)   # Stichprobenvarianz (n-1 korrigiert)
+
+# 80%-Konfidenzintervall für den Erwartungswert (zweiseitig)
+# Da die Varianz unbekannt ist, verwendet R automatisch die t-Verteilung.
+t.test(x, conf.level = 0.80)
+```
+
+**Binomialverteilung:** Das Intervall für den Anteil $p$ wird mit der Binomialverteilung berechnet.
+```r
+# Daten aus der Umfrage
+ja_stimmen <- 527
+n_befragte <- 1000
+
+# Anteilsschätzung und 75%-Konfidenzintervall
+binom.test(x = ja_stimmen, 
+           n = n_befragte, 
+           conf.level = 0.75, 
+           alternative = "two.sided")
+```
+
+***Poissonverteilung:** Das Intervall für die Rate $\lambda$ wird mit der Poissonverteilung berechnet.
+```r
+# Beobachtungen der letzten 5 Jahre
+tote_pro_jahr <- c(312, 292, 321, 275, 300)
+
+# Gesamtzahl der Ereignisse (x) und Anzahl der Beobachtungszeiträume (T)
+x_total <- sum(tote_pro_jahr) # 1500 Ereignisse
+T_jahre <- length(tote_pro_jahr) # 5 Jahre
+
+# Schätzung der Rate (Lambda) und 90%-Konfidenzintervall
+poisson.test(x = x_total, 
+             T = T_jahre, 
+             conf.level = 0.90, 
+             alternative = "two.sided")
+```

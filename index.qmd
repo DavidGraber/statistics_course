@@ -10,3 +10,5 @@ Dieses digitale Skript wird jede Woche erweitert. Hier finden Sie alle wichtigen
 - **Woche 5:** Erwartungswert & Varianz
 - **Woche 6:** Standardverteilungen
 - **Woche 7:** Grenzwertsätze
+- **Woche 8_1:** Deskriptive Statistik
+- **Woche 8_2:** Schätzer & Konfidenzintervalle

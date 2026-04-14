@@ -1,0 +1,74 @@
+---
+title: "Woche 8_1: Deskriptive Statistik"
+---
+
+# Einführung und Grundbegriffe
+
+Die deskriptive (beschreibende) Statistik hat zum Ziel, grosse Datenmengen übersichtlich zusammenzufassen und deren charakteristische Merkmale durch Tabellen, Kennzahlen und Grafiken darzustellen.
+
+* **Grundgesamtheit (N):** Die Menge aller Objekte, über die wir eine Aussage treffen wollen.
+* **Stichprobe (n):** Eine Teilmenge der Grundgesamtheit, die tatsächlich untersucht wird.
+* **Merkmal (Variable):** Die Eigenschaft, die gemessen wird (z. B. Körpergrösse).
+* **Merkmalsausprägung:** Der konkrete Wert, den ein Merkmal annehmen kann (z. B. 1.80 m).
+
+---
+
+# Skalenniveaus
+
+Bevor wir rechnen, müssen wir wissen, welche Operationen bei unseren Daten überhaupt erlaubt sind. Man unterscheidet drei Hauptstufen:
+
+| Skalenniveau | Eigenschaften | Beispiele | Erlaubte Operationen |
+| :--- | :--- | :--- | :--- |
+| **Nominal** | Kategorien ohne Rangfolge | Haarfarbe, Geschlecht | Häufigkeiten, Modus |
+| **Ordinal** | Rangfolge vorhanden, Abstände unklar | Schulnoten, Beliebtheit | Median, Quantile |
+| **Metrisch** | Rangfolge + messbare Abstände | Alter, Einkommen, Gewicht | Mittelwert, Varianz |
+
+---
+
+# Lagemasse (Zentrale Tendenzen)
+
+Lagemasse beschreiben, wo sich das "Zentrum" der Daten befindet.
+
+## Arithmetisches Mittel ($\bar{x}$)
+Der klassische Durchschnitt. Er ist sehr anfällig gegenüber Ausreissern.
+$$\bar{x} = \frac{1}{n} \sum_{i=1}^{n} x_i$$
+**In R:** `mean(x)`
+
+## Median ($q_{0.5}$)
+Der Wert, der die sortierte Datenreihe genau in zwei Hälften teilt. Er ist robust gegenüber Ausreissern.
+**In R:** `median(x)`
+
+---
+
+# Streuungsmasse
+
+Streuungsmasse geben an, wie weit die Daten um das Zentrum herum verteilt sind.
+
+* **Spannweite (Range):** Differenz zwischen Maximum und Minimum.
+* **Interquartilsabstand (IQR):** Bereich, in dem die mittleren 50% der Daten liegen ($IQR = q_{0.75} - q_{0.25}$).
+  * **In R:** `IQR(x)`
+* **Empirische Varianz ($s^2$):** Durchschnittliche quadrierte Abweichung vom Mittelwert.
+  * **In R:** `var(x)`
+* **Standardabweichung ($s$):** Wurzel der Varianz (gleiche Einheit wie die Daten).
+  * **In R:** `sd(x)`
+
+---
+
+# Visualisierungen: Der Box-Plot
+
+Ein Box-Plot fasst fünf wichtige Kennzahlen visuell zusammen und hilft, Ausreisser zu identifizieren:
+
+1. **Box:** Reicht vom 25%-Quantil bis zum 75%-Quantil (entspricht dem IQR).
+2. **Median:** Die Linie innerhalb der Box.
+3. **Whiskers (Antennen):** Zeigen die Streuung ausserhalb der Box. Nach der **Tukey-Regel** enden sie maximal beim 1.5-fachen des IQR.
+4. **Ausreisser:** Werte ausserhalb der Whiskers werden als einzelne Punkte dargestellt.
+
+**In R Basis:**
+```r
+boxplot(x)
+```
+**In R (mit ggplot2):**
+```r
+library(ggplot2)
+ggplot(data, aes(y = wert)) + geom_boxplot()
+```
