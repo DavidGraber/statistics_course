@@ -12,3 +12,4 @@ Dieses digitale Skript wird jede Woche erweitert. Hier finden Sie alle wichtigen
 - **Woche 7:** Grenzwertsätze
 - **Woche 8_1:** Deskriptive Statistik
 - **Woche 8_2:** Schätzer & Konfidenzintervalle
+- **Woche 9:** Hypothesentests & t-Tests

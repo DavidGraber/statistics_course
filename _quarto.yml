@@ -25,6 +25,8 @@ website:
         text: "Woche 8_1: Deskriptive Statistik"
       - href: woche_08_2.qmd
         text: "Woche 8_2: Schätzer & Konfidenzintervalle"
+      - href: woche_09.qmd
+        text: "Woche 9: Hypothesentests & t-Tests"
 
 format:
   html:
