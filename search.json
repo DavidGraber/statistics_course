@@ -154,18 +154,74 @@
     "text": "3.2 Median (\\(q_{0.5}\\))\nDer Wert, der die sortierte Datenreihe genau in zwei Hälften teilt. Er ist robust gegenüber Ausreissern. In R: median(x)"
   },
   {
+    "objectID": "woche_09.html",
+    "href": "woche_09.html",
+    "title": "Woche 9: Hypothesentests und t-Tests",
+    "section": "",
+    "text": "Ein statistischer Hypothesentest ist ein Verfahren, um anhand von Daten zu entscheiden, ob eine bestimmte Annahme (Hypothese) über die Grundgesamtheit haltbar ist oder nicht.\n\n\nMan kann sich einen Hypothesentest wie ein Gerichtsverfahren vorstellen:\n\nNullhypothese (\\(H_0\\)): Der Angeklagte ist unschuldig (Status Quo, kein Effekt).\nAlternativhypothese (\\(H_1\\)): Der Angeklagte ist schuldig (neue Entdeckung, ein Effekt liegt vor).\nZiel: Wir suchen nach “Beweisen” (Daten), die so stark gegen \\(H_0\\) sprechen, dass wir die Unschuldsvermutung aufgeben müssen.\n\n\n\n\nDa wir nur eine Stichprobe betrachten, können wir Fehlentscheidungen treffen:\n\n\n\n\n\n\n\n\nFehler\nBezeichnung\nBedeutung\n\n\n\n\nFehler 1. Art\n\\(\\alpha\\) (Signifikanzniveau)\n\\(H_0\\) wird abgelehnt, obwohl sie wahr ist (“falscher Alarm”).\n\n\nFehler 2. Art\n\\(\\beta\\)\n\\(H_0\\) wird beibehalten, obwohl \\(H_1\\) wahr ist (“verpasster Effekt”).\n\n\n\nDas Signifikanzniveau \\(\\alpha\\) (meist 5%) legt fest, wie hoch das Risiko für einen Fehler 1. Art maximal sein darf.\n\n\n\nFehlerarten (by Tobias Peter)\n\n\n\n\n\nDer p-Wert ist die Wahrscheinlichkeit, ein Stichprobenresultat zu erhalten, das mindestens so extrem ist wie das beobachtete, unter der Annahme, dass \\(H_0\\) wahr ist.\n\n\\(p &lt; \\alpha\\): Das Ergebnis ist signifikant \\(\\rightarrow H_0\\) wird abgelehnt.\n\\(p \\ge \\alpha\\): Das Ergebnis ist nicht signifikant \\(\\rightarrow H_0\\) wird beibehalten.\n\n\n\n\nDie Macht (Power) eines Tests ist die Wahrscheinlichkeit, dass der Test \\(H_0\\) ablehnt, wenn tatsächlich \\(H_1\\) wahr ist. Also wie wahrscheinlich detektieren wir einen echten Effekt? Sie hängt von der Effektgröße, der Stichprobengröße und dem Signifikanzniveau ab. —"
+  },
+  {
+    "objectID": "woche_09.html#die-grundidee-das-gerichtsverfahren",
+    "href": "woche_09.html#die-grundidee-das-gerichtsverfahren",
+    "title": "Woche 9: Hypothesentests und t-Tests",
+    "section": "",
+    "text": "Man kann sich einen Hypothesentest wie ein Gerichtsverfahren vorstellen:\n\nNullhypothese (\\(H_0\\)): Der Angeklagte ist unschuldig (Status Quo, kein Effekt).\nAlternativhypothese (\\(H_1\\)): Der Angeklagte ist schuldig (neue Entdeckung, ein Effekt liegt vor).\nZiel: Wir suchen nach “Beweisen” (Daten), die so stark gegen \\(H_0\\) sprechen, dass wir die Unschuldsvermutung aufgeben müssen."
+  },
+  {
+    "objectID": "woche_09.html#fehlerarten-beim-testen",
+    "href": "woche_09.html#fehlerarten-beim-testen",
+    "title": "Woche 9: Hypothesentests und t-Tests",
+    "section": "",
+    "text": "Da wir nur eine Stichprobe betrachten, können wir Fehlentscheidungen treffen:\n\n\n\n\n\n\n\n\nFehler\nBezeichnung\nBedeutung\n\n\n\n\nFehler 1. Art\n\\(\\alpha\\) (Signifikanzniveau)\n\\(H_0\\) wird abgelehnt, obwohl sie wahr ist (“falscher Alarm”).\n\n\nFehler 2. Art\n\\(\\beta\\)\n\\(H_0\\) wird beibehalten, obwohl \\(H_1\\) wahr ist (“verpasster Effekt”).\n\n\n\nDas Signifikanzniveau \\(\\alpha\\) (meist 5%) legt fest, wie hoch das Risiko für einen Fehler 1. Art maximal sein darf.\n\n\n\nFehlerarten (by Tobias Peter)"
+  },
+  {
+    "objectID": "woche_09.html#der-p-wert",
+    "href": "woche_09.html#der-p-wert",
+    "title": "Woche 9: Hypothesentests und t-Tests",
+    "section": "",
+    "text": "Der p-Wert ist die Wahrscheinlichkeit, ein Stichprobenresultat zu erhalten, das mindestens so extrem ist wie das beobachtete, unter der Annahme, dass \\(H_0\\) wahr ist.\n\n\\(p &lt; \\alpha\\): Das Ergebnis ist signifikant \\(\\rightarrow H_0\\) wird abgelehnt.\n\\(p \\ge \\alpha\\): Das Ergebnis ist nicht signifikant \\(\\rightarrow H_0\\) wird beibehalten."
+  },
+  {
+    "objectID": "woche_09.html#die-macht-eines-tests",
+    "href": "woche_09.html#die-macht-eines-tests",
+    "title": "Woche 9: Hypothesentests und t-Tests",
+    "section": "",
+    "text": "Die Macht (Power) eines Tests ist die Wahrscheinlichkeit, dass der Test \\(H_0\\) ablehnt, wenn tatsächlich \\(H_1\\) wahr ist. Also wie wahrscheinlich detektieren wir einen echten Effekt? Sie hängt von der Effektgröße, der Stichprobengröße und dem Signifikanzniveau ab. —"
+  },
+  {
+    "objectID": "woche_09.html#einstichproben-t-test",
+    "href": "woche_09.html#einstichproben-t-test",
+    "title": "Woche 9: Hypothesentests und t-Tests",
+    "section": "2.1 Einstichproben-t-Test",
+    "text": "2.1 Einstichproben-t-Test\nMan vergleicht den Mittelwert einer Stichprobe mit einem fest vorgegebenen Sollwert \\(\\mu_0\\).\nBeispiel: Eine Tablette soll 100 mg Wirkstoff enthalten. Wir testen, ob die Produktion systematisch davon abweicht.\n\n\\(H_0: \\mu = 100\\)\n\\(H_1: \\mu \\neq 100\\) (zweiseitig)\n\n\n2.1.1 Teststatistik \\(T\\):\nDie Teststatistik ist der “Prüfwert”, den wir berechnen, um zu sehen, wie weit unsere Daten vom erwarteten Wert (\\(\\mu_0\\)) entfernt liegen. \\[T = \\frac{\\overline{X} - \\mu_0}{S / \\sqrt{n}}\\]\n\n\\(\\overline{X}\\): Der beobachtete Durchschnitt deiner Stichprobe.\n\\(\\mu_0\\): Der hypothetische Sollwert aus der Nullhypothese \\(H_0\\).\n\\(S\\): Die Standardabweichung der Stichprobe.\n\\(n\\): Die Anzahl der Beobachtungen.\n\n\n\n2.1.2 Warum unterscheidet sich \\(T\\) vom Stichprobenmittelwert?\nWährend der Mittelwert \\(\\overline{X}\\) in der Originaleinheit (z. B. mg, cm, kg) gemessen wird, ist \\(T\\) eine standardisierte Maßzahl.\n\nVerschiebung (Zentrierung): Wir berechnen die Differenz \\((\\overline{X} - \\mu_0)\\). Das sagt uns, wie groß die Abweichung absolut ist.\nMaßstabsanpassung (Standardisierung): Wir teilen durch den Standardfehler (\\(S / \\sqrt{n}\\)). \\(T\\) misst also nicht in Zentimetern, sondern in Standardfehlern.\nEin \\(T\\)-Wert von 2 bedeutet: “Unser Stichprobenmittelwert liegt 2 Standardfehler weit weg vom Sollwert.”\nDies macht Ergebnisse vergleichbar, egal was wir für Dinge messen.\n\n\n\n2.1.3 Warum t-Verteilung statt Normalverteilung?\nNach dem Zentralen Grenzwertsatz sind Mittelwerte bei großen Stichproben zwar normalverteilt, aber es gibt einen Haken: Die Varianz.\n\nWüssten wir die wahre Varianz \\(\\sigma^2\\) der Grundgesamtheit, dürften wir die Normalverteilung nutzen.\nIn der Realität müssen wir \\(\\sigma^2\\) aber durch die Stichprobenvarianz \\(S^2\\) schätzen.\nDiese Schätzung ist unsicher, besonders bei kleinen Stichproben.\n\nDie t-Verteilung korrigiert diese Unsicherheit. Sie hat im Vergleich zur Normalverteilung “Fat Tails” (breitere Ränder). Das bedeutet, dass extreme Abweichungen bei kleinen Stichproben öfter vorkommen können. Je größer die Stichprobe \\(n\\) wird, desto ähnlicher wird die t-Verteilung der Normalverteilung.\n\n\n\nT-Verteilung vs. Normalverteilung (https://analystprep.com/cfa-level-1-exam/quantitative-methods/t-distribution-and-degrees-of-freedom/)\n\n\n\n\n2.1.4 So wird das Resultat unseres Einstichproben-t-Tests berechnet:\n\nSetze ein Signifikanzniveau \\(\\alpha\\) (z.B. 0.05).\nBestimme die Freiheitsgrade: \\(df = n - 1\\).\nUnser Signifikanzniveau und unsere Freiheitsgrade definieren eine t-Verteilung, auf der wir nun testen.\nWir bestimmen die kritischen Werte für die Ablehnungsbereiche: qt(1 - alpha/2, df) (zweiseitige Tests).\nBerechnete den \\(T\\)-Wert unserer Stichprobe und vergleiche ihn mit dem kritischen Wert aus der t-Verteilung. Liegt der \\(T\\)-Wert außerhalb des kritischen Bereichs, lehnen wir \\(H_0\\) ab.\n\nIn R können wir diesen Test mit der Funktion t.test() durchführen, welche die oben genannten Schritte automatisch erledigt.\nIn R:\nt.test(stichprobe, alternative = \"two.sided\", mu = 100, conf.level = 0.95)\nDer resultierende p-Wert gibt an, wie wahrscheinlich es ist, ein so extremes Ergebnis zu erhalten, wenn \\(H_0\\) wahr ist. Ein p-Wert kleiner als \\(\\alpha\\) führt zur Ablehnung von \\(H_0\\), das heisst es gibt eine systematische Abweichung von 100 mg, wenn der p-Wert kleiner als unser Signifikanzniveau ist."
+  },
+  {
+    "objectID": "woche_09.html#zweistichproben-t-test-unabhängig",
+    "href": "woche_09.html#zweistichproben-t-test-unabhängig",
+    "title": "Woche 9: Hypothesentests und t-Tests",
+    "section": "2.2 Zweistichproben-t-Test (Unabhängig)",
+    "text": "2.2 Zweistichproben-t-Test (Unabhängig)\nVergleicht die Mittelwerte zweier unabhängiger Gruppen (z.B. Behandlungsgruppe vs. Kontrollgruppe).\n\nVoraussetzung: Beide Gruppen sind normalverteilt.\nVarianz: Man unterscheidet, ob die Varianzen der beiden Gruppen gleich oder verschieden sind (Welch-Test)."
+  },
+  {
+    "objectID": "woche_09.html#gepaarter-t-test",
+    "href": "woche_09.html#gepaarter-t-test",
+    "title": "Woche 9: Hypothesentests und t-Tests",
+    "section": "2.3 Gepaarter t-Test",
+    "text": "2.3 Gepaarter t-Test\nWird verwendet, wenn Messwerte paarweise zusammengehören (z.B. Messung vor und nach einem Training bei derselben Person). Hierbei wird der t-Test auf die Differenzen der Paare angewendet."
+  },
+  {
     "objectID": "index.html",
     "href": "index.html",
     "title": "1 Willkommen zum Statistik-Kurs",
     "section": "",
-    "text": "Dieses digitale Skript wird jede Woche erweitert. Hier finden Sie alle wichtigen Formeln, Definitionen und Beispiele aus den Vorlesungen.\n\n\n\nWoche 1: Einführung & Kombinatorik\nWoche 2: Wahrscheinlichkeitsrechnung\nWoche 3: Bedingte Wahrscheinlichkeiten\nWoche 4: Zufallsvariablen & Verteilungen\nWoche 5: Erwartungswert & Varianz\nWoche 6: Standardverteilungen\nWoche 7: Grenzwertsätze\nWoche 8_1: Deskriptive Statistik\nWoche 8_2: Schätzer & Konfidenzintervalle"
+    "text": "Dieses digitale Skript wird jede Woche erweitert. Hier finden Sie alle wichtigen Formeln, Definitionen und Beispiele aus den Vorlesungen.\n\n\n\nWoche 1: Einführung & Kombinatorik\nWoche 2: Wahrscheinlichkeitsrechnung\nWoche 3: Bedingte Wahrscheinlichkeiten\nWoche 4: Zufallsvariablen & Verteilungen\nWoche 5: Erwartungswert & Varianz\nWoche 6: Standardverteilungen\nWoche 7: Grenzwertsätze\nWoche 8_1: Deskriptive Statistik\nWoche 8_2: Schätzer & Konfidenzintervalle\nWoche 9: Hypothesentests & t-Tests"
   },
   {
     "objectID": "index.html#semesterplan",
     "href": "index.html#semesterplan",
     "title": "1 Willkommen zum Statistik-Kurs",
     "section": "",
-    "text": "Woche 1: Einführung & Kombinatorik\nWoche 2: Wahrscheinlichkeitsrechnung\nWoche 3: Bedingte Wahrscheinlichkeiten\nWoche 4: Zufallsvariablen & Verteilungen\nWoche 5: Erwartungswert & Varianz\nWoche 6: Standardverteilungen\nWoche 7: Grenzwertsätze\nWoche 8_1: Deskriptive Statistik\nWoche 8_2: Schätzer & Konfidenzintervalle"
+    "text": "Woche 1: Einführung & Kombinatorik\nWoche 2: Wahrscheinlichkeitsrechnung\nWoche 3: Bedingte Wahrscheinlichkeiten\nWoche 4: Zufallsvariablen & Verteilungen\nWoche 5: Erwartungswert & Varianz\nWoche 6: Standardverteilungen\nWoche 7: Grenzwertsätze\nWoche 8_1: Deskriptive Statistik\nWoche 8_2: Schätzer & Konfidenzintervalle\nWoche 9: Hypothesentests & t-Tests"
   },
   {
     "objectID": "woche_08_2.html",

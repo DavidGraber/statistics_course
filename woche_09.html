@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Woche 1: Einführung &amp; Kombinatorik – Statistik &amp; Wahrscheinlichkeit</title>
+<title>Woche 9: Hypothesentests und t-Tests – Statistik &amp; Wahrscheinlichkeit</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -19,6 +19,41 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -123,7 +158,7 @@ window.Quarto = {
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="./woche_01.html" aria-current="page"> 
+    <a class="nav-link" href="./woche_01.html"> 
 <span class="menu-text">Woche 1: Kombinatorik</span></a>
   </li>  
   <li class="nav-item">
@@ -159,7 +194,7 @@ window.Quarto = {
 <span class="menu-text">Woche 8_2: Schätzer &amp; Konfidenzintervalle</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./woche_09.html"> 
+    <a class="nav-link active" href="./woche_09.html" aria-current="page"> 
 <span class="menu-text">Woche 9: Hypothesentests &amp; t-Tests</span></a>
   </li>  
 </ul>
@@ -178,18 +213,26 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#einführung-in-die-statistik" id="toc-einführung-in-die-statistik" class="nav-link active" data-scroll-target="#einführung-in-die-statistik"><span class="header-section-number">1</span> Einführung in die Statistik</a>
+  <li><a href="#einführung-in-hypothesentests" id="toc-einführung-in-hypothesentests" class="nav-link active" data-scroll-target="#einführung-in-hypothesentests"><span class="header-section-number">1</span> Einführung in Hypothesentests</a>
   <ul class="collapse">
-  <li><a href="#statistik-vs.-wahrscheinlichkeitsrechnung" id="toc-statistik-vs.-wahrscheinlichkeitsrechnung" class="nav-link" data-scroll-target="#statistik-vs.-wahrscheinlichkeitsrechnung"><span class="header-section-number">1.1</span> Statistik vs.&nbsp;Wahrscheinlichkeitsrechnung</a></li>
+  <li><a href="#die-grundidee-das-gerichtsverfahren" id="toc-die-grundidee-das-gerichtsverfahren" class="nav-link" data-scroll-target="#die-grundidee-das-gerichtsverfahren"><span class="header-section-number">1.1</span> Die Grundidee: Das Gerichtsverfahren</a></li>
+  <li><a href="#fehlerarten-beim-testen" id="toc-fehlerarten-beim-testen" class="nav-link" data-scroll-target="#fehlerarten-beim-testen"><span class="header-section-number">1.2</span> Fehlerarten beim Testen</a></li>
+  <li><a href="#der-p-wert" id="toc-der-p-wert" class="nav-link" data-scroll-target="#der-p-wert"><span class="header-section-number">1.3</span> Der p-Wert</a></li>
+  <li><a href="#die-macht-eines-tests" id="toc-die-macht-eines-tests" class="nav-link" data-scroll-target="#die-macht-eines-tests"><span class="header-section-number">1.4</span> Die Macht eines Tests</a></li>
   </ul></li>
-  <li><a href="#grundprinzipien-der-kombinatorik" id="toc-grundprinzipien-der-kombinatorik" class="nav-link" data-scroll-target="#grundprinzipien-der-kombinatorik"><span class="header-section-number">2</span> Grundprinzipien der Kombinatorik</a>
+  <li><a href="#der-t-test" id="toc-der-t-test" class="nav-link" data-scroll-target="#der-t-test"><span class="header-section-number">2</span> Der t-Test</a>
   <ul class="collapse">
-  <li><a href="#die-produktregel" id="toc-die-produktregel" class="nav-link" data-scroll-target="#die-produktregel"><span class="header-section-number">2.1</span> Die Produktregel</a></li>
-  <li><a href="#variationen" id="toc-variationen" class="nav-link" data-scroll-target="#variationen"><span class="header-section-number">2.2</span> Variationen</a></li>
-  <li><a href="#permutationen-anordnungen" id="toc-permutationen-anordnungen" class="nav-link" data-scroll-target="#permutationen-anordnungen"><span class="header-section-number">2.3</span> Permutationen (Anordnungen)</a></li>
-  <li><a href="#kombinationen-auswahl" id="toc-kombinationen-auswahl" class="nav-link" data-scroll-target="#kombinationen-auswahl"><span class="header-section-number">2.4</span> Kombinationen (Auswahl)</a></li>
+  <li><a href="#einstichproben-t-test" id="toc-einstichproben-t-test" class="nav-link" data-scroll-target="#einstichproben-t-test"><span class="header-section-number">2.1</span> Einstichproben-t-Test</a>
+  <ul class="collapse">
+  <li><a href="#teststatistik-t" id="toc-teststatistik-t" class="nav-link" data-scroll-target="#teststatistik-t"><span class="header-section-number">2.1.1</span> Teststatistik <span class="math inline">\(T\)</span>:</a></li>
+  <li><a href="#warum-unterscheidet-sich-t-vom-stichprobenmittelwert" id="toc-warum-unterscheidet-sich-t-vom-stichprobenmittelwert" class="nav-link" data-scroll-target="#warum-unterscheidet-sich-t-vom-stichprobenmittelwert"><span class="header-section-number">2.1.2</span> Warum unterscheidet sich <span class="math inline">\(T\)</span> vom Stichprobenmittelwert?</a></li>
+  <li><a href="#warum-t-verteilung-statt-normalverteilung" id="toc-warum-t-verteilung-statt-normalverteilung" class="nav-link" data-scroll-target="#warum-t-verteilung-statt-normalverteilung"><span class="header-section-number">2.1.3</span> Warum t-Verteilung statt Normalverteilung?</a></li>
+  <li><a href="#so-wird-das-resultat-unseres-einstichproben-t-tests-berechnet" id="toc-so-wird-das-resultat-unseres-einstichproben-t-tests-berechnet" class="nav-link" data-scroll-target="#so-wird-das-resultat-unseres-einstichproben-t-tests-berechnet"><span class="header-section-number">2.1.4</span> So wird das Resultat unseres Einstichproben-t-Tests berechnet:</a></li>
   </ul></li>
-  <li><a href="#formel-überblick" id="toc-formel-überblick" class="nav-link" data-scroll-target="#formel-überblick"><span class="header-section-number">3</span> Formel-Überblick</a></li>
+  <li><a href="#zweistichproben-t-test-unabhängig" id="toc-zweistichproben-t-test-unabhängig" class="nav-link" data-scroll-target="#zweistichproben-t-test-unabhängig"><span class="header-section-number">2.2</span> Zweistichproben-t-Test (Unabhängig)</a></li>
+  <li><a href="#gepaarter-t-test" id="toc-gepaarter-t-test" class="nav-link" data-scroll-target="#gepaarter-t-test"><span class="header-section-number">2.3</span> Gepaarter t-Test</a></li>
+  </ul></li>
+  <li><a href="#durchführung-in-r" id="toc-durchführung-in-r" class="nav-link" data-scroll-target="#durchführung-in-r"><span class="header-section-number">3</span> Durchführung in R</a></li>
   </ul>
 </nav>
     </div>
@@ -198,7 +241,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Woche 1: Einführung &amp; Kombinatorik</h1>
+<h1 class="title">Woche 9: Hypothesentests und t-Tests</h1>
 </div>
 
 
@@ -215,120 +258,155 @@ window.Quarto = {
 </header>
 
 
-<section id="einführung-in-die-statistik" class="level1" data-number="1">
-<h1 data-number="1"><span class="header-section-number">1</span> Einführung in die Statistik</h1>
-<p>In dieser ersten Woche klären wir die fundamentale Frage: Was unterscheidet Statistik von der Wahrscheinlichkeitsrechnung?</p>
-<section id="statistik-vs.-wahrscheinlichkeitsrechnung" class="level2" data-number="1.1">
-<h2 data-number="1.1" class="anchored" data-anchor-id="statistik-vs.-wahrscheinlichkeitsrechnung"><span class="header-section-number">1.1</span> Statistik vs.&nbsp;Wahrscheinlichkeitsrechnung</h2>
-<p>Der Unterschied lässt sich am besten anhand eines Urnenmodells verdeutlichen:</p>
+<section id="einführung-in-hypothesentests" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Einführung in Hypothesentests</h1>
+<p>Ein statistischer Hypothesentest ist ein Verfahren, um anhand von Daten zu entscheiden, ob eine bestimmte Annahme (Hypothese) über die Grundgesamtheit haltbar ist oder nicht.</p>
+<section id="die-grundidee-das-gerichtsverfahren" class="level2" data-number="1.1">
+<h2 data-number="1.1" class="anchored" data-anchor-id="die-grundidee-das-gerichtsverfahren"><span class="header-section-number">1.1</span> Die Grundidee: Das Gerichtsverfahren</h2>
+<p>Man kann sich einen Hypothesentest wie ein Gerichtsverfahren vorstellen:</p>
 <ul>
-<li><strong>Wahrscheinlichkeitsrechnung:</strong> Wir kennen das Modell (wir wissen, was in der Urne ist) und berechnen die Wahrscheinlichkeit für bestimmte Daten (was wir ziehen werden).
-<ul>
-<li><em>Frage:</em> “Was werden wir mit welcher Wahrscheinlichkeit in den Händen halten?”</li>
-</ul></li>
-<li><strong>Statistik:</strong> Wir haben Daten (die gezogenen Kugeln) und ziehen Rückschlüsse auf das zugrunde liegende Modell oder dessen Parameter.
-<ul>
-<li><em>Frage:</em> “Was können wir basierend auf den Daten über den Inhalt der Urne aussagen?”</li>
-</ul></li>
+<li><strong>Nullhypothese (<span class="math inline">\(H_0\)</span>):</strong> Der Angeklagte ist unschuldig (Status Quo, kein Effekt).</li>
+<li><strong>Alternativhypothese (<span class="math inline">\(H_1\)</span>):</strong> Der Angeklagte ist schuldig (neue Entdeckung, ein Effekt liegt vor).</li>
+<li><strong>Ziel:</strong> Wir suchen nach “Beweisen” (Daten), die so stark gegen <span class="math inline">\(H_0\)</span> sprechen, dass wir die Unschuldsvermutung aufgeben müssen.</li>
 </ul>
-<hr>
 </section>
-</section>
-<section id="grundprinzipien-der-kombinatorik" class="level1" data-number="2">
-<h1 data-number="2"><span class="header-section-number">2</span> Grundprinzipien der Kombinatorik</h1>
-<p>Die Kombinatorik hilft uns, die Gesamtzahl möglicher Ausgänge <span class="math inline">\(N\)</span> zu bestimmen. Dies ist die Voraussetzung, um später Wahrscheinlichkeiten nach Laplace berechnen zu können.</p>
-<section id="die-produktregel" class="level2" data-number="2.1">
-<h2 data-number="2.1" class="anchored" data-anchor-id="die-produktregel"><span class="header-section-number">2.1</span> Die Produktregel</h2>
-<p>Wenn ein Gesamtvorgang aus <span class="math inline">\(k\)</span> nacheinander folgenden, unabhängigen Entscheidungen besteht, wobei es für die <span class="math inline">\(i\)</span>-te Entscheidung <span class="math inline">\(n_i\)</span> Möglichkeiten gibt, berechnet sich die Gesamtzahl durch:</p>
-<p><span class="math display">\[N = n_1 \cdot n_2 \cdot \dots \cdot n_k\]</span></p>
-</section>
-<section id="variationen" class="level2" data-number="2.2">
-<h2 data-number="2.2" class="anchored" data-anchor-id="variationen"><span class="header-section-number">2.2</span> Variationen</h2>
-<p>Eine Auswahl von Objekten, bei der die Reihenfolge wichtig ist. Hierbei gibt es zwei Fälle:</p>
-<p><strong>Ohne Zurücklegen:</strong><br>
-Ein Zahlenschloss, bei dem jede Zahl nur einmal gewählt werden kann. Für ein 3-stelliges Schloss <span class="math inline">\((N = 10*9*8)\)</span></p>
-<p><strong>Mit Zurücklegen:</strong><br>
-Ein Zahlenschloss, bei dem jede Zahl mehrfach gewählt werden kann. Für ein 3-stelliges Schloss <span class="math inline">\((N = 10*10*10)\)</span></p>
-</section>
-<section id="permutationen-anordnungen" class="level2" data-number="2.3">
-<h2 data-number="2.3" class="anchored" data-anchor-id="permutationen-anordnungen"><span class="header-section-number">2.3</span> Permutationen (Anordnungen)</h2>
-<p>Wie viele Möglichkeiten gibt es, <span class="math inline">\(n\)</span> unterscheidbare Objekte in einer bestimmten Reihenfolge anzuordnen? Beispiel: Anordnung von 3 Büchern auf einem Regal: <span class="math inline">\(3! = 6\)</span> Möglichkeiten.</p>
-<p><strong>Formel:</strong> <span class="math display">\[P(n) = n!\]</span></p>
-<p><strong>In R:</strong> <code>factorial(n)</code></p>
-</section>
-<section id="kombinationen-auswahl" class="level2" data-number="2.4">
-<h2 data-number="2.4" class="anchored" data-anchor-id="kombinationen-auswahl"><span class="header-section-number">2.4</span> Kombinationen (Auswahl)</h2>
-<p>Hier untersuchen wir, wie viele Möglichkeiten es gibt, <span class="math inline">\(k\)</span> Objekte aus einer Menge von <span class="math inline">\(n\)</span> Objekten auszuwählen. Dabei ist die Reihenfolge egal (ziehen von einstelligen Nummern: 012 ist das gleiche wie 021 oder 210).</p>
-<p><strong>Ohne Zurücklegen</strong>.<br>
-Typisches Beispiel: Lotto oder die Auswahl von 2 Pizzabelägen aus 6 möglichen, Pilze+Salami ist das gleiche wie Salami+Pilze.<br>
-<strong>Formel (Binomialkoeffizient):</strong> <span class="math display">\[\binom{n}{k} = \frac{n!}{k!(n-k)!}\]</span></p>
-<p><strong>In R:</strong> <code>choose(n, k)</code></p>
-<p><strong>Mit Zurücklegen</strong>.<br>
-Beispiel: Auswahl von Objekten, die nach der Ziehung wieder zurückgelegt werden, wobei nur die Anzahl pro Kategorie zählt. Beispiel: Auswahl von 3 Kugeln aus einer Urne mit 5 verschiedenen Farben, wobei jede Farbe mehrfach gezogen werden kann (z.B. 2 rote und 1 blaue Kugel).<br>
-<strong>Formel:</strong> <span class="math display">\[\binom{n+k-1}{k}\]</span></p>
-<p><strong>In R:</strong> <code>choose(n + k - 1, k)</code></p>
-<hr>
-</section>
-</section>
-<section id="formel-überblick" class="level1" data-number="3">
-<h1 data-number="3"><span class="header-section-number">3</span> Formel-Überblick</h1>
-<p>Die folgende Tabelle dient als Entscheidungshilfe, welche Formel für welches Problem anzuwenden ist:</p>
+<section id="fehlerarten-beim-testen" class="level2" data-number="1.2">
+<h2 data-number="1.2" class="anchored" data-anchor-id="fehlerarten-beim-testen"><span class="header-section-number">1.2</span> Fehlerarten beim Testen</h2>
+<p>Da wir nur eine Stichprobe betrachten, können wir Fehlentscheidungen treffen:</p>
 <table class="caption-top table">
+<colgroup>
+<col style="width: 30%">
+<col style="width: 38%">
+<col style="width: 30%">
+</colgroup>
 <thead>
 <tr class="header">
-<th style="text-align: left;">Typ</th>
-<th style="text-align: center;">Reihenfolge wichtig?</th>
-<th style="text-align: center;">Mit Zurücklegen?</th>
-<th style="text-align: center;">Formel</th>
+<th style="text-align: left;">Fehler</th>
+<th style="text-align: center;">Bezeichnung</th>
+<th style="text-align: left;">Bedeutung</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;"><strong>Permutation</strong></td>
-<td style="text-align: center;">Ja</td>
-<td style="text-align: center;">Nein</td>
-<td style="text-align: center;"><span class="math inline">\(n!\)</span></td>
+<td style="text-align: left;"><strong>Fehler 1. Art</strong></td>
+<td style="text-align: center;"><span class="math inline">\(\alpha\)</span> (Signifikanzniveau)</td>
+<td style="text-align: left;"><span class="math inline">\(H_0\)</span> wird abgelehnt, obwohl sie wahr ist (“falscher Alarm”).</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;"><strong>Variation</strong></td>
-<td style="text-align: center;">Ja</td>
-<td style="text-align: center;">Nein</td>
-<td style="text-align: center;"><span class="math inline">\(\frac{n!}{(n-k)!}\)</span></td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;"><strong>Variation</strong></td>
-<td style="text-align: center;">Ja</td>
-<td style="text-align: center;">Ja</td>
-<td style="text-align: center;"><span class="math inline">\(n^k\)</span></td>
-</tr>
-<tr class="even">
-<td style="text-align: left;"><strong>Kombination</strong></td>
-<td style="text-align: center;">Nein</td>
-<td style="text-align: center;">Nein</td>
-<td style="text-align: center;"><span class="math inline">\(\binom{n}{k}\)</span></td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;"><strong>Kombination</strong></td>
-<td style="text-align: center;">Nein</td>
-<td style="text-align: center;">Ja</td>
-<td style="text-align: center;"><span class="math inline">\(\binom{n+k-1}{k}\)</span></td>
+<td style="text-align: left;"><strong>Fehler 2. Art</strong></td>
+<td style="text-align: center;"><span class="math inline">\(\beta\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(H_0\)</span> wird beibehalten, obwohl <span class="math inline">\(H_1\)</span> wahr ist (“verpasster Effekt”).</td>
 </tr>
 </tbody>
 </table>
-<p>wobei <span class="math inline">\(n\)</span> für die Anzahl der Objekte steht (z.B Anzahl Ziffern 0-9) und <span class="math inline">\(k\)</span> die Anzahl der Auswahlen darstellt (z.B Stellen auf dem Zahlenschloss).</p>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
+<p>Das Signifikanzniveau <span class="math inline">\(\alpha\)</span> (meist 5%) legt fest, wie hoch das Risiko für einen Fehler 1. Art maximal sein darf.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/fehlerarten.png" class="img-fluid figure-img"></p>
+<figcaption>Fehlerarten (by Tobias Peter)</figcaption>
+</figure>
 </div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>Tipp für die Prüfung
+</section>
+<section id="der-p-wert" class="level2" data-number="1.3">
+<h2 data-number="1.3" class="anchored" data-anchor-id="der-p-wert"><span class="header-section-number">1.3</span> Der p-Wert</h2>
+<p>Der p-Wert ist die Wahrscheinlichkeit, ein Stichprobenresultat zu erhalten, das mindestens so extrem ist wie das beobachtete, unter der Annahme, dass <span class="math inline">\(H_0\)</span> wahr ist.</p>
+<ul>
+<li><strong><span class="math inline">\(p &lt; \alpha\)</span>:</strong> Das Ergebnis ist signifikant <span class="math inline">\(\rightarrow H_0\)</span> wird abgelehnt.</li>
+<li><strong><span class="math inline">\(p \ge \alpha\)</span>:</strong> Das Ergebnis ist nicht signifikant <span class="math inline">\(\rightarrow H_0\)</span> wird beibehalten.</li>
+</ul>
+</section>
+<section id="die-macht-eines-tests" class="level2" data-number="1.4">
+<h2 data-number="1.4" class="anchored" data-anchor-id="die-macht-eines-tests"><span class="header-section-number">1.4</span> Die Macht eines Tests</h2>
+<p>Die Macht (Power) eines Tests ist die Wahrscheinlichkeit, dass der Test <span class="math inline">\(H_0\)</span> ablehnt, wenn tatsächlich <span class="math inline">\(H_1\)</span> wahr ist. Also wie wahrscheinlich detektieren wir einen echten Effekt? Sie hängt von der Effektgröße, der Stichprobengröße und dem Signifikanzniveau ab. —</p>
+</section>
+</section>
+<section id="der-t-test" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> Der t-Test</h1>
+<p>Der t-Test wird verwendet, um Hypothesen über Mittelwerte (<span class="math inline">\(\mu\)</span>) zu prüfen, wenn die Varianz der Grundgesamtheit unbekannt ist.</p>
+<section id="einstichproben-t-test" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="einstichproben-t-test"><span class="header-section-number">2.1</span> Einstichproben-t-Test</h2>
+<p>Man vergleicht den Mittelwert einer Stichprobe mit einem fest vorgegebenen Sollwert <span class="math inline">\(\mu_0\)</span>.</p>
+<p><strong>Beispiel:</strong> Eine Tablette soll 100 mg Wirkstoff enthalten. Wir testen, ob die Produktion systematisch davon abweicht.</p>
+<ul>
+<li><span class="math inline">\(H_0: \mu = 100\)</span></li>
+<li><span class="math inline">\(H_1: \mu \neq 100\)</span> (zweiseitig)</li>
+</ul>
+<section id="teststatistik-t" class="level3" data-number="2.1.1">
+<h3 data-number="2.1.1" class="anchored" data-anchor-id="teststatistik-t"><span class="header-section-number">2.1.1</span> Teststatistik <span class="math inline">\(T\)</span>:</h3>
+<p>Die Teststatistik ist der “Prüfwert”, den wir berechnen, um zu sehen, wie weit unsere Daten vom erwarteten Wert (<span class="math inline">\(\mu_0\)</span>) entfernt liegen. <span class="math display">\[T = \frac{\overline{X} - \mu_0}{S / \sqrt{n}}\]</span></p>
+<ul>
+<li><strong><span class="math inline">\(\overline{X}\)</span></strong>: Der beobachtete Durchschnitt deiner Stichprobe.</li>
+<li><strong><span class="math inline">\(\mu_0\)</span></strong>: Der hypothetische Sollwert aus der Nullhypothese <span class="math inline">\(H_0\)</span>.</li>
+<li><strong><span class="math inline">\(S\)</span></strong>: Die Standardabweichung der Stichprobe.</li>
+<li><strong><span class="math inline">\(n\)</span></strong>: Die Anzahl der Beobachtungen.</li>
+</ul>
+</section>
+<section id="warum-unterscheidet-sich-t-vom-stichprobenmittelwert" class="level3" data-number="2.1.2">
+<h3 data-number="2.1.2" class="anchored" data-anchor-id="warum-unterscheidet-sich-t-vom-stichprobenmittelwert"><span class="header-section-number">2.1.2</span> Warum unterscheidet sich <span class="math inline">\(T\)</span> vom Stichprobenmittelwert?</h3>
+<p>Während der Mittelwert <span class="math inline">\(\overline{X}\)</span> in der Originaleinheit (z. B. mg, cm, kg) gemessen wird, ist <span class="math inline">\(T\)</span> eine <strong>standardisierte Maßzahl</strong>.</p>
+<ul>
+<li><strong>Verschiebung (Zentrierung):</strong> Wir berechnen die Differenz <span class="math inline">\((\overline{X} - \mu_0)\)</span>. Das sagt uns, wie groß die Abweichung absolut ist.</li>
+<li><strong>Maßstabsanpassung (Standardisierung):</strong> Wir teilen durch den Standardfehler (<span class="math inline">\(S / \sqrt{n}\)</span>). <span class="math inline">\(T\)</span> misst also nicht in Zentimetern, sondern in <strong>Standardfehlern</strong>.</li>
+<li>Ein <span class="math inline">\(T\)</span>-Wert von 2 bedeutet: “Unser Stichprobenmittelwert liegt 2 Standardfehler weit weg vom Sollwert.”</li>
+<li>Dies macht Ergebnisse vergleichbar, egal was wir für Dinge messen.</li>
+</ul>
+</section>
+<section id="warum-t-verteilung-statt-normalverteilung" class="level3" data-number="2.1.3">
+<h3 data-number="2.1.3" class="anchored" data-anchor-id="warum-t-verteilung-statt-normalverteilung"><span class="header-section-number">2.1.3</span> Warum t-Verteilung statt Normalverteilung?</h3>
+<p>Nach dem Zentralen Grenzwertsatz sind Mittelwerte bei großen Stichproben zwar normalverteilt, aber es gibt einen Haken: <strong>Die Varianz</strong>.</p>
+<ul>
+<li>Wüssten wir die wahre Varianz <span class="math inline">\(\sigma^2\)</span> der Grundgesamtheit, dürften wir die Normalverteilung nutzen.</li>
+<li>In der Realität müssen wir <span class="math inline">\(\sigma^2\)</span> aber durch die Stichprobenvarianz <span class="math inline">\(S^2\)</span> <strong>schätzen</strong>.</li>
+<li>Diese Schätzung ist unsicher, besonders bei kleinen Stichproben.</li>
+</ul>
+<p>Die t-Verteilung korrigiert diese Unsicherheit. Sie hat im Vergleich zur Normalverteilung <strong>“Fat Tails”</strong> (breitere Ränder). Das bedeutet, dass extreme Abweichungen bei kleinen Stichproben öfter vorkommen können. Je größer die Stichprobe <span class="math inline">\(n\)</span> wird, desto ähnlicher wird die t-Verteilung der Normalverteilung.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/t_vs_n.jpg" class="img-fluid figure-img"></p>
+<figcaption>T-Verteilung vs.&nbsp;Normalverteilung (https://analystprep.com/cfa-level-1-exam/quantitative-methods/t-distribution-and-degrees-of-freedom/)</figcaption>
+</figure>
 </div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Fragen Sie sich immer zuerst: Kommt es auf die Reihenfolge an? Wenn nein, landen Sie fast immer beim Binomialkoeffizienten <span class="math inline">\(\binom{n}{k}\)</span>.</p>
-</div>
-</div>
+</section>
+<section id="so-wird-das-resultat-unseres-einstichproben-t-tests-berechnet" class="level3" data-number="2.1.4">
+<h3 data-number="2.1.4" class="anchored" data-anchor-id="so-wird-das-resultat-unseres-einstichproben-t-tests-berechnet"><span class="header-section-number">2.1.4</span> So wird das Resultat unseres Einstichproben-t-Tests berechnet:</h3>
+<ol type="1">
+<li>Setze ein Signifikanzniveau <span class="math inline">\(\alpha\)</span> (z.B. 0.05).</li>
+<li>Bestimme die Freiheitsgrade: <span class="math inline">\(df = n - 1\)</span>.</li>
+<li>Unser Signifikanzniveau und unsere Freiheitsgrade definieren eine t-Verteilung, auf der wir nun testen.</li>
+<li>Wir bestimmen die kritischen Werte für die Ablehnungsbereiche: <code>qt(1 - alpha/2, df)</code> (zweiseitige Tests).</li>
+<li>Berechnete den <span class="math inline">\(T\)</span>-Wert unserer Stichprobe und vergleiche ihn mit dem kritischen Wert aus der t-Verteilung. Liegt der <span class="math inline">\(T\)</span>-Wert außerhalb des kritischen Bereichs, lehnen wir <span class="math inline">\(H_0\)</span> ab.</li>
+</ol>
+<p>In R können wir diesen Test mit der Funktion <code>t.test()</code> durchführen, welche die oben genannten Schritte automatisch erledigt.</p>
+<p><strong>In R:</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(stichprobe, <span class="at">alternative =</span> <span class="st">"two.sided"</span>, <span class="at">mu =</span> <span class="dv">100</span>, <span class="at">conf.level =</span> <span class="fl">0.95</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>Der resultierende p-Wert</strong> gibt an, wie wahrscheinlich es ist, ein so extremes Ergebnis zu erhalten, wenn <span class="math inline">\(H_0\)</span> wahr ist. Ein p-Wert kleiner als <span class="math inline">\(\alpha\)</span> führt zur Ablehnung von <span class="math inline">\(H_0\)</span>, das heisst es gibt eine systematische Abweichung von 100 mg, wenn der p-Wert kleiner als unser Signifikanzniveau ist.</p>
+</section>
+</section>
+<section id="zweistichproben-t-test-unabhängig" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="zweistichproben-t-test-unabhängig"><span class="header-section-number">2.2</span> Zweistichproben-t-Test (Unabhängig)</h2>
+<p>Vergleicht die Mittelwerte zweier unabhängiger Gruppen (z.B. Behandlungsgruppe vs.&nbsp;Kontrollgruppe).</p>
+<ul>
+<li><strong>Voraussetzung:</strong> Beide Gruppen sind normalverteilt.</li>
+<li><strong>Varianz:</strong> Man unterscheidet, ob die Varianzen der beiden Gruppen gleich oder verschieden sind (Welch-Test).</li>
+</ul>
+</section>
+<section id="gepaarter-t-test" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="gepaarter-t-test"><span class="header-section-number">2.3</span> Gepaarter t-Test</h2>
+<p>Wird verwendet, wenn Messwerte paarweise zusammengehören (z.B. Messung vor und nach einem Training bei derselben Person). Hierbei wird der t-Test auf die Differenzen der Paare angewendet.</p>
+<hr>
+</section>
+</section>
+<section id="durchführung-in-r" class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> Durchführung in R</h1>
+<p>R bietet eine zentrale Funktion für alle Varianten des t-Tests: <code>t.test()</code>.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Einstichproben-t-Test</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(stichprobe, <span class="at">mu =</span> <span class="dv">100</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Zweistichproben-t-Test (unabhängig)</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(gruppe1, gruppe2, <span class="at">paired =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Gepaarter t-Test</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(messung_vorher, messung_nachher, <span class="at">paired =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 
 
 </section>
