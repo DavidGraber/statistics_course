@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Woche 3: Bedingte Wahrscheinlichkeiten – Statistik &amp; Wahrscheinlichkeit</title>
+<title>Woche 10: Normalitätsannahme &amp; Varianzhomogenität – Statistik &amp; Wahrscheinlichkeit</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -19,6 +19,41 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -131,7 +166,7 @@ window.Quarto = {
 <span class="menu-text">Woche 2: Wahrscheinlichkeitsrechnung</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="./woche_03.html" aria-current="page"> 
+    <a class="nav-link" href="./woche_03.html"> 
 <span class="menu-text">Woche 3: Bedingte Wahrscheinlichkeiten</span></a>
   </li>  
   <li class="nav-item">
@@ -163,7 +198,7 @@ window.Quarto = {
 <span class="menu-text">Woche 9: Hypothesentests &amp; t-Tests</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./woche_10.html"> 
+    <a class="nav-link active" href="./woche_10.html" aria-current="page"> 
 <span class="menu-text">Woche 10: Normalitätsannahme &amp; Varianzhomogenität</span></a>
   </li>  
 </ul>
@@ -182,16 +217,33 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#bedingte-wahrscheinlichkeiten-satz-von-bayes" id="toc-bedingte-wahrscheinlichkeiten-satz-von-bayes" class="nav-link active" data-scroll-target="#bedingte-wahrscheinlichkeiten-satz-von-bayes"><span class="header-section-number">1</span> Bedingte Wahrscheinlichkeiten &amp; Satz von Bayes</a>
+  <li><a href="#tests-zur-normalitätsannahme" id="toc-tests-zur-normalitätsannahme" class="nav-link active" data-scroll-target="#tests-zur-normalitätsannahme"><span class="header-section-number">1</span> Tests zur Normalitätsannahme</a>
   <ul class="collapse">
-  <li><a href="#satz-der-totalen-wahrscheinlichkeit" id="toc-satz-der-totalen-wahrscheinlichkeit" class="nav-link" data-scroll-target="#satz-der-totalen-wahrscheinlichkeit"><span class="header-section-number">1.1</span> Satz der totalen Wahrscheinlichkeit</a>
+  <li><a href="#der-shapiro-wilk-test-und-seine-tücken" id="toc-der-shapiro-wilk-test-und-seine-tücken" class="nav-link" data-scroll-target="#der-shapiro-wilk-test-und-seine-tücken"><span class="header-section-number">1.1</span> Der Shapiro-Wilk-Test und seine Tücken</a></li>
+  <li><a href="#visuelle-überprüfung-der-q-q-plot" id="toc-visuelle-überprüfung-der-q-q-plot" class="nav-link" data-scroll-target="#visuelle-überprüfung-der-q-q-plot"><span class="header-section-number">1.2</span> Visuelle Überprüfung: Der Q-Q-Plot</a>
   <ul class="collapse">
-  <li><a href="#beispiel-1" id="toc-beispiel-1" class="nav-link" data-scroll-target="#beispiel-1"><span class="header-section-number">1.1.1</span> Beispiel 1:</a></li>
-  <li><a href="#beispiel-2" id="toc-beispiel-2" class="nav-link" data-scroll-target="#beispiel-2"><span class="header-section-number">1.1.2</span> Beispiel 2:</a></li>
+  <li><a href="#die-grundidee-des-q-q-plots" id="toc-die-grundidee-des-q-q-plots" class="nav-link" data-scroll-target="#die-grundidee-des-q-q-plots"><span class="header-section-number">1.2.1</span> Die Grundidee des Q-Q-Plots</a></li>
+  <li><a href="#interpretation-die-gerade-linie" id="toc-interpretation-die-gerade-linie" class="nav-link" data-scroll-target="#interpretation-die-gerade-linie"><span class="header-section-number">1.2.2</span> Interpretation: Die gerade Linie</a></li>
   </ul></li>
-  <li><a href="#satz-von-bayes" id="toc-satz-von-bayes" class="nav-link" data-scroll-target="#satz-von-bayes"><span class="header-section-number">1.2</span> Satz von Bayes</a></li>
   </ul></li>
-  <li><a href="#unabhängigkeit-von-ereignissen" id="toc-unabhängigkeit-von-ereignissen" class="nav-link" data-scroll-target="#unabhängigkeit-von-ereignissen"><span class="header-section-number">2</span> Unabhängigkeit von Ereignissen</a></li>
+  <li><a href="#der-f-test-test-auf-varianzhomogenität" id="toc-der-f-test-test-auf-varianzhomogenität" class="nav-link" data-scroll-target="#der-f-test-test-auf-varianzhomogenität"><span class="header-section-number">2</span> Der F-Test (Test auf Varianzhomogenität)”</a>
+  <ul class="collapse">
+  <li><a href="#die-grundidee-das-neue-messgerät" id="toc-die-grundidee-das-neue-messgerät" class="nav-link" data-scroll-target="#die-grundidee-das-neue-messgerät"><span class="header-section-number">2.1</span> Die Grundidee: Das neue Messgerät</a></li>
+  <li><a href="#voraussetzungen-für-den-f-test" id="toc-voraussetzungen-für-den-f-test" class="nav-link" data-scroll-target="#voraussetzungen-für-den-f-test"><span class="header-section-number">2.2</span> Voraussetzungen für den F-Test</a></li>
+  <li><a href="#die-hypothesen" id="toc-die-hypothesen" class="nav-link" data-scroll-target="#die-hypothesen"><span class="header-section-number">2.3</span> Die Hypothesen</a></li>
+  <li><a href="#die-teststatistik-der-prüfwert" id="toc-die-teststatistik-der-prüfwert" class="nav-link" data-scroll-target="#die-teststatistik-der-prüfwert"><span class="header-section-number">2.4</span> Die Teststatistik (Der Prüfwert)</a></li>
+  </ul></li>
+  <li><a href="#anteils--und-dichtetest" id="toc-anteils--und-dichtetest" class="nav-link" data-scroll-target="#anteils--und-dichtetest"><span class="header-section-number">3</span> Anteils- und Dichtetest</a>
+  <ul class="collapse">
+  <li><a href="#binomialtest-anteilstest" id="toc-binomialtest-anteilstest" class="nav-link" data-scroll-target="#binomialtest-anteilstest"><span class="header-section-number">3.1</span> Binomialtest (Anteilstest)</a>
+  <ul class="collapse">
+  <li><a href="#allgemeines-vorgehen" id="toc-allgemeines-vorgehen" class="nav-link" data-scroll-target="#allgemeines-vorgehen"><span class="header-section-number">3.1.1</span> Allgemeines Vorgehen</a></li>
+  </ul></li>
+  <li><a href="#poissontest-dichtetest" id="toc-poissontest-dichtetest" class="nav-link" data-scroll-target="#poissontest-dichtetest"><span class="header-section-number">3.2</span> Poissontest (Dichtetest)</a>
+  <ul class="collapse">
+  <li><a href="#allgemeines-vorgehen-1" id="toc-allgemeines-vorgehen-1" class="nav-link" data-scroll-target="#allgemeines-vorgehen-1"><span class="header-section-number">3.2.1</span> Allgemeines Vorgehen</a></li>
+  </ul></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -200,7 +252,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Woche 3: Bedingte Wahrscheinlichkeiten</h1>
+<h1 class="title">Woche 10: Normalitätsannahme &amp; Varianzhomogenität</h1>
 </div>
 
 
@@ -217,56 +269,151 @@ window.Quarto = {
 </header>
 
 
-<section id="bedingte-wahrscheinlichkeiten-satz-von-bayes" class="level1" data-number="1">
-<h1 data-number="1"><span class="header-section-number">1</span> Bedingte Wahrscheinlichkeiten &amp; Satz von Bayes</h1>
-<p>Oft bekommen wir neue Informationen, die unsere Einschätzung verändern. Die <strong>bedingte Wahrscheinlichkeit</strong> <span class="math inline">\(\mathbb{P}[A|B]\)</span> beschreibt die Wahrscheinlichkeit von <span class="math inline">\(A\)</span>, unter der Voraussetzung, dass <span class="math inline">\(B\)</span> bereits eingetreten ist.</p>
-<p><strong>Formel:</strong> <span class="math display">\[\mathbb{P}[A|B] = \frac{\mathbb{P}[A \cap B]}{\mathbb{P}[B]}\]</span></p>
-<section id="satz-der-totalen-wahrscheinlichkeit" class="level2" data-number="1.1">
-<h2 data-number="1.1" class="anchored" data-anchor-id="satz-der-totalen-wahrscheinlichkeit"><span class="header-section-number">1.1</span> Satz der totalen Wahrscheinlichkeit</h2>
-<p>Um <span class="math inline">\(\mathbb{P}[A]\)</span> zu berechnen, können wir das Problem in disjunkte Fälle (z.B. Fall <span class="math inline">\(B\)</span> und Fall <span class="math inline">\(B^c\)</span>) aufteilen und gewichten: <span class="math display">\[\mathbb{P}[A] = \mathbb{P}[A|B] \cdot \mathbb{P}[B] + \mathbb{P}[A|B^c] \cdot \mathbb{P}[B^c]\]</span></p>
-<p>Wir kennen die Fälle <span class="math inline">\(B\)</span> und <span class="math inline">\(B^c\)</span>, deren Wahrscheinlichkeiten ( <span class="math inline">\(\mathbb{P}[B^c], \mathbb{P}[B]\)</span> ) und die bedingten Wahrscheinlichkeiten ( <span class="math inline">\(\mathbb{P}[A|B^c], \mathbb{P}[A|B]\)</span> ). Die Formel liefert daraus dann <span class="math inline">\(\mathbb{P}[A]\)</span>.</p>
-<section id="beispiel-1" class="level3" data-number="1.1.1">
-<h3 data-number="1.1.1" class="anchored" data-anchor-id="beispiel-1"><span class="header-section-number">1.1.1</span> Beispiel 1:</h3>
-<p>Ereignis <span class="math inline">\(A\)</span>: Wir ziehen als zweite Kugel eine rote Kugel. Ereignis <span class="math inline">\(B\)</span>: Wir ziehen als erste Kugel eine rote Kugel. Dann können wir die Wahrscheinlichkeit für <span class="math inline">\(A\)</span> berechnen, indem wir die Fälle <span class="math inline">\(B\)</span> und <span class="math inline">\(B^c\)</span> betrachten.</p>
-</section>
-<section id="beispiel-2" class="level3" data-number="1.1.2">
-<h3 data-number="1.1.2" class="anchored" data-anchor-id="beispiel-2"><span class="header-section-number">1.1.2</span> Beispiel 2:</h3>
-<p>In einer Firma arbeiten 60% Ingenieur:innen und 40% Betriebswirtschaftler:innen. Von den Ingenieur: innen sprechen 30% Französisch, von den Betriebswirtschaftler:innen sind es 50%.</p>
+<section id="tests-zur-normalitätsannahme" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Tests zur Normalitätsannahme</h1>
+<p>Eine der zentralen Voraussetzungen für die Durchführung eines t-Tests ist, dass die zugrundeliegenden Daten (zumindest annähernd) normalverteilt sind. Bevor wir also Mittelwerte vergleichen können, müssen wir prüfen, ob unsere Daten diese “Glockenkurven”-Form aufweisen.</p>
+<section id="der-shapiro-wilk-test-und-seine-tücken" class="level2" data-number="1.1">
+<h2 data-number="1.1" class="anchored" data-anchor-id="der-shapiro-wilk-test-und-seine-tücken"><span class="header-section-number">1.1</span> Der Shapiro-Wilk-Test und seine Tücken</h2>
+<p>Ein statistischer Test, um Daten auf Normalverteilung zu prüfen, ist der Shapiro-Wilk-Test. Er testet grob gesagt die Nullhypothese: <em>Die Daten sind normalverteilt.</em> In der Praxis, insbesondere im Vorfeld eines t-Tests, ist dieser Test jedoch oft <strong>nicht besonders hilfreich</strong>. Dafür gibt es zwei Hauptgründe:</p>
 <ul>
-<li>Disjunkte Fälle (niemand ist beides, also disjunkt, schliessen sich gegenseitig aus):
-<ul>
-<li><span class="math inline">\(I\)</span> = Ingenieur:in,</li>
-<li><span class="math inline">\(B\)</span> = Betriebswirtschaftler:in</li>
-</ul></li>
-<li>Wahrscheinlichkeiten:
-<ul>
-<li><span class="math inline">\(\mathbb{P}[I] = 0.6\)</span></li>
-<li><span class="math inline">\(\mathbb{P}[B] = 0.4\)</span></li>
-</ul></li>
+<li><strong>Das Problem kleiner Stichproben:</strong> Haben wir nur wenige Datenpunkte und die Daten sind <em>nicht</em> normalverteilt, hat der Test zu wenig Power (Macht). Die Wahrscheinlichkeit ist hoch, dass er die Abweichung schlichtweg nicht erkennt (“verpasster Effekt”).</li>
+<li><strong>Das Problem grosser Stichproben:</strong> Haben wir extrem viele Datenpunkte, wird der Test zu streng. Selbst winzige, für die Praxis völlig unbedeutende Abweichungen von der perfekten Normalverteilung führen dazu, dass die Normalitätsannahme abgelehnt wird.</li>
 </ul>
-<p>Der Satz der totalen Wahrscheinlichkeit erlaubt es uns, die Wahrscheinlichkeit zu berechnen, dass eine zufällig ausgewählte Person Französisch spricht, indem wir die Fälle <span class="math inline">\(I\)</span> und <span class="math inline">\(B\)</span> separat betrachten: <span class="math display">\[\mathbb{P}[\text{F}] = \mathbb{P}[\text{F}|B] \cdot \mathbb{P}[B] + \mathbb{P}[\text{F}|I] \cdot \mathbb{P}[I] = 0.3 \cdot 0.6 + 0.5 \cdot 0.4 = 0.38\]</span></p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="images/satz_der_totalen_wahrsch.png" class="img-fluid figure-img"></p>
-<figcaption>Visuelle Erläuterung</figcaption>
-</figure>
-</div>
-</section>
-</section>
-<section id="satz-von-bayes" class="level2" data-number="1.2">
-<h2 data-number="1.2" class="anchored" data-anchor-id="satz-von-bayes"><span class="header-section-number">1.2</span> Satz von Bayes</h2>
-<p>Dieser Satz erlaubt es uns, bedingte Wahrscheinlichkeiten “umzudrehen”, also von <span class="math inline">\(\mathbb{P}[A|B]\)</span> auf <span class="math inline">\(\mathbb{P}[B|A]\)</span> zu schliessen: <span class="math display">\[\mathbb{P}[A|B] = \frac{\mathbb{P}[B|A] \cdot \mathbb{P}[A]}{\mathbb{P}[B]}\]</span></p>
-<p><em>Klassisches Beispiel (Medizinischer Test):</em> Auch wenn ein HIV-Test sehr genau ist, ist die Wahrscheinlichkeit, tatsächlich infiziert zu sein, wenn der Test positiv ausfällt, oft überraschend tief, falls die Krankheit in der Gesamtbevölkerung sehr selten ist.</p>
 <hr>
 </section>
+<section id="visuelle-überprüfung-der-q-q-plot" class="level2" data-number="1.2">
+<h2 data-number="1.2" class="anchored" data-anchor-id="visuelle-überprüfung-der-q-q-plot"><span class="header-section-number">1.2</span> Visuelle Überprüfung: Der Q-Q-Plot</h2>
+<p>Da statistische Tests hier Schwächen haben, greift man oft auf eine visuelle Methode zurück: den <strong>Quantil-Quantil-Plot (Q-Q-Plot)</strong>. Untersucht man speziell auf eine Normalverteilung, nennt man dies auch ein Normal-Quantil-Diagramm.</p>
+<section id="die-grundidee-des-q-q-plots" class="level3" data-number="1.2.1">
+<h3 data-number="1.2.1" class="anchored" data-anchor-id="die-grundidee-des-q-q-plots"><span class="header-section-number">1.2.1</span> Die Grundidee des Q-Q-Plots</h3>
+<p>Anstatt die Daten in ein Histogramm zu pressen, vergleichen wir bei einem Q-Q-Plot bestimmte Positionen unserer Daten (die empirischen Quantile) mit den idealen Positionen einer perfekten Normalverteilung (den theoretischen Quantilen).</p>
+<p>Ein Q-Q-Plot spannt sich zwischen zwei Achsen auf:</p>
+<ul>
+<li><strong>x-Achse:</strong> Zeigt die theoretischen Quantile der perfekten Standardnormalverteilung.</li>
+<li><strong>y-Achse:</strong> Zeigt die empirischen Quantile (die tatsächlichen Messwerte) unserer Stichprobe <span class="math inline">\(X_1, ..., X_n\)</span>.</li>
+</ul>
 </section>
-<section id="unabhängigkeit-von-ereignissen" class="level1" data-number="2">
-<h1 data-number="2"><span class="header-section-number">2</span> Unabhängigkeit von Ereignissen</h1>
-<p>Zwei Ereignisse <span class="math inline">\(A\)</span> und <span class="math inline">\(B\)</span> sind <strong>unabhängig</strong>, wenn das Eintreten des einen Ereignisses keinen Einfluss auf die Wahrscheinlichkeit des anderen hat.</p>
-<p><strong>Bedingung für Unabhängigkeit:</strong> Die Wahrscheinlichkeit des gemeinsamen Eintretens von <span class="math inline">\(A\)</span> und <span class="math inline">\(B\)</span> ist gleich dem Produkt ihrer Einzelwahrscheinlichkeiten: <span class="math display">\[\mathbb{P}[A \cap B] = \mathbb{P}[A] \cdot \mathbb{P}[B]\]</span></p>
-<p>Wenn Ereignisse unabhängig sind, gilt logischerweise auch: <span class="math inline">\(\mathbb{P}[A|B] = \mathbb{P}[A]\)</span>.</p>
+<section id="interpretation-die-gerade-linie" class="level3" data-number="1.2.2">
+<h3 data-number="1.2.2" class="anchored" data-anchor-id="interpretation-die-gerade-linie"><span class="header-section-number">1.2.2</span> Interpretation: Die gerade Linie</h3>
+<p>Die Interpretation eines fertigen Q-Q-Plots ist glücklicherweise sehr intuitiv:</p>
+<ul>
+<li><strong>Normalverteilung liegt vor:</strong> Wenn die Datenpunkte der Stichprobe tatsächlich aus einer Normalverteilung stammen, reihen sich die Punkte im Q-Q-Plot annähernd wie auf einer <strong>geraden Linie</strong> auf (<span class="math inline">\(y = \mu + \sigma x\)</span>).
+<ul>
+<li>Der Schnittpunkt mit der y-Achse entspricht dabei dem Erwartungswert (<span class="math inline">\(\mu\)</span>).</li>
+<li>Die Steigung der Linie entspricht der Standardabweichung (<span class="math inline">\(\sigma\)</span>).</li>
+</ul></li>
+<li><strong>Keine Normalverteilung:</strong> Weichen die Punkte deutlich und systematisch (z.B. in S-Form oder als Banane) von dieser gedachten geraden Linie ab, ist das ein starkes Indiz dafür, dass die Daten <strong>nicht</strong> normalverteilt sind.</li>
+</ul>
+<p><strong>In R:</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qqnorm</span>(stichprobe)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+</section>
+</section>
+<section id="der-f-test-test-auf-varianzhomogenität" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> Der F-Test (Test auf Varianzhomogenität)”</h1>
+<p>Beim Zweistichproben-t-Test der letzten Woche standen wir vor einer wichtigen Entscheidung: Haben die beiden Gruppen die gleiche Varianz (Varianzhomogenität <span class="math inline">\(\rightarrow\)</span> klassischer Student-t-Test) oder unterschiedliche Varianzen (Varianzheterogenität <span class="math inline">\(\rightarrow\)</span> Welch-Test)?</p>
+<p>Der <strong>F-Test</strong> liefert uns genau hierfür das statistische Werkzeug. Er prüft, ob die Varianzen zweier unabhängiger Stichproben gleich gross sind.</p>
+<section id="die-grundidee-das-neue-messgerät" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="die-grundidee-das-neue-messgerät"><span class="header-section-number">2.1</span> Die Grundidee: Das neue Messgerät</h2>
+<p>Stell dir vor, du entwickelst ein neues Messgerät oder eine neue Produktionsmaschine. Das Ziel ist meistens mehr Präzision – also <strong>weniger Schwankungen</strong>. Wenn wir nun alte und neue Messungen vergleichen, wollen wir wissen: Hat sich die Streuung (Varianz) tatsächlich messbar verkleinert, oder sind die Schwankungen bei beiden Geräten eigentlich noch gleich gross?</p>
+</section>
+<section id="voraussetzungen-für-den-f-test" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="voraussetzungen-für-den-f-test"><span class="header-section-number">2.2</span> Voraussetzungen für den F-Test</h2>
+<p>Damit die Ergebnisse des F-Tests verlässlich sind, müssen drei strikte Annahmen erfüllt sein:</p>
+<ol type="1">
+<li><strong>Normalverteilung:</strong> Die Daten beider Stichproben müssen normalverteilt sein (Q-Q-Plot).</li>
+<li><strong>Unabhängigkeit (i.i.d.):</strong> Die Messwerte innerhalb einer Stichprobe sind unabhängig voneinander.</li>
+<li><strong>Unabhängige Gruppen:</strong> Die beiden Stichproben hängen nicht miteinander zusammen (es sind also z.B. keine Messungen an denselben Personen vor und nach einer Behandlung).</li>
+</ol>
+</section>
+<section id="die-hypothesen" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="die-hypothesen"><span class="header-section-number">2.3</span> Die Hypothesen</h2>
+<p>Wie beim t-Test formulieren wir wieder unsere “Gerichtsverfahren”-Hypothesen. Man unterscheidet zwischen zweiseitig (wir suchen nach <em>irgendeinem</em> Unterschied) und einseitig (wir haben eine konkrete Vermutung, wer grösser/kleiner ist).</p>
+<p><strong>Zweiseitiger Test (Unterscheiden sich die Varianzen?):</strong></p>
+<ul>
+<li><span class="math inline">\(H_0: \sigma_X^2 = \sigma_Y^2\)</span> (Die Varianzen sind gleich)</li>
+<li><span class="math inline">\(H_1: \sigma_X^2 \neq \sigma_Y^2\)</span> (Die Varianzen sind unterschiedlich)</li>
+</ul>
+<p><strong>Einseitiger Test (z.B. Hat die alte Maschine eine grössere Varianz als die neue?):</strong></p>
+<ul>
+<li><span class="math inline">\(H_0: \sigma_{alt}^2 \le \sigma_{neu}^2\)</span></li>
+<li><span class="math inline">\(H_1: \sigma_{alt}^2 &gt; \sigma_{neu}^2\)</span></li>
+</ul>
+</section>
+<section id="die-teststatistik-der-prüfwert" class="level2" data-number="2.4">
+<h2 data-number="2.4" class="anchored" data-anchor-id="die-teststatistik-der-prüfwert"><span class="header-section-number">2.4</span> Die Teststatistik (Der Prüfwert)</h2>
+<p>Der F-Test hat eine bestechend logische Teststatistik <span class="math inline">\(\hat{\gamma}\)</span>. Wir teilen einfach die Varianz der ersten Stichprobe (<span class="math inline">\(S_X^2\)</span>) durch die Varianz der zweiten Stichprobe (<span class="math inline">\(S_Y^2\)</span>):</p>
+<p><span class="math display">\[\hat{\gamma} = \frac{S_X^2}{S_Y^2}\]</span></p>
+<ul>
+<li><strong>Intuition:</strong> Wenn beide Varianzen ungefähr gleich sind, liegt der Quotient nahe bei 1. Je weiter der Wert von 1 abweicht (nach oben oder unten), desto stärker spricht dies gegen unsere Nullhypothese <span class="math inline">\(H_0\)</span>.</li>
+<li>Unter der Annahme, dass <span class="math inline">\(H_0\)</span> stimmt, folgt dieser Quotient einer sogenannten <strong>F-Verteilung</strong>. Diese Verteilung ist (im Gegensatz zur Normalverteilung) asymmetrisch und rechtsschief.</li>
+</ul>
+<p><strong>In R:</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">var.test</span>(stichprobe1, stichprobe2, </span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>         <span class="at">alternative =</span> <span class="st">"two.sided"</span>, <span class="co"># oder "less", "greater"</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">conf.level =</span> <span class="fl">0.95</span>)         <span class="co"># 1 - alpha</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+</section>
+<section id="anteils--und-dichtetest" class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> Anteils- und Dichtetest</h1>
+<p>Hier besprechen wir zwei wichtige statistische Testverfahren: dem Anteilstest (Binomialtest) und dem Dichtetest (Poissontest). Beide Tests dienen dazu, empirisch beobachtete Daten mit theoretischen Sollwerten abzugleichen.</p>
+<section id="binomialtest-anteilstest" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="binomialtest-anteilstest"><span class="header-section-number">3.1</span> Binomialtest (Anteilstest)</h2>
+<p>Der Binomialtest wird angewendet, um zu überprüfen, ob der tatsächliche Anteil <span class="math inline">\(p\)</span> eines Merkmals in einer Grundgesamtheit signifikant von einem vorab definierten Sollwert <span class="math inline">\(p_0\)</span> abweicht. Ein klassisches Anwendungsbeispiel ist die Überprüfung einer Impfquote (z. B. ob die Polio-Impfquote mindestens 95 % beträgt).</p>
+<section id="allgemeines-vorgehen" class="level3" data-number="3.1.1">
+<h3 data-number="3.1.1" class="anchored" data-anchor-id="allgemeines-vorgehen"><span class="header-section-number">3.1.1</span> Allgemeines Vorgehen</h3>
+<ol type="1">
+<li><p><strong>Signifikanzniveau festlegen:</strong> Wir definieren ein Signifikanzniveau <span class="math inline">\(\alpha \in (0,1)\)</span>, typischerweise <span class="math inline">\(\alpha = 0.05\)</span> oder <span class="math inline">\(\alpha = 0.01\)</span>.</p></li>
+<li><p><strong>Hypothesen formulieren:</strong></p>
+<ul>
+<li>Nullhypothese <span class="math inline">\(H_0: p = p_0\)</span></li>
+<li>Alternativhypothese <span class="math inline">\(H_1: p \neq p_0\)</span> (bei einem zweiseitigen Test) oder einseitig (z. B. <span class="math inline">\(p &lt; p_0\)</span>).</li>
+</ul></li>
+<li><p><strong>Teststatistik bestimmen:</strong> Die Anzahl der beobachteten “Erfolge” <span class="math inline">\(k\)</span> aus einer Stichprobe der Größe <span class="math inline">\(n\)</span> wird ermittelt.</p></li>
+<li><p><strong>Verteilung unter <span class="math inline">\(H_0\)</span>:</strong> Wenn die Nullhypothese wahr ist, folgt die Teststatistik <span class="math inline">\(X\)</span> einer Binomialverteilung <span class="math inline">\(Bin(n, p_0)\)</span>.</p></li>
+<li><p><strong>Entscheidung:</strong> Es wird der p-Wert der Beobachtung <span class="math inline">\(k\)</span> berechnet. Ist der p-Wert kleiner als <span class="math inline">\(\alpha\)</span>, wird die Nullhypothese verworfen. Ist er größer oder gleich <span class="math inline">\(\alpha\)</span>, wird die Nullhypothese beibehalten.</p></li>
+</ol>
+<p><strong>In R:</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rbinom.test</span>(k, n, <span class="at">p =</span> p0, </span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>           <span class="at">alternative =</span> <span class="st">"two.sided"</span>, <span class="co"># oder "less", "greater"</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">conf.level =</span> <span class="fl">0.95</span>)         <span class="co"># 1 - alpha</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ul>
+<li>k: Anzahl der beobachteten Erfolge (z. B. Anzahl geimpfter Personen).</li>
+<li>n: Gesamtzahl der Personen in der Stichprobe.</li>
+<li>p: Der erwartete Anteil unter der Nullhypothese.</li>
+</ul>
+</section>
+</section>
+<section id="poissontest-dichtetest" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="poissontest-dichtetest"><span class="header-section-number">3.2</span> Poissontest (Dichtetest)</h2>
+<p>Der Poissontest kommt zum Einsatz, wenn die Rate von Ereignissen (z. B. die Anzahl von Salmonelleninfektionen in einem bestimmten Zeitraum) untersucht werden sol. Ziel ist es zu prüfen, ob die wahre mittlere Ereignisrate <span class="math inline">\(\lambda\)</span> von einem bisherigen Durchschnitt abweicht.</p>
+<section id="allgemeines-vorgehen-1" class="level3" data-number="3.2.1">
+<h3 data-number="3.2.1" class="anchored" data-anchor-id="allgemeines-vorgehen-1"><span class="header-section-number">3.2.1</span> Allgemeines Vorgehen</h3>
+<ol type="1">
+<li><p><strong>Signifikanzniveau festlegen:</strong> Auch hier wird zunächst <span class="math inline">\(\alpha\)</span> (z. B. <span class="math inline">\(\alpha = 0.05\)</span>) festgelegt.</p></li>
+<li><p><strong>Hypothesen formulieren:</strong></p>
+<ul>
+<li>Nullhypothese <span class="math inline">\(H_0: \lambda = \lambda_0\)</span> (z. B. <span class="math inline">\(\lambda = 5\)</span>)</li>
+<li>Alternativhypothese <span class="math inline">\(H_1: \lambda \neq \lambda_0\)</span></li>
+</ul></li>
+<li><p><strong>Teststatistik bestimmen:</strong> Die Teststatistik ist die Summe der aufgetretenen Ereignisse über alle betrachteten Zeiträume, also <span class="math inline">\(s = X_1 + X_2 + \dots + X_n\)</span>.</p></li>
+<li><p><strong>Verteilung unter <span class="math inline">\(H_0\)</span>:</strong> Unter der Nullhypothese sind die einzelnen Beobachtungen <span class="math inline">\(X_i\)</span> unabhängig und poissonverteilt. Die Summe der Ereignisse folgt demnach einer Poissonverteilung, deren Parameter sich aus der Summe der Erwartungswerte ergibt.</p></li>
+<li><p><strong>Besonderheit bei der p-Wert-Berechnung:</strong> Im Gegensatz zu symmetrischen Verteilungen (wie der Normalverteilung) ist die Poissonverteilung im Allgemeinen asymmetrisch. Bei der Bestimmung des p-Wertes für einen zweiseitigen Test können wir die Teststatistik nicht einfach spiegeln. Stattdessen müssen die Wahrscheinlichkeiten beider Verteilungsenden separat berechnet und aufaddiert werden.</p></li>
+<li><p><strong>Entscheidung:</strong> Liegt der berechnete p-Wert unter <span class="math inline">\(\alpha\)</span>, verwerfen wir <span class="math inline">\(H_0\)</span>. Ist er größer oder gleich <span class="math inline">\(\alpha\)</span>, behalten wir die Nullhypothese bei.</p></li>
+</ol>
+<p><strong>In R:</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rpoisson.test</span>(s, T, <span class="at">r =</span> lambda0, </span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>            <span class="at">alternative =</span> <span class="st">"two.sided"</span>, <span class="co"># oder "less", "greater"</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>            <span class="at">conf.level =</span> <span class="fl">0.95</span>)         <span class="co"># 1 - alpha</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ul>
+<li>s: Die Summe der beobachteten Ereignisse über alle Zeiträume.</li>
+<li>T: Die Gesamtzeit, über die die Ereignisse beobachtet wurden.</li>
+<li>r: Der erwartete Wert unter der Nullhypothese.</li>
+</ul>
 
 
+</section>
+</section>
 </section>
 
 </main> <!-- /main -->
