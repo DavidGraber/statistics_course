@@ -77,244 +77,6 @@
     "text": "Die Standardabweichung ist dann einfach die Quadratwurzel aus der Varianz: \\[\\sigma = \\sqrt{Var(X)}\\] Warum Standardabweichung? Die Varianz hat quadrierte Einheiten (z.B. \\(m^2\\)). Durch das Ziehen der Wurzel hat die Standardabweichung wieder dieselbe Einheit wie die ursprünglichen Daten (z.B. \\(m\\)), was sie für uns viel anschaulicher macht."
   },
   {
-    "objectID": "woche_04.html",
-    "href": "woche_04.html",
-    "title": "Woche 4: Zufallsvariablen & Verteilungen",
-    "section": "",
-    "text": "Eine Zufallsvariable (oft mit grossen Buchstaben wie \\(X\\), \\(Y\\) bezeichnet) ist im Prinzip eine Übersetzungsmaschine: Sie ordnet den abstrakten Ergebnissen eines Zufallsexperiments (der Grundmenge \\(\\Omega\\)) reelle Zahlen zu.\nWir unterscheiden zwei Haupttypen:\n\nDiskrete Zufallsvariablen: Können nur bestimmte, zählbare Werte annehmen (oft ganze Zahlen).\n\nBeispiel: Anzahl der geworfenen “Köpfe” bei 10 Münzwürfen (\\(X \\in \\{0, 1, 2, \\dots, 10\\}\\)).\n\nStetige (kontinuierliche) Zufallsvariablen: Können jeden beliebigen Wert in einem bestimmten Intervall annehmen (Messwerte).\n\nBeispiel: Die exakte Wartezeit auf den Bus in Minuten (\\(X = 4.352\\dots\\))."
-  },
-  {
-    "objectID": "woche_04.html#bei-diskreten-zufallsvariablen",
-    "href": "woche_04.html#bei-diskreten-zufallsvariablen",
-    "title": "Woche 4: Zufallsvariablen & Verteilungen",
-    "section": "2.1 Bei diskreten Zufallsvariablen",
-    "text": "2.1 Bei diskreten Zufallsvariablen\n\nWahrscheinlichkeitsfunktion: Gibt die exakte Wahrscheinlichkeit an, dass die Zufallsvariable \\(X\\) einen ganz bestimmten Wert \\(x\\) annimmt. \\[P(X = x)\\]\nVerteilungsfunktion (kumulativ): Kumuliert (summiert) die Wahrscheinlichkeiten bis zu einem bestimmten Wert \\(x\\). \\[F(x) = P(X \\le x)\\]\nDie Kurve “beginnt” somit bei \\(y=0\\) und “endet” bei \\(y=1\\) und ist monoton wachsend (geht nie wieder abwärts in Richtung von höheren X)."
-  },
-  {
-    "objectID": "woche_04.html#bei-stetigen-zufallsvariablen",
-    "href": "woche_04.html#bei-stetigen-zufallsvariablen",
-    "title": "Woche 4: Zufallsvariablen & Verteilungen",
-    "section": "2.2 Bei stetigen Zufallsvariablen",
-    "text": "2.2 Bei stetigen Zufallsvariablen\n\nDichtefunktion \\(\\varphi(x)\\): Da ein stetiger Wert unendlich viele Nachkommastellen hat, ist die Wahrscheinlichkeit für einen exakten Wert immer null (\\(P(X = x) = 0\\)). Die Dichtefunktion beschreibt stattdessen die “Kurve”. Die Gesamtfläche unter der Kurve ist immer exakt 1.\nVerteilungsfunktion \\(F_X(x)\\): Die Kurve ist ebenfalls monoton wachsend und gibt die Fläche unter der Dichtefunktion bis zum Wert \\(x\\) an. Berechnet wird dies über das Integral der Dichtefunktion. \\[F(x) = \\int_{-\\infty}^{x} \\varphi(t) \\, dt\\]"
-  },
-  {
-    "objectID": "woche_04.html#visuelle-zusammenfassung",
-    "href": "woche_04.html#visuelle-zusammenfassung",
-    "title": "Woche 4: Zufallsvariablen & Verteilungen",
-    "section": "2.3 Visuelle Zusammenfassung",
-    "text": "2.3 Visuelle Zusammenfassung\n\n\n\nVisuelle Zusammenfassung (by Tobias Peter)"
-  },
-  {
-    "objectID": "woche_03.html",
-    "href": "woche_03.html",
-    "title": "Woche 3: Bedingte Wahrscheinlichkeiten",
-    "section": "",
-    "text": "Oft bekommen wir neue Informationen, die unsere Einschätzung verändern. Die bedingte Wahrscheinlichkeit \\(\\mathbb{P}[A|B]\\) beschreibt die Wahrscheinlichkeit von \\(A\\), unter der Voraussetzung, dass \\(B\\) bereits eingetreten ist.\nFormel: \\[\\mathbb{P}[A|B] = \\frac{\\mathbb{P}[A \\cap B]}{\\mathbb{P}[B]}\\]\n\n\nUm \\(\\mathbb{P}[A]\\) zu berechnen, können wir das Problem in disjunkte Fälle (z.B. Fall \\(B\\) und Fall \\(B^c\\)) aufteilen und gewichten: \\[\\mathbb{P}[A] = \\mathbb{P}[A|B] \\cdot \\mathbb{P}[B] + \\mathbb{P}[A|B^c] \\cdot \\mathbb{P}[B^c]\\]\nWir kennen die Fälle \\(B\\) und \\(B^c\\), deren Wahrscheinlichkeiten ( \\(\\mathbb{P}[B^c], \\mathbb{P}[B]\\) ) und die bedingten Wahrscheinlichkeiten ( \\(\\mathbb{P}[A|B^c], \\mathbb{P}[A|B]\\) ). Die Formel liefert daraus dann \\(\\mathbb{P}[A]\\).\n\n\nEreignis \\(A\\): Wir ziehen als zweite Kugel eine rote Kugel. Ereignis \\(B\\): Wir ziehen als erste Kugel eine rote Kugel. Dann können wir die Wahrscheinlichkeit für \\(A\\) berechnen, indem wir die Fälle \\(B\\) und \\(B^c\\) betrachten.\n\n\n\nIn einer Firma arbeiten 60% Ingenieur:innen und 40% Betriebswirtschaftler:innen. Von den Ingenieur: innen sprechen 30% Französisch, von den Betriebswirtschaftler:innen sind es 50%.\n\nDisjunkte Fälle (niemand ist beides, also disjunkt, schliessen sich gegenseitig aus):\n\n\\(I\\) = Ingenieur:in,\n\\(B\\) = Betriebswirtschaftler:in\n\nWahrscheinlichkeiten:\n\n\\(\\mathbb{P}[I] = 0.6\\)\n\\(\\mathbb{P}[B] = 0.4\\)\n\n\nDer Satz der totalen Wahrscheinlichkeit erlaubt es uns, die Wahrscheinlichkeit zu berechnen, dass eine zufällig ausgewählte Person Französisch spricht, indem wir die Fälle \\(I\\) und \\(B\\) separat betrachten: \\[\\mathbb{P}[\\text{F}] = \\mathbb{P}[\\text{F}|B] \\cdot \\mathbb{P}[B] + \\mathbb{P}[\\text{F}|I] \\cdot \\mathbb{P}[I] = 0.3 \\cdot 0.6 + 0.5 \\cdot 0.4 = 0.38\\]\n\n\n\nVisuelle Erläuterung\n\n\n\n\n\n\nDieser Satz erlaubt es uns, bedingte Wahrscheinlichkeiten “umzudrehen”, also von \\(\\mathbb{P}[A|B]\\) auf \\(\\mathbb{P}[B|A]\\) zu schliessen: \\[\\mathbb{P}[A|B] = \\frac{\\mathbb{P}[B|A] \\cdot \\mathbb{P}[A]}{\\mathbb{P}[B]}\\]\nKlassisches Beispiel (Medizinischer Test): Auch wenn ein HIV-Test sehr genau ist, ist die Wahrscheinlichkeit, tatsächlich infiziert zu sein, wenn der Test positiv ausfällt, oft überraschend tief, falls die Krankheit in der Gesamtbevölkerung sehr selten ist."
-  },
-  {
-    "objectID": "woche_03.html#satz-der-totalen-wahrscheinlichkeit",
-    "href": "woche_03.html#satz-der-totalen-wahrscheinlichkeit",
-    "title": "Woche 3: Bedingte Wahrscheinlichkeiten",
-    "section": "",
-    "text": "Um \\(\\mathbb{P}[A]\\) zu berechnen, können wir das Problem in disjunkte Fälle (z.B. Fall \\(B\\) und Fall \\(B^c\\)) aufteilen und gewichten: \\[\\mathbb{P}[A] = \\mathbb{P}[A|B] \\cdot \\mathbb{P}[B] + \\mathbb{P}[A|B^c] \\cdot \\mathbb{P}[B^c]\\]\nWir kennen die Fälle \\(B\\) und \\(B^c\\), deren Wahrscheinlichkeiten ( \\(\\mathbb{P}[B^c], \\mathbb{P}[B]\\) ) und die bedingten Wahrscheinlichkeiten ( \\(\\mathbb{P}[A|B^c], \\mathbb{P}[A|B]\\) ). Die Formel liefert daraus dann \\(\\mathbb{P}[A]\\).\n\n\nEreignis \\(A\\): Wir ziehen als zweite Kugel eine rote Kugel. Ereignis \\(B\\): Wir ziehen als erste Kugel eine rote Kugel. Dann können wir die Wahrscheinlichkeit für \\(A\\) berechnen, indem wir die Fälle \\(B\\) und \\(B^c\\) betrachten.\n\n\n\nIn einer Firma arbeiten 60% Ingenieur:innen und 40% Betriebswirtschaftler:innen. Von den Ingenieur: innen sprechen 30% Französisch, von den Betriebswirtschaftler:innen sind es 50%.\n\nDisjunkte Fälle (niemand ist beides, also disjunkt, schliessen sich gegenseitig aus):\n\n\\(I\\) = Ingenieur:in,\n\\(B\\) = Betriebswirtschaftler:in\n\nWahrscheinlichkeiten:\n\n\\(\\mathbb{P}[I] = 0.6\\)\n\\(\\mathbb{P}[B] = 0.4\\)\n\n\nDer Satz der totalen Wahrscheinlichkeit erlaubt es uns, die Wahrscheinlichkeit zu berechnen, dass eine zufällig ausgewählte Person Französisch spricht, indem wir die Fälle \\(I\\) und \\(B\\) separat betrachten: \\[\\mathbb{P}[\\text{F}] = \\mathbb{P}[\\text{F}|B] \\cdot \\mathbb{P}[B] + \\mathbb{P}[\\text{F}|I] \\cdot \\mathbb{P}[I] = 0.3 \\cdot 0.6 + 0.5 \\cdot 0.4 = 0.38\\]\n\n\n\nVisuelle Erläuterung"
-  },
-  {
-    "objectID": "woche_03.html#satz-von-bayes",
-    "href": "woche_03.html#satz-von-bayes",
-    "title": "Woche 3: Bedingte Wahrscheinlichkeiten",
-    "section": "",
-    "text": "Dieser Satz erlaubt es uns, bedingte Wahrscheinlichkeiten “umzudrehen”, also von \\(\\mathbb{P}[A|B]\\) auf \\(\\mathbb{P}[B|A]\\) zu schliessen: \\[\\mathbb{P}[A|B] = \\frac{\\mathbb{P}[B|A] \\cdot \\mathbb{P}[A]}{\\mathbb{P}[B]}\\]\nKlassisches Beispiel (Medizinischer Test): Auch wenn ein HIV-Test sehr genau ist, ist die Wahrscheinlichkeit, tatsächlich infiziert zu sein, wenn der Test positiv ausfällt, oft überraschend tief, falls die Krankheit in der Gesamtbevölkerung sehr selten ist."
-  },
-  {
-    "objectID": "woche_08_2.html",
-    "href": "woche_08_2.html",
-    "title": "Woche 8_2: Schätzer & Konfidenzintervalle",
-    "section": "",
-    "text": "Oft wissen wir aus Erfahrung, dass Daten einer bestimmten Verteilung folgen (z.B. Normalverteilung), aber die genauen Parameter (wie der Erwartungswert \\(\\mu\\) oder die Varianz \\(\\sigma^2\\)) sind unbekannt und müssen aus Daten geschätzt werden.\n\nStichprobe: Eine Folge von \\(n\\) unabhängigen und identisch verteilten (i.i.d.) Zufallsvariablen \\(X_i\\), die verwendet wird, um den unbekannten, fixen Parameter aus Beobachtungen zu bestimmen."
-  },
-  {
-    "objectID": "woche_08_2.html#normalverteilung",
-    "href": "woche_08_2.html#normalverteilung",
-    "title": "Woche 8_2: Schätzer & Konfidenzintervalle",
-    "section": "3.1 1. Normalverteilung",
-    "text": "3.1 1. Normalverteilung\n\nErwartungswert (\\(\\mu\\)): Der beste Schätzer ist das arithmetische Mittel \\(\\hat{\\mu} = \\frac{1}{n}\\sum_{i=1}^{n}X_i\\). Dieser Schätzer ist erwartungstreu.\nVarianz (\\(\\sigma^2\\)): Die Stichprobenvarianz wird mit \\(\\sigma^2 = \\frac{1}{n-1}\\sum_{i=1}^{n}(X_i-\\hat{\\mu})^2\\) berechnet.\nWichtig: Wir teilen durch \\(n-1\\) (und nicht durch \\(n\\)), damit der Schätzer erwartungstreu ist und die wahre Varianz nicht systematisch unterschätzt wird."
-  },
-  {
-    "objectID": "woche_08_2.html#bernoulli-verteilung-anteilsschätzung",
-    "href": "woche_08_2.html#bernoulli-verteilung-anteilsschätzung",
-    "title": "Woche 8_2: Schätzer & Konfidenzintervalle",
-    "section": "3.2 2. Bernoulli-Verteilung (Anteilsschätzung)",
-    "text": "3.2 2. Bernoulli-Verteilung (Anteilsschätzung)\n\nWir wollen eine Erfolgswahrscheinlichkeit \\(p\\) schätzen (z.B. Anteil defekter Bauteile).\nDer erwartungstreue Schätzer ist der Stichprobenmittelwert \\(\\hat{p} = \\frac{k}{n}\\), wobei \\(k\\) die Anzahl der Erfolge und \\(n\\) die Anzahl der Versuche ist.\nBeispiel: Bei 100 Münzwürfen (\\(n=100\\)) erhalten wir 62-mal Zahl (\\(k=62\\)). Die Schätzung lautet \\(\\hat{p} = 0.62\\)."
-  },
-  {
-    "objectID": "woche_08_2.html#poisson-verteilung-dichteschätzung",
-    "href": "woche_08_2.html#poisson-verteilung-dichteschätzung",
-    "title": "Woche 8_2: Schätzer & Konfidenzintervalle",
-    "section": "3.3 3. Poisson-Verteilung (Dichteschätzung)",
-    "text": "3.3 3. Poisson-Verteilung (Dichteschätzung)\n\nWir modellieren Ereignisse in einem festen Zeit-/Raumintervall (z.B. Anrufe im Callcenter pro Stunde).\nDer erwartungstreue Schätzer für die Rate \\(\\lambda\\) ist \\(\\hat{\\lambda} = \\frac{\\sum_{i=1}^{n}k_i}{n}\\) (Gesamtzahl der Ereignisse geteilt durch die Anzahl der Beobachtungsperioden)."
-  },
-  {
-    "objectID": "woche_08_2.html#konfidenzintervall-für-den-erwartungswert-normalverteilung",
-    "href": "woche_08_2.html#konfidenzintervall-für-den-erwartungswert-normalverteilung",
-    "title": "Woche 8_2: Schätzer & Konfidenzintervalle",
-    "section": "4.1 Konfidenzintervall für den Erwartungswert (Normalverteilung)",
-    "text": "4.1 Konfidenzintervall für den Erwartungswert (Normalverteilung)\n\nBei bekannter Varianz (\\(\\sigma^2\\)): Wir verwenden die Quantile \\(x_-\\) und \\(x_+\\) der Standardnormalverteilung. Das Intervall lautet \\([\\overline{X}-\\frac{\\sigma}{\\sqrt{n}}x_+, \\overline{X}-\\frac{\\sigma}{\\sqrt{n}}x_-]\\).\nBei unbekannter Varianz: Die Varianz muss mit \\(\\sigma^2\\) aus den Daten geschätzt werden. Dadurch ändert sich die theoretische Verteilung: Wir müssen nun die t-Verteilung mit \\(n-1\\) Freiheitsgraden verwenden anstatt der Standardnormalverteilung."
-  },
-  {
-    "objectID": "woche_08_2.html#konfidenzintervallschätzung-für-verschiedene-verteilungen",
-    "href": "woche_08_2.html#konfidenzintervallschätzung-für-verschiedene-verteilungen",
-    "title": "Woche 8_2: Schätzer & Konfidenzintervalle",
-    "section": "4.2 Konfidenzintervallschätzung für verschiedene Verteilungen",
-    "text": "4.2 Konfidenzintervallschätzung für verschiedene Verteilungen\nNormalverteilung: Das Intervall für den Erwartungswert \\(\\mu\\) wird mit der t-Verteilung berechnet, wenn die Varianz unbekannt ist.\n# Stichprobenwerte eingeben\nx &lt;- c(170.3, 165.1, 172.0, 157.4)\n\n# Punktschätzer berechnen\nmu_hat &lt;- mean(x)      # Arithmetisches Mittel\nsigma2_hat &lt;- var(x)   # Stichprobenvarianz (n-1 korrigiert)\n\n# 80%-Konfidenzintervall für den Erwartungswert (zweiseitig)\n# Da die Varianz unbekannt ist, verwendet R automatisch die t-Verteilung.\nt.test(x, conf.level = 0.80)\nBinomialverteilung: Das Intervall für den Anteil \\(p\\) wird mit der Binomialverteilung berechnet.\n# Daten aus der Umfrage\nja_stimmen &lt;- 527\nn_befragte &lt;- 1000\n\n# Anteilsschätzung und 75%-Konfidenzintervall\nbinom.test(x = ja_stimmen, \n           n = n_befragte, \n           conf.level = 0.75, \n           alternative = \"two.sided\")\n*Poissonverteilung: Das Intervall für die Rate \\(\\lambda\\) wird mit der Poissonverteilung berechnet.\n# Beobachtungen der letzten 5 Jahre\ntote_pro_jahr &lt;- c(312, 292, 321, 275, 300)\n\n# Gesamtzahl der Ereignisse (x) und Anzahl der Beobachtungszeiträume (T)\nx_total &lt;- sum(tote_pro_jahr) # 1500 Ereignisse\nT_jahre &lt;- length(tote_pro_jahr) # 5 Jahre\n\n# Schätzung der Rate (Lambda) und 90%-Konfidenzintervall\npoisson.test(x = x_total, \n             T = T_jahre, \n             conf.level = 0.90, \n             alternative = \"two.sided\")"
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "1 Willkommen zum Statistik-Kurs",
-    "section": "",
-    "text": "Dieses digitale Skript wird jede Woche erweitert. Hier finden Sie alle wichtigen Formeln, Definitionen und Beispiele aus den Vorlesungen.\n\n\n\nWoche 1: Einführung & Kombinatorik\nWoche 2: Wahrscheinlichkeitsrechnung\nWoche 3: Bedingte Wahrscheinlichkeiten\nWoche 4: Zufallsvariablen & Verteilungen\nWoche 5: Erwartungswert & Varianz\nWoche 6: Standardverteilungen\nWoche 7: Grenzwertsätze\nWoche 8_1: Deskriptive Statistik\nWoche 8_2: Schätzer & Konfidenzintervalle\nWoche 9: Hypothesentests & t-Tests\nWoche 10: Normalitätsannahme & Varianzhomogenität"
-  },
-  {
-    "objectID": "index.html#semesterplan",
-    "href": "index.html#semesterplan",
-    "title": "1 Willkommen zum Statistik-Kurs",
-    "section": "",
-    "text": "Woche 1: Einführung & Kombinatorik\nWoche 2: Wahrscheinlichkeitsrechnung\nWoche 3: Bedingte Wahrscheinlichkeiten\nWoche 4: Zufallsvariablen & Verteilungen\nWoche 5: Erwartungswert & Varianz\nWoche 6: Standardverteilungen\nWoche 7: Grenzwertsätze\nWoche 8_1: Deskriptive Statistik\nWoche 8_2: Schätzer & Konfidenzintervalle\nWoche 9: Hypothesentests & t-Tests\nWoche 10: Normalitätsannahme & Varianzhomogenität"
-  },
-  {
-    "objectID": "woche_09.html",
-    "href": "woche_09.html",
-    "title": "Woche 9: Hypothesentests und t-Tests",
-    "section": "",
-    "text": "Ein statistischer Hypothesentest ist ein Verfahren, um anhand von Daten zu entscheiden, ob eine bestimmte Annahme (Hypothese) über die Grundgesamtheit haltbar ist oder nicht.\n\n\nMan kann sich einen Hypothesentest wie ein Gerichtsverfahren vorstellen:\n\nNullhypothese (\\(H_0\\)): Der Angeklagte ist unschuldig (Status Quo, kein Effekt).\nAlternativhypothese (\\(H_1\\)): Der Angeklagte ist schuldig (neue Entdeckung, ein Effekt liegt vor).\nZiel: Wir suchen nach “Beweisen” (Daten), die so stark gegen \\(H_0\\) sprechen, dass wir die Unschuldsvermutung aufgeben müssen.\n\n\n\n\nDa wir nur eine Stichprobe betrachten, können wir Fehlentscheidungen treffen:\n\n\n\n\n\n\n\n\nFehler\nBezeichnung\nBedeutung\n\n\n\n\nFehler 1. Art\n\\(\\alpha\\) (Signifikanzniveau)\n\\(H_0\\) wird abgelehnt, obwohl sie wahr ist (“falscher Alarm”).\n\n\nFehler 2. Art\n\\(\\beta\\)\n\\(H_0\\) wird beibehalten, obwohl \\(H_1\\) wahr ist (“verpasster Effekt”).\n\n\n\nDas Signifikanzniveau \\(\\alpha\\) (meist 5%) legt fest, wie hoch das Risiko für einen Fehler 1. Art maximal sein darf.\n\n\n\nFehlerarten (by Tobias Peter)\n\n\n\n\n\nDer p-Wert ist die Wahrscheinlichkeit, ein Stichprobenresultat zu erhalten, das mindestens so extrem ist wie das beobachtete, unter der Annahme, dass \\(H_0\\) wahr ist.\n\n\\(p &lt; \\alpha\\): Das Ergebnis ist signifikant \\(\\rightarrow H_0\\) wird abgelehnt.\n\\(p \\ge \\alpha\\): Das Ergebnis ist nicht signifikant \\(\\rightarrow H_0\\) wird beibehalten.\n\n\n\n\nDie Macht (Power) eines Tests ist die Wahrscheinlichkeit, dass der Test \\(H_0\\) ablehnt, wenn tatsächlich \\(H_1\\) wahr ist. Also wie wahrscheinlich detektieren wir einen echten Effekt? Sie hängt von der Effektgröße, der Stichprobengröße und dem Signifikanzniveau ab. —"
-  },
-  {
-    "objectID": "woche_09.html#die-grundidee-das-gerichtsverfahren",
-    "href": "woche_09.html#die-grundidee-das-gerichtsverfahren",
-    "title": "Woche 9: Hypothesentests und t-Tests",
-    "section": "",
-    "text": "Man kann sich einen Hypothesentest wie ein Gerichtsverfahren vorstellen:\n\nNullhypothese (\\(H_0\\)): Der Angeklagte ist unschuldig (Status Quo, kein Effekt).\nAlternativhypothese (\\(H_1\\)): Der Angeklagte ist schuldig (neue Entdeckung, ein Effekt liegt vor).\nZiel: Wir suchen nach “Beweisen” (Daten), die so stark gegen \\(H_0\\) sprechen, dass wir die Unschuldsvermutung aufgeben müssen."
-  },
-  {
-    "objectID": "woche_09.html#fehlerarten-beim-testen",
-    "href": "woche_09.html#fehlerarten-beim-testen",
-    "title": "Woche 9: Hypothesentests und t-Tests",
-    "section": "",
-    "text": "Da wir nur eine Stichprobe betrachten, können wir Fehlentscheidungen treffen:\n\n\n\n\n\n\n\n\nFehler\nBezeichnung\nBedeutung\n\n\n\n\nFehler 1. Art\n\\(\\alpha\\) (Signifikanzniveau)\n\\(H_0\\) wird abgelehnt, obwohl sie wahr ist (“falscher Alarm”).\n\n\nFehler 2. Art\n\\(\\beta\\)\n\\(H_0\\) wird beibehalten, obwohl \\(H_1\\) wahr ist (“verpasster Effekt”).\n\n\n\nDas Signifikanzniveau \\(\\alpha\\) (meist 5%) legt fest, wie hoch das Risiko für einen Fehler 1. Art maximal sein darf.\n\n\n\nFehlerarten (by Tobias Peter)"
-  },
-  {
-    "objectID": "woche_09.html#der-p-wert",
-    "href": "woche_09.html#der-p-wert",
-    "title": "Woche 9: Hypothesentests und t-Tests",
-    "section": "",
-    "text": "Der p-Wert ist die Wahrscheinlichkeit, ein Stichprobenresultat zu erhalten, das mindestens so extrem ist wie das beobachtete, unter der Annahme, dass \\(H_0\\) wahr ist.\n\n\\(p &lt; \\alpha\\): Das Ergebnis ist signifikant \\(\\rightarrow H_0\\) wird abgelehnt.\n\\(p \\ge \\alpha\\): Das Ergebnis ist nicht signifikant \\(\\rightarrow H_0\\) wird beibehalten."
-  },
-  {
-    "objectID": "woche_09.html#die-macht-eines-tests",
-    "href": "woche_09.html#die-macht-eines-tests",
-    "title": "Woche 9: Hypothesentests und t-Tests",
-    "section": "",
-    "text": "Die Macht (Power) eines Tests ist die Wahrscheinlichkeit, dass der Test \\(H_0\\) ablehnt, wenn tatsächlich \\(H_1\\) wahr ist. Also wie wahrscheinlich detektieren wir einen echten Effekt? Sie hängt von der Effektgröße, der Stichprobengröße und dem Signifikanzniveau ab. —"
-  },
-  {
-    "objectID": "woche_09.html#einstichproben-t-test",
-    "href": "woche_09.html#einstichproben-t-test",
-    "title": "Woche 9: Hypothesentests und t-Tests",
-    "section": "2.1 Einstichproben-t-Test",
-    "text": "2.1 Einstichproben-t-Test\nMan vergleicht den Mittelwert einer Stichprobe mit einem fest vorgegebenen Sollwert \\(\\mu_0\\).\nBeispiel: Eine Tablette soll 100 mg Wirkstoff enthalten. Wir testen, ob die Produktion systematisch davon abweicht.\n\n\\(H_0: \\mu = 100\\)\n\\(H_1: \\mu \\neq 100\\) (zweiseitig)\n\n\n2.1.1 Teststatistik \\(T\\):\nDie Teststatistik ist der “Prüfwert”, den wir berechnen, um zu sehen, wie weit unsere Daten vom erwarteten Wert (\\(\\mu_0\\)) entfernt liegen. \\[T = \\frac{\\overline{X} - \\mu_0}{S / \\sqrt{n}}\\]\n\n\\(\\overline{X}\\): Der beobachtete Durchschnitt deiner Stichprobe.\n\\(\\mu_0\\): Der hypothetische Sollwert aus der Nullhypothese \\(H_0\\).\n\\(S\\): Die Standardabweichung der Stichprobe.\n\\(n\\): Die Anzahl der Beobachtungen.\n\n\n\n2.1.2 Warum unterscheidet sich \\(T\\) vom Stichprobenmittelwert?\nWährend der Mittelwert \\(\\overline{X}\\) in der Originaleinheit (z. B. mg, cm, kg) gemessen wird, ist \\(T\\) eine standardisierte Maßzahl.\n\nVerschiebung (Zentrierung): Wir berechnen die Differenz \\((\\overline{X} - \\mu_0)\\). Das sagt uns, wie groß die Abweichung absolut ist.\nMaßstabsanpassung (Standardisierung): Wir teilen durch den Standardfehler (\\(S / \\sqrt{n}\\)). \\(T\\) misst also nicht in Zentimetern, sondern in Standardfehlern.\nEin \\(T\\)-Wert von 2 bedeutet: “Unser Stichprobenmittelwert liegt 2 Standardfehler weit weg vom Sollwert.”\nDies macht Ergebnisse vergleichbar, egal was wir für Dinge messen.\n\n\n\n2.1.3 Warum t-Verteilung statt Normalverteilung?\nNach dem Zentralen Grenzwertsatz sind Mittelwerte bei großen Stichproben zwar normalverteilt, aber es gibt einen Haken: Die Varianz.\n\nWüssten wir die wahre Varianz \\(\\sigma^2\\) der Grundgesamtheit, dürften wir die Normalverteilung nutzen.\nIn der Realität müssen wir \\(\\sigma^2\\) aber durch die Stichprobenvarianz \\(S^2\\) schätzen.\nDiese Schätzung ist unsicher, besonders bei kleinen Stichproben.\n\nDie t-Verteilung korrigiert diese Unsicherheit. Sie hat im Vergleich zur Normalverteilung “Fat Tails” (breitere Ränder). Das bedeutet, dass extreme Abweichungen bei kleinen Stichproben öfter vorkommen können. Je größer die Stichprobe \\(n\\) wird, desto ähnlicher wird die t-Verteilung der Normalverteilung.\n\n\n\nT-Verteilung vs. Normalverteilung (https://analystprep.com/cfa-level-1-exam/quantitative-methods/t-distribution-and-degrees-of-freedom/)\n\n\n\n\n2.1.4 So wird das Resultat unseres Einstichproben-t-Tests berechnet:\n\nSetze ein Signifikanzniveau \\(\\alpha\\) (z.B. 0.05).\nBestimme die Freiheitsgrade: \\(df = n - 1\\).\nUnser Signifikanzniveau und unsere Freiheitsgrade definieren eine t-Verteilung, auf der wir nun testen.\nWir bestimmen die kritischen Werte für die Ablehnungsbereiche: qt(1 - alpha/2, df) (zweiseitige Tests).\nBerechnete den \\(T\\)-Wert unserer Stichprobe und vergleiche ihn mit dem kritischen Wert aus der t-Verteilung. Liegt der \\(T\\)-Wert außerhalb des kritischen Bereichs, lehnen wir \\(H_0\\) ab.\n\nIn R können wir diesen Test mit der Funktion t.test() durchführen, welche die oben genannten Schritte automatisch erledigt.\nIn R:\nt.test(stichprobe, alternative = \"two.sided\", mu = 100, conf.level = 0.95)\nDer resultierende p-Wert gibt an, wie wahrscheinlich es ist, ein so extremes Ergebnis zu erhalten, wenn \\(H_0\\) wahr ist. Ein p-Wert kleiner als \\(\\alpha\\) führt zur Ablehnung von \\(H_0\\), das heisst es gibt eine systematische Abweichung von 100 mg, wenn der p-Wert kleiner als unser Signifikanzniveau ist."
-  },
-  {
-    "objectID": "woche_09.html#zweistichproben-t-test-unabhängig",
-    "href": "woche_09.html#zweistichproben-t-test-unabhängig",
-    "title": "Woche 9: Hypothesentests und t-Tests",
-    "section": "2.2 Zweistichproben-t-Test (Unabhängig)",
-    "text": "2.2 Zweistichproben-t-Test (Unabhängig)\nVergleicht die Mittelwerte zweier unabhängiger Gruppen (z.B. Behandlungsgruppe vs. Kontrollgruppe).\n\nVoraussetzung: Beide Gruppen sind normalverteilt.\nVarianz: Man unterscheidet, ob die Varianzen der beiden Gruppen gleich oder verschieden sind (Welch-Test)."
-  },
-  {
-    "objectID": "woche_09.html#gepaarter-t-test",
-    "href": "woche_09.html#gepaarter-t-test",
-    "title": "Woche 9: Hypothesentests und t-Tests",
-    "section": "2.3 Gepaarter t-Test",
-    "text": "2.3 Gepaarter t-Test\nWird verwendet, wenn Messwerte paarweise zusammengehören (z.B. Messung vor und nach einem Training bei derselben Person). Hierbei wird der t-Test auf die Differenzen der Paare angewendet."
-  },
-  {
-    "objectID": "woche_08_1.html",
-    "href": "woche_08_1.html",
-    "title": "Woche 8_1: Deskriptive Statistik",
-    "section": "",
-    "text": "Die deskriptive (beschreibende) Statistik hat zum Ziel, grosse Datenmengen übersichtlich zusammenzufassen und deren charakteristische Merkmale durch Tabellen, Kennzahlen und Grafiken darzustellen.\n\nGrundgesamtheit (N): Die Menge aller Objekte, über die wir eine Aussage treffen wollen.\nStichprobe (n): Eine Teilmenge der Grundgesamtheit, die tatsächlich untersucht wird.\nMerkmal (Variable): Die Eigenschaft, die gemessen wird (z. B. Körpergrösse).\nMerkmalsausprägung: Der konkrete Wert, den ein Merkmal annehmen kann (z. B. 1.80 m)."
-  },
-  {
-    "objectID": "woche_08_1.html#arithmetisches-mittel-barx",
-    "href": "woche_08_1.html#arithmetisches-mittel-barx",
-    "title": "Woche 8_1: Deskriptive Statistik",
-    "section": "3.1 Arithmetisches Mittel (\\(\\bar{x}\\))",
-    "text": "3.1 Arithmetisches Mittel (\\(\\bar{x}\\))\nDer klassische Durchschnitt. Er ist sehr anfällig gegenüber Ausreissern. \\[\\bar{x} = \\frac{1}{n} \\sum_{i=1}^{n} x_i\\] In R: mean(x)"
-  },
-  {
-    "objectID": "woche_08_1.html#median-q_0.5",
-    "href": "woche_08_1.html#median-q_0.5",
-    "title": "Woche 8_1: Deskriptive Statistik",
-    "section": "3.2 Median (\\(q_{0.5}\\))",
-    "text": "3.2 Median (\\(q_{0.5}\\))\nDer Wert, der die sortierte Datenreihe genau in zwei Hälften teilt. Er ist robust gegenüber Ausreissern. In R: median(x)"
-  },
-  {
-    "objectID": "woche_02.html",
-    "href": "woche_02.html",
-    "title": "Woche 2: Wahrscheinlichkeitsrechnung",
-    "section": "",
-    "text": "Die Wahrscheinlichkeitsrechnung beschäftigt sich mit Zufallsexperimenten – das sind Vorgänge, deren Ausgang nicht exakt vorhersagbar ist. Um damit zu rechnen, brauchen wir einige Grundbegriffe:\n\nElementarereignis (\\(\\omega\\)): Ein einzelner, konkreter Ausgang eines Experiments.\nGrundmenge / Grundraum (\\(\\Omega\\)): Die Menge aller möglichen Ausgänge eines Experiments.\nEreignis (\\(A\\)): Eine Sammlung von bestimmten Elementarereignissen. Formal ist ein Ereignis eine Teilmenge der Grundmenge (\\(A \\subseteq \\Omega\\)).\n\nBeispiel Würfelwurf:\n\nGrundmenge: \\(\\Omega = \\{1, 2, 3, 4, 5, 6\\}\\)\nEreignis \\(A\\) (“eine gerade Zahl würfeln”): \\(A = \\{2, 4, 6\\}\\)"
-  },
-  {
-    "objectID": "woche_02.html#laplace-experimente",
-    "href": "woche_02.html#laplace-experimente",
-    "title": "Woche 2: Wahrscheinlichkeitsrechnung",
-    "section": "3.1 Laplace-Experimente",
-    "text": "3.1 Laplace-Experimente\nEin Laplace-Experiment liegt vor, wenn jeder mögliche Ausgang (\\(\\omega\\)) absolut gleich wahrscheinlich ist.\nFormel: \\[\\mathbb{P}[A] = \\frac{|A|}{|\\Omega|} = \\frac{\\text{Anzahl günstige Ausgänge}}{\\text{Anzahl mögliche Ausgänge}}\\]\nBeispiel: Wahrscheinlichkeit für eine gerade Zahl beim fairen Würfelwurf: \\(\\mathbb{P}[A] = 3 / 6 = 0.5\\)."
-  },
-  {
-    "objectID": "woche_01.html",
-    "href": "woche_01.html",
-    "title": "Woche 1: Einführung & Kombinatorik",
-    "section": "",
-    "text": "In dieser ersten Woche klären wir die fundamentale Frage: Was unterscheidet Statistik von der Wahrscheinlichkeitsrechnung?\n\n\nDer Unterschied lässt sich am besten anhand eines Urnenmodells verdeutlichen:\n\nWahrscheinlichkeitsrechnung: Wir kennen das Modell (wir wissen, was in der Urne ist) und berechnen die Wahrscheinlichkeit für bestimmte Daten (was wir ziehen werden).\n\nFrage: “Was werden wir mit welcher Wahrscheinlichkeit in den Händen halten?”\n\nStatistik: Wir haben Daten (die gezogenen Kugeln) und ziehen Rückschlüsse auf das zugrunde liegende Modell oder dessen Parameter.\n\nFrage: “Was können wir basierend auf den Daten über den Inhalt der Urne aussagen?”"
-  },
-  {
-    "objectID": "woche_01.html#statistik-vs.-wahrscheinlichkeitsrechnung",
-    "href": "woche_01.html#statistik-vs.-wahrscheinlichkeitsrechnung",
-    "title": "Woche 1: Einführung & Kombinatorik",
-    "section": "",
-    "text": "Der Unterschied lässt sich am besten anhand eines Urnenmodells verdeutlichen:\n\nWahrscheinlichkeitsrechnung: Wir kennen das Modell (wir wissen, was in der Urne ist) und berechnen die Wahrscheinlichkeit für bestimmte Daten (was wir ziehen werden).\n\nFrage: “Was werden wir mit welcher Wahrscheinlichkeit in den Händen halten?”\n\nStatistik: Wir haben Daten (die gezogenen Kugeln) und ziehen Rückschlüsse auf das zugrunde liegende Modell oder dessen Parameter.\n\nFrage: “Was können wir basierend auf den Daten über den Inhalt der Urne aussagen?”"
-  },
-  {
-    "objectID": "woche_01.html#die-produktregel",
-    "href": "woche_01.html#die-produktregel",
-    "title": "Woche 1: Einführung & Kombinatorik",
-    "section": "2.1 Die Produktregel",
-    "text": "2.1 Die Produktregel\nWenn ein Gesamtvorgang aus \\(k\\) nacheinander folgenden, unabhängigen Entscheidungen besteht, wobei es für die \\(i\\)-te Entscheidung \\(n_i\\) Möglichkeiten gibt, berechnet sich die Gesamtzahl durch:\n\\[N = n_1 \\cdot n_2 \\cdot \\dots \\cdot n_k\\]"
-  },
-  {
-    "objectID": "woche_01.html#variationen",
-    "href": "woche_01.html#variationen",
-    "title": "Woche 1: Einführung & Kombinatorik",
-    "section": "2.2 Variationen",
-    "text": "2.2 Variationen\nEine Auswahl von Objekten, bei der die Reihenfolge wichtig ist. Hierbei gibt es zwei Fälle:\nOhne Zurücklegen:\nEin Zahlenschloss, bei dem jede Zahl nur einmal gewählt werden kann. Für ein 3-stelliges Schloss \\((N = 10*9*8)\\)\nMit Zurücklegen:\nEin Zahlenschloss, bei dem jede Zahl mehrfach gewählt werden kann. Für ein 3-stelliges Schloss \\((N = 10*10*10)\\)"
-  },
-  {
-    "objectID": "woche_01.html#permutationen-anordnungen",
-    "href": "woche_01.html#permutationen-anordnungen",
-    "title": "Woche 1: Einführung & Kombinatorik",
-    "section": "2.3 Permutationen (Anordnungen)",
-    "text": "2.3 Permutationen (Anordnungen)\nWie viele Möglichkeiten gibt es, \\(n\\) unterscheidbare Objekte in einer bestimmten Reihenfolge anzuordnen? Beispiel: Anordnung von 3 Büchern auf einem Regal: \\(3! = 6\\) Möglichkeiten.\nFormel: \\[P(n) = n!\\]\nIn R: factorial(n)"
-  },
-  {
-    "objectID": "woche_01.html#kombinationen-auswahl",
-    "href": "woche_01.html#kombinationen-auswahl",
-    "title": "Woche 1: Einführung & Kombinatorik",
-    "section": "2.4 Kombinationen (Auswahl)",
-    "text": "2.4 Kombinationen (Auswahl)\nHier untersuchen wir, wie viele Möglichkeiten es gibt, \\(k\\) Objekte aus einer Menge von \\(n\\) Objekten auszuwählen. Dabei ist die Reihenfolge egal (ziehen von einstelligen Nummern: 012 ist das gleiche wie 021 oder 210).\nOhne Zurücklegen.\nTypisches Beispiel: Lotto oder die Auswahl von 2 Pizzabelägen aus 6 möglichen, Pilze+Salami ist das gleiche wie Salami+Pilze.\nFormel (Binomialkoeffizient): \\[\\binom{n}{k} = \\frac{n!}{k!(n-k)!}\\]\nIn R: choose(n, k)\nMit Zurücklegen.\nBeispiel: Auswahl von Objekten, die nach der Ziehung wieder zurückgelegt werden, wobei nur die Anzahl pro Kategorie zählt. Beispiel: Auswahl von 3 Kugeln aus einer Urne mit 5 verschiedenen Farben, wobei jede Farbe mehrfach gezogen werden kann (z.B. 2 rote und 1 blaue Kugel).\nFormel: \\[\\binom{n+k-1}{k}\\]\nIn R: choose(n + k - 1, k)"
-  },
-  {
     "objectID": "woche_10.html",
     "href": "woche_10.html",
     "title": "Woche 10: Normalitätsannahme & Varianzhomogenität",
@@ -376,6 +138,356 @@
     "title": "Woche 10: Normalitätsannahme & Varianzhomogenität",
     "section": "3.2 Poissontest (Dichtetest)",
     "text": "3.2 Poissontest (Dichtetest)\nDer Poissontest kommt zum Einsatz, wenn die Rate von Ereignissen (z. B. die Anzahl von Salmonelleninfektionen in einem bestimmten Zeitraum) untersucht werden sol. Ziel ist es zu prüfen, ob die wahre mittlere Ereignisrate \\(\\lambda\\) von einem bisherigen Durchschnitt abweicht.\n\n3.2.1 Allgemeines Vorgehen\n\nSignifikanzniveau festlegen: Auch hier wird zunächst \\(\\alpha\\) (z. B. \\(\\alpha = 0.05\\)) festgelegt.\nHypothesen formulieren:\n\nNullhypothese \\(H_0: \\lambda = \\lambda_0\\) (z. B. \\(\\lambda = 5\\))\nAlternativhypothese \\(H_1: \\lambda \\neq \\lambda_0\\)\n\nTeststatistik bestimmen: Die Teststatistik ist die Summe der aufgetretenen Ereignisse über alle betrachteten Zeiträume, also \\(s = X_1 + X_2 + \\dots + X_n\\).\nVerteilung unter \\(H_0\\): Unter der Nullhypothese sind die einzelnen Beobachtungen \\(X_i\\) unabhängig und poissonverteilt. Die Summe der Ereignisse folgt demnach einer Poissonverteilung, deren Parameter sich aus der Summe der Erwartungswerte ergibt.\nBesonderheit bei der p-Wert-Berechnung: Im Gegensatz zu symmetrischen Verteilungen (wie der Normalverteilung) ist die Poissonverteilung im Allgemeinen asymmetrisch. Bei der Bestimmung des p-Wertes für einen zweiseitigen Test können wir die Teststatistik nicht einfach spiegeln. Stattdessen müssen die Wahrscheinlichkeiten beider Verteilungsenden separat berechnet und aufaddiert werden.\nEntscheidung: Liegt der berechnete p-Wert unter \\(\\alpha\\), verwerfen wir \\(H_0\\). Ist er größer oder gleich \\(\\alpha\\), behalten wir die Nullhypothese bei.\n\nIn R:\nrpoisson.test(s, T, r = lambda0, \n            alternative = \"two.sided\", # oder \"less\", \"greater\"\n            conf.level = 0.95)         # 1 - alpha\n\ns: Die Summe der beobachteten Ereignisse über alle Zeiträume.\nT: Die Gesamtzeit, über die die Ereignisse beobachtet wurden.\nr: Der erwartete Wert unter der Nullhypothese."
+  },
+  {
+    "objectID": "woche_01.html",
+    "href": "woche_01.html",
+    "title": "Woche 1: Einführung & Kombinatorik",
+    "section": "",
+    "text": "In dieser ersten Woche klären wir die fundamentale Frage: Was unterscheidet Statistik von der Wahrscheinlichkeitsrechnung?\n\n\nDer Unterschied lässt sich am besten anhand eines Urnenmodells verdeutlichen:\n\nWahrscheinlichkeitsrechnung: Wir kennen das Modell (wir wissen, was in der Urne ist) und berechnen die Wahrscheinlichkeit für bestimmte Daten (was wir ziehen werden).\n\nFrage: “Was werden wir mit welcher Wahrscheinlichkeit in den Händen halten?”\n\nStatistik: Wir haben Daten (die gezogenen Kugeln) und ziehen Rückschlüsse auf das zugrunde liegende Modell oder dessen Parameter.\n\nFrage: “Was können wir basierend auf den Daten über den Inhalt der Urne aussagen?”"
+  },
+  {
+    "objectID": "woche_01.html#statistik-vs.-wahrscheinlichkeitsrechnung",
+    "href": "woche_01.html#statistik-vs.-wahrscheinlichkeitsrechnung",
+    "title": "Woche 1: Einführung & Kombinatorik",
+    "section": "",
+    "text": "Der Unterschied lässt sich am besten anhand eines Urnenmodells verdeutlichen:\n\nWahrscheinlichkeitsrechnung: Wir kennen das Modell (wir wissen, was in der Urne ist) und berechnen die Wahrscheinlichkeit für bestimmte Daten (was wir ziehen werden).\n\nFrage: “Was werden wir mit welcher Wahrscheinlichkeit in den Händen halten?”\n\nStatistik: Wir haben Daten (die gezogenen Kugeln) und ziehen Rückschlüsse auf das zugrunde liegende Modell oder dessen Parameter.\n\nFrage: “Was können wir basierend auf den Daten über den Inhalt der Urne aussagen?”"
+  },
+  {
+    "objectID": "woche_01.html#die-produktregel",
+    "href": "woche_01.html#die-produktregel",
+    "title": "Woche 1: Einführung & Kombinatorik",
+    "section": "2.1 Die Produktregel",
+    "text": "2.1 Die Produktregel\nWenn ein Gesamtvorgang aus \\(k\\) nacheinander folgenden, unabhängigen Entscheidungen besteht, wobei es für die \\(i\\)-te Entscheidung \\(n_i\\) Möglichkeiten gibt, berechnet sich die Gesamtzahl durch:\n\\[N = n_1 \\cdot n_2 \\cdot \\dots \\cdot n_k\\]"
+  },
+  {
+    "objectID": "woche_01.html#variationen",
+    "href": "woche_01.html#variationen",
+    "title": "Woche 1: Einführung & Kombinatorik",
+    "section": "2.2 Variationen",
+    "text": "2.2 Variationen\nEine Auswahl von Objekten, bei der die Reihenfolge wichtig ist. Hierbei gibt es zwei Fälle:\nOhne Zurücklegen:\nEin Zahlenschloss, bei dem jede Zahl nur einmal gewählt werden kann. Für ein 3-stelliges Schloss \\((N = 10*9*8)\\)\nMit Zurücklegen:\nEin Zahlenschloss, bei dem jede Zahl mehrfach gewählt werden kann. Für ein 3-stelliges Schloss \\((N = 10*10*10)\\)"
+  },
+  {
+    "objectID": "woche_01.html#permutationen-anordnungen",
+    "href": "woche_01.html#permutationen-anordnungen",
+    "title": "Woche 1: Einführung & Kombinatorik",
+    "section": "2.3 Permutationen (Anordnungen)",
+    "text": "2.3 Permutationen (Anordnungen)\nWie viele Möglichkeiten gibt es, \\(n\\) unterscheidbare Objekte in einer bestimmten Reihenfolge anzuordnen? Beispiel: Anordnung von 3 Büchern auf einem Regal: \\(3! = 6\\) Möglichkeiten.\nFormel: \\[P(n) = n!\\]\nIn R: factorial(n)"
+  },
+  {
+    "objectID": "woche_01.html#kombinationen-auswahl",
+    "href": "woche_01.html#kombinationen-auswahl",
+    "title": "Woche 1: Einführung & Kombinatorik",
+    "section": "2.4 Kombinationen (Auswahl)",
+    "text": "2.4 Kombinationen (Auswahl)\nHier untersuchen wir, wie viele Möglichkeiten es gibt, \\(k\\) Objekte aus einer Menge von \\(n\\) Objekten auszuwählen. Dabei ist die Reihenfolge egal (ziehen von einstelligen Nummern: 012 ist das gleiche wie 021 oder 210).\nOhne Zurücklegen.\nTypisches Beispiel: Lotto oder die Auswahl von 2 Pizzabelägen aus 6 möglichen, Pilze+Salami ist das gleiche wie Salami+Pilze.\nFormel (Binomialkoeffizient): \\[\\binom{n}{k} = \\frac{n!}{k!(n-k)!}\\]\nIn R: choose(n, k)\nMit Zurücklegen.\nBeispiel: Auswahl von Objekten, die nach der Ziehung wieder zurückgelegt werden, wobei nur die Anzahl pro Kategorie zählt. Beispiel: Auswahl von 3 Kugeln aus einer Urne mit 5 verschiedenen Farben, wobei jede Farbe mehrfach gezogen werden kann (z.B. 2 rote und 1 blaue Kugel).\nFormel: \\[\\binom{n+k-1}{k}\\]\nIn R: choose(n + k - 1, k)"
+  },
+  {
+    "objectID": "woche_02.html",
+    "href": "woche_02.html",
+    "title": "Woche 2: Wahrscheinlichkeitsrechnung",
+    "section": "",
+    "text": "Die Wahrscheinlichkeitsrechnung beschäftigt sich mit Zufallsexperimenten – das sind Vorgänge, deren Ausgang nicht exakt vorhersagbar ist. Um damit zu rechnen, brauchen wir einige Grundbegriffe:\n\nElementarereignis (\\(\\omega\\)): Ein einzelner, konkreter Ausgang eines Experiments.\nGrundmenge / Grundraum (\\(\\Omega\\)): Die Menge aller möglichen Ausgänge eines Experiments.\nEreignis (\\(A\\)): Eine Sammlung von bestimmten Elementarereignissen. Formal ist ein Ereignis eine Teilmenge der Grundmenge (\\(A \\subseteq \\Omega\\)).\n\nBeispiel Würfelwurf:\n\nGrundmenge: \\(\\Omega = \\{1, 2, 3, 4, 5, 6\\}\\)\nEreignis \\(A\\) (“eine gerade Zahl würfeln”): \\(A = \\{2, 4, 6\\}\\)"
+  },
+  {
+    "objectID": "woche_02.html#laplace-experimente",
+    "href": "woche_02.html#laplace-experimente",
+    "title": "Woche 2: Wahrscheinlichkeitsrechnung",
+    "section": "3.1 Laplace-Experimente",
+    "text": "3.1 Laplace-Experimente\nEin Laplace-Experiment liegt vor, wenn jeder mögliche Ausgang (\\(\\omega\\)) absolut gleich wahrscheinlich ist.\nFormel: \\[\\mathbb{P}[A] = \\frac{|A|}{|\\Omega|} = \\frac{\\text{Anzahl günstige Ausgänge}}{\\text{Anzahl mögliche Ausgänge}}\\]\nBeispiel: Wahrscheinlichkeit für eine gerade Zahl beim fairen Würfelwurf: \\(\\mathbb{P}[A] = 3 / 6 = 0.5\\)."
+  },
+  {
+    "objectID": "woche_08_1.html",
+    "href": "woche_08_1.html",
+    "title": "Woche 8_1: Deskriptive Statistik",
+    "section": "",
+    "text": "Die deskriptive (beschreibende) Statistik hat zum Ziel, grosse Datenmengen übersichtlich zusammenzufassen und deren charakteristische Merkmale durch Tabellen, Kennzahlen und Grafiken darzustellen.\n\nGrundgesamtheit (N): Die Menge aller Objekte, über die wir eine Aussage treffen wollen.\nStichprobe (n): Eine Teilmenge der Grundgesamtheit, die tatsächlich untersucht wird.\nMerkmal (Variable): Die Eigenschaft, die gemessen wird (z. B. Körpergrösse).\nMerkmalsausprägung: Der konkrete Wert, den ein Merkmal annehmen kann (z. B. 1.80 m)."
+  },
+  {
+    "objectID": "woche_08_1.html#arithmetisches-mittel-barx",
+    "href": "woche_08_1.html#arithmetisches-mittel-barx",
+    "title": "Woche 8_1: Deskriptive Statistik",
+    "section": "3.1 Arithmetisches Mittel (\\(\\bar{x}\\))",
+    "text": "3.1 Arithmetisches Mittel (\\(\\bar{x}\\))\nDer klassische Durchschnitt. Er ist sehr anfällig gegenüber Ausreissern. \\[\\bar{x} = \\frac{1}{n} \\sum_{i=1}^{n} x_i\\] In R: mean(x)"
+  },
+  {
+    "objectID": "woche_08_1.html#median-q_0.5",
+    "href": "woche_08_1.html#median-q_0.5",
+    "title": "Woche 8_1: Deskriptive Statistik",
+    "section": "3.2 Median (\\(q_{0.5}\\))",
+    "text": "3.2 Median (\\(q_{0.5}\\))\nDer Wert, der die sortierte Datenreihe genau in zwei Hälften teilt. Er ist robust gegenüber Ausreissern. In R: median(x)"
+  },
+  {
+    "objectID": "woche_09.html",
+    "href": "woche_09.html",
+    "title": "Woche 9: Hypothesentests und t-Tests",
+    "section": "",
+    "text": "Ein statistischer Hypothesentest ist ein Verfahren, um anhand von Daten zu entscheiden, ob eine bestimmte Annahme (Hypothese) über die Grundgesamtheit haltbar ist oder nicht.\n\n\nMan kann sich einen Hypothesentest wie ein Gerichtsverfahren vorstellen:\n\nNullhypothese (\\(H_0\\)): Der Angeklagte ist unschuldig (Status Quo, kein Effekt).\nAlternativhypothese (\\(H_1\\)): Der Angeklagte ist schuldig (neue Entdeckung, ein Effekt liegt vor).\nZiel: Wir suchen nach “Beweisen” (Daten), die so stark gegen \\(H_0\\) sprechen, dass wir die Unschuldsvermutung aufgeben müssen.\n\n\n\n\nDa wir nur eine Stichprobe betrachten, können wir Fehlentscheidungen treffen:\n\n\n\n\n\n\n\n\nFehler\nBezeichnung\nBedeutung\n\n\n\n\nFehler 1. Art\n\\(\\alpha\\) (Signifikanzniveau)\n\\(H_0\\) wird abgelehnt, obwohl sie wahr ist (“falscher Alarm”).\n\n\nFehler 2. Art\n\\(\\beta\\)\n\\(H_0\\) wird beibehalten, obwohl \\(H_1\\) wahr ist (“verpasster Effekt”).\n\n\n\nDas Signifikanzniveau \\(\\alpha\\) (meist 5%) legt fest, wie hoch das Risiko für einen Fehler 1. Art maximal sein darf.\n\n\n\nFehlerarten (by Tobias Peter)\n\n\n\n\n\nDer p-Wert ist die Wahrscheinlichkeit, ein Stichprobenresultat zu erhalten, das mindestens so extrem ist wie das beobachtete, unter der Annahme, dass \\(H_0\\) wahr ist.\n\n\\(p &lt; \\alpha\\): Das Ergebnis ist signifikant \\(\\rightarrow H_0\\) wird abgelehnt.\n\\(p \\ge \\alpha\\): Das Ergebnis ist nicht signifikant \\(\\rightarrow H_0\\) wird beibehalten.\n\n\n\n\nDie Macht (Power) eines Tests ist die Wahrscheinlichkeit, dass der Test \\(H_0\\) ablehnt, wenn tatsächlich \\(H_1\\) wahr ist. Also wie wahrscheinlich detektieren wir einen echten Effekt? Sie hängt von der Effektgröße, der Stichprobengröße und dem Signifikanzniveau ab. —"
+  },
+  {
+    "objectID": "woche_09.html#die-grundidee-das-gerichtsverfahren",
+    "href": "woche_09.html#die-grundidee-das-gerichtsverfahren",
+    "title": "Woche 9: Hypothesentests und t-Tests",
+    "section": "",
+    "text": "Man kann sich einen Hypothesentest wie ein Gerichtsverfahren vorstellen:\n\nNullhypothese (\\(H_0\\)): Der Angeklagte ist unschuldig (Status Quo, kein Effekt).\nAlternativhypothese (\\(H_1\\)): Der Angeklagte ist schuldig (neue Entdeckung, ein Effekt liegt vor).\nZiel: Wir suchen nach “Beweisen” (Daten), die so stark gegen \\(H_0\\) sprechen, dass wir die Unschuldsvermutung aufgeben müssen."
+  },
+  {
+    "objectID": "woche_09.html#fehlerarten-beim-testen",
+    "href": "woche_09.html#fehlerarten-beim-testen",
+    "title": "Woche 9: Hypothesentests und t-Tests",
+    "section": "",
+    "text": "Da wir nur eine Stichprobe betrachten, können wir Fehlentscheidungen treffen:\n\n\n\n\n\n\n\n\nFehler\nBezeichnung\nBedeutung\n\n\n\n\nFehler 1. Art\n\\(\\alpha\\) (Signifikanzniveau)\n\\(H_0\\) wird abgelehnt, obwohl sie wahr ist (“falscher Alarm”).\n\n\nFehler 2. Art\n\\(\\beta\\)\n\\(H_0\\) wird beibehalten, obwohl \\(H_1\\) wahr ist (“verpasster Effekt”).\n\n\n\nDas Signifikanzniveau \\(\\alpha\\) (meist 5%) legt fest, wie hoch das Risiko für einen Fehler 1. Art maximal sein darf.\n\n\n\nFehlerarten (by Tobias Peter)"
+  },
+  {
+    "objectID": "woche_09.html#der-p-wert",
+    "href": "woche_09.html#der-p-wert",
+    "title": "Woche 9: Hypothesentests und t-Tests",
+    "section": "",
+    "text": "Der p-Wert ist die Wahrscheinlichkeit, ein Stichprobenresultat zu erhalten, das mindestens so extrem ist wie das beobachtete, unter der Annahme, dass \\(H_0\\) wahr ist.\n\n\\(p &lt; \\alpha\\): Das Ergebnis ist signifikant \\(\\rightarrow H_0\\) wird abgelehnt.\n\\(p \\ge \\alpha\\): Das Ergebnis ist nicht signifikant \\(\\rightarrow H_0\\) wird beibehalten."
+  },
+  {
+    "objectID": "woche_09.html#die-macht-eines-tests",
+    "href": "woche_09.html#die-macht-eines-tests",
+    "title": "Woche 9: Hypothesentests und t-Tests",
+    "section": "",
+    "text": "Die Macht (Power) eines Tests ist die Wahrscheinlichkeit, dass der Test \\(H_0\\) ablehnt, wenn tatsächlich \\(H_1\\) wahr ist. Also wie wahrscheinlich detektieren wir einen echten Effekt? Sie hängt von der Effektgröße, der Stichprobengröße und dem Signifikanzniveau ab. —"
+  },
+  {
+    "objectID": "woche_09.html#einstichproben-t-test",
+    "href": "woche_09.html#einstichproben-t-test",
+    "title": "Woche 9: Hypothesentests und t-Tests",
+    "section": "2.1 Einstichproben-t-Test",
+    "text": "2.1 Einstichproben-t-Test\nMan vergleicht den Mittelwert einer Stichprobe mit einem fest vorgegebenen Sollwert \\(\\mu_0\\).\nBeispiel: Eine Tablette soll 100 mg Wirkstoff enthalten. Wir testen, ob die Produktion systematisch davon abweicht.\n\n\\(H_0: \\mu = 100\\)\n\\(H_1: \\mu \\neq 100\\) (zweiseitig)\n\n\n2.1.1 Teststatistik \\(T\\):\nDie Teststatistik ist der “Prüfwert”, den wir berechnen, um zu sehen, wie weit unsere Daten vom erwarteten Wert (\\(\\mu_0\\)) entfernt liegen. \\[T = \\frac{\\overline{X} - \\mu_0}{S / \\sqrt{n}}\\]\n\n\\(\\overline{X}\\): Der beobachtete Durchschnitt deiner Stichprobe.\n\\(\\mu_0\\): Der hypothetische Sollwert aus der Nullhypothese \\(H_0\\).\n\\(S\\): Die Standardabweichung der Stichprobe.\n\\(n\\): Die Anzahl der Beobachtungen.\n\n\n\n2.1.2 Warum unterscheidet sich \\(T\\) vom Stichprobenmittelwert?\nWährend der Mittelwert \\(\\overline{X}\\) in der Originaleinheit (z. B. mg, cm, kg) gemessen wird, ist \\(T\\) eine standardisierte Maßzahl.\n\nVerschiebung (Zentrierung): Wir berechnen die Differenz \\((\\overline{X} - \\mu_0)\\). Das sagt uns, wie groß die Abweichung absolut ist.\nMaßstabsanpassung (Standardisierung): Wir teilen durch den Standardfehler (\\(S / \\sqrt{n}\\)). \\(T\\) misst also nicht in Zentimetern, sondern in Standardfehlern.\nEin \\(T\\)-Wert von 2 bedeutet: “Unser Stichprobenmittelwert liegt 2 Standardfehler weit weg vom Sollwert.”\nDies macht Ergebnisse vergleichbar, egal was wir für Dinge messen.\n\n\n\n2.1.3 Warum t-Verteilung statt Normalverteilung?\nNach dem Zentralen Grenzwertsatz sind Mittelwerte bei großen Stichproben zwar normalverteilt, aber es gibt einen Haken: Die Varianz.\n\nWüssten wir die wahre Varianz \\(\\sigma^2\\) der Grundgesamtheit, dürften wir die Normalverteilung nutzen.\nIn der Realität müssen wir \\(\\sigma^2\\) aber durch die Stichprobenvarianz \\(S^2\\) schätzen.\nDiese Schätzung ist unsicher, besonders bei kleinen Stichproben.\n\nDie t-Verteilung korrigiert diese Unsicherheit. Sie hat im Vergleich zur Normalverteilung “Fat Tails” (breitere Ränder). Das bedeutet, dass extreme Abweichungen bei kleinen Stichproben öfter vorkommen können. Je größer die Stichprobe \\(n\\) wird, desto ähnlicher wird die t-Verteilung der Normalverteilung.\n\n\n\nT-Verteilung vs. Normalverteilung (https://analystprep.com/cfa-level-1-exam/quantitative-methods/t-distribution-and-degrees-of-freedom/)\n\n\n\n\n2.1.4 So wird das Resultat unseres Einstichproben-t-Tests berechnet:\n\nSetze ein Signifikanzniveau \\(\\alpha\\) (z.B. 0.05).\nBestimme die Freiheitsgrade: \\(df = n - 1\\).\nUnser Signifikanzniveau und unsere Freiheitsgrade definieren eine t-Verteilung, auf der wir nun testen.\nWir bestimmen die kritischen Werte für die Ablehnungsbereiche: qt(1 - alpha/2, df) (zweiseitige Tests).\nBerechnete den \\(T\\)-Wert unserer Stichprobe und vergleiche ihn mit dem kritischen Wert aus der t-Verteilung. Liegt der \\(T\\)-Wert außerhalb des kritischen Bereichs, lehnen wir \\(H_0\\) ab.\n\nIn R können wir diesen Test mit der Funktion t.test() durchführen, welche die oben genannten Schritte automatisch erledigt.\nIn R:\nt.test(stichprobe, alternative = \"two.sided\", mu = 100, conf.level = 0.95)\nDer resultierende p-Wert gibt an, wie wahrscheinlich es ist, ein so extremes Ergebnis zu erhalten, wenn \\(H_0\\) wahr ist. Ein p-Wert kleiner als \\(\\alpha\\) führt zur Ablehnung von \\(H_0\\), das heisst es gibt eine systematische Abweichung von 100 mg, wenn der p-Wert kleiner als unser Signifikanzniveau ist."
+  },
+  {
+    "objectID": "woche_09.html#zweistichproben-t-test-unabhängig",
+    "href": "woche_09.html#zweistichproben-t-test-unabhängig",
+    "title": "Woche 9: Hypothesentests und t-Tests",
+    "section": "2.2 Zweistichproben-t-Test (Unabhängig)",
+    "text": "2.2 Zweistichproben-t-Test (Unabhängig)\nVergleicht die Mittelwerte zweier unabhängiger Gruppen (z.B. Behandlungsgruppe vs. Kontrollgruppe).\n\nVoraussetzung: Beide Gruppen sind normalverteilt.\nVarianz: Man unterscheidet, ob die Varianzen der beiden Gruppen gleich oder verschieden sind (Welch-Test)."
+  },
+  {
+    "objectID": "woche_09.html#gepaarter-t-test",
+    "href": "woche_09.html#gepaarter-t-test",
+    "title": "Woche 9: Hypothesentests und t-Tests",
+    "section": "2.3 Gepaarter t-Test",
+    "text": "2.3 Gepaarter t-Test\nWird verwendet, wenn Messwerte paarweise zusammengehören (z.B. Messung vor und nach einem Training bei derselben Person). Hierbei wird der t-Test auf die Differenzen der Paare angewendet."
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "1 Willkommen zum Statistik-Kurs",
+    "section": "",
+    "text": "Dieses digitale Skript wird jede Woche erweitert. Hier finden Sie alle wichtigen Formeln, Definitionen und Beispiele aus den Vorlesungen.\n\n\n\nWoche 1: Einführung & Kombinatorik\nWoche 2: Wahrscheinlichkeitsrechnung\nWoche 3: Bedingte Wahrscheinlichkeiten\nWoche 4: Zufallsvariablen & Verteilungen\nWoche 5: Erwartungswert & Varianz\nWoche 6: Standardverteilungen\nWoche 7: Grenzwertsätze\nWoche 8_1: Deskriptive Statistik\nWoche 8_2: Schätzer & Konfidenzintervalle\nWoche 9: Hypothesentests & t-Tests\nWoche 10: Normalitätsannahme & Varianzhomogenität\nWoche 11: Poweranalyse, Nichtparametrische Tests"
+  },
+  {
+    "objectID": "index.html#semesterplan",
+    "href": "index.html#semesterplan",
+    "title": "1 Willkommen zum Statistik-Kurs",
+    "section": "",
+    "text": "Woche 1: Einführung & Kombinatorik\nWoche 2: Wahrscheinlichkeitsrechnung\nWoche 3: Bedingte Wahrscheinlichkeiten\nWoche 4: Zufallsvariablen & Verteilungen\nWoche 5: Erwartungswert & Varianz\nWoche 6: Standardverteilungen\nWoche 7: Grenzwertsätze\nWoche 8_1: Deskriptive Statistik\nWoche 8_2: Schätzer & Konfidenzintervalle\nWoche 9: Hypothesentests & t-Tests\nWoche 10: Normalitätsannahme & Varianzhomogenität\nWoche 11: Poweranalyse, Nichtparametrische Tests"
+  },
+  {
+    "objectID": "woche_08_2.html",
+    "href": "woche_08_2.html",
+    "title": "Woche 8_2: Schätzer & Konfidenzintervalle",
+    "section": "",
+    "text": "Oft wissen wir aus Erfahrung, dass Daten einer bestimmten Verteilung folgen (z.B. Normalverteilung), aber die genauen Parameter (wie der Erwartungswert \\(\\mu\\) oder die Varianz \\(\\sigma^2\\)) sind unbekannt und müssen aus Daten geschätzt werden.\n\nStichprobe: Eine Folge von \\(n\\) unabhängigen und identisch verteilten (i.i.d.) Zufallsvariablen \\(X_i\\), die verwendet wird, um den unbekannten, fixen Parameter aus Beobachtungen zu bestimmen."
+  },
+  {
+    "objectID": "woche_08_2.html#normalverteilung",
+    "href": "woche_08_2.html#normalverteilung",
+    "title": "Woche 8_2: Schätzer & Konfidenzintervalle",
+    "section": "3.1 1. Normalverteilung",
+    "text": "3.1 1. Normalverteilung\n\nErwartungswert (\\(\\mu\\)): Der beste Schätzer ist das arithmetische Mittel \\(\\hat{\\mu} = \\frac{1}{n}\\sum_{i=1}^{n}X_i\\). Dieser Schätzer ist erwartungstreu.\nVarianz (\\(\\sigma^2\\)): Die Stichprobenvarianz wird mit \\(\\sigma^2 = \\frac{1}{n-1}\\sum_{i=1}^{n}(X_i-\\hat{\\mu})^2\\) berechnet.\nWichtig: Wir teilen durch \\(n-1\\) (und nicht durch \\(n\\)), damit der Schätzer erwartungstreu ist und die wahre Varianz nicht systematisch unterschätzt wird."
+  },
+  {
+    "objectID": "woche_08_2.html#bernoulli-verteilung-anteilsschätzung",
+    "href": "woche_08_2.html#bernoulli-verteilung-anteilsschätzung",
+    "title": "Woche 8_2: Schätzer & Konfidenzintervalle",
+    "section": "3.2 2. Bernoulli-Verteilung (Anteilsschätzung)",
+    "text": "3.2 2. Bernoulli-Verteilung (Anteilsschätzung)\n\nWir wollen eine Erfolgswahrscheinlichkeit \\(p\\) schätzen (z.B. Anteil defekter Bauteile).\nDer erwartungstreue Schätzer ist der Stichprobenmittelwert \\(\\hat{p} = \\frac{k}{n}\\), wobei \\(k\\) die Anzahl der Erfolge und \\(n\\) die Anzahl der Versuche ist.\nBeispiel: Bei 100 Münzwürfen (\\(n=100\\)) erhalten wir 62-mal Zahl (\\(k=62\\)). Die Schätzung lautet \\(\\hat{p} = 0.62\\)."
+  },
+  {
+    "objectID": "woche_08_2.html#poisson-verteilung-dichteschätzung",
+    "href": "woche_08_2.html#poisson-verteilung-dichteschätzung",
+    "title": "Woche 8_2: Schätzer & Konfidenzintervalle",
+    "section": "3.3 3. Poisson-Verteilung (Dichteschätzung)",
+    "text": "3.3 3. Poisson-Verteilung (Dichteschätzung)\n\nWir modellieren Ereignisse in einem festen Zeit-/Raumintervall (z.B. Anrufe im Callcenter pro Stunde).\nDer erwartungstreue Schätzer für die Rate \\(\\lambda\\) ist \\(\\hat{\\lambda} = \\frac{\\sum_{i=1}^{n}k_i}{n}\\) (Gesamtzahl der Ereignisse geteilt durch die Anzahl der Beobachtungsperioden)."
+  },
+  {
+    "objectID": "woche_08_2.html#konfidenzintervall-für-den-erwartungswert-normalverteilung",
+    "href": "woche_08_2.html#konfidenzintervall-für-den-erwartungswert-normalverteilung",
+    "title": "Woche 8_2: Schätzer & Konfidenzintervalle",
+    "section": "4.1 Konfidenzintervall für den Erwartungswert (Normalverteilung)",
+    "text": "4.1 Konfidenzintervall für den Erwartungswert (Normalverteilung)\n\nBei bekannter Varianz (\\(\\sigma^2\\)): Wir verwenden die Quantile \\(x_-\\) und \\(x_+\\) der Standardnormalverteilung. Das Intervall lautet \\([\\overline{X}-\\frac{\\sigma}{\\sqrt{n}}x_+, \\overline{X}-\\frac{\\sigma}{\\sqrt{n}}x_-]\\).\nBei unbekannter Varianz: Die Varianz muss mit \\(\\sigma^2\\) aus den Daten geschätzt werden. Dadurch ändert sich die theoretische Verteilung: Wir müssen nun die t-Verteilung mit \\(n-1\\) Freiheitsgraden verwenden anstatt der Standardnormalverteilung."
+  },
+  {
+    "objectID": "woche_08_2.html#konfidenzintervallschätzung-für-verschiedene-verteilungen",
+    "href": "woche_08_2.html#konfidenzintervallschätzung-für-verschiedene-verteilungen",
+    "title": "Woche 8_2: Schätzer & Konfidenzintervalle",
+    "section": "4.2 Konfidenzintervallschätzung für verschiedene Verteilungen",
+    "text": "4.2 Konfidenzintervallschätzung für verschiedene Verteilungen\nNormalverteilung: Das Intervall für den Erwartungswert \\(\\mu\\) wird mit der t-Verteilung berechnet, wenn die Varianz unbekannt ist.\n# Stichprobenwerte eingeben\nx &lt;- c(170.3, 165.1, 172.0, 157.4)\n\n# Punktschätzer berechnen\nmu_hat &lt;- mean(x)      # Arithmetisches Mittel\nsigma2_hat &lt;- var(x)   # Stichprobenvarianz (n-1 korrigiert)\n\n# 80%-Konfidenzintervall für den Erwartungswert (zweiseitig)\n# Da die Varianz unbekannt ist, verwendet R automatisch die t-Verteilung.\nt.test(x, conf.level = 0.80)\nBinomialverteilung: Das Intervall für den Anteil \\(p\\) wird mit der Binomialverteilung berechnet.\n# Daten aus der Umfrage\nja_stimmen &lt;- 527\nn_befragte &lt;- 1000\n\n# Anteilsschätzung und 75%-Konfidenzintervall\nbinom.test(x = ja_stimmen, \n           n = n_befragte, \n           conf.level = 0.75, \n           alternative = \"two.sided\")\n*Poissonverteilung: Das Intervall für die Rate \\(\\lambda\\) wird mit der Poissonverteilung berechnet.\n# Beobachtungen der letzten 5 Jahre\ntote_pro_jahr &lt;- c(312, 292, 321, 275, 300)\n\n# Gesamtzahl der Ereignisse (x) und Anzahl der Beobachtungszeiträume (T)\nx_total &lt;- sum(tote_pro_jahr) # 1500 Ereignisse\nT_jahre &lt;- length(tote_pro_jahr) # 5 Jahre\n\n# Schätzung der Rate (Lambda) und 90%-Konfidenzintervall\npoisson.test(x = x_total, \n             T = T_jahre, \n             conf.level = 0.90, \n             alternative = \"two.sided\")"
+  },
+  {
+    "objectID": "woche_03.html",
+    "href": "woche_03.html",
+    "title": "Woche 3: Bedingte Wahrscheinlichkeiten",
+    "section": "",
+    "text": "Oft bekommen wir neue Informationen, die unsere Einschätzung verändern. Die bedingte Wahrscheinlichkeit \\(\\mathbb{P}[A|B]\\) beschreibt die Wahrscheinlichkeit von \\(A\\), unter der Voraussetzung, dass \\(B\\) bereits eingetreten ist.\nFormel: \\[\\mathbb{P}[A|B] = \\frac{\\mathbb{P}[A \\cap B]}{\\mathbb{P}[B]}\\]\n\n\nUm \\(\\mathbb{P}[A]\\) zu berechnen, können wir das Problem in disjunkte Fälle (z.B. Fall \\(B\\) und Fall \\(B^c\\)) aufteilen und gewichten: \\[\\mathbb{P}[A] = \\mathbb{P}[A|B] \\cdot \\mathbb{P}[B] + \\mathbb{P}[A|B^c] \\cdot \\mathbb{P}[B^c]\\]\nWir kennen die Fälle \\(B\\) und \\(B^c\\), deren Wahrscheinlichkeiten ( \\(\\mathbb{P}[B^c], \\mathbb{P}[B]\\) ) und die bedingten Wahrscheinlichkeiten ( \\(\\mathbb{P}[A|B^c], \\mathbb{P}[A|B]\\) ). Die Formel liefert daraus dann \\(\\mathbb{P}[A]\\).\n\n\nEreignis \\(A\\): Wir ziehen als zweite Kugel eine rote Kugel. Ereignis \\(B\\): Wir ziehen als erste Kugel eine rote Kugel. Dann können wir die Wahrscheinlichkeit für \\(A\\) berechnen, indem wir die Fälle \\(B\\) und \\(B^c\\) betrachten.\n\n\n\nIn einer Firma arbeiten 60% Ingenieur:innen und 40% Betriebswirtschaftler:innen. Von den Ingenieur: innen sprechen 30% Französisch, von den Betriebswirtschaftler:innen sind es 50%.\n\nDisjunkte Fälle (niemand ist beides, also disjunkt, schliessen sich gegenseitig aus):\n\n\\(I\\) = Ingenieur:in,\n\\(B\\) = Betriebswirtschaftler:in\n\nWahrscheinlichkeiten:\n\n\\(\\mathbb{P}[I] = 0.6\\)\n\\(\\mathbb{P}[B] = 0.4\\)\n\n\nDer Satz der totalen Wahrscheinlichkeit erlaubt es uns, die Wahrscheinlichkeit zu berechnen, dass eine zufällig ausgewählte Person Französisch spricht, indem wir die Fälle \\(I\\) und \\(B\\) separat betrachten: \\[\\mathbb{P}[\\text{F}] = \\mathbb{P}[\\text{F}|B] \\cdot \\mathbb{P}[B] + \\mathbb{P}[\\text{F}|I] \\cdot \\mathbb{P}[I] = 0.3 \\cdot 0.6 + 0.5 \\cdot 0.4 = 0.38\\]\n\n\n\nVisuelle Erläuterung\n\n\n\n\n\n\nDieser Satz erlaubt es uns, bedingte Wahrscheinlichkeiten “umzudrehen”, also von \\(\\mathbb{P}[A|B]\\) auf \\(\\mathbb{P}[B|A]\\) zu schliessen: \\[\\mathbb{P}[A|B] = \\frac{\\mathbb{P}[B|A] \\cdot \\mathbb{P}[A]}{\\mathbb{P}[B]}\\]\nKlassisches Beispiel (Medizinischer Test): Auch wenn ein HIV-Test sehr genau ist, ist die Wahrscheinlichkeit, tatsächlich infiziert zu sein, wenn der Test positiv ausfällt, oft überraschend tief, falls die Krankheit in der Gesamtbevölkerung sehr selten ist."
+  },
+  {
+    "objectID": "woche_03.html#satz-der-totalen-wahrscheinlichkeit",
+    "href": "woche_03.html#satz-der-totalen-wahrscheinlichkeit",
+    "title": "Woche 3: Bedingte Wahrscheinlichkeiten",
+    "section": "",
+    "text": "Um \\(\\mathbb{P}[A]\\) zu berechnen, können wir das Problem in disjunkte Fälle (z.B. Fall \\(B\\) und Fall \\(B^c\\)) aufteilen und gewichten: \\[\\mathbb{P}[A] = \\mathbb{P}[A|B] \\cdot \\mathbb{P}[B] + \\mathbb{P}[A|B^c] \\cdot \\mathbb{P}[B^c]\\]\nWir kennen die Fälle \\(B\\) und \\(B^c\\), deren Wahrscheinlichkeiten ( \\(\\mathbb{P}[B^c], \\mathbb{P}[B]\\) ) und die bedingten Wahrscheinlichkeiten ( \\(\\mathbb{P}[A|B^c], \\mathbb{P}[A|B]\\) ). Die Formel liefert daraus dann \\(\\mathbb{P}[A]\\).\n\n\nEreignis \\(A\\): Wir ziehen als zweite Kugel eine rote Kugel. Ereignis \\(B\\): Wir ziehen als erste Kugel eine rote Kugel. Dann können wir die Wahrscheinlichkeit für \\(A\\) berechnen, indem wir die Fälle \\(B\\) und \\(B^c\\) betrachten.\n\n\n\nIn einer Firma arbeiten 60% Ingenieur:innen und 40% Betriebswirtschaftler:innen. Von den Ingenieur: innen sprechen 30% Französisch, von den Betriebswirtschaftler:innen sind es 50%.\n\nDisjunkte Fälle (niemand ist beides, also disjunkt, schliessen sich gegenseitig aus):\n\n\\(I\\) = Ingenieur:in,\n\\(B\\) = Betriebswirtschaftler:in\n\nWahrscheinlichkeiten:\n\n\\(\\mathbb{P}[I] = 0.6\\)\n\\(\\mathbb{P}[B] = 0.4\\)\n\n\nDer Satz der totalen Wahrscheinlichkeit erlaubt es uns, die Wahrscheinlichkeit zu berechnen, dass eine zufällig ausgewählte Person Französisch spricht, indem wir die Fälle \\(I\\) und \\(B\\) separat betrachten: \\[\\mathbb{P}[\\text{F}] = \\mathbb{P}[\\text{F}|B] \\cdot \\mathbb{P}[B] + \\mathbb{P}[\\text{F}|I] \\cdot \\mathbb{P}[I] = 0.3 \\cdot 0.6 + 0.5 \\cdot 0.4 = 0.38\\]\n\n\n\nVisuelle Erläuterung"
+  },
+  {
+    "objectID": "woche_03.html#satz-von-bayes",
+    "href": "woche_03.html#satz-von-bayes",
+    "title": "Woche 3: Bedingte Wahrscheinlichkeiten",
+    "section": "",
+    "text": "Dieser Satz erlaubt es uns, bedingte Wahrscheinlichkeiten “umzudrehen”, also von \\(\\mathbb{P}[A|B]\\) auf \\(\\mathbb{P}[B|A]\\) zu schliessen: \\[\\mathbb{P}[A|B] = \\frac{\\mathbb{P}[B|A] \\cdot \\mathbb{P}[A]}{\\mathbb{P}[B]}\\]\nKlassisches Beispiel (Medizinischer Test): Auch wenn ein HIV-Test sehr genau ist, ist die Wahrscheinlichkeit, tatsächlich infiziert zu sein, wenn der Test positiv ausfällt, oft überraschend tief, falls die Krankheit in der Gesamtbevölkerung sehr selten ist."
+  },
+  {
+    "objectID": "woche_04.html",
+    "href": "woche_04.html",
+    "title": "Woche 4: Zufallsvariablen & Verteilungen",
+    "section": "",
+    "text": "Eine Zufallsvariable (oft mit grossen Buchstaben wie \\(X\\), \\(Y\\) bezeichnet) ist im Prinzip eine Übersetzungsmaschine: Sie ordnet den abstrakten Ergebnissen eines Zufallsexperiments (der Grundmenge \\(\\Omega\\)) reelle Zahlen zu.\nWir unterscheiden zwei Haupttypen:\n\nDiskrete Zufallsvariablen: Können nur bestimmte, zählbare Werte annehmen (oft ganze Zahlen).\n\nBeispiel: Anzahl der geworfenen “Köpfe” bei 10 Münzwürfen (\\(X \\in \\{0, 1, 2, \\dots, 10\\}\\)).\n\nStetige (kontinuierliche) Zufallsvariablen: Können jeden beliebigen Wert in einem bestimmten Intervall annehmen (Messwerte).\n\nBeispiel: Die exakte Wartezeit auf den Bus in Minuten (\\(X = 4.352\\dots\\))."
+  },
+  {
+    "objectID": "woche_04.html#bei-diskreten-zufallsvariablen",
+    "href": "woche_04.html#bei-diskreten-zufallsvariablen",
+    "title": "Woche 4: Zufallsvariablen & Verteilungen",
+    "section": "2.1 Bei diskreten Zufallsvariablen",
+    "text": "2.1 Bei diskreten Zufallsvariablen\n\nWahrscheinlichkeitsfunktion: Gibt die exakte Wahrscheinlichkeit an, dass die Zufallsvariable \\(X\\) einen ganz bestimmten Wert \\(x\\) annimmt. \\[P(X = x)\\]\nVerteilungsfunktion (kumulativ): Kumuliert (summiert) die Wahrscheinlichkeiten bis zu einem bestimmten Wert \\(x\\). \\[F(x) = P(X \\le x)\\]\nDie Kurve “beginnt” somit bei \\(y=0\\) und “endet” bei \\(y=1\\) und ist monoton wachsend (geht nie wieder abwärts in Richtung von höheren X)."
+  },
+  {
+    "objectID": "woche_04.html#bei-stetigen-zufallsvariablen",
+    "href": "woche_04.html#bei-stetigen-zufallsvariablen",
+    "title": "Woche 4: Zufallsvariablen & Verteilungen",
+    "section": "2.2 Bei stetigen Zufallsvariablen",
+    "text": "2.2 Bei stetigen Zufallsvariablen\n\nDichtefunktion \\(\\varphi(x)\\): Da ein stetiger Wert unendlich viele Nachkommastellen hat, ist die Wahrscheinlichkeit für einen exakten Wert immer null (\\(P(X = x) = 0\\)). Die Dichtefunktion beschreibt stattdessen die “Kurve”. Die Gesamtfläche unter der Kurve ist immer exakt 1.\nVerteilungsfunktion \\(F_X(x)\\): Die Kurve ist ebenfalls monoton wachsend und gibt die Fläche unter der Dichtefunktion bis zum Wert \\(x\\) an. Berechnet wird dies über das Integral der Dichtefunktion. \\[F(x) = \\int_{-\\infty}^{x} \\varphi(t) \\, dt\\]"
+  },
+  {
+    "objectID": "woche_04.html#visuelle-zusammenfassung",
+    "href": "woche_04.html#visuelle-zusammenfassung",
+    "title": "Woche 4: Zufallsvariablen & Verteilungen",
+    "section": "2.3 Visuelle Zusammenfassung",
+    "text": "2.3 Visuelle Zusammenfassung\n\n\n\nVisuelle Zusammenfassung (by Tobias Peter)"
+  },
+  {
+    "objectID": "woche_11.html",
+    "href": "woche_11.html",
+    "title": "Woche 11: Poweranalyse, Nichtparametrische Tests",
+    "section": "",
+    "text": "Die Poweranalyse ist ein statistisches Verfahren, mit dem die Wahrscheinlichkeit bestimmt wird, einen tatsächlichen Effekt zu erkennen und somit die Nullhypothese korrekt abzulehnen. Sie misst die sogenannte Trennschärfe (Power) eines statistischen Tests. Umgekehrt kann sie auch genutzt werden, um zu berechnen, wie gross eine Stichprobe sein muss, um eine bestimmte Alternativhypothese mit einer definierten Wahrscheinlichkeit zu bestätigen.\nDie Analyse ist essenziell für die Versuchsplanung: Eine zu grosse Stichprobe verschwendet unnötig Ressourcen, während eine zu kleine Stichprobe zu unzuverlässigen und oft nutzlosen Ergebnissen führt.\n\n\nDie benötigte Stichprobengrösse und die Trennschärfe hängen von mehreren systematischen Faktoren ab:\n\nAbstand der Mittelwerte (\\(|\\mu_1 - \\mu_2|\\)): Je näher die Mittelwerte beieinander liegen, desto schwieriger ist der Nachweis eines Effekts, was eine grössere Stichprobe erfordert. Ein grösserer Abstand erhöht hingegen die Trennschärfe.\nStandardabweichung (\\(\\sigma\\)): Eine stärkere Streuung der Messwerte verlangt nach mehr Beobachtungen, um einen Unterschied zu belegen. Eine kleinere Standardabweichung vergrössert entsprechend die Trennschärfe.\nSignifikanzniveau (\\(\\alpha\\)): Ein strengeres (also niedrigeres) Signifikanzniveau erfordert eine grössere Stichprobe. Ein höheres \\(\\alpha\\) steigert zwar die Trennschärfe, da die Nullhypothese häufiger abgelehnt wird, erhöht aber auch das Risiko für Fehler 1. Art.\nTrennschärfe (\\(1-\\beta\\)): Möchte man die Wahrscheinlichkeit erhöhen, einen Effekt sicher nachzuweisen, braucht man schlichtweg mehr Beobachtungen. Generell gilt: Die Trennschärfe steigt mit einer grösseren Stichprobengrösse (\\(n\\)).\n\n\n\n\nDie standardisierte Abweichung der Mittelwerte wird als Cohens Effektstärke \\(d\\) bezeichnet und wie folgt berechnet: \\[d = \\left|\\frac{\\mu_1 - \\mu_2}{\\sigma}\\right|\\].\nDa die genaue Effektstärke vor der eigentlichen Datenerhebung oft unbekannt ist, kann die erforderliche Stichprobengrösse oft nicht exakt im Vorfeld bestimmt werden. Man behilft sich dann oft mit einer Skala für Schätzungen: Ein Wert von \\(0.2\\) gilt als klein, \\(0.5\\) als mittel, \\(0.8\\) als gross und \\(1.2\\) als sehr gross. Wichtiges Detail: Halbiert sich die angenommene Effektstärke, vervierfacht sich die dafür nötige Stichprobengrösse.\n\n\n\nUm die Stichprobengrösse ohne komplexe Software schnell abzuschätzen, existieren Faustformeln. Diese verbinden immer dieselben vier Grössen: Effektgrösse, Stichprobengrösse, Signifikanzniveau und Trennschärfe.\nDie folgenden Faustformeln gelten für ein Signifikanzniveau \\(\\alpha=0.05\\) und eine Trennschärfe von \\(1-\\beta=0.8\\). Wir nehmen an, dass der Effect klein ist (\\(d=0.2\\)):\n\n\n\nEinseitiger Test: \\(n \\approx \\frac{12}{d^2}\\).\nZweiseitiger Test: \\(n \\approx \\frac{16}{d^2}\\).\n\nBeispiel Zweistichproben-t-Test: Blutdruck in zwei Gruppen (Kontrollgruppe vs. Behandlungsgruppe) mit einem angenommenen Effekt von \\(d=0.2\\). Die benötigte Stichprobengrösse pro Gruppe beträgt dann nach der Fausformel ungefähr \\(n \\approx \\frac{16}{0.2^2} = 400\\).\nHinweis zur Präzision: Für genaue Auswertungen in der Praxis greift man meist auf dedizierte Software zurück (wie das R-Paket pwr), da diese präzisere Werte berechnen als die hier vorgestellten, vereinfachten Faustformeln.\nIn R mit pwr:\nlibrary(pwr)\npwr.t.test(d = -0.2, \n           sig.level = 0.05, \n           power = 0.8, \n           type = \"two.sample\", \n           alternative = \"less\")\n\n           # Resultat: n = 309.8065"
+  },
+  {
+    "objectID": "woche_11.html#einflussfaktoren-auf-stichprobengrösse-und-trennschärfe",
+    "href": "woche_11.html#einflussfaktoren-auf-stichprobengrösse-und-trennschärfe",
+    "title": "Woche 11: Poweranalyse, Nichtparametrische Tests",
+    "section": "",
+    "text": "Die benötigte Stichprobengrösse und die Trennschärfe hängen von mehreren systematischen Faktoren ab:\n\nAbstand der Mittelwerte (\\(|\\mu_1 - \\mu_2|\\)): Je näher die Mittelwerte beieinander liegen, desto schwieriger ist der Nachweis eines Effekts, was eine grössere Stichprobe erfordert. Ein grösserer Abstand erhöht hingegen die Trennschärfe.\nStandardabweichung (\\(\\sigma\\)): Eine stärkere Streuung der Messwerte verlangt nach mehr Beobachtungen, um einen Unterschied zu belegen. Eine kleinere Standardabweichung vergrössert entsprechend die Trennschärfe.\nSignifikanzniveau (\\(\\alpha\\)): Ein strengeres (also niedrigeres) Signifikanzniveau erfordert eine grössere Stichprobe. Ein höheres \\(\\alpha\\) steigert zwar die Trennschärfe, da die Nullhypothese häufiger abgelehnt wird, erhöht aber auch das Risiko für Fehler 1. Art.\nTrennschärfe (\\(1-\\beta\\)): Möchte man die Wahrscheinlichkeit erhöhen, einen Effekt sicher nachzuweisen, braucht man schlichtweg mehr Beobachtungen. Generell gilt: Die Trennschärfe steigt mit einer grösseren Stichprobengrösse (\\(n\\))."
+  },
+  {
+    "objectID": "woche_11.html#cohens-effektstärke-d",
+    "href": "woche_11.html#cohens-effektstärke-d",
+    "title": "Woche 11: Poweranalyse, Nichtparametrische Tests",
+    "section": "",
+    "text": "Die standardisierte Abweichung der Mittelwerte wird als Cohens Effektstärke \\(d\\) bezeichnet und wie folgt berechnet: \\[d = \\left|\\frac{\\mu_1 - \\mu_2}{\\sigma}\\right|\\].\nDa die genaue Effektstärke vor der eigentlichen Datenerhebung oft unbekannt ist, kann die erforderliche Stichprobengrösse oft nicht exakt im Vorfeld bestimmt werden. Man behilft sich dann oft mit einer Skala für Schätzungen: Ein Wert von \\(0.2\\) gilt als klein, \\(0.5\\) als mittel, \\(0.8\\) als gross und \\(1.2\\) als sehr gross. Wichtiges Detail: Halbiert sich die angenommene Effektstärke, vervierfacht sich die dafür nötige Stichprobengrösse."
+  },
+  {
+    "objectID": "woche_11.html#faustformeln",
+    "href": "woche_11.html#faustformeln",
+    "title": "Woche 11: Poweranalyse, Nichtparametrische Tests",
+    "section": "",
+    "text": "Um die Stichprobengrösse ohne komplexe Software schnell abzuschätzen, existieren Faustformeln. Diese verbinden immer dieselben vier Grössen: Effektgrösse, Stichprobengrösse, Signifikanzniveau und Trennschärfe.\nDie folgenden Faustformeln gelten für ein Signifikanzniveau \\(\\alpha=0.05\\) und eine Trennschärfe von \\(1-\\beta=0.8\\). Wir nehmen an, dass der Effect klein ist (\\(d=0.2\\)):\n\n\n\nEinseitiger Test: \\(n \\approx \\frac{12}{d^2}\\).\nZweiseitiger Test: \\(n \\approx \\frac{16}{d^2}\\).\n\nBeispiel Zweistichproben-t-Test: Blutdruck in zwei Gruppen (Kontrollgruppe vs. Behandlungsgruppe) mit einem angenommenen Effekt von \\(d=0.2\\). Die benötigte Stichprobengrösse pro Gruppe beträgt dann nach der Fausformel ungefähr \\(n \\approx \\frac{16}{0.2^2} = 400\\).\nHinweis zur Präzision: Für genaue Auswertungen in der Praxis greift man meist auf dedizierte Software zurück (wie das R-Paket pwr), da diese präzisere Werte berechnen als die hier vorgestellten, vereinfachten Faustformeln.\nIn R mit pwr:\nlibrary(pwr)\npwr.t.test(d = -0.2, \n           sig.level = 0.05, \n           power = 0.8, \n           type = \"two.sample\", \n           alternative = \"less\")\n\n           # Resultat: n = 309.8065"
+  },
+  {
+    "objectID": "woche_11.html#einführung-und-motivation",
+    "href": "woche_11.html#einführung-und-motivation",
+    "title": "Woche 11: Poweranalyse, Nichtparametrische Tests",
+    "section": "2.1 Einführung und Motivation",
+    "text": "2.1 Einführung und Motivation\nNichtparametrische Tests sind statistische Verfahren, die keine oder kaum Annahmen über die zugrundeliegende Verteilung der Daten voraussetzen. Sie sind dadurch flexibler und allgemeiner anwendbar, werden daher auch oft als „verteilungsfreie Tests“ bezeichnet.\nWann werden sie angewendet?\n\nWenn Daten stark von einer Normalverteilung abweichen (z.B. durch starke Schiefe oder grosse Ausreisser).\nWenn die vorliegenden Daten lediglich ordinalskaliert und nicht metrisch sind (z.B. Beurteilungen wie “schlechter”, “unverändert”, “besser”).\n\nNachteil: Wenn die Annahmen für einen parametrischen Test (wie den t-Test) erfüllt wären, haben nichtparametrische Tests eine geringere Trennschärfe (Power). Das bedeutet, dass tendenziell mehr Daten benötigt werden, um einen vorhandenen Effekt statistisch nachzuweisen."
+  },
+  {
+    "objectID": "woche_11.html#wilcoxon-test-eine-stichprobe",
+    "href": "woche_11.html#wilcoxon-test-eine-stichprobe",
+    "title": "Woche 11: Poweranalyse, Nichtparametrische Tests",
+    "section": "2.2 Wilcoxon-Test (Eine Stichprobe)",
+    "text": "2.2 Wilcoxon-Test (Eine Stichprobe)\nDieser Test wird für eine einzelne metrische Stichprobe verwendet, um zu prüfen, ob der Median der Verteilung einem bestimmten Sollwert entspricht.\n\nAnnahme: Die zugrundeliegende Verteilung ist symmetrisch um ihren unbekannten Median \\(\\mu\\).\nNullhypothese (\\(H_0\\)): Der Median \\(\\mu\\) entspricht exakt dem Sollwert \\(\\mu_0\\) (\\(\\mu = \\mu_0\\)).\nAlternativhypothese (\\(H_1\\)): Der Median weicht vom Sollwert ab (\\(\\mu \\neq \\mu_0\\) für zweiseitige Tests; einseitige Tests sind ebenfalls möglich).\n\nBeispiel: Ein Unternehmen behauptet, dass die durchschnittliche Lieferzeit eines Produkts 5 Tage beträgt ( \\(\\mu_0 = 5\\) ). Um diese Behauptung zu überprüfen, werden 20 Lieferzeiten gemessen. Der Wilcoxon-Test kann verwendet werden, um zu prüfen, ob der Median der Lieferzeiten tatsächlich 5 Tage beträgt (H_0) oder ob die Lieferungen signifikant länger dauern.\nIn R:\nwilcox.test(stichprobe, \n            mu = mu0,                  # Sollwert (5 Tage) \n            alternative = \"greater\",   # Greater, weil wir vermuten, dass die Lieferzeit länger als 5 Tage ist\n            conf.level = 0.95)         # Unser Signifikanzniveau"
+  },
+  {
+    "objectID": "woche_11.html#wilcoxon-test-gepaarte-stichproben",
+    "href": "woche_11.html#wilcoxon-test-gepaarte-stichproben",
+    "title": "Woche 11: Poweranalyse, Nichtparametrische Tests",
+    "section": "2.3 Wilcoxon-Test (Gepaarte Stichproben)",
+    "text": "2.3 Wilcoxon-Test (Gepaarte Stichproben)\nLiegen zwei verbundene bzw. gepaarte Stichproben vor (z.B. Messungen an denselben Personen vor und nach einer Behandlung), basiert der Test auf den Differenzen der Wertepaare (\\(U_i := X_i - Y_i\\)). Mathematisch entspricht dies einem Einstichproben-Wilcoxon-Test, der auf diese Differenzen angewendet wird.\n\nAnnahme: Die berechneten Differenzen \\(U_i\\) sind symmetrisch um ihren eigenen Median verteilt.\nNullhypothese (\\(H_0\\)): Der Median der Differenzen ist null (\\(\\text{median}(U_i) = 0\\)).\nAlternativhypothese (\\(H_1\\)): Der Median der Differenzen ist ungleich null (\\(\\text{median}(U_i) \\neq 0\\)).\n\nBeispiel: Um den Effekt einer Behandlung zu prüfen, werden Messungen an denselben Personen vor und nach der Behandlung durchgeführt. Der Wilcoxon-Test kann verwendet werden, um zu prüfen, ob sich der Median der Differenzen (vor - nach) signifikant von null unterscheidet.\nIn R:\nwilcox.test(stichprobe_vor, stichprobe_nach, \n            paired = TRUE,             # Gibt an, dass es sich um gepaarte Stichproben handelt\n            alternative = \"two.sided\", # Zweiseitiger Test\n            conf.level = 0.95)         # Signifikanzniveau"
+  },
+  {
+    "objectID": "woche_11.html#wilcoxon-mann-whitney-test-unabhängige-stichproben",
+    "href": "woche_11.html#wilcoxon-mann-whitney-test-unabhängige-stichproben",
+    "title": "Woche 11: Poweranalyse, Nichtparametrische Tests",
+    "section": "2.4 Wilcoxon-Mann-Whitney-Test (Unabhängige Stichproben)",
+    "text": "2.4 Wilcoxon-Mann-Whitney-Test (Unabhängige Stichproben)\nAuch bekannt als U-Test, vergleicht dieses Verfahren zwei unabhängige Stichproben (\\(X\\) und \\(Y\\)). Er kann sowohl auf metrische als auch auf ordinale Daten angewendet werden.\n\nKlassische Annahme (Verschiebungsmodell): Die Verteilungen der beiden Gruppen sind identisch in ihrer Form, können aber gegeneinander verschoben sein.\nNullhypothese (\\(H_0\\)): Es gibt keine Verschiebung (\\(a = 0\\)), d.h., beide Gruppen haben denselben Median (\\(\\text{med}(X) = \\text{med}(Y)\\)).\nAlternativhypothese (\\(H_1\\)): Es existiert eine Verschiebung (\\(a \\neq 0\\)), die Mediane unterscheiden sich.\n\nBeispiel: Um zu prüfen, ob es einen Unterschied in der Kundenzufriedenheit zwischen zwei Filialen gibt, werden unabhängige Stichproben von Kundenbewertungen aus beiden Filialen gesammelt. Der Wilcoxon-Mann-Whitney-Test kann verwendet werden, um zu prüfen, ob die Mediane der Bewertungen signifikant voneinander abweichen.\nIn R:\nwilcox.test(stichprobe1, stichprobe2, \n            alternative = \"two.sided\", # oder \"less\", \"greater\"\n            conf.level = 0.95)         # Signifikanzniveau"
+  },
+  {
+    "objectID": "woche_11.html#einführung-und-zielsetzung",
+    "href": "woche_11.html#einführung-und-zielsetzung",
+    "title": "Woche 11: Poweranalyse, Nichtparametrische Tests",
+    "section": "3.1 Einführung und Zielsetzung",
+    "text": "3.1 Einführung und Zielsetzung\nDer Kolmogorov-Smirnov-Test (KS-Test) ist ein nichtparametrisches statistisches Verfahren für metrische Daten. Er wird im Wesentlichen für zwei Fragestellungen eingesetzt:\n\nEinstichproben-Fall: Überprüfung, ob eine gegebene Stichprobe aus einer bestimmten, theoretischen stetigen Verteilung stammt.\nZweistichproben-Fall: Überprüfung, ob zwei unabhängige Stichproben derselben stetigen Verteilung entstammen.\n\nDie Grundidee des Tests beruht darauf, die Abweichung zwischen Verteilungsfunktionen zu messen. Wenn diese Abweichung zu groß wird, wird die Nullhypothese – dass die Stichprobe aus der angenommenen Verteilung stammt bzw. beide Stichproben dieselbe Verteilung aufweisen – verworfen."
+  },
+  {
+    "objectID": "woche_11.html#die-empirische-verteilungsfunktion-edf",
+    "href": "woche_11.html#die-empirische-verteilungsfunktion-edf",
+    "title": "Woche 11: Poweranalyse, Nichtparametrische Tests",
+    "section": "3.2 Die empirische Verteilungsfunktion (EDF)",
+    "text": "3.2 Die empirische Verteilungsfunktion (EDF)\nDas zentrale Element des KS-Tests ist die empirische Verteilungsfunktion (Empirical Distribution Function, EDF). Für eine metrische Stichprobe mit den Beobachtungen \\(X_1, ..., X_n\\) gibt die EDF \\(F_n(x)\\) den Anteil aller Beobachtungen an, die kleiner oder gleich einem Wert \\(x\\) sind:\n\\[F_n(x) = \\frac{\\text{Anzahl Beobachtungen } X_i \\le x}{n}\\]\nEigenschaften der EDF:\n\nSie ist eine monoton wachsende Treppenfunktion.\nHaben wir \\(n\\) unterschiedliche Werte beobachtet, weist die Funktion an jedem dieser Beobachtungswerte einen Sprung auf.\nDie Höhe jedes dieser Sprünge beträgt genau \\(1/n\\)."
+  },
+  {
+    "objectID": "woche_11.html#einstichproben-kolmogorov-smirnov-test",
+    "href": "woche_11.html#einstichproben-kolmogorov-smirnov-test",
+    "title": "Woche 11: Poweranalyse, Nichtparametrische Tests",
+    "section": "3.3 Einstichproben Kolmogorov-Smirnov-Test",
+    "text": "3.3 Einstichproben Kolmogorov-Smirnov-Test\nDieser Test vergleicht eine Stichprobe mit einer hypothetischen theoretischen Verteilung.\n\nVoraussetzung: Die Daten sind unabhängig und identisch verteilt (i.i.d.) und entstammen einer stetigen Verteilung.\nNullhypothese (\\(H_0\\)): Die wahre Verteilung \\(F\\) der Daten entspricht der vorgegebenen Soll-Verteilung \\(F_0\\) (\\(F = F_0\\)).\nAlternativhypothese (\\(H_1\\)): Die wahre Verteilung weicht von der Soll-Verteilung ab (\\(F \\neq F_0\\)).\nTeststatistik (\\(D_n\\)): Die Prüfgröße berechnet sich als der größte absolute Unterschied (die maximale vertikale Distanz) zwischen der empirischen Verteilungsfunktion \\(F_n(x)\\) und der theoretischen Soll-Verteilungsfunktion \\(F_0(x)\\) über alle möglichen Werte von \\(x\\).\n\n\\[D_n := \\max_x |F_n(x) - F_0(x)|\\]\nBeispiel: Um zu prüfen, ob die Verteilung der Körpergrössen in einer Stichprobe von 100 Personen einer Normalverteilung mit einem Mittelwert von 170 cm und einer Standardabweichung von 10 cm entspricht, könnte der Einstichproben-KS-Test verwendet werden. Die Nullhypothese wäre, dass die Körpergrössen normalverteilt sind, während die Alternativhypothese besagt, dass sie es nicht sind.\nIn R:\nks.test(stichprobe,     # Die zu testende Stichprobe\n        \"pnorm\",        # Die theoretische Verteilung (hier Normalverteilung)\n        mean = 170,     # Mittelwert der Normalverteilung\n        sd = 10)"
+  },
+  {
+    "objectID": "woche_11.html#zweistichproben-kolmogorov-smirnov-test",
+    "href": "woche_11.html#zweistichproben-kolmogorov-smirnov-test",
+    "title": "Woche 11: Poweranalyse, Nichtparametrische Tests",
+    "section": "3.4 Zweistichproben Kolmogorov-Smirnov-Test",
+    "text": "3.4 Zweistichproben Kolmogorov-Smirnov-Test\nDieses Verfahren prüft, ob zwei völlig unabhängige Stichproben (\\(X\\) und \\(Y\\)) dieselbe Verteilung aufweisen.\n\nVoraussetzung: Die Stichproben weisen die Umfänge \\(n\\) bzw. \\(m\\) auf und stammen beide aus stetigen Verteilungen (\\(F_X\\) und \\(F_Y\\)).\nNullhypothese (\\(H_0\\)): Beide Stichproben stammen aus derselben Verteilung (\\(F_X = F_Y\\)).\nAlternativhypothese (\\(H_1\\)): Die beiden Stichproben weisen unterschiedliche Verteilungen auf (\\(F_X \\neq F_Y\\)).\nTeststatistik (\\(D_{n,m}\\)): Analog zum Einstichproben-Test misst die Prüfgröße hier den maximalen absoluten vertikalen Abstand, diesmal jedoch zwischen den beiden empirischen Verteilungsfunktionen \\(F_n^X(x)\\) und \\(F_m^Y(x)\\).\n\n\\[D_{n,m} := \\max_x |F_n^X(x) - F_m^Y(x)|\\]"
+  },
+  {
+    "objectID": "woche_11.html#was-ist-eine-permutation",
+    "href": "woche_11.html#was-ist-eine-permutation",
+    "title": "Woche 11: Poweranalyse, Nichtparametrische Tests",
+    "section": "4.1 Was ist eine Permutation?",
+    "text": "4.1 Was ist eine Permutation?\nEine Permutation bezeichnet eine bestimmte Anordnung oder Umordnung von Objekten in einer definierten Reihenfolge. Wenn man \\(n\\) unterscheidbare Objekte hat, lässt sich die Anzahl der möglichen Permutationen mit der Fakultät \\(n!\\) (n-Fakultät) berechnen. Diese Anzahl wächst mit zunehmendem \\(n\\) extrem schnell an (so gibt es für 10 Objekte bereits über 3.6 Millionen Permutationen)."
+  },
+  {
+    "objectID": "woche_11.html#grundidee-des-permutationstests",
+    "href": "woche_11.html#grundidee-des-permutationstests",
+    "title": "Woche 11: Poweranalyse, Nichtparametrische Tests",
+    "section": "4.2 Grundidee des Permutationstests",
+    "text": "4.2 Grundidee des Permutationstests\nDer Permutationstest wird angewendet, um zu überprüfen, ob es einen signifikanten Unterschied zwischen verschiedenen Stichproben gibt.\n\nDie Nullhypothese: Der Test geht unter der Nullhypothese davon aus, dass die Zuordnung der einzelnen Beobachtungen zu den Stichprobengruppen absolut keine Rolle spielt. Die Daten werden also so betrachtet, als ob sie den Gruppen rein zufällig zugewiesen worden wären.\nDie Methodik: Man berechnet die gewünschte Teststatistik (z.B. die Mittelwertsdifferenz) für sehr viele oder sogar alle möglichen Neuzuordnungen (Permutationen) der Daten. Daraus lässt sich ein Histogramm erstellen, das die Verteilung der Teststatistik unter der Nullhypothese darstellt.\nDie Entscheidung: Abschliessend wird geprüft, wie “extrem” die bei den Originaldaten beobachtete Teststatistik im Vergleich zu dieser simulierten Verteilung ist, woraus sich der p-Wert ableiten lässt."
+  },
+  {
+    "objectID": "woche_11.html#durchführung-in-der-praxis",
+    "href": "woche_11.html#durchführung-in-der-praxis",
+    "title": "Woche 11: Poweranalyse, Nichtparametrische Tests",
+    "section": "4.3 Durchführung in der Praxis",
+    "text": "4.3 Durchführung in der Praxis\nDie konkrete Berechnung eines Permutationstests erfolgt in drei grundlegenden Schritten:\n\nPermutationen bilden: Es werden alle möglichen Anordnungen der Beobachtungen betrachtet. Da \\(n!\\) sehr schnell riesig wird, verwendet man in der Praxis oft nicht alle Permutationen, sondern zieht eine grosse, fixe Anzahl (z. B. 100’000), was für eine gute Abschätzung meist völlig ausreicht.\nTeststatistik berechnen: Für jede einzelne dieser Permutationen wird die vorher festgelegte Teststatistik \\(T\\) berechnet.\np-Wert bestimmen: Der p-Wert entspricht dem Anteil der simulierten Teststatistiken, die mindestens genauso extrem (oder noch extremer) ausfallen wie die Teststatistik, die in der tatsächlichen Beobachtung gemessen wurde."
+  },
+  {
+    "objectID": "woche_11.html#vor--und-nachteile",
+    "href": "woche_11.html#vor--und-nachteile",
+    "title": "Woche 11: Poweranalyse, Nichtparametrische Tests",
+    "section": "4.4 Vor- und Nachteile",
+    "text": "4.4 Vor- und Nachteile\nPermutationstests bringen spezifische Eigenschaften mit sich, die bei der Wahl des Testverfahrens abgewogen werden müssen:\nVorteile:\n\nSie bieten eine enorme Flexibilität, da die Teststatistik vom Forschenden völlig frei gewählt werden kann.\nSie sind äusserst robust gegenüber der Verletzung von klassischen Verteilungsannahmen (wie z.B. der Normalverteilungsannahme).\n\nNachteile:\n\nDas Verfahren ist durch die Simulation tausender Anordnungen oft sehr rechenintensiv.\nSind die strengen Annahmen klassischer (parametrischer) Tests erfüllt, weisen diese klassischen Tests in der Regel eine höhere Trennschärfe (Power) auf als der Permutationstest."
   },
   {
     "objectID": "woche_07.html",
