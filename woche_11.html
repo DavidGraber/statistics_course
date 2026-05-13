@@ -234,7 +234,7 @@ window.Quarto = {
   <li><a href="#cohens-effektstärke-d" id="toc-cohens-effektstärke-d" class="nav-link" data-scroll-target="#cohens-effektstärke-d"><span class="header-section-number">1.2</span> Cohens Effektstärke (<span class="math inline">\(d\)</span>)</a></li>
   <li><a href="#faustformeln" id="toc-faustformeln" class="nav-link" data-scroll-target="#faustformeln"><span class="header-section-number">1.3</span> Faustformeln</a>
   <ul class="collapse">
-  <li><a href="#unabhängiger-zweistichproben-t-test-lehrs-faustformel" id="toc-unabhängiger-zweistichproben-t-test-lehrs-faustformel" class="nav-link" data-scroll-target="#unabhängiger-zweistichproben-t-test-lehrs-faustformel"><span class="header-section-number">1.3.1</span> Unabhängiger Zweistichproben-t-Test (Lehrs Faustformel)</a></li>
+  <li><a href="#zweistichproben-t-test-lehrs-faustformel" id="toc-zweistichproben-t-test-lehrs-faustformel" class="nav-link" data-scroll-target="#zweistichproben-t-test-lehrs-faustformel"><span class="header-section-number">1.3.1</span> Zweistichproben-t-Test (Lehrs Faustformel)</a></li>
   </ul></li>
   </ul></li>
   <li><a href="#nichtparametrische-tests" id="toc-nichtparametrische-tests" class="nav-link" data-scroll-target="#nichtparametrische-tests"><span class="header-section-number">2</span> Nichtparametrische Tests</a>
@@ -304,15 +304,21 @@ window.Quarto = {
 </section>
 <section id="faustformeln" class="level2" data-number="1.3">
 <h2 data-number="1.3" class="anchored" data-anchor-id="faustformeln"><span class="header-section-number">1.3</span> Faustformeln</h2>
-<p>Um die Stichprobengrösse ohne komplexe Software schnell abzuschätzen, existieren Faustformeln. Diese verbinden immer dieselben vier Grössen: Effektgrösse, Stichprobengrösse, Signifikanzniveau und Trennschärfe.</p>
-<p>Die folgenden Faustformeln gelten für ein <strong>Signifikanzniveau <span class="math inline">\(\alpha=0.05\)</span></strong> und eine <strong>Trennschärfe von <span class="math inline">\(1-\beta=0.8\)</span></strong>. Wir nehmen an, dass der Effect klein ist (<span class="math inline">\(d=0.2\)</span>):</p>
-<section id="unabhängiger-zweistichproben-t-test-lehrs-faustformel" class="level3" data-number="1.3.1">
-<h3 data-number="1.3.1" class="anchored" data-anchor-id="unabhängiger-zweistichproben-t-test-lehrs-faustformel"><span class="header-section-number">1.3.1</span> Unabhängiger Zweistichproben-t-Test (Lehrs Faustformel)</h3>
+<p>Um die Stichprobengrösse ohne komplexe Software schnell abzuschätzen, existieren Faustformeln. Diese verbinden immer dieselben vier Grössen:</p>
+<ul>
+<li>Erwartete Effektgrösse</li>
+<li>Stichprobengrösse</li>
+<li>Signifikanzniveau</li>
+<li>Trennschärfe (Power)</li>
+</ul>
+<section id="zweistichproben-t-test-lehrs-faustformel" class="level3" data-number="1.3.1">
+<h3 data-number="1.3.1" class="anchored" data-anchor-id="zweistichproben-t-test-lehrs-faustformel"><span class="header-section-number">1.3.1</span> Zweistichproben-t-Test (Lehrs Faustformel)</h3>
+<p>Die folgenden Faustformeln gelten für ein <strong>Signifikanzniveau <span class="math inline">\(\alpha=0.05\)</span></strong> und eine <strong>Trennschärfe von <span class="math inline">\(1-\beta=0.8\)</span></strong>:</p>
 <ul>
 <li><strong>Einseitiger Test:</strong> <span class="math inline">\(n \approx \frac{12}{d^2}\)</span>.</li>
 <li><strong>Zweiseitiger Test:</strong> <span class="math inline">\(n \approx \frac{16}{d^2}\)</span>.</li>
 </ul>
-<p><strong>Beispiel Zweistichproben-t-Test:</strong> Blutdruck in zwei Gruppen (Kontrollgruppe vs.&nbsp;Behandlungsgruppe) mit einem angenommenen Effekt von <span class="math inline">\(d=0.2\)</span>. Die benötigte Stichprobengrösse pro Gruppe beträgt dann nach der Fausformel ungefähr <span class="math inline">\(n \approx \frac{16}{0.2^2} = 400\)</span>.</p>
+<p><strong>Beispiel Zweistichproben-t-Test:</strong> Blutdruck in zwei Gruppen (Kontrollgruppe vs.&nbsp;Behandlungsgruppe) mit einem angenommenen schwachen Effekt von <span class="math inline">\(d=0.2\)</span>. Die benötigte Stichprobengrösse pro Gruppe beträgt dann nach der Fausformel ungefähr <span class="math inline">\(n \approx \frac{16}{0.2^2} = 400\)</span>.</p>
 <p><strong>Hinweis zur Präzision:</strong> Für genaue Auswertungen in der Praxis greift man meist auf dedizierte Software zurück (wie das R-Paket <code>pwr</code>), da diese präzisere Werte berechnen als die hier vorgestellten, vereinfachten Faustformeln.</p>
 <p><strong>In R mit pwr:</strong></p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(pwr)</span>
