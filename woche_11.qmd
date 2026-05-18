@@ -1,0 +1,223 @@
+---
+title: "Woche 11: Poweranalyse, Nichtparametrische Tests"
+---
+
+# Poweranalyse
+Die Poweranalyse ist ein statistisches Verfahren, mit dem die Wahrscheinlichkeit bestimmt wird, einen tatsächlichen Effekt zu erkennen und somit die Nullhypothese korrekt abzulehnen. Sie misst die sogenannte Trennschärfe (Power) eines statistischen Tests. Umgekehrt kann sie auch genutzt werden, um zu berechnen, wie gross eine Stichprobe sein muss, um eine bestimmte Alternativhypothese mit einer definierten Wahrscheinlichkeit zu bestätigen. 
+
+Die Analyse ist essenziell für die Versuchsplanung: Eine zu grosse Stichprobe verschwendet unnötig Ressourcen, während eine zu kleine Stichprobe zu unzuverlässigen und oft nutzlosen Ergebnissen führt.
+
+## Einflussfaktoren auf Stichprobengrösse und Trennschärfe
+Die benötigte Stichprobengrösse und die Trennschärfe hängen von mehreren systematischen Faktoren ab:
+
+* **Abstand der Mittelwerte ($|\mu_1 - \mu_2|$):** Je näher die Mittelwerte beieinander liegen, desto schwieriger ist der Nachweis eines Effekts, was eine grössere Stichprobe erfordert. Ein grösserer Abstand erhöht hingegen die Trennschärfe.
+* **Standardabweichung ($\sigma$):** Eine stärkere Streuung der Messwerte verlangt nach mehr Beobachtungen, um einen Unterschied zu belegen. Eine kleinere Standardabweichung vergrössert entsprechend die Trennschärfe.
+* **Signifikanzniveau ($\alpha$):** Ein strengeres (also niedrigeres) Signifikanzniveau erfordert eine grössere Stichprobe. Ein höheres $\alpha$ steigert zwar die Trennschärfe, da die Nullhypothese häufiger abgelehnt wird, erhöht aber auch das Risiko für Fehler 1. Art.
+* **Trennschärfe ($1-\beta$):** Möchte man die Wahrscheinlichkeit erhöhen, einen Effekt sicher nachzuweisen, braucht man schlichtweg mehr Beobachtungen. Generell gilt: Die Trennschärfe steigt mit einer grösseren Stichprobengrösse ($n$).
+
+## Cohens Effektstärke ($d$)
+Die standardisierte Abweichung der Mittelwerte wird als Cohens Effektstärke $d$ bezeichnet und wie folgt berechnet:
+$$d = \left|\frac{\mu_1 - \mu_2}{\sigma}\right|$$. 
+
+Da die genaue Effektstärke vor der eigentlichen Datenerhebung oft unbekannt ist, kann die erforderliche Stichprobengrösse oft nicht exakt im Vorfeld bestimmt werden. Man behilft sich dann oft mit einer Skala für Schätzungen: Ein Wert von $0.2$ gilt als klein, $0.5$ als mittel, $0.8$ als gross und $1.2$ als sehr gross. Wichtiges Detail: Halbiert sich die angenommene Effektstärke, vervierfacht sich die dafür nötige Stichprobengrösse.
+
+
+## Faustformeln
+Um die Stichprobengrösse ohne komplexe Software schnell abzuschätzen, existieren Faustformeln. Diese verbinden immer dieselben vier Grössen: 
+
+* Erwartete Effektgrösse
+* Stichprobengrösse
+* Signifikanzniveau
+* Trennschärfe (Power)
+
+### Zweistichproben-t-Test (Lehrs Faustformel)
+
+Die folgenden Faustformeln gelten für ein **Signifikanzniveau $\alpha=0.05$** und eine **Trennschärfe von $1-\beta=0.8$**:
+
+* **Einseitiger Test:** $n \approx \frac{12}{d^2}$.
+* **Zweiseitiger Test:** $n \approx \frac{16}{d^2}$.
+
+**Beispiel Zweistichproben-t-Test:** Blutdruck in zwei Gruppen (Kontrollgruppe vs. Behandlungsgruppe) mit einem angenommenen schwachen Effekt von $d=0.2$. Die benötigte Stichprobengrösse pro Gruppe beträgt dann nach der Fausformel ungefähr $n \approx \frac{16}{0.2^2} = 400$.
+
+**Hinweis zur Präzision:** Für genaue Auswertungen in der Praxis greift man meist auf dedizierte Software zurück (wie das R-Paket `pwr`), da diese präzisere Werte berechnen als die hier vorgestellten, vereinfachten Faustformeln.
+
+**In R mit pwr:** 
+```r
+library(pwr)
+pwr.t.test(d = -0.2, 
+           sig.level = 0.05, 
+           power = 0.8, 
+           type = "two.sample", 
+           alternative = "less")
+
+           # Resultat: n = 309.8065
+```
+
+
+# Nichtparametrische Tests
+
+## Einführung und Motivation
+
+Nichtparametrische Tests sind statistische Verfahren, die keine oder kaum Annahmen über die zugrundeliegende Verteilung der Daten voraussetzen. Sie sind dadurch flexibler und allgemeiner anwendbar, werden daher auch oft als „verteilungsfreie Tests“ bezeichnet. 
+
+**Wann werden sie angewendet?**
+
+* Wenn Daten stark von einer Normalverteilung abweichen (z.B. durch starke Schiefe oder grosse Ausreisser).
+* Wenn die vorliegenden Daten lediglich ordinalskaliert und nicht metrisch sind (z.B. Beurteilungen wie "schlechter", "unverändert", "besser").
+
+**Nachteil:** Wenn die Annahmen für einen parametrischen Test (wie den t-Test) erfüllt wären, haben nichtparametrische Tests eine geringere Trennschärfe (Power). Das bedeutet, dass tendenziell mehr Daten benötigt werden, um einen vorhandenen Effekt statistisch nachzuweisen.
+
+---
+
+## Wilcoxon-Test (Eine Stichprobe)
+
+Dieser Test wird für eine einzelne metrische Stichprobe verwendet, um zu prüfen, ob der Median der Verteilung einem bestimmten Sollwert entspricht.
+
+* **Annahme:** Die zugrundeliegende Verteilung ist symmetrisch um ihren unbekannten Median $\mu$.
+* **Nullhypothese ($H_0$):** Der Median $\mu$ entspricht exakt dem Sollwert $\mu_0$ ($\mu = \mu_0$).
+* **Alternativhypothese ($H_1$):** Der Median weicht vom Sollwert ab ($\mu \neq \mu_0$ für zweiseitige Tests; einseitige Tests sind ebenfalls möglich).
+
+**Beispiel:** Ein Unternehmen behauptet, dass die durchschnittliche Lieferzeit eines Produkts 5 Tage beträgt ( $\mu_0 = 5$ ). Um diese Behauptung zu überprüfen, werden 20 Lieferzeiten gemessen. Der Wilcoxon-Test kann verwendet werden, um zu prüfen, ob der Median der Lieferzeiten tatsächlich 5 Tage beträgt (H_0) oder ob die Lieferungen signifikant länger dauern. 
+
+**In R:** 
+```r
+wilcox.test(stichprobe, 
+            mu = mu0,                  # Sollwert (5 Tage) 
+            alternative = "greater",   # Greater, weil wir vermuten, dass die Lieferzeit länger als 5 Tage ist
+            conf.level = 0.95)         # Unser Signifikanzniveau
+```
+---
+
+## Wilcoxon-Test (Gepaarte Stichproben)
+
+Liegen zwei verbundene bzw. gepaarte Stichproben vor (z.B. Messungen an denselben Personen vor und nach einer Behandlung), basiert der Test auf den Differenzen der Wertepaare ($U_i := X_i - Y_i$). Mathematisch entspricht dies einem Einstichproben-Wilcoxon-Test, der auf diese Differenzen angewendet wird.
+
+* **Annahme:** Die berechneten Differenzen $U_i$ sind symmetrisch um ihren eigenen Median verteilt.
+* **Nullhypothese ($H_0$):** Der Median der Differenzen ist null ($\text{median}(U_i) = 0$).
+* **Alternativhypothese ($H_1$):** Der Median der Differenzen ist ungleich null ($\text{median}(U_i) \neq 0$).
+
+**Beispiel:** Um den Effekt einer Behandlung zu prüfen, werden Messungen an denselben Personen vor und nach der Behandlung durchgeführt. Der Wilcoxon-Test kann verwendet werden, um zu prüfen, ob sich der Median der Differenzen (vor - nach) signifikant von null unterscheidet.
+
+**In R:**
+```r
+wilcox.test(stichprobe_vor, stichprobe_nach, 
+            paired = TRUE,             # Gibt an, dass es sich um gepaarte Stichproben handelt
+            alternative = "two.sided", # Zweiseitiger Test
+            conf.level = 0.95)         # Signifikanzniveau
+```
+
+## Wilcoxon-Mann-Whitney-Test (Unabhängige Stichproben)
+
+Auch bekannt als U-Test, vergleicht dieses Verfahren zwei *unabhängige* Stichproben ($X$ und $Y$). Er kann sowohl auf metrische als auch auf ordinale Daten angewendet werden.
+
+* **Klassische Annahme (Verschiebungsmodell):** Die Verteilungen der beiden Gruppen sind identisch in ihrer Form, können aber gegeneinander verschoben sein.
+* **Nullhypothese ($H_0$):** Es gibt keine Verschiebung ($a = 0$), d.h., beide Gruppen haben denselben Median ($\text{med}(X) = \text{med}(Y)$).
+* **Alternativhypothese ($H_1$):** Es existiert eine Verschiebung ($a \neq 0$), die Mediane unterscheiden sich.
+
+**Beispiel:** Um zu prüfen, ob es einen Unterschied in der Kundenzufriedenheit zwischen zwei Filialen gibt, werden unabhängige Stichproben von Kundenbewertungen aus beiden Filialen gesammelt. Der Wilcoxon-Mann-Whitney-Test kann verwendet werden, um zu prüfen, ob die Mediane der Bewertungen signifikant voneinander abweichen.
+
+**In R:**
+```r
+wilcox.test(stichprobe1, stichprobe2, 
+            alternative = "two.sided", # oder "less", "greater"
+            conf.level = 0.95)         # Signifikanzniveau
+```
+
+
+# Kolmogorov-Smirnov-Test
+
+
+## Einführung und Zielsetzung
+
+Der Kolmogorov-Smirnov-Test (KS-Test) ist ein nichtparametrisches statistisches Verfahren für metrische Daten. Er wird im Wesentlichen für zwei Fragestellungen eingesetzt:
+
+1. **Einstichproben-Fall:** Überprüfung, ob eine gegebene Stichprobe aus einer bestimmten, theoretischen stetigen Verteilung stammt.
+2. **Zweistichproben-Fall:** Überprüfung, ob zwei unabhängige Stichproben derselben stetigen Verteilung entstammen.
+
+Die Grundidee des Tests beruht darauf, die Abweichung zwischen Verteilungsfunktionen zu messen. Wenn diese Abweichung zu groß wird, wird die Nullhypothese – dass die Stichprobe aus der angenommenen Verteilung stammt bzw. beide Stichproben dieselbe Verteilung aufweisen – verworfen.
+
+---
+
+## Die empirische Verteilungsfunktion (EDF)
+
+Das zentrale Element des KS-Tests ist die empirische Verteilungsfunktion (Empirical Distribution Function, EDF).
+Für eine metrische Stichprobe mit den Beobachtungen $X_1, ..., X_n$ gibt die EDF $F_n(x)$ den Anteil aller Beobachtungen an, die kleiner oder gleich einem Wert $x$ sind:
+
+$$F_n(x) = \frac{\text{Anzahl Beobachtungen } X_i \le x}{n}$$
+
+**Eigenschaften der EDF:**
+
+* Sie ist eine monoton wachsende Treppenfunktion.
+* Haben wir $n$ unterschiedliche Werte beobachtet, weist die Funktion an jedem dieser Beobachtungswerte einen Sprung auf.
+* Die Höhe jedes dieser Sprünge beträgt genau $1/n$.
+
+---
+
+## Einstichproben Kolmogorov-Smirnov-Test
+
+Dieser Test vergleicht eine Stichprobe mit einer hypothetischen theoretischen Verteilung.
+
+* **Voraussetzung:** Die Daten sind unabhängig und identisch verteilt (i.i.d.) und entstammen einer stetigen Verteilung.
+* **Nullhypothese ($H_0$):** Die wahre Verteilung $F$ der Daten entspricht der vorgegebenen Soll-Verteilung $F_0$ ($F = F_0$).
+* **Alternativhypothese ($H_1$):** Die wahre Verteilung weicht von der Soll-Verteilung ab ($F \neq F_0$).
+* **Teststatistik ($D_n$):** Die Prüfgröße berechnet sich als der größte absolute Unterschied (die maximale vertikale Distanz) zwischen der empirischen Verteilungsfunktion $F_n(x)$ und der theoretischen Soll-Verteilungsfunktion $F_0(x)$ über alle möglichen Werte von $x$.
+
+$$D_n := \max_x |F_n(x) - F_0(x)|$$
+
+Beispiel: Um zu prüfen, ob die Verteilung der Körpergrössen in einer Stichprobe von 100 Personen einer Normalverteilung mit einem Mittelwert von 170 cm und einer Standardabweichung von 10 cm entspricht, könnte der Einstichproben-KS-Test verwendet werden. Die Nullhypothese wäre, dass die Körpergrössen normalverteilt sind, während die Alternativhypothese besagt, dass sie es nicht sind.
+
+In R:
+```r
+ks.test(stichprobe,     # Die zu testende Stichprobe
+        "pnorm",        # Die theoretische Verteilung (hier Normalverteilung)
+        mean = 170,     # Mittelwert der Normalverteilung
+        sd = 10)
+```
+
+---
+
+## Zweistichproben Kolmogorov-Smirnov-Test
+
+Dieses Verfahren prüft, ob zwei völlig unabhängige Stichproben ($X$ und $Y$) dieselbe Verteilung aufweisen.
+
+* **Voraussetzung:** Die Stichproben weisen die Umfänge $n$ bzw. $m$ auf und stammen beide aus stetigen Verteilungen ($F_X$ und $F_Y$).
+* **Nullhypothese ($H_0$):** Beide Stichproben stammen aus derselben Verteilung ($F_X = F_Y$).
+* **Alternativhypothese ($H_1$):** Die beiden Stichproben weisen unterschiedliche Verteilungen auf ($F_X \neq F_Y$).
+* **Teststatistik ($D_{n,m}$):** Analog zum Einstichproben-Test misst die Prüfgröße hier den maximalen absoluten vertikalen Abstand, diesmal jedoch zwischen den beiden empirischen Verteilungsfunktionen $F_n^X(x)$ und $F_m^Y(x)$.
+
+$$D_{n,m} := \max_x |F_n^X(x) - F_m^Y(x)|$$
+
+
+
+
+# Permutationstests
+
+## Was ist eine Permutation?
+Eine Permutation bezeichnet eine bestimmte Anordnung oder Umordnung von Objekten in einer definierten Reihenfolge. Wenn man $n$ unterscheidbare Objekte hat, lässt sich die Anzahl der möglichen Permutationen mit der Fakultät $n!$ (n-Fakultät) berechnen. Diese Anzahl wächst mit zunehmendem $n$ extrem schnell an (so gibt es für 10 Objekte bereits über 3.6 Millionen Permutationen).
+
+## Grundidee des Permutationstests
+Der Permutationstest wird angewendet, um zu überprüfen, ob es einen signifikanten Unterschied zwischen verschiedenen Stichproben gibt. 
+
+* **Die Nullhypothese:** Der Test geht unter der Nullhypothese davon aus, dass die Zuordnung der einzelnen Beobachtungen zu den Stichprobengruppen absolut keine Rolle spielt. Die Daten werden also so betrachtet, als ob sie den Gruppen rein zufällig zugewiesen worden wären.
+* **Die Methodik:** Man berechnet die gewünschte Teststatistik (z.B. die Mittelwertsdifferenz) für sehr viele oder sogar alle möglichen Neuzuordnungen (Permutationen) der Daten. Daraus lässt sich ein Histogramm erstellen, das die Verteilung der Teststatistik unter der Nullhypothese darstellt.
+* **Die Entscheidung:** Abschliessend wird geprüft, wie "extrem" die bei den Originaldaten beobachtete Teststatistik im Vergleich zu dieser simulierten Verteilung ist, woraus sich der p-Wert ableiten lässt.
+
+## Durchführung in der Praxis
+Die konkrete Berechnung eines Permutationstests erfolgt in drei grundlegenden Schritten:
+
+1. **Permutationen bilden:** Es werden alle möglichen Anordnungen der Beobachtungen betrachtet. Da $n!$ sehr schnell riesig wird, verwendet man in der Praxis oft nicht alle Permutationen, sondern zieht eine grosse, fixe Anzahl (z. B. 100'000), was für eine gute Abschätzung meist völlig ausreicht.
+2. **Teststatistik berechnen:** Für jede einzelne dieser Permutationen wird die vorher festgelegte Teststatistik $T$ berechnet.
+3. **p-Wert bestimmen:** Der p-Wert entspricht dem Anteil der simulierten Teststatistiken, die mindestens genauso extrem (oder noch extremer) ausfallen wie die Teststatistik, die in der tatsächlichen Beobachtung gemessen wurde.
+
+## Vor- und Nachteile
+Permutationstests bringen spezifische Eigenschaften mit sich, die bei der Wahl des Testverfahrens abgewogen werden müssen:
+
+**Vorteile:**
+
+* Sie bieten eine enorme Flexibilität, da die Teststatistik vom Forschenden völlig frei gewählt werden kann.
+* Sie sind äusserst robust gegenüber der Verletzung von klassischen Verteilungsannahmen (wie z.B. der Normalverteilungsannahme).
+
+**Nachteile:**
+
+* Das Verfahren ist durch die Simulation tausender Anordnungen oft sehr rechenintensiv.
+* Sind die strengen Annahmen klassischer (parametrischer) Tests erfüllt, weisen diese klassischen Tests in der Regel eine höhere Trennschärfe (Power) auf als der Permutationstest.
