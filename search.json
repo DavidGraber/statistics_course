@@ -1,381 +1,66 @@
 [
   {
-    "objectID": "woche_06.html",
-    "href": "woche_06.html",
-    "title": "Woche 6: Diskrete und stetige Standardverteilungen",
+    "objectID": "woche_12.html",
+    "href": "woche_12.html",
+    "title": "Der Chi-Quadrat-Test",
     "section": "",
-    "text": "In der Statistik gibt es einige wichtige Standardverteilungen, die häufig verwendet werden, um verschiedene Arten von Daten und Phänomenen zu modellieren. In dieser Woche konzentrieren wir uns auf die Binomialverteilung, die Poisson-Verteilung und die Normalverteilung. Jede dieser Verteilungen hat ihre eigenen Eigenschaften, Parameter und Anwendungsbereiche.\n\n\nWird verwendet, wenn wir ein Experiment mit genau zwei Ausgängen (Erfolg/Misserfolg) \\(n\\)-mal unabhängig voneinander wiederholen und die Anzahl der Erfolge \\(k\\) zählen.\n\nParameter: \\(n\\) (Anzahl Versuche), \\(p\\) (Erfolgswahrscheinlichkeit)\nFormel für genau \\(k\\) Erfolge: \\[P(X = k) = \\binom{n}{k} \\cdot p^k \\cdot (1-p)^{n-k}\\]\n\nDer Erwartungswert der Binomialverteilung ist \\(E[X] = n \\cdot p\\) und die Varianz ist \\(Var(X) = n \\cdot p \\cdot (1-p)\\).\nIn R:\n\ndbinom(k, size = n, prob = p) Wahrscheinlichkeitfunktion \\(P(X = k)\\). Gibt die Wahrscheinlichkeit zurück, genau k Erfolge in n Versuchen mit Erfolgswahrscheinlichkeit p zu erzielen. k beschreibt die Anzahl der Erfolge, size gibt die Anzahl der Versuche an, und prob ist die Erfolgswahrscheinlichkeit pro Versuch.\npbinom(k, size = n, prob = p) Verteilungsfunktion (kumulierte Wahrscheinlichkeit) \\(P(X \\le k)\\). Gibt die Wahrscheinlichkeit zurück, höchstens k Erfolge zu erzielen. k ist die Anzahl der Erfolge, size die Anzahl der Versuche, und prob die Erfolgswahrscheinlichkeit pro Versuch.\nrbinom(k, size = n, prob = p) generiert n Zufallszahlen aus der Binomialverteilung mit Wahrscheinlichkeit p und Anzahl Versuche n.’ Was ist n und was ist die size? In rbinom, n ist die Anzahl der Zufallszahlen, die generiert werden sollen, während size die Anzahl der Versuche pro Zufallszahl angibt (also das n in der Binomialverteilung). Zum Beispiel, rbinom(10, size = 5, prob = 0.3) generiert 10 Zufallszahlen, wobei jede Zahl die Anzahl der Erfolge in 5 Versuchen mit einer Erfolgswahrscheinlichkeit von 0.3 darstellt.\n\nBeispiel: Wir treffen einen Basketballkorb mit 80% Wahrscheinlichkeit. Wie hoch ist die Wahrscheinlichkeit, dass wir in 10 Würfen genau 7 Körbe treffen? Das können wir mit dbinom(7, size = 10, prob = 0.8) berechnen.\n\n\n\nWird verwendet, um die Anzahl der Ereignisse in einem festen Zeitraum oder Raum zu modellieren, wenn diese Ereignisse mit einer bekannten durchschnittlichen Rate \\(\\lambda\\) auftreten und unabhängig voneinander sind.\n\nParameter: \\(\\lambda\\) (durchschnittliche Anzahl Ereignisse pro Intervall)\nFormel für genau \\(k\\) Ereignisse: \\[P(X = k) = \\frac{\\lambda^k \\cdot e^{-\\lambda}}{k!}\\]\n\nDer Erwartungswert und die Varianz der Poisson-Verteilung sind beide gleich \\(\\lambda\\).\nIn R:\n\ndpois(k, lambda = lambda) Wahrscheinlichkeitfunktion \\(P(X = k)\\). Gibt die Wahrscheinlichkeit zurück, genau k Ereignisse mit durchschnittlicher Rate lambda zu erzielen.\nppois(k, lambda = lambda) Verteilungsfunktion (kumulierte Wahrscheinlichkeit) \\(P(X \\le k)\\). Gibt die Wahrscheinlichkeit zurück, höchstens k Ereignisse mit durchschnittlicher Rate lambda zu erzielen.\nrpois(n, lambda = lambda) generiert n Zufallszahlen aus der Poisson-Verteilung mit durchschnittlicher Rate lambda. Zum Beispiel, rpois(10, lambda = 3) generiert 10 Zufallszahlen, wobei jede Zahl die Anzahl der Ereignisse in einem Intervall mit durchschnittlicher Rate von 3 darstellt.\n\nBeispiel: In einem Callcenter kommen durchschnittlich 5 Anrufe pro Stunde an. Wie hoch ist die Wahrscheinlichkeit, dass in einer Stunde genau 3 Anrufe eingehen? Das können wir mit dpois(3, lambda = 5) berechnen."
+    "text": "Der \\(\\chi^2\\)-Test (Chi-Quadrat-Test) nach Pearson umfasst eine Gruppe von statistischen Tests, die speziell für die Analyse kategorieller Daten entwickelt wurden. Je nach Fragestellung wird zwischen drei Hauptvarianten unterschieden:\n\nVerteilungs- oder Anpassungstest (Goodness-of-Fit): Untersucht, ob eine vorliegende Stichprobe einer spezifizierten theoretischen Verteilung folgt.\nHomogenitätstest: Prüft, ob zwei oder mehr unabhängige Stichproben der gleichen Verteilung entstammen bzw. aus derselben Grundgesamtheit kommen.\nUnabhängigkeitstest: Analysiert, ob zwei Merkmale stochastisch unabhängig voneinander sind."
   },
   {
-    "objectID": "woche_06.html#die-binomialverteilung-diskret",
-    "href": "woche_06.html#die-binomialverteilung-diskret",
-    "title": "Woche 6: Diskrete und stetige Standardverteilungen",
+    "objectID": "woche_12.html#einführung-in-den-chi-quadrat-test",
+    "href": "woche_12.html#einführung-in-den-chi-quadrat-test",
+    "title": "Der Chi-Quadrat-Test",
     "section": "",
-    "text": "Wird verwendet, wenn wir ein Experiment mit genau zwei Ausgängen (Erfolg/Misserfolg) \\(n\\)-mal unabhängig voneinander wiederholen und die Anzahl der Erfolge \\(k\\) zählen.\n\nParameter: \\(n\\) (Anzahl Versuche), \\(p\\) (Erfolgswahrscheinlichkeit)\nFormel für genau \\(k\\) Erfolge: \\[P(X = k) = \\binom{n}{k} \\cdot p^k \\cdot (1-p)^{n-k}\\]\n\nDer Erwartungswert der Binomialverteilung ist \\(E[X] = n \\cdot p\\) und die Varianz ist \\(Var(X) = n \\cdot p \\cdot (1-p)\\).\nIn R:\n\ndbinom(k, size = n, prob = p) Wahrscheinlichkeitfunktion \\(P(X = k)\\). Gibt die Wahrscheinlichkeit zurück, genau k Erfolge in n Versuchen mit Erfolgswahrscheinlichkeit p zu erzielen. k beschreibt die Anzahl der Erfolge, size gibt die Anzahl der Versuche an, und prob ist die Erfolgswahrscheinlichkeit pro Versuch.\npbinom(k, size = n, prob = p) Verteilungsfunktion (kumulierte Wahrscheinlichkeit) \\(P(X \\le k)\\). Gibt die Wahrscheinlichkeit zurück, höchstens k Erfolge zu erzielen. k ist die Anzahl der Erfolge, size die Anzahl der Versuche, und prob die Erfolgswahrscheinlichkeit pro Versuch.\nrbinom(k, size = n, prob = p) generiert n Zufallszahlen aus der Binomialverteilung mit Wahrscheinlichkeit p und Anzahl Versuche n.’ Was ist n und was ist die size? In rbinom, n ist die Anzahl der Zufallszahlen, die generiert werden sollen, während size die Anzahl der Versuche pro Zufallszahl angibt (also das n in der Binomialverteilung). Zum Beispiel, rbinom(10, size = 5, prob = 0.3) generiert 10 Zufallszahlen, wobei jede Zahl die Anzahl der Erfolge in 5 Versuchen mit einer Erfolgswahrscheinlichkeit von 0.3 darstellt.\n\nBeispiel: Wir treffen einen Basketballkorb mit 80% Wahrscheinlichkeit. Wie hoch ist die Wahrscheinlichkeit, dass wir in 10 Würfen genau 7 Körbe treffen? Das können wir mit dbinom(7, size = 10, prob = 0.8) berechnen."
+    "text": "Der \\(\\chi^2\\)-Test (Chi-Quadrat-Test) nach Pearson umfasst eine Gruppe von statistischen Tests, die speziell für die Analyse kategorieller Daten entwickelt wurden. Je nach Fragestellung wird zwischen drei Hauptvarianten unterschieden:\n\nVerteilungs- oder Anpassungstest (Goodness-of-Fit): Untersucht, ob eine vorliegende Stichprobe einer spezifizierten theoretischen Verteilung folgt.\nHomogenitätstest: Prüft, ob zwei oder mehr unabhängige Stichproben der gleichen Verteilung entstammen bzw. aus derselben Grundgesamtheit kommen.\nUnabhängigkeitstest: Analysiert, ob zwei Merkmale stochastisch unabhängig voneinander sind."
   },
   {
-    "objectID": "woche_06.html#die-poisson-verteilung-diskret",
-    "href": "woche_06.html#die-poisson-verteilung-diskret",
-    "title": "Woche 6: Diskrete und stetige Standardverteilungen",
+    "objectID": "woche_12.html#chi-quadrat-anpassungstest",
+    "href": "woche_12.html#chi-quadrat-anpassungstest",
+    "title": "Der Chi-Quadrat-Test",
+    "section": "2 Chi-Quadrat Anpassungstest",
+    "text": "2 Chi-Quadrat Anpassungstest\nDer Anpassungstest vergleicht beobachtete Häufigkeiten mit theoretisch erwarteten Häufigkeiten.\nBeispiel: Geburtenverteilung In einem Spital wurde die Anzahl der Geburten pro Wochentag erfasst. Es soll auf einem Signifikanzniveau von \\(\\alpha=0.05\\) geprüft werden, ob die Geburten gleichmässig über die Wochentage verteilt sind.\n\n\n\nKontingenztafel Geburtenverteilung (by Tobias Peter)\n\n\n\nNullhypothese (\\(H_0\\)): Die Geburten sind über die Wochentage gleichverteilt.\nWahrscheinlichkeit unter \\(H_0\\): Eine Geburt findet an einem bestimmten Wochentag mit der Wahrscheinlichkeit von \\(1/7\\) statt.\nAlternativhypothese (\\(H_1\\)): Die Anzahl der Geburten ist nicht gleichverteilt.\n\nIn R wird dieser Test mit der Funktion chisq.test(x, p) durchgeführt, wobei x die Stichprobendaten und p die Wahrscheinlichkeiten darstellen."
+  },
+  {
+    "objectID": "woche_12.html#chi-quadrat-homogenitätstest",
+    "href": "woche_12.html#chi-quadrat-homogenitätstest",
+    "title": "Der Chi-Quadrat-Test",
+    "section": "3 Chi-Quadrat Homogenitätstest",
+    "text": "3 Chi-Quadrat Homogenitätstest\nDieser Test untersucht \\(m\\) unabhängige Zufallsstichproben diskreter Merkmale mit \\(k\\) Ausprägungen. Die Nullhypothese besagt, dass alle Stichproben dieselbe Verteilung besitzen.\nKontingenztafeln und Erwartungswerte Zur Durchführung wird eine Kontingenztafel benötigt, welche die absoluten oder relativen Häufigkeiten der Merkmalskombinationen darstellt (siehe Beispiel weiter unten).\n\nDie erwarteten Zellhäufigkeiten (\\(E_{ij}\\)) unter der Nullhypothese berechnen sich aus den Randverteilungen: \\(E_{ij}=\\frac{n_{i\\bullet} \\cdot n_{\\bullet j}}{n}\\).\nDie Teststatistik ergibt sich aus der Summe der quadrierten Differenzen zwischen beobachteten (\\(n_{ij}\\)) und erwarteten Werten, gewichtet mit den erwarteten Werten: \\(X^2=\\sum_{i=1}^{m}\\sum_{j=1}^{k}\\frac{(n_{ij}-E_{ij})^2}{E_{ij}}\\).\nDie Statistik ist approximativ \\(\\chi^2\\)-verteilt mit \\((k-1) \\cdot (m-1)\\) Freiheitsgraden.\n\nBeispiel: Augenfarbe nach Geschlecht Es wird untersucht, ob sich die Verteilung der Augenfarben (blau, braun, grün) zwischen Männern und Frauen unterscheidet.\n\n\n\nKontingenztafel Augenfarbe (by Tobias Peter)\n\n\nNach der Berechnung der Kontingenztafel: in R mit chisq.test(kontingenztafel) ergibt sich eine Teststatistik von 19.943 bei 2 Freiheitsgraden und einem sehr kleinen p-Wert von 0.00004672. Bei einem Signifikanzniveau von \\(\\alpha=0.05\\) wird die Nullhypothese verworfen."
+  },
+  {
+    "objectID": "woche_12.html#chi-quadrat-unabhängigkeitstest",
+    "href": "woche_12.html#chi-quadrat-unabhängigkeitstest",
+    "title": "Der Chi-Quadrat-Test",
+    "section": "4 Chi-Quadrat Unabhängigkeitstest",
+    "text": "4 Chi-Quadrat Unabhängigkeitstest\nDieser Test prüft, ob zwei Faktoren stochastisch unabhängig sind.\n\nNullhypothese: Die beiden Faktoren sind unabhängig voneinander.\nAlternativhypothese: Die beiden Faktoren sind abhängig.\n\nDie methodische Durchführung und die Berechnung der Kontingenztafel erfolgen analog zum Homogenitätstest.\nBeispiel: Lungenkrebs und Raucherstatus Es wird bei 1000 Personen untersucht, ob das Auftreten von Lungenkrebs vom Raucherstatus (Nichtraucher, gelegentlich, Raucher) abhängt.\n\n\n\nKontingenztafel Lungenkrebs) (by Tobias Peter)\n\n\nWir führen in R einen Chi-Quadrat-Unabhängigkeitstest mit chisq.test(kontingenztafel) durch und erhalten folgende Ergebnisse:\n\nDer Test liefert einen p-Wert nahe 0 (0.0000002441).\nFolglich wird die Nullhypothese verworfen.\nEs besteht eine Abhängigkeit zwischen dem Raucherstatus und Lungenkrebs.\n\n\n\n\n\n\n\nWarningGleicher Test für zwei verschiedene Fragestellungen?\n\n\n\nDie gleiche Kontingenztafel under der gleiche Befehl chisq.test(kontingenztafel) kann sowohl für einen Homogenitätstest als auch für einen Unabhängigkeitstest verwendet werden. Der Unterschied liegt in der Interpretation der Hypothesen:\n\nHomogenitätstest: Es wird geprüft, ob die Verteilung der Augenfarben bei Männern und Frauen gleich ist.\nUnabhängigkeitstest: Es wird geprüft, ob es eine Abhängigkeit zwischen Geschlecht und Augenfarbe gibt.\n\nDer P-Wert und die Teststatistik ist in beiden Fällen gleich, aber die Schlussfolgerungen bezüglich der Hypothesen sind unterschiedlich."
+  },
+  {
+    "objectID": "woche_12.html#voraussetzungen-und-faustregeln",
+    "href": "woche_12.html#voraussetzungen-und-faustregeln",
+    "title": "Der Chi-Quadrat-Test",
+    "section": "5 Voraussetzungen und Faustregeln",
+    "text": "5 Voraussetzungen und Faustregeln\nDamit die berechnete Teststatistik zuverlässig durch die Chi-Quadrat-Verteilung approximiert werden kann, sollten folgende Faustregeln erfüllt sein:\n\nDie Gesamtstichprobe muss ausreichend gross sein, d.h. \\(n &gt; 30\\).\nKeine der erwarteten Zellhäufigkeiten (\\(E_{ij}\\)) darf kleiner als 1 sein.\nMindestens 80% der erwarteten Zellhäufigkeiten müssen grösser als 5 sein.\nSind diese Bedingungen nicht erfüllt, wird empfohlen, bestimmte Merkmalsausprägungen zusammenzufassen."
+  },
+  {
+    "objectID": "woche_07.html",
+    "href": "woche_07.html",
+    "title": "Woche 7: Grenzwertsätze",
     "section": "",
-    "text": "Wird verwendet, um die Anzahl der Ereignisse in einem festen Zeitraum oder Raum zu modellieren, wenn diese Ereignisse mit einer bekannten durchschnittlichen Rate \\(\\lambda\\) auftreten und unabhängig voneinander sind.\n\nParameter: \\(\\lambda\\) (durchschnittliche Anzahl Ereignisse pro Intervall)\nFormel für genau \\(k\\) Ereignisse: \\[P(X = k) = \\frac{\\lambda^k \\cdot e^{-\\lambda}}{k!}\\]\n\nDer Erwartungswert und die Varianz der Poisson-Verteilung sind beide gleich \\(\\lambda\\).\nIn R:\n\ndpois(k, lambda = lambda) Wahrscheinlichkeitfunktion \\(P(X = k)\\). Gibt die Wahrscheinlichkeit zurück, genau k Ereignisse mit durchschnittlicher Rate lambda zu erzielen.\nppois(k, lambda = lambda) Verteilungsfunktion (kumulierte Wahrscheinlichkeit) \\(P(X \\le k)\\). Gibt die Wahrscheinlichkeit zurück, höchstens k Ereignisse mit durchschnittlicher Rate lambda zu erzielen.\nrpois(n, lambda = lambda) generiert n Zufallszahlen aus der Poisson-Verteilung mit durchschnittlicher Rate lambda. Zum Beispiel, rpois(10, lambda = 3) generiert 10 Zufallszahlen, wobei jede Zahl die Anzahl der Ereignisse in einem Intervall mit durchschnittlicher Rate von 3 darstellt.\n\nBeispiel: In einem Callcenter kommen durchschnittlich 5 Anrufe pro Stunde an. Wie hoch ist die Wahrscheinlichkeit, dass in einer Stunde genau 3 Anrufe eingehen? Das können wir mit dpois(3, lambda = 5) berechnen."
+    "text": "Bevor wir uns die Grenzwertsätze ansehen, brauchen wir eine wichtige Grundlage: i.i.d.-Zufallsvariablen. Das steht für Independent and Identically Distributed. Zufallsvariablen erfüllen diese Eigenschaft, wenn:\n\nSie absolut unabhängig voneinander sind.\nSie alle exakt dieselbe Verteilung (also denselben Erwartungswert und dieselbe Varianz) besitzen.\n\nBeispiel: Mehrfaches Würfeln. Jeder Wurf ist unabhängig vom vorherigen, und bei jedem Wurf haben wir exakt die gleichen Wahrscheinlichkeiten für die Zahlen 1 bis 6."
   },
   {
-    "objectID": "woche_06.html#die-gleichverteilung-uniforme-verteilung-stetig",
-    "href": "woche_06.html#die-gleichverteilung-uniforme-verteilung-stetig",
-    "title": "Woche 6: Diskrete und stetige Standardverteilungen",
-    "section": "2.1 Die Gleichverteilung (Uniforme Verteilung, Stetig)",
-    "text": "2.1 Die Gleichverteilung (Uniforme Verteilung, Stetig)\nDie Gleichverteilung beschreibt eine Situation, in der alle Werte in einem bestimmten Intervall \\([a, b]\\) gleich wahrscheinlich sind.\n\nParameter: \\(a\\) (untere Grenze), \\(b\\) (obere Grenze)\nDichtefunktion: \\[\\varphi(x) = \\begin{cases}\\frac{1}{b-a} & \\text{für } a \\le x \\le b \\\\ 0 & \\text{sonst}\\end{cases}\\]\nVerteilungsfunktion: \\[F(x) = \\begin{cases}0 & \\text{für } x &lt; a \\\\ \\frac{x-a}{b-a} & \\text{für } a \\le x \\le b \\\\ 1 & \\text{für } x &gt; b\\end{cases}\\]\n\nDer Erwartungswert der Gleichverteilung ist \\(E[X] = \\frac{a + b}{2}\\) (Durchschnitt von a und b), und die Varianz ist \\(Var(X) = \\frac{(b - a)^2}{12}\\).\nIn R:\n\ndunif(x, min = a, max = b) Dichtefunktion \\(\\varphi(x)\\). Gibt die Dichte der Gleichverteilung an der Stelle x zurück. min und max geben die unteren und oberen Grenzen des Intervalls an.\npunif(x, min = a, max = b) Verteilungsfunktion \\(F(x)\\). Gibt die kumulierte Wahrscheinlichkeit zurück, dass eine Zufallsvariable aus der Gleichverteilung einen Wert kleiner oder gleich x annimmt. min und max geben die unteren und oberen Grenzen des Intervalls an.\nrunif(n, min = a, max = b) generiert n Zufallszahlen aus der Gleichverteilung mit den angegebenen Grenzen a und b. Zum Beispiel, runif(10, min = 0, max = 1) generiert 10 Zufallszahlen zwischen 0 und 1.\n\nBeispiel: Die Zeit, die ein Kunde in einem Geschäft verbringt, ist gleichmäßig zwischen 5 und 15 Minuten verteilt. Wie hoch ist die Wahrscheinlichkeit, dass ein Kunde weniger als 8 Minuten im Geschäft verbringt? Das können wir mit punif(8, min = 5, max = 15) berechnen."
+    "objectID": "woche_07.html#approximation-für-die-summe-s_n",
+    "href": "woche_07.html#approximation-für-die-summe-s_n",
+    "title": "Woche 7: Grenzwertsätze",
+    "section": "4.1 Approximation für die Summe (\\(S_n\\))",
+    "text": "4.1 Approximation für die Summe (\\(S_n\\))\nDie Summe aller Werte nähert sich einer Normalverteilung an: \\[S_n \\approx N(n \\cdot \\mu, n \\cdot \\sigma^2)\\]"
   },
   {
-    "objectID": "woche_06.html#die-exponentialverteilung-stetig",
-    "href": "woche_06.html#die-exponentialverteilung-stetig",
-    "title": "Woche 6: Diskrete und stetige Standardverteilungen",
-    "section": "2.2 Die Exponentialverteilung (Stetig)",
-    "text": "2.2 Die Exponentialverteilung (Stetig)\nDie Exponentialverteilung modelliert die Zeit zwischen Ereignissen in einem Poisson-Prozess, also die Zeit, die vergeht, bis ein bestimmtes Ereignis eintritt. Beispielsweise könnte sie die Zeit bis zum nächsten Anruf in einem Callcenter oder die Lebensdauer eines elektronischen Geräts modellieren.\n\nParameter: \\(\\lambda\\) (Rate, durchschnittliche Anzahl Ereignisse pro Zeiteinheit)\nDichtefunktion: \\[\\varphi(x) = \\begin{cases}\\lambda e^{-\\lambda x} & \\text{für } x \\ge 0 \\\\ 0 & \\text{sonst}\\end{cases}\\]\nVerteilungsfunktion: \\[F(x) = \\begin{cases} 1 - e^{-\\lambda x} & \\text{für } x \\ge 0 \\\\ 0 & \\text{sonst} \\end{cases}\\]\n\nDer Erwartungswert der Exponentialverteilung ist \\(E[X] = \\frac{1}{\\lambda}\\), und die Varianz ist \\(Var(X) = \\frac{1}{\\lambda^2}\\).\nIn R:\n\ndexp(x, rate = lambda) Dichtefunktion \\(\\varphi(x)\\). Gibt die Dichte der Exponentialverteilung an der Stelle x zurück. rate gibt die Rate \\(\\lambda\\) an.\npexp(x, rate = lambda) Verteilungsfunktion \\(F(x)\\). Gibt die kumulierte Wahrscheinlichkeit zurück, dass eine Zufallsvariable aus der Exponentialverteilung einen Wert kleiner oder gleich x annimmt. rate gibt die Rate \\(\\lambda\\) an.\nrexp(n, rate = lambda) generiert n Zufallszahlen aus der Exponentialverteilung mit der angegebenen Rate lambda. Zum Beispiel, rexp(10, rate = 2) generiert 10 Zufallszahlen aus der Exponentialverteilung mit Rate 2.\n\nBeispiel: Die Zeit, die ein Kunde in einem Geschäft verbringt, folgt einer Exponentialverteilung mit einer durchschnittlichen Verweildauer von 10 Minuten (also \\(\\lambda = \\frac{1}{10}\\)). Wie hoch ist die Wahrscheinlichkeit, dass ein Kunde weniger als 5 Minuten im Geschäft verbringt? Das können wir mit pexp(5, rate = 1/10) berechnen."
-  },
-  {
-    "objectID": "woche_06.html#die-normalverteilung-gaussverteilung-stetig",
-    "href": "woche_06.html#die-normalverteilung-gaussverteilung-stetig",
-    "title": "Woche 6: Diskrete und stetige Standardverteilungen",
-    "section": "2.3 Die Normalverteilung (Gaussverteilung, Stetig)",
-    "text": "2.3 Die Normalverteilung (Gaussverteilung, Stetig)\nDie berühmte “Glockenkurve” (Gauss-Verteilung). Sehr viele Phänomene in der Natur und Gesellschaft sind (näherungsweise) normalverteilt.\n\nParameter: \\(\\mu\\) (Erwartungswert, Zentrum der Glocke), \\(\\sigma\\) (Standardabweichung, Breite der Glocke)\nStandardnormalverteilung: Eine spezielle Normalverteilung mit \\(\\mu = 0\\) und \\(\\sigma = 1\\).\n\nIn R:\n\ndnorm(x, mean = mu, sd = sigma) Dichtefunktion \\(\\varphi(x)\\). Gibt die Dichte der Normalverteilung an der Stelle x zurück. mean und sd geben den Erwartungswert \\(\\mu\\) und die Standardabweichung \\(\\sigma\\) an.\npnorm(x, mean = mu, sd = sigma) Verteilungsfunktion \\(F(x)\\). Gibt die kumulierte Wahrscheinlichkeit zurück, dass eine Zufallsvariable aus der Normalverteilung einen Wert kleiner oder gleich x annimmt. mean und sd geben den Erwartungswert \\(\\mu\\) und die Standardabweichung \\(\\sigma\\) an.\nrnorm(n, mean = mu, sd = sigma) generiert n Zufallszahlen aus der Normalverteilung mit den angegebenen Parametern mu und sigma. Zum Beispiel, rnorm(10, mean = 0, sd = 1) generiert 10 Zufallszahlen aus der Standardnormalverteilung."
-  },
-  {
-    "objectID": "woche_06.html#quantile",
-    "href": "woche_06.html#quantile",
-    "title": "Woche 6: Diskrete und stetige Standardverteilungen",
-    "section": "2.4 Quantile",
-    "text": "2.4 Quantile\nQuantile sind Werte, die eine Verteilung in bestimmte Teile aufteilen. Zum Beispiel teilt das 0.5-Quantil (auch Median genannt) die Verteilung in zwei Hälften: 50% der Werte liegen darunter und 50% darüber. In R können Sie Quantile mit der Funktion qnorm(p, mean = mu, sd = sigma) für die Normalverteilung berechnen, wobei p das gewünschte Quantil ist (z.B. 0.95 für das 95%-Quantil).\nQuantile der Verteilungen in R: Wir können die Quantile für die verschiedenen Verteilungen mit den entsprechenden q-Funktionen berechnen:\n\nqbinom(p, size = n, prob = p) für die Binomialverteilung\nqpois(p, lambda = lambda) für die Poisson-Verteilung\nqunif(p, min = a, max = b) für die Gleichverteilung\nqexp(p, rate = lambda) für die Exponentialverteilung\nqnorm(p, mean = mu, sd = sigma) für die Normalverteilung\n\n\n\n\n\n\n\nTipTipp für die Prüfung und R\n\n\n\nAchten Sie in R genau auf den Unterschied zwischen d (density/Wahrscheinlichkeit für genauen Wert bei diskreten) und p (probability/kumulierte Wahrscheinlichkeit für “kleiner gleich”). Wenn nach “höchstens 3 Erfolgen” gefragt wird, brauchen Sie pbinom(3, ...). Wenn nach “genau 3 Erfolgen” gefragt wird, dbinom(3, ...)."
-  },
-  {
-    "objectID": "woche_05.html",
-    "href": "woche_05.html",
-    "title": "Woche 5: Erwartungswert & Varianz",
-    "section": "",
-    "text": "Anstatt immer die gesamte Verteilung anzuschauen, fassen wir sie oft mit Parametern zusammen, die das “Zentrum” und die “Breite” der Verteilung beschreiben.\n\n\nDer Erwartungswert ist der “Schwerpunkt” der Verteilung. Er sagt uns: “Welchen Wert erwarten wir im Durchschnitt, wenn wir das Experiment unendlich oft wiederholen?” Die Berechnung unterscheidet sich je nach Typ der Zufallsvariablen:\n\nFür diskrete Zufallsvariablen: Wir multiplizieren jeden möglichen Wert \\(x_i\\) mit seiner Wahrscheinlichkeit und summieren das Ganze auf. \\[E(X) = \\sum_{i} x_i \\cdot P(X = x_i)\\]\nFür stetige Zufallsvariablen: Da wir kontinuierliche Werte haben, wird die Summe zu einem Integral. Wir integrieren über das Produkt aus dem Wert \\(x\\) und der Dichtefunktion \\(\\varphi(x)\\). \\[E(X) = \\int_{-\\infty}^{\\infty} x \\cdot \\varphi(x) \\, dx\\]\n\n\n\n\nDie Varianz ist ein Mass für die Streuung. Sie gibt an, wie stark die tatsächlichen Werte im Durchschnitt vom Erwartungswert abweichen (genauer: die durchschnittliche quadrierte Abweichung).\n\nAllgemeine Definition: \\(Var(X) = E[(X - E[X])^2]\\)\nIn Worten: Der Erwartungswert beschreibt die quadrierte durchschnittliche Abweichung \\((X - E[X])^2\\) vom Erwartungswert einer Zufallsvariable X, also den Erwartungswert (durchschnitt) der quadrierten Abweichung vom Erwartungswert.\nBeispiel Würfelwurf (Erwartungswert \\(E[X] = 3.5\\)):\n\nFür die Augenzahl 1: \\((1 - 3.5)^2 = 6.25\\)\n\nFür die Augenzahl 2: \\((2 - 3.5)^2 = 2.25\\)\n\nFür die Augenzahl 3: \\((3 - 3.5)^2 = 0.25\\)\n\nFür die Augenzahl 4: \\((4 - 3.5)^2 = 0.25\\)\n\nFür die Augenzahl 5: \\((5 - 3.5)^2 = 2.25\\)\n\nFür die Augenzahl 6: \\((6 - 3.5)^2 = 6.25\\)\nDie Varianz im Würfelwurf wäre dann der gewichtete Durchschnitt dieser quadrierten Abweichungen \\[Var(X) = 1/6\\cdot(6.25 + 2.25 + 0.25 + 0.25 + 2.25 + 6.25) = 17.5/6 = 2.91\\]\n\nVerschiebungssatz (oft leichter zu rechnen): \\(Var(X) = E[X^2] - E[X]^2\\).\nBeispiel Würfelwurf:\n\nBeim ersten Term werden die Augenzahlen quadriert:\n\\(E[X^2] = 1/6\\cdot(1^2+2^2+3^2+4^2+5^2+6^2) = 1/6\\cdot91 = 15.16\\).\n\nBeim zweiten Term wird der einfache Erwartungswert des Würfelwurfes quadriert:\n\\(E[X]^2 = 3.5^2 = 12.25\\).\n\nDie Varianz im Würfelwurf lautet \\(15.16-12.25 = 2.91\\)\n\n\n\n\n\\(Var(\\lambda \\cdot X) = \\lambda^2 \\cdot Var(X)\\) wenn \\(\\lambda\\) eine Konstante ist\n\\(Var(X+Y) = Var(X) + Var(Y)\\) wenn X und Y unabhängig sind\n\n\n\n\n\nDie Standardabweichung ist dann einfach die Quadratwurzel aus der Varianz: \\[\\sigma = \\sqrt{Var(X)}\\] Warum Standardabweichung? Die Varianz hat quadrierte Einheiten (z.B. \\(m^2\\)). Durch das Ziehen der Wurzel hat die Standardabweichung wieder dieselbe Einheit wie die ursprünglichen Daten (z.B. \\(m\\)), was sie für uns viel anschaulicher macht."
-  },
-  {
-    "objectID": "woche_05.html#erwartungswert-ex-oder-mu",
-    "href": "woche_05.html#erwartungswert-ex-oder-mu",
-    "title": "Woche 5: Erwartungswert & Varianz",
-    "section": "",
-    "text": "Der Erwartungswert ist der “Schwerpunkt” der Verteilung. Er sagt uns: “Welchen Wert erwarten wir im Durchschnitt, wenn wir das Experiment unendlich oft wiederholen?” Die Berechnung unterscheidet sich je nach Typ der Zufallsvariablen:\n\nFür diskrete Zufallsvariablen: Wir multiplizieren jeden möglichen Wert \\(x_i\\) mit seiner Wahrscheinlichkeit und summieren das Ganze auf. \\[E(X) = \\sum_{i} x_i \\cdot P(X = x_i)\\]\nFür stetige Zufallsvariablen: Da wir kontinuierliche Werte haben, wird die Summe zu einem Integral. Wir integrieren über das Produkt aus dem Wert \\(x\\) und der Dichtefunktion \\(\\varphi(x)\\). \\[E(X) = \\int_{-\\infty}^{\\infty} x \\cdot \\varphi(x) \\, dx\\]"
-  },
-  {
-    "objectID": "woche_05.html#varianz",
-    "href": "woche_05.html#varianz",
-    "title": "Woche 5: Erwartungswert & Varianz",
-    "section": "",
-    "text": "Die Varianz ist ein Mass für die Streuung. Sie gibt an, wie stark die tatsächlichen Werte im Durchschnitt vom Erwartungswert abweichen (genauer: die durchschnittliche quadrierte Abweichung).\n\nAllgemeine Definition: \\(Var(X) = E[(X - E[X])^2]\\)\nIn Worten: Der Erwartungswert beschreibt die quadrierte durchschnittliche Abweichung \\((X - E[X])^2\\) vom Erwartungswert einer Zufallsvariable X, also den Erwartungswert (durchschnitt) der quadrierten Abweichung vom Erwartungswert.\nBeispiel Würfelwurf (Erwartungswert \\(E[X] = 3.5\\)):\n\nFür die Augenzahl 1: \\((1 - 3.5)^2 = 6.25\\)\n\nFür die Augenzahl 2: \\((2 - 3.5)^2 = 2.25\\)\n\nFür die Augenzahl 3: \\((3 - 3.5)^2 = 0.25\\)\n\nFür die Augenzahl 4: \\((4 - 3.5)^2 = 0.25\\)\n\nFür die Augenzahl 5: \\((5 - 3.5)^2 = 2.25\\)\n\nFür die Augenzahl 6: \\((6 - 3.5)^2 = 6.25\\)\nDie Varianz im Würfelwurf wäre dann der gewichtete Durchschnitt dieser quadrierten Abweichungen \\[Var(X) = 1/6\\cdot(6.25 + 2.25 + 0.25 + 0.25 + 2.25 + 6.25) = 17.5/6 = 2.91\\]\n\nVerschiebungssatz (oft leichter zu rechnen): \\(Var(X) = E[X^2] - E[X]^2\\).\nBeispiel Würfelwurf:\n\nBeim ersten Term werden die Augenzahlen quadriert:\n\\(E[X^2] = 1/6\\cdot(1^2+2^2+3^2+4^2+5^2+6^2) = 1/6\\cdot91 = 15.16\\).\n\nBeim zweiten Term wird der einfache Erwartungswert des Würfelwurfes quadriert:\n\\(E[X]^2 = 3.5^2 = 12.25\\).\n\nDie Varianz im Würfelwurf lautet \\(15.16-12.25 = 2.91\\)\n\n\n\n\n\\(Var(\\lambda \\cdot X) = \\lambda^2 \\cdot Var(X)\\) wenn \\(\\lambda\\) eine Konstante ist\n\\(Var(X+Y) = Var(X) + Var(Y)\\) wenn X und Y unabhängig sind"
-  },
-  {
-    "objectID": "woche_05.html#standardabweichung",
-    "href": "woche_05.html#standardabweichung",
-    "title": "Woche 5: Erwartungswert & Varianz",
-    "section": "",
-    "text": "Die Standardabweichung ist dann einfach die Quadratwurzel aus der Varianz: \\[\\sigma = \\sqrt{Var(X)}\\] Warum Standardabweichung? Die Varianz hat quadrierte Einheiten (z.B. \\(m^2\\)). Durch das Ziehen der Wurzel hat die Standardabweichung wieder dieselbe Einheit wie die ursprünglichen Daten (z.B. \\(m\\)), was sie für uns viel anschaulicher macht."
-  },
-  {
-    "objectID": "woche_10.html",
-    "href": "woche_10.html",
-    "title": "Woche 10: Normalitätsannahme & Varianzhomogenität",
-    "section": "",
-    "text": "Eine der zentralen Voraussetzungen für die Durchführung eines t-Tests ist, dass die zugrundeliegenden Daten (zumindest annähernd) normalverteilt sind. Bevor wir also Mittelwerte vergleichen können, müssen wir prüfen, ob unsere Daten diese “Glockenkurven”-Form aufweisen.\n\n\nEin statistischer Test, um Daten auf Normalverteilung zu prüfen, ist der Shapiro-Wilk-Test. Er testet grob gesagt die Nullhypothese: Die Daten sind normalverteilt. In der Praxis, insbesondere im Vorfeld eines t-Tests, ist dieser Test jedoch oft nicht besonders hilfreich. Dafür gibt es zwei Hauptgründe:\n\nDas Problem kleiner Stichproben: Haben wir nur wenige Datenpunkte und die Daten sind nicht normalverteilt, hat der Test zu wenig Power (Macht). Die Wahrscheinlichkeit ist hoch, dass er die Abweichung schlichtweg nicht erkennt (“verpasster Effekt”).\nDas Problem grosser Stichproben: Haben wir extrem viele Datenpunkte, wird der Test zu streng. Selbst winzige, für die Praxis völlig unbedeutende Abweichungen von der perfekten Normalverteilung führen dazu, dass die Normalitätsannahme abgelehnt wird.\n\n\n\n\n\nDa statistische Tests hier Schwächen haben, greift man oft auf eine visuelle Methode zurück: den Quantil-Quantil-Plot (Q-Q-Plot). Untersucht man speziell auf eine Normalverteilung, nennt man dies auch ein Normal-Quantil-Diagramm.\n\n\nAnstatt die Daten in ein Histogramm zu pressen, vergleichen wir bei einem Q-Q-Plot bestimmte Positionen unserer Daten (die empirischen Quantile) mit den idealen Positionen einer perfekten Normalverteilung (den theoretischen Quantilen).\nEin Q-Q-Plot spannt sich zwischen zwei Achsen auf:\n\nx-Achse: Zeigt die theoretischen Quantile der perfekten Standardnormalverteilung.\ny-Achse: Zeigt die empirischen Quantile (die tatsächlichen Messwerte) unserer Stichprobe \\(X_1, ..., X_n\\).\n\n\n\n\nDie Interpretation eines fertigen Q-Q-Plots ist glücklicherweise sehr intuitiv:\n\nNormalverteilung liegt vor: Wenn die Datenpunkte der Stichprobe tatsächlich aus einer Normalverteilung stammen, reihen sich die Punkte im Q-Q-Plot annähernd wie auf einer geraden Linie auf (\\(y = \\mu + \\sigma x\\)).\n\nDer Schnittpunkt mit der y-Achse entspricht dabei dem Erwartungswert (\\(\\mu\\)).\nDie Steigung der Linie entspricht der Standardabweichung (\\(\\sigma\\)).\n\nKeine Normalverteilung: Weichen die Punkte deutlich und systematisch (z.B. in S-Form oder als Banane) von dieser gedachten geraden Linie ab, ist das ein starkes Indiz dafür, dass die Daten nicht normalverteilt sind.\n\nIn R:\nqqnorm(stichprobe)"
-  },
-  {
-    "objectID": "woche_10.html#der-shapiro-wilk-test-und-seine-tücken",
-    "href": "woche_10.html#der-shapiro-wilk-test-und-seine-tücken",
-    "title": "Woche 10: Normalitätsannahme & Varianzhomogenität",
-    "section": "",
-    "text": "Ein statistischer Test, um Daten auf Normalverteilung zu prüfen, ist der Shapiro-Wilk-Test. Er testet grob gesagt die Nullhypothese: Die Daten sind normalverteilt. In der Praxis, insbesondere im Vorfeld eines t-Tests, ist dieser Test jedoch oft nicht besonders hilfreich. Dafür gibt es zwei Hauptgründe:\n\nDas Problem kleiner Stichproben: Haben wir nur wenige Datenpunkte und die Daten sind nicht normalverteilt, hat der Test zu wenig Power (Macht). Die Wahrscheinlichkeit ist hoch, dass er die Abweichung schlichtweg nicht erkennt (“verpasster Effekt”).\nDas Problem grosser Stichproben: Haben wir extrem viele Datenpunkte, wird der Test zu streng. Selbst winzige, für die Praxis völlig unbedeutende Abweichungen von der perfekten Normalverteilung führen dazu, dass die Normalitätsannahme abgelehnt wird."
-  },
-  {
-    "objectID": "woche_10.html#visuelle-überprüfung-der-q-q-plot",
-    "href": "woche_10.html#visuelle-überprüfung-der-q-q-plot",
-    "title": "Woche 10: Normalitätsannahme & Varianzhomogenität",
-    "section": "",
-    "text": "Da statistische Tests hier Schwächen haben, greift man oft auf eine visuelle Methode zurück: den Quantil-Quantil-Plot (Q-Q-Plot). Untersucht man speziell auf eine Normalverteilung, nennt man dies auch ein Normal-Quantil-Diagramm.\n\n\nAnstatt die Daten in ein Histogramm zu pressen, vergleichen wir bei einem Q-Q-Plot bestimmte Positionen unserer Daten (die empirischen Quantile) mit den idealen Positionen einer perfekten Normalverteilung (den theoretischen Quantilen).\nEin Q-Q-Plot spannt sich zwischen zwei Achsen auf:\n\nx-Achse: Zeigt die theoretischen Quantile der perfekten Standardnormalverteilung.\ny-Achse: Zeigt die empirischen Quantile (die tatsächlichen Messwerte) unserer Stichprobe \\(X_1, ..., X_n\\).\n\n\n\n\nDie Interpretation eines fertigen Q-Q-Plots ist glücklicherweise sehr intuitiv:\n\nNormalverteilung liegt vor: Wenn die Datenpunkte der Stichprobe tatsächlich aus einer Normalverteilung stammen, reihen sich die Punkte im Q-Q-Plot annähernd wie auf einer geraden Linie auf (\\(y = \\mu + \\sigma x\\)).\n\nDer Schnittpunkt mit der y-Achse entspricht dabei dem Erwartungswert (\\(\\mu\\)).\nDie Steigung der Linie entspricht der Standardabweichung (\\(\\sigma\\)).\n\nKeine Normalverteilung: Weichen die Punkte deutlich und systematisch (z.B. in S-Form oder als Banane) von dieser gedachten geraden Linie ab, ist das ein starkes Indiz dafür, dass die Daten nicht normalverteilt sind.\n\nIn R:\nqqnorm(stichprobe)"
-  },
-  {
-    "objectID": "woche_10.html#die-grundidee-das-neue-messgerät",
-    "href": "woche_10.html#die-grundidee-das-neue-messgerät",
-    "title": "Woche 10: Normalitätsannahme & Varianzhomogenität",
-    "section": "2.1 Die Grundidee: Das neue Messgerät",
-    "text": "2.1 Die Grundidee: Das neue Messgerät\nStell dir vor, du entwickelst ein neues Messgerät oder eine neue Produktionsmaschine. Das Ziel ist meistens mehr Präzision – also weniger Schwankungen. Wenn wir nun alte und neue Messungen vergleichen, wollen wir wissen: Hat sich die Streuung (Varianz) tatsächlich messbar verkleinert, oder sind die Schwankungen bei beiden Geräten eigentlich noch gleich gross?"
-  },
-  {
-    "objectID": "woche_10.html#voraussetzungen-für-den-f-test",
-    "href": "woche_10.html#voraussetzungen-für-den-f-test",
-    "title": "Woche 10: Normalitätsannahme & Varianzhomogenität",
-    "section": "2.2 Voraussetzungen für den F-Test",
-    "text": "2.2 Voraussetzungen für den F-Test\nDamit die Ergebnisse des F-Tests verlässlich sind, müssen drei strikte Annahmen erfüllt sein:\n\nNormalverteilung: Die Daten beider Stichproben müssen normalverteilt sein (Q-Q-Plot).\nUnabhängigkeit (i.i.d.): Die Messwerte innerhalb einer Stichprobe sind unabhängig voneinander.\nUnabhängige Gruppen: Die beiden Stichproben hängen nicht miteinander zusammen (es sind also z.B. keine Messungen an denselben Personen vor und nach einer Behandlung)."
-  },
-  {
-    "objectID": "woche_10.html#die-hypothesen",
-    "href": "woche_10.html#die-hypothesen",
-    "title": "Woche 10: Normalitätsannahme & Varianzhomogenität",
-    "section": "2.3 Die Hypothesen",
-    "text": "2.3 Die Hypothesen\nWie beim t-Test formulieren wir wieder unsere “Gerichtsverfahren”-Hypothesen. Man unterscheidet zwischen zweiseitig (wir suchen nach irgendeinem Unterschied) und einseitig (wir haben eine konkrete Vermutung, wer grösser/kleiner ist).\nZweiseitiger Test (Unterscheiden sich die Varianzen?):\n\n\\(H_0: \\sigma_X^2 = \\sigma_Y^2\\) (Die Varianzen sind gleich)\n\\(H_1: \\sigma_X^2 \\neq \\sigma_Y^2\\) (Die Varianzen sind unterschiedlich)\n\nEinseitiger Test (z.B. Hat die alte Maschine eine grössere Varianz als die neue?):\n\n\\(H_0: \\sigma_{alt}^2 \\le \\sigma_{neu}^2\\)\n\\(H_1: \\sigma_{alt}^2 &gt; \\sigma_{neu}^2\\)"
-  },
-  {
-    "objectID": "woche_10.html#die-teststatistik-der-prüfwert",
-    "href": "woche_10.html#die-teststatistik-der-prüfwert",
-    "title": "Woche 10: Normalitätsannahme & Varianzhomogenität",
-    "section": "2.4 Die Teststatistik (Der Prüfwert)",
-    "text": "2.4 Die Teststatistik (Der Prüfwert)\nDer F-Test hat eine bestechend logische Teststatistik \\(\\hat{\\gamma}\\). Wir teilen einfach die Varianz der ersten Stichprobe (\\(S_X^2\\)) durch die Varianz der zweiten Stichprobe (\\(S_Y^2\\)):\n\\[\\hat{\\gamma} = \\frac{S_X^2}{S_Y^2}\\]\n\nIntuition: Wenn beide Varianzen ungefähr gleich sind, liegt der Quotient nahe bei 1. Je weiter der Wert von 1 abweicht (nach oben oder unten), desto stärker spricht dies gegen unsere Nullhypothese \\(H_0\\).\nUnter der Annahme, dass \\(H_0\\) stimmt, folgt dieser Quotient einer sogenannten F-Verteilung. Diese Verteilung ist (im Gegensatz zur Normalverteilung) asymmetrisch und rechtsschief.\n\nIn R:\nvar.test(stichprobe1, stichprobe2, \n         alternative = \"two.sided\", # oder \"less\", \"greater\"\n         conf.level = 0.95)         # 1 - alpha"
-  },
-  {
-    "objectID": "woche_10.html#binomialtest-anteilstest",
-    "href": "woche_10.html#binomialtest-anteilstest",
-    "title": "Woche 10: Normalitätsannahme & Varianzhomogenität",
-    "section": "3.1 Binomialtest (Anteilstest)",
-    "text": "3.1 Binomialtest (Anteilstest)\nDer Binomialtest wird angewendet, um zu überprüfen, ob der tatsächliche Anteil \\(p\\) eines Merkmals in einer Grundgesamtheit signifikant von einem vorab definierten Sollwert \\(p_0\\) abweicht. Ein klassisches Anwendungsbeispiel ist die Überprüfung einer Impfquote (z. B. ob die Polio-Impfquote mindestens 95 % beträgt).\n\n3.1.1 Allgemeines Vorgehen\n\nSignifikanzniveau festlegen: Wir definieren ein Signifikanzniveau \\(\\alpha \\in (0,1)\\), typischerweise \\(\\alpha = 0.05\\) oder \\(\\alpha = 0.01\\).\nHypothesen formulieren:\n\nNullhypothese \\(H_0: p = p_0\\)\nAlternativhypothese \\(H_1: p \\neq p_0\\) (bei einem zweiseitigen Test) oder einseitig (z. B. \\(p &lt; p_0\\)).\n\nTeststatistik bestimmen: Die Anzahl der beobachteten “Erfolge” \\(k\\) aus einer Stichprobe der Größe \\(n\\) wird ermittelt.\nVerteilung unter \\(H_0\\): Wenn die Nullhypothese wahr ist, folgt die Teststatistik \\(X\\) einer Binomialverteilung \\(Bin(n, p_0)\\).\nEntscheidung: Es wird der p-Wert der Beobachtung \\(k\\) berechnet. Ist der p-Wert kleiner als \\(\\alpha\\), wird die Nullhypothese verworfen. Ist er größer oder gleich \\(\\alpha\\), wird die Nullhypothese beibehalten.\n\nIn R:\nrbinom.test(k, n, p = p0, \n           alternative = \"two.sided\", # oder \"less\", \"greater\"\n           conf.level = 0.95)         # 1 - alpha\n\nk: Anzahl der beobachteten Erfolge (z. B. Anzahl geimpfter Personen).\nn: Gesamtzahl der Personen in der Stichprobe.\np: Der erwartete Anteil unter der Nullhypothese."
-  },
-  {
-    "objectID": "woche_10.html#poissontest-dichtetest",
-    "href": "woche_10.html#poissontest-dichtetest",
-    "title": "Woche 10: Normalitätsannahme & Varianzhomogenität",
-    "section": "3.2 Poissontest (Dichtetest)",
-    "text": "3.2 Poissontest (Dichtetest)\nDer Poissontest kommt zum Einsatz, wenn die Rate von Ereignissen (z. B. die Anzahl von Salmonelleninfektionen in einem bestimmten Zeitraum) untersucht werden sol. Ziel ist es zu prüfen, ob die wahre mittlere Ereignisrate \\(\\lambda\\) von einem bisherigen Durchschnitt abweicht.\n\n3.2.1 Allgemeines Vorgehen\n\nSignifikanzniveau festlegen: Auch hier wird zunächst \\(\\alpha\\) (z. B. \\(\\alpha = 0.05\\)) festgelegt.\nHypothesen formulieren:\n\nNullhypothese \\(H_0: \\lambda = \\lambda_0\\) (z. B. \\(\\lambda = 5\\))\nAlternativhypothese \\(H_1: \\lambda \\neq \\lambda_0\\)\n\nTeststatistik bestimmen: Die Teststatistik ist die Summe der aufgetretenen Ereignisse über alle betrachteten Zeiträume, also \\(s = X_1 + X_2 + \\dots + X_n\\).\nVerteilung unter \\(H_0\\): Unter der Nullhypothese sind die einzelnen Beobachtungen \\(X_i\\) unabhängig und poissonverteilt. Die Summe der Ereignisse folgt demnach einer Poissonverteilung, deren Parameter sich aus der Summe der Erwartungswerte ergibt.\nBesonderheit bei der p-Wert-Berechnung: Im Gegensatz zu symmetrischen Verteilungen (wie der Normalverteilung) ist die Poissonverteilung im Allgemeinen asymmetrisch. Bei der Bestimmung des p-Wertes für einen zweiseitigen Test können wir die Teststatistik nicht einfach spiegeln. Stattdessen müssen die Wahrscheinlichkeiten beider Verteilungsenden separat berechnet und aufaddiert werden.\nEntscheidung: Liegt der berechnete p-Wert unter \\(\\alpha\\), verwerfen wir \\(H_0\\). Ist er größer oder gleich \\(\\alpha\\), behalten wir die Nullhypothese bei.\n\nIn R:\nrpoisson.test(s, T, r = lambda0, \n            alternative = \"two.sided\", # oder \"less\", \"greater\"\n            conf.level = 0.95)         # 1 - alpha\n\ns: Die Summe der beobachteten Ereignisse über alle Zeiträume.\nT: Die Gesamtzeit, über die die Ereignisse beobachtet wurden.\nr: Der erwartete Wert unter der Nullhypothese."
-  },
-  {
-    "objectID": "woche_01.html",
-    "href": "woche_01.html",
-    "title": "Woche 1: Einführung & Kombinatorik",
-    "section": "",
-    "text": "In dieser ersten Woche klären wir die fundamentale Frage: Was unterscheidet Statistik von der Wahrscheinlichkeitsrechnung?\n\n\nDer Unterschied lässt sich am besten anhand eines Urnenmodells verdeutlichen:\n\nWahrscheinlichkeitsrechnung: Wir kennen das Modell (wir wissen, was in der Urne ist) und berechnen die Wahrscheinlichkeit für bestimmte Daten (was wir ziehen werden).\n\nFrage: “Was werden wir mit welcher Wahrscheinlichkeit in den Händen halten?”\n\nStatistik: Wir haben Daten (die gezogenen Kugeln) und ziehen Rückschlüsse auf das zugrunde liegende Modell oder dessen Parameter.\n\nFrage: “Was können wir basierend auf den Daten über den Inhalt der Urne aussagen?”"
-  },
-  {
-    "objectID": "woche_01.html#statistik-vs.-wahrscheinlichkeitsrechnung",
-    "href": "woche_01.html#statistik-vs.-wahrscheinlichkeitsrechnung",
-    "title": "Woche 1: Einführung & Kombinatorik",
-    "section": "",
-    "text": "Der Unterschied lässt sich am besten anhand eines Urnenmodells verdeutlichen:\n\nWahrscheinlichkeitsrechnung: Wir kennen das Modell (wir wissen, was in der Urne ist) und berechnen die Wahrscheinlichkeit für bestimmte Daten (was wir ziehen werden).\n\nFrage: “Was werden wir mit welcher Wahrscheinlichkeit in den Händen halten?”\n\nStatistik: Wir haben Daten (die gezogenen Kugeln) und ziehen Rückschlüsse auf das zugrunde liegende Modell oder dessen Parameter.\n\nFrage: “Was können wir basierend auf den Daten über den Inhalt der Urne aussagen?”"
-  },
-  {
-    "objectID": "woche_01.html#die-produktregel",
-    "href": "woche_01.html#die-produktregel",
-    "title": "Woche 1: Einführung & Kombinatorik",
-    "section": "2.1 Die Produktregel",
-    "text": "2.1 Die Produktregel\nWenn ein Gesamtvorgang aus \\(k\\) nacheinander folgenden, unabhängigen Entscheidungen besteht, wobei es für die \\(i\\)-te Entscheidung \\(n_i\\) Möglichkeiten gibt, berechnet sich die Gesamtzahl durch:\n\\[N = n_1 \\cdot n_2 \\cdot \\dots \\cdot n_k\\]"
-  },
-  {
-    "objectID": "woche_01.html#variationen",
-    "href": "woche_01.html#variationen",
-    "title": "Woche 1: Einführung & Kombinatorik",
-    "section": "2.2 Variationen",
-    "text": "2.2 Variationen\nEine Auswahl von Objekten, bei der die Reihenfolge wichtig ist. Hierbei gibt es zwei Fälle:\nOhne Zurücklegen:\nEin Zahlenschloss, bei dem jede Zahl nur einmal gewählt werden kann. Für ein 3-stelliges Schloss \\((N = 10*9*8)\\)\nMit Zurücklegen:\nEin Zahlenschloss, bei dem jede Zahl mehrfach gewählt werden kann. Für ein 3-stelliges Schloss \\((N = 10*10*10)\\)"
-  },
-  {
-    "objectID": "woche_01.html#permutationen-anordnungen",
-    "href": "woche_01.html#permutationen-anordnungen",
-    "title": "Woche 1: Einführung & Kombinatorik",
-    "section": "2.3 Permutationen (Anordnungen)",
-    "text": "2.3 Permutationen (Anordnungen)\nWie viele Möglichkeiten gibt es, \\(n\\) unterscheidbare Objekte in einer bestimmten Reihenfolge anzuordnen? Beispiel: Anordnung von 3 Büchern auf einem Regal: \\(3! = 6\\) Möglichkeiten.\nFormel: \\[P(n) = n!\\]\nIn R: factorial(n)"
-  },
-  {
-    "objectID": "woche_01.html#kombinationen-auswahl",
-    "href": "woche_01.html#kombinationen-auswahl",
-    "title": "Woche 1: Einführung & Kombinatorik",
-    "section": "2.4 Kombinationen (Auswahl)",
-    "text": "2.4 Kombinationen (Auswahl)\nHier untersuchen wir, wie viele Möglichkeiten es gibt, \\(k\\) Objekte aus einer Menge von \\(n\\) Objekten auszuwählen. Dabei ist die Reihenfolge egal (ziehen von einstelligen Nummern: 012 ist das gleiche wie 021 oder 210).\nOhne Zurücklegen.\nTypisches Beispiel: Lotto oder die Auswahl von 2 Pizzabelägen aus 6 möglichen, Pilze+Salami ist das gleiche wie Salami+Pilze.\nFormel (Binomialkoeffizient): \\[\\binom{n}{k} = \\frac{n!}{k!(n-k)!}\\]\nIn R: choose(n, k)\nMit Zurücklegen.\nBeispiel: Auswahl von Objekten, die nach der Ziehung wieder zurückgelegt werden, wobei nur die Anzahl pro Kategorie zählt. Beispiel: Auswahl von 3 Kugeln aus einer Urne mit 5 verschiedenen Farben, wobei jede Farbe mehrfach gezogen werden kann (z.B. 2 rote und 1 blaue Kugel).\nFormel: \\[\\binom{n+k-1}{k}\\]\nIn R: choose(n + k - 1, k)"
-  },
-  {
-    "objectID": "woche_02.html",
-    "href": "woche_02.html",
-    "title": "Woche 2: Wahrscheinlichkeitsrechnung",
-    "section": "",
-    "text": "Die Wahrscheinlichkeitsrechnung beschäftigt sich mit Zufallsexperimenten – das sind Vorgänge, deren Ausgang nicht exakt vorhersagbar ist. Um damit zu rechnen, brauchen wir einige Grundbegriffe:\n\nElementarereignis (\\(\\omega\\)): Ein einzelner, konkreter Ausgang eines Experiments.\nGrundmenge / Grundraum (\\(\\Omega\\)): Die Menge aller möglichen Ausgänge eines Experiments.\nEreignis (\\(A\\)): Eine Sammlung von bestimmten Elementarereignissen. Formal ist ein Ereignis eine Teilmenge der Grundmenge (\\(A \\subseteq \\Omega\\)).\n\nBeispiel Würfelwurf:\n\nGrundmenge: \\(\\Omega = \\{1, 2, 3, 4, 5, 6\\}\\)\nEreignis \\(A\\) (“eine gerade Zahl würfeln”): \\(A = \\{2, 4, 6\\}\\)"
-  },
-  {
-    "objectID": "woche_02.html#laplace-experimente",
-    "href": "woche_02.html#laplace-experimente",
-    "title": "Woche 2: Wahrscheinlichkeitsrechnung",
-    "section": "3.1 Laplace-Experimente",
-    "text": "3.1 Laplace-Experimente\nEin Laplace-Experiment liegt vor, wenn jeder mögliche Ausgang (\\(\\omega\\)) absolut gleich wahrscheinlich ist.\nFormel: \\[\\mathbb{P}[A] = \\frac{|A|}{|\\Omega|} = \\frac{\\text{Anzahl günstige Ausgänge}}{\\text{Anzahl mögliche Ausgänge}}\\]\nBeispiel: Wahrscheinlichkeit für eine gerade Zahl beim fairen Würfelwurf: \\(\\mathbb{P}[A] = 3 / 6 = 0.5\\)."
-  },
-  {
-    "objectID": "woche_08_1.html",
-    "href": "woche_08_1.html",
-    "title": "Woche 8_1: Deskriptive Statistik",
-    "section": "",
-    "text": "Die deskriptive (beschreibende) Statistik hat zum Ziel, grosse Datenmengen übersichtlich zusammenzufassen und deren charakteristische Merkmale durch Tabellen, Kennzahlen und Grafiken darzustellen.\n\nGrundgesamtheit (N): Die Menge aller Objekte, über die wir eine Aussage treffen wollen.\nStichprobe (n): Eine Teilmenge der Grundgesamtheit, die tatsächlich untersucht wird.\nMerkmal (Variable): Die Eigenschaft, die gemessen wird (z. B. Körpergrösse).\nMerkmalsausprägung: Der konkrete Wert, den ein Merkmal annehmen kann (z. B. 1.80 m)."
-  },
-  {
-    "objectID": "woche_08_1.html#arithmetisches-mittel-barx",
-    "href": "woche_08_1.html#arithmetisches-mittel-barx",
-    "title": "Woche 8_1: Deskriptive Statistik",
-    "section": "3.1 Arithmetisches Mittel (\\(\\bar{x}\\))",
-    "text": "3.1 Arithmetisches Mittel (\\(\\bar{x}\\))\nDer klassische Durchschnitt. Er ist sehr anfällig gegenüber Ausreissern. \\[\\bar{x} = \\frac{1}{n} \\sum_{i=1}^{n} x_i\\] In R: mean(x)"
-  },
-  {
-    "objectID": "woche_08_1.html#median-q_0.5",
-    "href": "woche_08_1.html#median-q_0.5",
-    "title": "Woche 8_1: Deskriptive Statistik",
-    "section": "3.2 Median (\\(q_{0.5}\\))",
-    "text": "3.2 Median (\\(q_{0.5}\\))\nDer Wert, der die sortierte Datenreihe genau in zwei Hälften teilt. Er ist robust gegenüber Ausreissern. In R: median(x)"
-  },
-  {
-    "objectID": "woche_09.html",
-    "href": "woche_09.html",
-    "title": "Woche 9: Hypothesentests und t-Tests",
-    "section": "",
-    "text": "Ein statistischer Hypothesentest ist ein Verfahren, um anhand von Daten zu entscheiden, ob eine bestimmte Annahme (Hypothese) über die Grundgesamtheit haltbar ist oder nicht.\n\n\nMan kann sich einen Hypothesentest wie ein Gerichtsverfahren vorstellen:\n\nNullhypothese (\\(H_0\\)): Der Angeklagte ist unschuldig (Status Quo, kein Effekt).\nAlternativhypothese (\\(H_1\\)): Der Angeklagte ist schuldig (neue Entdeckung, ein Effekt liegt vor).\nZiel: Wir suchen nach “Beweisen” (Daten), die so stark gegen \\(H_0\\) sprechen, dass wir die Unschuldsvermutung aufgeben müssen.\n\n\n\n\nDa wir nur eine Stichprobe betrachten, können wir Fehlentscheidungen treffen:\n\n\n\n\n\n\n\n\nFehler\nBezeichnung\nBedeutung\n\n\n\n\nFehler 1. Art\n\\(\\alpha\\) (Signifikanzniveau)\n\\(H_0\\) wird abgelehnt, obwohl sie wahr ist (“falscher Alarm”).\n\n\nFehler 2. Art\n\\(\\beta\\)\n\\(H_0\\) wird beibehalten, obwohl \\(H_1\\) wahr ist (“verpasster Effekt”).\n\n\n\nDas Signifikanzniveau \\(\\alpha\\) (meist 5%) legt fest, wie hoch das Risiko für einen Fehler 1. Art maximal sein darf.\n\n\n\nFehlerarten (by Tobias Peter)\n\n\n\n\n\nDer p-Wert ist die Wahrscheinlichkeit, ein Stichprobenresultat zu erhalten, das mindestens so extrem ist wie das beobachtete, unter der Annahme, dass \\(H_0\\) wahr ist.\n\n\\(p &lt; \\alpha\\): Das Ergebnis ist signifikant \\(\\rightarrow H_0\\) wird abgelehnt.\n\\(p \\ge \\alpha\\): Das Ergebnis ist nicht signifikant \\(\\rightarrow H_0\\) wird beibehalten.\n\n\n\n\nDie Macht (Power) eines Tests ist die Wahrscheinlichkeit, dass der Test \\(H_0\\) ablehnt, wenn tatsächlich \\(H_1\\) wahr ist. Also wie wahrscheinlich detektieren wir einen echten Effekt? Sie hängt von der Effektgröße, der Stichprobengröße und dem Signifikanzniveau ab. —"
-  },
-  {
-    "objectID": "woche_09.html#die-grundidee-das-gerichtsverfahren",
-    "href": "woche_09.html#die-grundidee-das-gerichtsverfahren",
-    "title": "Woche 9: Hypothesentests und t-Tests",
-    "section": "",
-    "text": "Man kann sich einen Hypothesentest wie ein Gerichtsverfahren vorstellen:\n\nNullhypothese (\\(H_0\\)): Der Angeklagte ist unschuldig (Status Quo, kein Effekt).\nAlternativhypothese (\\(H_1\\)): Der Angeklagte ist schuldig (neue Entdeckung, ein Effekt liegt vor).\nZiel: Wir suchen nach “Beweisen” (Daten), die so stark gegen \\(H_0\\) sprechen, dass wir die Unschuldsvermutung aufgeben müssen."
-  },
-  {
-    "objectID": "woche_09.html#fehlerarten-beim-testen",
-    "href": "woche_09.html#fehlerarten-beim-testen",
-    "title": "Woche 9: Hypothesentests und t-Tests",
-    "section": "",
-    "text": "Da wir nur eine Stichprobe betrachten, können wir Fehlentscheidungen treffen:\n\n\n\n\n\n\n\n\nFehler\nBezeichnung\nBedeutung\n\n\n\n\nFehler 1. Art\n\\(\\alpha\\) (Signifikanzniveau)\n\\(H_0\\) wird abgelehnt, obwohl sie wahr ist (“falscher Alarm”).\n\n\nFehler 2. Art\n\\(\\beta\\)\n\\(H_0\\) wird beibehalten, obwohl \\(H_1\\) wahr ist (“verpasster Effekt”).\n\n\n\nDas Signifikanzniveau \\(\\alpha\\) (meist 5%) legt fest, wie hoch das Risiko für einen Fehler 1. Art maximal sein darf.\n\n\n\nFehlerarten (by Tobias Peter)"
-  },
-  {
-    "objectID": "woche_09.html#der-p-wert",
-    "href": "woche_09.html#der-p-wert",
-    "title": "Woche 9: Hypothesentests und t-Tests",
-    "section": "",
-    "text": "Der p-Wert ist die Wahrscheinlichkeit, ein Stichprobenresultat zu erhalten, das mindestens so extrem ist wie das beobachtete, unter der Annahme, dass \\(H_0\\) wahr ist.\n\n\\(p &lt; \\alpha\\): Das Ergebnis ist signifikant \\(\\rightarrow H_0\\) wird abgelehnt.\n\\(p \\ge \\alpha\\): Das Ergebnis ist nicht signifikant \\(\\rightarrow H_0\\) wird beibehalten."
-  },
-  {
-    "objectID": "woche_09.html#die-macht-eines-tests",
-    "href": "woche_09.html#die-macht-eines-tests",
-    "title": "Woche 9: Hypothesentests und t-Tests",
-    "section": "",
-    "text": "Die Macht (Power) eines Tests ist die Wahrscheinlichkeit, dass der Test \\(H_0\\) ablehnt, wenn tatsächlich \\(H_1\\) wahr ist. Also wie wahrscheinlich detektieren wir einen echten Effekt? Sie hängt von der Effektgröße, der Stichprobengröße und dem Signifikanzniveau ab. —"
-  },
-  {
-    "objectID": "woche_09.html#einstichproben-t-test",
-    "href": "woche_09.html#einstichproben-t-test",
-    "title": "Woche 9: Hypothesentests und t-Tests",
-    "section": "2.1 Einstichproben-t-Test",
-    "text": "2.1 Einstichproben-t-Test\nMan vergleicht den Mittelwert einer Stichprobe mit einem fest vorgegebenen Sollwert \\(\\mu_0\\).\nBeispiel: Eine Tablette soll 100 mg Wirkstoff enthalten. Wir testen, ob die Produktion systematisch davon abweicht.\n\n\\(H_0: \\mu = 100\\)\n\\(H_1: \\mu \\neq 100\\) (zweiseitig)\n\n\n2.1.1 Teststatistik \\(T\\):\nDie Teststatistik ist der “Prüfwert”, den wir berechnen, um zu sehen, wie weit unsere Daten vom erwarteten Wert (\\(\\mu_0\\)) entfernt liegen. \\[T = \\frac{\\overline{X} - \\mu_0}{S / \\sqrt{n}}\\]\n\n\\(\\overline{X}\\): Der beobachtete Durchschnitt deiner Stichprobe.\n\\(\\mu_0\\): Der hypothetische Sollwert aus der Nullhypothese \\(H_0\\).\n\\(S\\): Die Standardabweichung der Stichprobe.\n\\(n\\): Die Anzahl der Beobachtungen.\n\n\n\n2.1.2 Warum unterscheidet sich \\(T\\) vom Stichprobenmittelwert?\nWährend der Mittelwert \\(\\overline{X}\\) in der Originaleinheit (z. B. mg, cm, kg) gemessen wird, ist \\(T\\) eine standardisierte Maßzahl.\n\nVerschiebung (Zentrierung): Wir berechnen die Differenz \\((\\overline{X} - \\mu_0)\\). Das sagt uns, wie groß die Abweichung absolut ist.\nMaßstabsanpassung (Standardisierung): Wir teilen durch den Standardfehler (\\(S / \\sqrt{n}\\)). \\(T\\) misst also nicht in Zentimetern, sondern in Standardfehlern.\nEin \\(T\\)-Wert von 2 bedeutet: “Unser Stichprobenmittelwert liegt 2 Standardfehler weit weg vom Sollwert.”\nDies macht Ergebnisse vergleichbar, egal was wir für Dinge messen.\n\n\n\n2.1.3 Warum t-Verteilung statt Normalverteilung?\nNach dem Zentralen Grenzwertsatz sind Mittelwerte bei großen Stichproben zwar normalverteilt, aber es gibt einen Haken: Die Varianz.\n\nWüssten wir die wahre Varianz \\(\\sigma^2\\) der Grundgesamtheit, dürften wir die Normalverteilung nutzen.\nIn der Realität müssen wir \\(\\sigma^2\\) aber durch die Stichprobenvarianz \\(S^2\\) schätzen.\nDiese Schätzung ist unsicher, besonders bei kleinen Stichproben.\n\nDie t-Verteilung korrigiert diese Unsicherheit. Sie hat im Vergleich zur Normalverteilung “Fat Tails” (breitere Ränder). Das bedeutet, dass extreme Abweichungen bei kleinen Stichproben öfter vorkommen können. Je größer die Stichprobe \\(n\\) wird, desto ähnlicher wird die t-Verteilung der Normalverteilung.\n\n\n\nT-Verteilung vs. Normalverteilung (https://analystprep.com/cfa-level-1-exam/quantitative-methods/t-distribution-and-degrees-of-freedom/)\n\n\n\n\n2.1.4 So wird das Resultat unseres Einstichproben-t-Tests berechnet:\n\nSetze ein Signifikanzniveau \\(\\alpha\\) (z.B. 0.05).\nBestimme die Freiheitsgrade: \\(df = n - 1\\).\nUnser Signifikanzniveau und unsere Freiheitsgrade definieren eine t-Verteilung, auf der wir nun testen.\nWir bestimmen die kritischen Werte für die Ablehnungsbereiche: qt(1 - alpha/2, df) (zweiseitige Tests).\nBerechnete den \\(T\\)-Wert unserer Stichprobe und vergleiche ihn mit dem kritischen Wert aus der t-Verteilung. Liegt der \\(T\\)-Wert außerhalb des kritischen Bereichs, lehnen wir \\(H_0\\) ab.\n\nIn R können wir diesen Test mit der Funktion t.test() durchführen, welche die oben genannten Schritte automatisch erledigt.\nIn R:\nt.test(stichprobe, alternative = \"two.sided\", mu = 100, conf.level = 0.95)\nDer resultierende p-Wert gibt an, wie wahrscheinlich es ist, ein so extremes Ergebnis zu erhalten, wenn \\(H_0\\) wahr ist. Ein p-Wert kleiner als \\(\\alpha\\) führt zur Ablehnung von \\(H_0\\), das heisst es gibt eine systematische Abweichung von 100 mg, wenn der p-Wert kleiner als unser Signifikanzniveau ist."
-  },
-  {
-    "objectID": "woche_09.html#zweistichproben-t-test-unabhängig",
-    "href": "woche_09.html#zweistichproben-t-test-unabhängig",
-    "title": "Woche 9: Hypothesentests und t-Tests",
-    "section": "2.2 Zweistichproben-t-Test (Unabhängig)",
-    "text": "2.2 Zweistichproben-t-Test (Unabhängig)\nVergleicht die Mittelwerte zweier unabhängiger Gruppen (z.B. Behandlungsgruppe vs. Kontrollgruppe).\n\nVoraussetzung: Beide Gruppen sind normalverteilt.\nVarianz: Man unterscheidet, ob die Varianzen der beiden Gruppen gleich oder verschieden sind (Welch-Test)."
-  },
-  {
-    "objectID": "woche_09.html#gepaarter-t-test",
-    "href": "woche_09.html#gepaarter-t-test",
-    "title": "Woche 9: Hypothesentests und t-Tests",
-    "section": "2.3 Gepaarter t-Test",
-    "text": "2.3 Gepaarter t-Test\nWird verwendet, wenn Messwerte paarweise zusammengehören (z.B. Messung vor und nach einem Training bei derselben Person). Hierbei wird der t-Test auf die Differenzen der Paare angewendet."
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "1 Willkommen zum Statistik-Kurs",
-    "section": "",
-    "text": "Dieses digitale Skript wird jede Woche erweitert. Hier finden Sie alle wichtigen Formeln, Definitionen und Beispiele aus den Vorlesungen.\n\n\n\nWoche 1: Einführung & Kombinatorik\nWoche 2: Wahrscheinlichkeitsrechnung\nWoche 3: Bedingte Wahrscheinlichkeiten\nWoche 4: Zufallsvariablen & Verteilungen\nWoche 5: Erwartungswert & Varianz\nWoche 6: Standardverteilungen\nWoche 7: Grenzwertsätze\nWoche 8_1: Deskriptive Statistik\nWoche 8_2: Schätzer & Konfidenzintervalle\nWoche 9: Hypothesentests & t-Tests\nWoche 10: Normalitätsannahme & Varianzhomogenität\nWoche 11: Poweranalyse, Nichtparametrische Tests"
-  },
-  {
-    "objectID": "index.html#semesterplan",
-    "href": "index.html#semesterplan",
-    "title": "1 Willkommen zum Statistik-Kurs",
-    "section": "",
-    "text": "Woche 1: Einführung & Kombinatorik\nWoche 2: Wahrscheinlichkeitsrechnung\nWoche 3: Bedingte Wahrscheinlichkeiten\nWoche 4: Zufallsvariablen & Verteilungen\nWoche 5: Erwartungswert & Varianz\nWoche 6: Standardverteilungen\nWoche 7: Grenzwertsätze\nWoche 8_1: Deskriptive Statistik\nWoche 8_2: Schätzer & Konfidenzintervalle\nWoche 9: Hypothesentests & t-Tests\nWoche 10: Normalitätsannahme & Varianzhomogenität\nWoche 11: Poweranalyse, Nichtparametrische Tests"
-  },
-  {
-    "objectID": "woche_08_2.html",
-    "href": "woche_08_2.html",
-    "title": "Woche 8_2: Schätzer & Konfidenzintervalle",
-    "section": "",
-    "text": "Oft wissen wir aus Erfahrung, dass Daten einer bestimmten Verteilung folgen (z.B. Normalverteilung), aber die genauen Parameter (wie der Erwartungswert \\(\\mu\\) oder die Varianz \\(\\sigma^2\\)) sind unbekannt und müssen aus Daten geschätzt werden.\n\nStichprobe: Eine Folge von \\(n\\) unabhängigen und identisch verteilten (i.i.d.) Zufallsvariablen \\(X_i\\), die verwendet wird, um den unbekannten, fixen Parameter aus Beobachtungen zu bestimmen."
-  },
-  {
-    "objectID": "woche_08_2.html#normalverteilung",
-    "href": "woche_08_2.html#normalverteilung",
-    "title": "Woche 8_2: Schätzer & Konfidenzintervalle",
-    "section": "3.1 1. Normalverteilung",
-    "text": "3.1 1. Normalverteilung\n\nErwartungswert (\\(\\mu\\)): Der beste Schätzer ist das arithmetische Mittel \\(\\hat{\\mu} = \\frac{1}{n}\\sum_{i=1}^{n}X_i\\). Dieser Schätzer ist erwartungstreu.\nVarianz (\\(\\sigma^2\\)): Die Stichprobenvarianz wird mit \\(\\sigma^2 = \\frac{1}{n-1}\\sum_{i=1}^{n}(X_i-\\hat{\\mu})^2\\) berechnet.\nWichtig: Wir teilen durch \\(n-1\\) (und nicht durch \\(n\\)), damit der Schätzer erwartungstreu ist und die wahre Varianz nicht systematisch unterschätzt wird."
-  },
-  {
-    "objectID": "woche_08_2.html#bernoulli-verteilung-anteilsschätzung",
-    "href": "woche_08_2.html#bernoulli-verteilung-anteilsschätzung",
-    "title": "Woche 8_2: Schätzer & Konfidenzintervalle",
-    "section": "3.2 2. Bernoulli-Verteilung (Anteilsschätzung)",
-    "text": "3.2 2. Bernoulli-Verteilung (Anteilsschätzung)\n\nWir wollen eine Erfolgswahrscheinlichkeit \\(p\\) schätzen (z.B. Anteil defekter Bauteile).\nDer erwartungstreue Schätzer ist der Stichprobenmittelwert \\(\\hat{p} = \\frac{k}{n}\\), wobei \\(k\\) die Anzahl der Erfolge und \\(n\\) die Anzahl der Versuche ist.\nBeispiel: Bei 100 Münzwürfen (\\(n=100\\)) erhalten wir 62-mal Zahl (\\(k=62\\)). Die Schätzung lautet \\(\\hat{p} = 0.62\\)."
-  },
-  {
-    "objectID": "woche_08_2.html#poisson-verteilung-dichteschätzung",
-    "href": "woche_08_2.html#poisson-verteilung-dichteschätzung",
-    "title": "Woche 8_2: Schätzer & Konfidenzintervalle",
-    "section": "3.3 3. Poisson-Verteilung (Dichteschätzung)",
-    "text": "3.3 3. Poisson-Verteilung (Dichteschätzung)\n\nWir modellieren Ereignisse in einem festen Zeit-/Raumintervall (z.B. Anrufe im Callcenter pro Stunde).\nDer erwartungstreue Schätzer für die Rate \\(\\lambda\\) ist \\(\\hat{\\lambda} = \\frac{\\sum_{i=1}^{n}k_i}{n}\\) (Gesamtzahl der Ereignisse geteilt durch die Anzahl der Beobachtungsperioden)."
-  },
-  {
-    "objectID": "woche_08_2.html#konfidenzintervall-für-den-erwartungswert-normalverteilung",
-    "href": "woche_08_2.html#konfidenzintervall-für-den-erwartungswert-normalverteilung",
-    "title": "Woche 8_2: Schätzer & Konfidenzintervalle",
-    "section": "4.1 Konfidenzintervall für den Erwartungswert (Normalverteilung)",
-    "text": "4.1 Konfidenzintervall für den Erwartungswert (Normalverteilung)\n\nBei bekannter Varianz (\\(\\sigma^2\\)): Wir verwenden die Quantile \\(x_-\\) und \\(x_+\\) der Standardnormalverteilung. Das Intervall lautet \\([\\overline{X}-\\frac{\\sigma}{\\sqrt{n}}x_+, \\overline{X}-\\frac{\\sigma}{\\sqrt{n}}x_-]\\).\nBei unbekannter Varianz: Die Varianz muss mit \\(\\sigma^2\\) aus den Daten geschätzt werden. Dadurch ändert sich die theoretische Verteilung: Wir müssen nun die t-Verteilung mit \\(n-1\\) Freiheitsgraden verwenden anstatt der Standardnormalverteilung."
-  },
-  {
-    "objectID": "woche_08_2.html#konfidenzintervallschätzung-für-verschiedene-verteilungen",
-    "href": "woche_08_2.html#konfidenzintervallschätzung-für-verschiedene-verteilungen",
-    "title": "Woche 8_2: Schätzer & Konfidenzintervalle",
-    "section": "4.2 Konfidenzintervallschätzung für verschiedene Verteilungen",
-    "text": "4.2 Konfidenzintervallschätzung für verschiedene Verteilungen\nNormalverteilung: Das Intervall für den Erwartungswert \\(\\mu\\) wird mit der t-Verteilung berechnet, wenn die Varianz unbekannt ist.\n# Stichprobenwerte eingeben\nx &lt;- c(170.3, 165.1, 172.0, 157.4)\n\n# Punktschätzer berechnen\nmu_hat &lt;- mean(x)      # Arithmetisches Mittel\nsigma2_hat &lt;- var(x)   # Stichprobenvarianz (n-1 korrigiert)\n\n# 80%-Konfidenzintervall für den Erwartungswert (zweiseitig)\n# Da die Varianz unbekannt ist, verwendet R automatisch die t-Verteilung.\nt.test(x, conf.level = 0.80)\nBinomialverteilung: Das Intervall für den Anteil \\(p\\) wird mit der Binomialverteilung berechnet.\n# Daten aus der Umfrage\nja_stimmen &lt;- 527\nn_befragte &lt;- 1000\n\n# Anteilsschätzung und 75%-Konfidenzintervall\nbinom.test(x = ja_stimmen, \n           n = n_befragte, \n           conf.level = 0.75, \n           alternative = \"two.sided\")\n*Poissonverteilung: Das Intervall für die Rate \\(\\lambda\\) wird mit der Poissonverteilung berechnet.\n# Beobachtungen der letzten 5 Jahre\ntote_pro_jahr &lt;- c(312, 292, 321, 275, 300)\n\n# Gesamtzahl der Ereignisse (x) und Anzahl der Beobachtungszeiträume (T)\nx_total &lt;- sum(tote_pro_jahr) # 1500 Ereignisse\nT_jahre &lt;- length(tote_pro_jahr) # 5 Jahre\n\n# Schätzung der Rate (Lambda) und 90%-Konfidenzintervall\npoisson.test(x = x_total, \n             T = T_jahre, \n             conf.level = 0.90, \n             alternative = \"two.sided\")"
-  },
-  {
-    "objectID": "woche_03.html",
-    "href": "woche_03.html",
-    "title": "Woche 3: Bedingte Wahrscheinlichkeiten",
-    "section": "",
-    "text": "Oft bekommen wir neue Informationen, die unsere Einschätzung verändern. Die bedingte Wahrscheinlichkeit \\(\\mathbb{P}[A|B]\\) beschreibt die Wahrscheinlichkeit von \\(A\\), unter der Voraussetzung, dass \\(B\\) bereits eingetreten ist.\nFormel: \\[\\mathbb{P}[A|B] = \\frac{\\mathbb{P}[A \\cap B]}{\\mathbb{P}[B]}\\]\n\n\nUm \\(\\mathbb{P}[A]\\) zu berechnen, können wir das Problem in disjunkte Fälle (z.B. Fall \\(B\\) und Fall \\(B^c\\)) aufteilen und gewichten: \\[\\mathbb{P}[A] = \\mathbb{P}[A|B] \\cdot \\mathbb{P}[B] + \\mathbb{P}[A|B^c] \\cdot \\mathbb{P}[B^c]\\]\nWir kennen die Fälle \\(B\\) und \\(B^c\\), deren Wahrscheinlichkeiten ( \\(\\mathbb{P}[B^c], \\mathbb{P}[B]\\) ) und die bedingten Wahrscheinlichkeiten ( \\(\\mathbb{P}[A|B^c], \\mathbb{P}[A|B]\\) ). Die Formel liefert daraus dann \\(\\mathbb{P}[A]\\).\n\n\nEreignis \\(A\\): Wir ziehen als zweite Kugel eine rote Kugel. Ereignis \\(B\\): Wir ziehen als erste Kugel eine rote Kugel. Dann können wir die Wahrscheinlichkeit für \\(A\\) berechnen, indem wir die Fälle \\(B\\) und \\(B^c\\) betrachten.\n\n\n\nIn einer Firma arbeiten 60% Ingenieur:innen und 40% Betriebswirtschaftler:innen. Von den Ingenieur: innen sprechen 30% Französisch, von den Betriebswirtschaftler:innen sind es 50%.\n\nDisjunkte Fälle (niemand ist beides, also disjunkt, schliessen sich gegenseitig aus):\n\n\\(I\\) = Ingenieur:in,\n\\(B\\) = Betriebswirtschaftler:in\n\nWahrscheinlichkeiten:\n\n\\(\\mathbb{P}[I] = 0.6\\)\n\\(\\mathbb{P}[B] = 0.4\\)\n\n\nDer Satz der totalen Wahrscheinlichkeit erlaubt es uns, die Wahrscheinlichkeit zu berechnen, dass eine zufällig ausgewählte Person Französisch spricht, indem wir die Fälle \\(I\\) und \\(B\\) separat betrachten: \\[\\mathbb{P}[\\text{F}] = \\mathbb{P}[\\text{F}|B] \\cdot \\mathbb{P}[B] + \\mathbb{P}[\\text{F}|I] \\cdot \\mathbb{P}[I] = 0.3 \\cdot 0.6 + 0.5 \\cdot 0.4 = 0.38\\]\n\n\n\nVisuelle Erläuterung\n\n\n\n\n\n\nDieser Satz erlaubt es uns, bedingte Wahrscheinlichkeiten “umzudrehen”, also von \\(\\mathbb{P}[A|B]\\) auf \\(\\mathbb{P}[B|A]\\) zu schliessen: \\[\\mathbb{P}[A|B] = \\frac{\\mathbb{P}[B|A] \\cdot \\mathbb{P}[A]}{\\mathbb{P}[B]}\\]\nKlassisches Beispiel (Medizinischer Test): Auch wenn ein HIV-Test sehr genau ist, ist die Wahrscheinlichkeit, tatsächlich infiziert zu sein, wenn der Test positiv ausfällt, oft überraschend tief, falls die Krankheit in der Gesamtbevölkerung sehr selten ist."
-  },
-  {
-    "objectID": "woche_03.html#satz-der-totalen-wahrscheinlichkeit",
-    "href": "woche_03.html#satz-der-totalen-wahrscheinlichkeit",
-    "title": "Woche 3: Bedingte Wahrscheinlichkeiten",
-    "section": "",
-    "text": "Um \\(\\mathbb{P}[A]\\) zu berechnen, können wir das Problem in disjunkte Fälle (z.B. Fall \\(B\\) und Fall \\(B^c\\)) aufteilen und gewichten: \\[\\mathbb{P}[A] = \\mathbb{P}[A|B] \\cdot \\mathbb{P}[B] + \\mathbb{P}[A|B^c] \\cdot \\mathbb{P}[B^c]\\]\nWir kennen die Fälle \\(B\\) und \\(B^c\\), deren Wahrscheinlichkeiten ( \\(\\mathbb{P}[B^c], \\mathbb{P}[B]\\) ) und die bedingten Wahrscheinlichkeiten ( \\(\\mathbb{P}[A|B^c], \\mathbb{P}[A|B]\\) ). Die Formel liefert daraus dann \\(\\mathbb{P}[A]\\).\n\n\nEreignis \\(A\\): Wir ziehen als zweite Kugel eine rote Kugel. Ereignis \\(B\\): Wir ziehen als erste Kugel eine rote Kugel. Dann können wir die Wahrscheinlichkeit für \\(A\\) berechnen, indem wir die Fälle \\(B\\) und \\(B^c\\) betrachten.\n\n\n\nIn einer Firma arbeiten 60% Ingenieur:innen und 40% Betriebswirtschaftler:innen. Von den Ingenieur: innen sprechen 30% Französisch, von den Betriebswirtschaftler:innen sind es 50%.\n\nDisjunkte Fälle (niemand ist beides, also disjunkt, schliessen sich gegenseitig aus):\n\n\\(I\\) = Ingenieur:in,\n\\(B\\) = Betriebswirtschaftler:in\n\nWahrscheinlichkeiten:\n\n\\(\\mathbb{P}[I] = 0.6\\)\n\\(\\mathbb{P}[B] = 0.4\\)\n\n\nDer Satz der totalen Wahrscheinlichkeit erlaubt es uns, die Wahrscheinlichkeit zu berechnen, dass eine zufällig ausgewählte Person Französisch spricht, indem wir die Fälle \\(I\\) und \\(B\\) separat betrachten: \\[\\mathbb{P}[\\text{F}] = \\mathbb{P}[\\text{F}|B] \\cdot \\mathbb{P}[B] + \\mathbb{P}[\\text{F}|I] \\cdot \\mathbb{P}[I] = 0.3 \\cdot 0.6 + 0.5 \\cdot 0.4 = 0.38\\]\n\n\n\nVisuelle Erläuterung"
-  },
-  {
-    "objectID": "woche_03.html#satz-von-bayes",
-    "href": "woche_03.html#satz-von-bayes",
-    "title": "Woche 3: Bedingte Wahrscheinlichkeiten",
-    "section": "",
-    "text": "Dieser Satz erlaubt es uns, bedingte Wahrscheinlichkeiten “umzudrehen”, also von \\(\\mathbb{P}[A|B]\\) auf \\(\\mathbb{P}[B|A]\\) zu schliessen: \\[\\mathbb{P}[A|B] = \\frac{\\mathbb{P}[B|A] \\cdot \\mathbb{P}[A]}{\\mathbb{P}[B]}\\]\nKlassisches Beispiel (Medizinischer Test): Auch wenn ein HIV-Test sehr genau ist, ist die Wahrscheinlichkeit, tatsächlich infiziert zu sein, wenn der Test positiv ausfällt, oft überraschend tief, falls die Krankheit in der Gesamtbevölkerung sehr selten ist."
-  },
-  {
-    "objectID": "woche_04.html",
-    "href": "woche_04.html",
-    "title": "Woche 4: Zufallsvariablen & Verteilungen",
-    "section": "",
-    "text": "Eine Zufallsvariable (oft mit grossen Buchstaben wie \\(X\\), \\(Y\\) bezeichnet) ist im Prinzip eine Übersetzungsmaschine: Sie ordnet den abstrakten Ergebnissen eines Zufallsexperiments (der Grundmenge \\(\\Omega\\)) reelle Zahlen zu.\nWir unterscheiden zwei Haupttypen:\n\nDiskrete Zufallsvariablen: Können nur bestimmte, zählbare Werte annehmen (oft ganze Zahlen).\n\nBeispiel: Anzahl der geworfenen “Köpfe” bei 10 Münzwürfen (\\(X \\in \\{0, 1, 2, \\dots, 10\\}\\)).\n\nStetige (kontinuierliche) Zufallsvariablen: Können jeden beliebigen Wert in einem bestimmten Intervall annehmen (Messwerte).\n\nBeispiel: Die exakte Wartezeit auf den Bus in Minuten (\\(X = 4.352\\dots\\))."
-  },
-  {
-    "objectID": "woche_04.html#bei-diskreten-zufallsvariablen",
-    "href": "woche_04.html#bei-diskreten-zufallsvariablen",
-    "title": "Woche 4: Zufallsvariablen & Verteilungen",
-    "section": "2.1 Bei diskreten Zufallsvariablen",
-    "text": "2.1 Bei diskreten Zufallsvariablen\n\nWahrscheinlichkeitsfunktion: Gibt die exakte Wahrscheinlichkeit an, dass die Zufallsvariable \\(X\\) einen ganz bestimmten Wert \\(x\\) annimmt. \\[P(X = x)\\]\nVerteilungsfunktion (kumulativ): Kumuliert (summiert) die Wahrscheinlichkeiten bis zu einem bestimmten Wert \\(x\\). \\[F(x) = P(X \\le x)\\]\nDie Kurve “beginnt” somit bei \\(y=0\\) und “endet” bei \\(y=1\\) und ist monoton wachsend (geht nie wieder abwärts in Richtung von höheren X)."
-  },
-  {
-    "objectID": "woche_04.html#bei-stetigen-zufallsvariablen",
-    "href": "woche_04.html#bei-stetigen-zufallsvariablen",
-    "title": "Woche 4: Zufallsvariablen & Verteilungen",
-    "section": "2.2 Bei stetigen Zufallsvariablen",
-    "text": "2.2 Bei stetigen Zufallsvariablen\n\nDichtefunktion \\(\\varphi(x)\\): Da ein stetiger Wert unendlich viele Nachkommastellen hat, ist die Wahrscheinlichkeit für einen exakten Wert immer null (\\(P(X = x) = 0\\)). Die Dichtefunktion beschreibt stattdessen die “Kurve”. Die Gesamtfläche unter der Kurve ist immer exakt 1.\nVerteilungsfunktion \\(F_X(x)\\): Die Kurve ist ebenfalls monoton wachsend und gibt die Fläche unter der Dichtefunktion bis zum Wert \\(x\\) an. Berechnet wird dies über das Integral der Dichtefunktion. \\[F(x) = \\int_{-\\infty}^{x} \\varphi(t) \\, dt\\]"
-  },
-  {
-    "objectID": "woche_04.html#visuelle-zusammenfassung",
-    "href": "woche_04.html#visuelle-zusammenfassung",
-    "title": "Woche 4: Zufallsvariablen & Verteilungen",
-    "section": "2.3 Visuelle Zusammenfassung",
-    "text": "2.3 Visuelle Zusammenfassung\n\n\n\nVisuelle Zusammenfassung (by Tobias Peter)"
+    "objectID": "woche_07.html#approximation-für-das-arithmetische-mittel-overlinex_n",
+    "href": "woche_07.html#approximation-für-das-arithmetische-mittel-overlinex_n",
+    "title": "Woche 7: Grenzwertsätze",
+    "section": "4.2 Approximation für das arithmetische Mittel (\\(\\overline{X}_n\\))",
+    "text": "4.2 Approximation für das arithmetische Mittel (\\(\\overline{X}_n\\))\nTeilen wir die Summe durch \\(n\\), erhalten wir den Durchschnitt. Die Varianz wird hierbei durch \\(n\\) geteilt, was bedeutet: Je grösser die Stichprobe, desto weniger streut der Mittelwert! \\[\\overline{X}_n \\approx N\\left(\\mu, \\frac{\\sigma^2}{n}\\right)\\]\n\n4.2.1 Beispiel: Chemische Reaktion & R-Code\nWir führen 100 Reaktionen durch (\\(n = 100\\)). Eine einzelne Reaktion dauert im Schnitt 5 Minuten (\\(\\mu = 5\\)) mit einer Varianz von \\(\\sigma^2 = 25\\).\n\nErwartungswert der Gesamtsumme: \\(n \\cdot \\mu = 100 \\cdot 5 = 500\\) Minuten.\nVarianz der Gesamtsumme: \\(n \\cdot \\sigma^2 = 100 \\cdot 25 = 2500\\) (Standardabweichung \\(\\sigma\\) ist somit \\(\\sqrt{2500} = 50\\)).\n\nWie gross ist die Wahrscheinlichkeit, dass alle 100 Reaktionen zusammen weniger als 490 Minuten dauern? Mit der Normalapproximation rechnen wir dies mit einer \\(N(500, 50^2)\\) Verteilung aus:\nIn R: pnorm(490, mean = 500, sd = 50)"
   },
   {
     "objectID": "woche_11.html",
@@ -490,24 +175,381 @@
     "text": "4.4 Vor- und Nachteile\nPermutationstests bringen spezifische Eigenschaften mit sich, die bei der Wahl des Testverfahrens abgewogen werden müssen:\nVorteile:\n\nSie bieten eine enorme Flexibilität, da die Teststatistik vom Forschenden völlig frei gewählt werden kann.\nSie sind äusserst robust gegenüber der Verletzung von klassischen Verteilungsannahmen (wie z.B. der Normalverteilungsannahme).\n\nNachteile:\n\nDas Verfahren ist durch die Simulation tausender Anordnungen oft sehr rechenintensiv.\nSind die strengen Annahmen klassischer (parametrischer) Tests erfüllt, weisen diese klassischen Tests in der Regel eine höhere Trennschärfe (Power) auf als der Permutationstest."
   },
   {
-    "objectID": "woche_07.html",
-    "href": "woche_07.html",
-    "title": "Woche 7: Grenzwertsätze",
+    "objectID": "woche_04.html",
+    "href": "woche_04.html",
+    "title": "Woche 4: Zufallsvariablen & Verteilungen",
     "section": "",
-    "text": "Bevor wir uns die Grenzwertsätze ansehen, brauchen wir eine wichtige Grundlage: i.i.d.-Zufallsvariablen. Das steht für Independent and Identically Distributed. Zufallsvariablen erfüllen diese Eigenschaft, wenn:\n\nSie absolut unabhängig voneinander sind.\nSie alle exakt dieselbe Verteilung (also denselben Erwartungswert und dieselbe Varianz) besitzen.\n\nBeispiel: Mehrfaches Würfeln. Jeder Wurf ist unabhängig vom vorherigen, und bei jedem Wurf haben wir exakt die gleichen Wahrscheinlichkeiten für die Zahlen 1 bis 6."
+    "text": "Eine Zufallsvariable (oft mit grossen Buchstaben wie \\(X\\), \\(Y\\) bezeichnet) ist im Prinzip eine Übersetzungsmaschine: Sie ordnet den abstrakten Ergebnissen eines Zufallsexperiments (der Grundmenge \\(\\Omega\\)) reelle Zahlen zu.\nWir unterscheiden zwei Haupttypen:\n\nDiskrete Zufallsvariablen: Können nur bestimmte, zählbare Werte annehmen (oft ganze Zahlen).\n\nBeispiel: Anzahl der geworfenen “Köpfe” bei 10 Münzwürfen (\\(X \\in \\{0, 1, 2, \\dots, 10\\}\\)).\n\nStetige (kontinuierliche) Zufallsvariablen: Können jeden beliebigen Wert in einem bestimmten Intervall annehmen (Messwerte).\n\nBeispiel: Die exakte Wartezeit auf den Bus in Minuten (\\(X = 4.352\\dots\\))."
   },
   {
-    "objectID": "woche_07.html#approximation-für-die-summe-s_n",
-    "href": "woche_07.html#approximation-für-die-summe-s_n",
-    "title": "Woche 7: Grenzwertsätze",
-    "section": "4.1 Approximation für die Summe (\\(S_n\\))",
-    "text": "4.1 Approximation für die Summe (\\(S_n\\))\nDie Summe aller Werte nähert sich einer Normalverteilung an: \\[S_n \\approx N(n \\cdot \\mu, n \\cdot \\sigma^2)\\]"
+    "objectID": "woche_04.html#bei-diskreten-zufallsvariablen",
+    "href": "woche_04.html#bei-diskreten-zufallsvariablen",
+    "title": "Woche 4: Zufallsvariablen & Verteilungen",
+    "section": "2.1 Bei diskreten Zufallsvariablen",
+    "text": "2.1 Bei diskreten Zufallsvariablen\n\nWahrscheinlichkeitsfunktion: Gibt die exakte Wahrscheinlichkeit an, dass die Zufallsvariable \\(X\\) einen ganz bestimmten Wert \\(x\\) annimmt. \\[P(X = x)\\]\nVerteilungsfunktion (kumulativ): Kumuliert (summiert) die Wahrscheinlichkeiten bis zu einem bestimmten Wert \\(x\\). \\[F(x) = P(X \\le x)\\]\nDie Kurve “beginnt” somit bei \\(y=0\\) und “endet” bei \\(y=1\\) und ist monoton wachsend (geht nie wieder abwärts in Richtung von höheren X)."
   },
   {
-    "objectID": "woche_07.html#approximation-für-das-arithmetische-mittel-overlinex_n",
-    "href": "woche_07.html#approximation-für-das-arithmetische-mittel-overlinex_n",
-    "title": "Woche 7: Grenzwertsätze",
-    "section": "4.2 Approximation für das arithmetische Mittel (\\(\\overline{X}_n\\))",
-    "text": "4.2 Approximation für das arithmetische Mittel (\\(\\overline{X}_n\\))\nTeilen wir die Summe durch \\(n\\), erhalten wir den Durchschnitt. Die Varianz wird hierbei durch \\(n\\) geteilt, was bedeutet: Je grösser die Stichprobe, desto weniger streut der Mittelwert! \\[\\overline{X}_n \\approx N\\left(\\mu, \\frac{\\sigma^2}{n}\\right)\\]\n\n4.2.1 Beispiel: Chemische Reaktion & R-Code\nWir führen 100 Reaktionen durch (\\(n = 100\\)). Eine einzelne Reaktion dauert im Schnitt 5 Minuten (\\(\\mu = 5\\)) mit einer Varianz von \\(\\sigma^2 = 25\\).\n\nErwartungswert der Gesamtsumme: \\(n \\cdot \\mu = 100 \\cdot 5 = 500\\) Minuten.\nVarianz der Gesamtsumme: \\(n \\cdot \\sigma^2 = 100 \\cdot 25 = 2500\\) (Standardabweichung \\(\\sigma\\) ist somit \\(\\sqrt{2500} = 50\\)).\n\nWie gross ist die Wahrscheinlichkeit, dass alle 100 Reaktionen zusammen weniger als 490 Minuten dauern? Mit der Normalapproximation rechnen wir dies mit einer \\(N(500, 50^2)\\) Verteilung aus:\nIn R: pnorm(490, mean = 500, sd = 50)"
+    "objectID": "woche_04.html#bei-stetigen-zufallsvariablen",
+    "href": "woche_04.html#bei-stetigen-zufallsvariablen",
+    "title": "Woche 4: Zufallsvariablen & Verteilungen",
+    "section": "2.2 Bei stetigen Zufallsvariablen",
+    "text": "2.2 Bei stetigen Zufallsvariablen\n\nDichtefunktion \\(\\varphi(x)\\): Da ein stetiger Wert unendlich viele Nachkommastellen hat, ist die Wahrscheinlichkeit für einen exakten Wert immer null (\\(P(X = x) = 0\\)). Die Dichtefunktion beschreibt stattdessen die “Kurve”. Die Gesamtfläche unter der Kurve ist immer exakt 1.\nVerteilungsfunktion \\(F_X(x)\\): Die Kurve ist ebenfalls monoton wachsend und gibt die Fläche unter der Dichtefunktion bis zum Wert \\(x\\) an. Berechnet wird dies über das Integral der Dichtefunktion. \\[F(x) = \\int_{-\\infty}^{x} \\varphi(t) \\, dt\\]"
+  },
+  {
+    "objectID": "woche_04.html#visuelle-zusammenfassung",
+    "href": "woche_04.html#visuelle-zusammenfassung",
+    "title": "Woche 4: Zufallsvariablen & Verteilungen",
+    "section": "2.3 Visuelle Zusammenfassung",
+    "text": "2.3 Visuelle Zusammenfassung\n\n\n\nVisuelle Zusammenfassung (by Tobias Peter)"
+  },
+  {
+    "objectID": "woche_03.html",
+    "href": "woche_03.html",
+    "title": "Woche 3: Bedingte Wahrscheinlichkeiten",
+    "section": "",
+    "text": "Oft bekommen wir neue Informationen, die unsere Einschätzung verändern. Die bedingte Wahrscheinlichkeit \\(\\mathbb{P}[A|B]\\) beschreibt die Wahrscheinlichkeit von \\(A\\), unter der Voraussetzung, dass \\(B\\) bereits eingetreten ist.\nFormel: \\[\\mathbb{P}[A|B] = \\frac{\\mathbb{P}[A \\cap B]}{\\mathbb{P}[B]}\\]\n\n\nUm \\(\\mathbb{P}[A]\\) zu berechnen, können wir das Problem in disjunkte Fälle (z.B. Fall \\(B\\) und Fall \\(B^c\\)) aufteilen und gewichten: \\[\\mathbb{P}[A] = \\mathbb{P}[A|B] \\cdot \\mathbb{P}[B] + \\mathbb{P}[A|B^c] \\cdot \\mathbb{P}[B^c]\\]\nWir kennen die Fälle \\(B\\) und \\(B^c\\), deren Wahrscheinlichkeiten ( \\(\\mathbb{P}[B^c], \\mathbb{P}[B]\\) ) und die bedingten Wahrscheinlichkeiten ( \\(\\mathbb{P}[A|B^c], \\mathbb{P}[A|B]\\) ). Die Formel liefert daraus dann \\(\\mathbb{P}[A]\\).\n\n\nEreignis \\(A\\): Wir ziehen als zweite Kugel eine rote Kugel. Ereignis \\(B\\): Wir ziehen als erste Kugel eine rote Kugel. Dann können wir die Wahrscheinlichkeit für \\(A\\) berechnen, indem wir die Fälle \\(B\\) und \\(B^c\\) betrachten.\n\n\n\nIn einer Firma arbeiten 60% Ingenieur:innen und 40% Betriebswirtschaftler:innen. Von den Ingenieur: innen sprechen 30% Französisch, von den Betriebswirtschaftler:innen sind es 50%.\n\nDisjunkte Fälle (niemand ist beides, also disjunkt, schliessen sich gegenseitig aus):\n\n\\(I\\) = Ingenieur:in,\n\\(B\\) = Betriebswirtschaftler:in\n\nWahrscheinlichkeiten:\n\n\\(\\mathbb{P}[I] = 0.6\\)\n\\(\\mathbb{P}[B] = 0.4\\)\n\n\nDer Satz der totalen Wahrscheinlichkeit erlaubt es uns, die Wahrscheinlichkeit zu berechnen, dass eine zufällig ausgewählte Person Französisch spricht, indem wir die Fälle \\(I\\) und \\(B\\) separat betrachten: \\[\\mathbb{P}[\\text{F}] = \\mathbb{P}[\\text{F}|B] \\cdot \\mathbb{P}[B] + \\mathbb{P}[\\text{F}|I] \\cdot \\mathbb{P}[I] = 0.3 \\cdot 0.6 + 0.5 \\cdot 0.4 = 0.38\\]\n\n\n\nVisuelle Erläuterung\n\n\n\n\n\n\nDieser Satz erlaubt es uns, bedingte Wahrscheinlichkeiten “umzudrehen”, also von \\(\\mathbb{P}[A|B]\\) auf \\(\\mathbb{P}[B|A]\\) zu schliessen: \\[\\mathbb{P}[A|B] = \\frac{\\mathbb{P}[B|A] \\cdot \\mathbb{P}[A]}{\\mathbb{P}[B]}\\]\nKlassisches Beispiel (Medizinischer Test): Auch wenn ein HIV-Test sehr genau ist, ist die Wahrscheinlichkeit, tatsächlich infiziert zu sein, wenn der Test positiv ausfällt, oft überraschend tief, falls die Krankheit in der Gesamtbevölkerung sehr selten ist."
+  },
+  {
+    "objectID": "woche_03.html#satz-der-totalen-wahrscheinlichkeit",
+    "href": "woche_03.html#satz-der-totalen-wahrscheinlichkeit",
+    "title": "Woche 3: Bedingte Wahrscheinlichkeiten",
+    "section": "",
+    "text": "Um \\(\\mathbb{P}[A]\\) zu berechnen, können wir das Problem in disjunkte Fälle (z.B. Fall \\(B\\) und Fall \\(B^c\\)) aufteilen und gewichten: \\[\\mathbb{P}[A] = \\mathbb{P}[A|B] \\cdot \\mathbb{P}[B] + \\mathbb{P}[A|B^c] \\cdot \\mathbb{P}[B^c]\\]\nWir kennen die Fälle \\(B\\) und \\(B^c\\), deren Wahrscheinlichkeiten ( \\(\\mathbb{P}[B^c], \\mathbb{P}[B]\\) ) und die bedingten Wahrscheinlichkeiten ( \\(\\mathbb{P}[A|B^c], \\mathbb{P}[A|B]\\) ). Die Formel liefert daraus dann \\(\\mathbb{P}[A]\\).\n\n\nEreignis \\(A\\): Wir ziehen als zweite Kugel eine rote Kugel. Ereignis \\(B\\): Wir ziehen als erste Kugel eine rote Kugel. Dann können wir die Wahrscheinlichkeit für \\(A\\) berechnen, indem wir die Fälle \\(B\\) und \\(B^c\\) betrachten.\n\n\n\nIn einer Firma arbeiten 60% Ingenieur:innen und 40% Betriebswirtschaftler:innen. Von den Ingenieur: innen sprechen 30% Französisch, von den Betriebswirtschaftler:innen sind es 50%.\n\nDisjunkte Fälle (niemand ist beides, also disjunkt, schliessen sich gegenseitig aus):\n\n\\(I\\) = Ingenieur:in,\n\\(B\\) = Betriebswirtschaftler:in\n\nWahrscheinlichkeiten:\n\n\\(\\mathbb{P}[I] = 0.6\\)\n\\(\\mathbb{P}[B] = 0.4\\)\n\n\nDer Satz der totalen Wahrscheinlichkeit erlaubt es uns, die Wahrscheinlichkeit zu berechnen, dass eine zufällig ausgewählte Person Französisch spricht, indem wir die Fälle \\(I\\) und \\(B\\) separat betrachten: \\[\\mathbb{P}[\\text{F}] = \\mathbb{P}[\\text{F}|B] \\cdot \\mathbb{P}[B] + \\mathbb{P}[\\text{F}|I] \\cdot \\mathbb{P}[I] = 0.3 \\cdot 0.6 + 0.5 \\cdot 0.4 = 0.38\\]\n\n\n\nVisuelle Erläuterung"
+  },
+  {
+    "objectID": "woche_03.html#satz-von-bayes",
+    "href": "woche_03.html#satz-von-bayes",
+    "title": "Woche 3: Bedingte Wahrscheinlichkeiten",
+    "section": "",
+    "text": "Dieser Satz erlaubt es uns, bedingte Wahrscheinlichkeiten “umzudrehen”, also von \\(\\mathbb{P}[A|B]\\) auf \\(\\mathbb{P}[B|A]\\) zu schliessen: \\[\\mathbb{P}[A|B] = \\frac{\\mathbb{P}[B|A] \\cdot \\mathbb{P}[A]}{\\mathbb{P}[B]}\\]\nKlassisches Beispiel (Medizinischer Test): Auch wenn ein HIV-Test sehr genau ist, ist die Wahrscheinlichkeit, tatsächlich infiziert zu sein, wenn der Test positiv ausfällt, oft überraschend tief, falls die Krankheit in der Gesamtbevölkerung sehr selten ist."
+  },
+  {
+    "objectID": "woche_08_2.html",
+    "href": "woche_08_2.html",
+    "title": "Woche 8_2: Schätzer & Konfidenzintervalle",
+    "section": "",
+    "text": "Oft wissen wir aus Erfahrung, dass Daten einer bestimmten Verteilung folgen (z.B. Normalverteilung), aber die genauen Parameter (wie der Erwartungswert \\(\\mu\\) oder die Varianz \\(\\sigma^2\\)) sind unbekannt und müssen aus Daten geschätzt werden.\n\nStichprobe: Eine Folge von \\(n\\) unabhängigen und identisch verteilten (i.i.d.) Zufallsvariablen \\(X_i\\), die verwendet wird, um den unbekannten, fixen Parameter aus Beobachtungen zu bestimmen."
+  },
+  {
+    "objectID": "woche_08_2.html#normalverteilung",
+    "href": "woche_08_2.html#normalverteilung",
+    "title": "Woche 8_2: Schätzer & Konfidenzintervalle",
+    "section": "3.1 1. Normalverteilung",
+    "text": "3.1 1. Normalverteilung\n\nErwartungswert (\\(\\mu\\)): Der beste Schätzer ist das arithmetische Mittel \\(\\hat{\\mu} = \\frac{1}{n}\\sum_{i=1}^{n}X_i\\). Dieser Schätzer ist erwartungstreu.\nVarianz (\\(\\sigma^2\\)): Die Stichprobenvarianz wird mit \\(\\sigma^2 = \\frac{1}{n-1}\\sum_{i=1}^{n}(X_i-\\hat{\\mu})^2\\) berechnet.\nWichtig: Wir teilen durch \\(n-1\\) (und nicht durch \\(n\\)), damit der Schätzer erwartungstreu ist und die wahre Varianz nicht systematisch unterschätzt wird."
+  },
+  {
+    "objectID": "woche_08_2.html#bernoulli-verteilung-anteilsschätzung",
+    "href": "woche_08_2.html#bernoulli-verteilung-anteilsschätzung",
+    "title": "Woche 8_2: Schätzer & Konfidenzintervalle",
+    "section": "3.2 2. Bernoulli-Verteilung (Anteilsschätzung)",
+    "text": "3.2 2. Bernoulli-Verteilung (Anteilsschätzung)\n\nWir wollen eine Erfolgswahrscheinlichkeit \\(p\\) schätzen (z.B. Anteil defekter Bauteile).\nDer erwartungstreue Schätzer ist der Stichprobenmittelwert \\(\\hat{p} = \\frac{k}{n}\\), wobei \\(k\\) die Anzahl der Erfolge und \\(n\\) die Anzahl der Versuche ist.\nBeispiel: Bei 100 Münzwürfen (\\(n=100\\)) erhalten wir 62-mal Zahl (\\(k=62\\)). Die Schätzung lautet \\(\\hat{p} = 0.62\\)."
+  },
+  {
+    "objectID": "woche_08_2.html#poisson-verteilung-dichteschätzung",
+    "href": "woche_08_2.html#poisson-verteilung-dichteschätzung",
+    "title": "Woche 8_2: Schätzer & Konfidenzintervalle",
+    "section": "3.3 3. Poisson-Verteilung (Dichteschätzung)",
+    "text": "3.3 3. Poisson-Verteilung (Dichteschätzung)\n\nWir modellieren Ereignisse in einem festen Zeit-/Raumintervall (z.B. Anrufe im Callcenter pro Stunde).\nDer erwartungstreue Schätzer für die Rate \\(\\lambda\\) ist \\(\\hat{\\lambda} = \\frac{\\sum_{i=1}^{n}k_i}{n}\\) (Gesamtzahl der Ereignisse geteilt durch die Anzahl der Beobachtungsperioden)."
+  },
+  {
+    "objectID": "woche_08_2.html#konfidenzintervall-für-den-erwartungswert-normalverteilung",
+    "href": "woche_08_2.html#konfidenzintervall-für-den-erwartungswert-normalverteilung",
+    "title": "Woche 8_2: Schätzer & Konfidenzintervalle",
+    "section": "4.1 Konfidenzintervall für den Erwartungswert (Normalverteilung)",
+    "text": "4.1 Konfidenzintervall für den Erwartungswert (Normalverteilung)\n\nBei bekannter Varianz (\\(\\sigma^2\\)): Wir verwenden die Quantile \\(x_-\\) und \\(x_+\\) der Standardnormalverteilung. Das Intervall lautet \\([\\overline{X}-\\frac{\\sigma}{\\sqrt{n}}x_+, \\overline{X}-\\frac{\\sigma}{\\sqrt{n}}x_-]\\).\nBei unbekannter Varianz: Die Varianz muss mit \\(\\sigma^2\\) aus den Daten geschätzt werden. Dadurch ändert sich die theoretische Verteilung: Wir müssen nun die t-Verteilung mit \\(n-1\\) Freiheitsgraden verwenden anstatt der Standardnormalverteilung."
+  },
+  {
+    "objectID": "woche_08_2.html#konfidenzintervallschätzung-für-verschiedene-verteilungen",
+    "href": "woche_08_2.html#konfidenzintervallschätzung-für-verschiedene-verteilungen",
+    "title": "Woche 8_2: Schätzer & Konfidenzintervalle",
+    "section": "4.2 Konfidenzintervallschätzung für verschiedene Verteilungen",
+    "text": "4.2 Konfidenzintervallschätzung für verschiedene Verteilungen\nNormalverteilung: Das Intervall für den Erwartungswert \\(\\mu\\) wird mit der t-Verteilung berechnet, wenn die Varianz unbekannt ist.\n# Stichprobenwerte eingeben\nx &lt;- c(170.3, 165.1, 172.0, 157.4)\n\n# Punktschätzer berechnen\nmu_hat &lt;- mean(x)      # Arithmetisches Mittel\nsigma2_hat &lt;- var(x)   # Stichprobenvarianz (n-1 korrigiert)\n\n# 80%-Konfidenzintervall für den Erwartungswert (zweiseitig)\n# Da die Varianz unbekannt ist, verwendet R automatisch die t-Verteilung.\nt.test(x, conf.level = 0.80)\nBinomialverteilung: Das Intervall für den Anteil \\(p\\) wird mit der Binomialverteilung berechnet.\n# Daten aus der Umfrage\nja_stimmen &lt;- 527\nn_befragte &lt;- 1000\n\n# Anteilsschätzung und 75%-Konfidenzintervall\nbinom.test(x = ja_stimmen, \n           n = n_befragte, \n           conf.level = 0.75, \n           alternative = \"two.sided\")\n*Poissonverteilung: Das Intervall für die Rate \\(\\lambda\\) wird mit der Poissonverteilung berechnet.\n# Beobachtungen der letzten 5 Jahre\ntote_pro_jahr &lt;- c(312, 292, 321, 275, 300)\n\n# Gesamtzahl der Ereignisse (x) und Anzahl der Beobachtungszeiträume (T)\nx_total &lt;- sum(tote_pro_jahr) # 1500 Ereignisse\nT_jahre &lt;- length(tote_pro_jahr) # 5 Jahre\n\n# Schätzung der Rate (Lambda) und 90%-Konfidenzintervall\npoisson.test(x = x_total, \n             T = T_jahre, \n             conf.level = 0.90, \n             alternative = \"two.sided\")"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "1 Willkommen zum Statistik-Kurs",
+    "section": "",
+    "text": "Dieses digitale Skript wird jede Woche erweitert. Hier finden Sie alle wichtigen Formeln, Definitionen und Beispiele aus den Vorlesungen.\n\n\n\nWoche 1: Einführung & Kombinatorik\nWoche 2: Wahrscheinlichkeitsrechnung\nWoche 3: Bedingte Wahrscheinlichkeiten\nWoche 4: Zufallsvariablen & Verteilungen\nWoche 5: Erwartungswert & Varianz\nWoche 6: Standardverteilungen\nWoche 7: Grenzwertsätze\nWoche 8_1: Deskriptive Statistik\nWoche 8_2: Schätzer & Konfidenzintervalle\nWoche 9: Hypothesentests & t-Tests\nWoche 10: Normalitätsannahme & Varianzhomogenität\nWoche 11: Poweranalyse, Nichtparametrische Tests\nWoche 12: Chi-Quadrat-Tests"
+  },
+  {
+    "objectID": "index.html#semesterplan",
+    "href": "index.html#semesterplan",
+    "title": "1 Willkommen zum Statistik-Kurs",
+    "section": "",
+    "text": "Woche 1: Einführung & Kombinatorik\nWoche 2: Wahrscheinlichkeitsrechnung\nWoche 3: Bedingte Wahrscheinlichkeiten\nWoche 4: Zufallsvariablen & Verteilungen\nWoche 5: Erwartungswert & Varianz\nWoche 6: Standardverteilungen\nWoche 7: Grenzwertsätze\nWoche 8_1: Deskriptive Statistik\nWoche 8_2: Schätzer & Konfidenzintervalle\nWoche 9: Hypothesentests & t-Tests\nWoche 10: Normalitätsannahme & Varianzhomogenität\nWoche 11: Poweranalyse, Nichtparametrische Tests\nWoche 12: Chi-Quadrat-Tests"
+  },
+  {
+    "objectID": "woche_09.html",
+    "href": "woche_09.html",
+    "title": "Woche 9: Hypothesentests und t-Tests",
+    "section": "",
+    "text": "Ein statistischer Hypothesentest ist ein Verfahren, um anhand von Daten zu entscheiden, ob eine bestimmte Annahme (Hypothese) über die Grundgesamtheit haltbar ist oder nicht.\n\n\nMan kann sich einen Hypothesentest wie ein Gerichtsverfahren vorstellen:\n\nNullhypothese (\\(H_0\\)): Der Angeklagte ist unschuldig (Status Quo, kein Effekt).\nAlternativhypothese (\\(H_1\\)): Der Angeklagte ist schuldig (neue Entdeckung, ein Effekt liegt vor).\nZiel: Wir suchen nach “Beweisen” (Daten), die so stark gegen \\(H_0\\) sprechen, dass wir die Unschuldsvermutung aufgeben müssen.\n\n\n\n\nDa wir nur eine Stichprobe betrachten, können wir Fehlentscheidungen treffen:\n\n\n\n\n\n\n\n\nFehler\nBezeichnung\nBedeutung\n\n\n\n\nFehler 1. Art\n\\(\\alpha\\) (Signifikanzniveau)\n\\(H_0\\) wird abgelehnt, obwohl sie wahr ist (“falscher Alarm”).\n\n\nFehler 2. Art\n\\(\\beta\\)\n\\(H_0\\) wird beibehalten, obwohl \\(H_1\\) wahr ist (“verpasster Effekt”).\n\n\n\nDas Signifikanzniveau \\(\\alpha\\) (meist 5%) legt fest, wie hoch das Risiko für einen Fehler 1. Art maximal sein darf.\n\n\n\nFehlerarten (by Tobias Peter)\n\n\n\n\n\nDer p-Wert ist die Wahrscheinlichkeit, ein Stichprobenresultat zu erhalten, das mindestens so extrem ist wie das beobachtete, unter der Annahme, dass \\(H_0\\) wahr ist.\n\n\\(p &lt; \\alpha\\): Das Ergebnis ist signifikant \\(\\rightarrow H_0\\) wird abgelehnt.\n\\(p \\ge \\alpha\\): Das Ergebnis ist nicht signifikant \\(\\rightarrow H_0\\) wird beibehalten.\n\n\n\n\nDie Macht (Power) eines Tests ist die Wahrscheinlichkeit, dass der Test \\(H_0\\) ablehnt, wenn tatsächlich \\(H_1\\) wahr ist. Also wie wahrscheinlich detektieren wir einen echten Effekt? Sie hängt von der Effektgröße, der Stichprobengröße und dem Signifikanzniveau ab. —"
+  },
+  {
+    "objectID": "woche_09.html#die-grundidee-das-gerichtsverfahren",
+    "href": "woche_09.html#die-grundidee-das-gerichtsverfahren",
+    "title": "Woche 9: Hypothesentests und t-Tests",
+    "section": "",
+    "text": "Man kann sich einen Hypothesentest wie ein Gerichtsverfahren vorstellen:\n\nNullhypothese (\\(H_0\\)): Der Angeklagte ist unschuldig (Status Quo, kein Effekt).\nAlternativhypothese (\\(H_1\\)): Der Angeklagte ist schuldig (neue Entdeckung, ein Effekt liegt vor).\nZiel: Wir suchen nach “Beweisen” (Daten), die so stark gegen \\(H_0\\) sprechen, dass wir die Unschuldsvermutung aufgeben müssen."
+  },
+  {
+    "objectID": "woche_09.html#fehlerarten-beim-testen",
+    "href": "woche_09.html#fehlerarten-beim-testen",
+    "title": "Woche 9: Hypothesentests und t-Tests",
+    "section": "",
+    "text": "Da wir nur eine Stichprobe betrachten, können wir Fehlentscheidungen treffen:\n\n\n\n\n\n\n\n\nFehler\nBezeichnung\nBedeutung\n\n\n\n\nFehler 1. Art\n\\(\\alpha\\) (Signifikanzniveau)\n\\(H_0\\) wird abgelehnt, obwohl sie wahr ist (“falscher Alarm”).\n\n\nFehler 2. Art\n\\(\\beta\\)\n\\(H_0\\) wird beibehalten, obwohl \\(H_1\\) wahr ist (“verpasster Effekt”).\n\n\n\nDas Signifikanzniveau \\(\\alpha\\) (meist 5%) legt fest, wie hoch das Risiko für einen Fehler 1. Art maximal sein darf.\n\n\n\nFehlerarten (by Tobias Peter)"
+  },
+  {
+    "objectID": "woche_09.html#der-p-wert",
+    "href": "woche_09.html#der-p-wert",
+    "title": "Woche 9: Hypothesentests und t-Tests",
+    "section": "",
+    "text": "Der p-Wert ist die Wahrscheinlichkeit, ein Stichprobenresultat zu erhalten, das mindestens so extrem ist wie das beobachtete, unter der Annahme, dass \\(H_0\\) wahr ist.\n\n\\(p &lt; \\alpha\\): Das Ergebnis ist signifikant \\(\\rightarrow H_0\\) wird abgelehnt.\n\\(p \\ge \\alpha\\): Das Ergebnis ist nicht signifikant \\(\\rightarrow H_0\\) wird beibehalten."
+  },
+  {
+    "objectID": "woche_09.html#die-macht-eines-tests",
+    "href": "woche_09.html#die-macht-eines-tests",
+    "title": "Woche 9: Hypothesentests und t-Tests",
+    "section": "",
+    "text": "Die Macht (Power) eines Tests ist die Wahrscheinlichkeit, dass der Test \\(H_0\\) ablehnt, wenn tatsächlich \\(H_1\\) wahr ist. Also wie wahrscheinlich detektieren wir einen echten Effekt? Sie hängt von der Effektgröße, der Stichprobengröße und dem Signifikanzniveau ab. —"
+  },
+  {
+    "objectID": "woche_09.html#einstichproben-t-test",
+    "href": "woche_09.html#einstichproben-t-test",
+    "title": "Woche 9: Hypothesentests und t-Tests",
+    "section": "2.1 Einstichproben-t-Test",
+    "text": "2.1 Einstichproben-t-Test\nMan vergleicht den Mittelwert einer Stichprobe mit einem fest vorgegebenen Sollwert \\(\\mu_0\\).\nBeispiel: Eine Tablette soll 100 mg Wirkstoff enthalten. Wir testen, ob die Produktion systematisch davon abweicht.\n\n\\(H_0: \\mu = 100\\)\n\\(H_1: \\mu \\neq 100\\) (zweiseitig)\n\n\n2.1.1 Teststatistik \\(T\\):\nDie Teststatistik ist der “Prüfwert”, den wir berechnen, um zu sehen, wie weit unsere Daten vom erwarteten Wert (\\(\\mu_0\\)) entfernt liegen. \\[T = \\frac{\\overline{X} - \\mu_0}{S / \\sqrt{n}}\\]\n\n\\(\\overline{X}\\): Der beobachtete Durchschnitt deiner Stichprobe.\n\\(\\mu_0\\): Der hypothetische Sollwert aus der Nullhypothese \\(H_0\\).\n\\(S\\): Die Standardabweichung der Stichprobe.\n\\(n\\): Die Anzahl der Beobachtungen.\n\n\n\n2.1.2 Warum unterscheidet sich \\(T\\) vom Stichprobenmittelwert?\nWährend der Mittelwert \\(\\overline{X}\\) in der Originaleinheit (z. B. mg, cm, kg) gemessen wird, ist \\(T\\) eine standardisierte Maßzahl.\n\nVerschiebung (Zentrierung): Wir berechnen die Differenz \\((\\overline{X} - \\mu_0)\\). Das sagt uns, wie groß die Abweichung absolut ist.\nMaßstabsanpassung (Standardisierung): Wir teilen durch den Standardfehler (\\(S / \\sqrt{n}\\)). \\(T\\) misst also nicht in Zentimetern, sondern in Standardfehlern.\nEin \\(T\\)-Wert von 2 bedeutet: “Unser Stichprobenmittelwert liegt 2 Standardfehler weit weg vom Sollwert.”\nDies macht Ergebnisse vergleichbar, egal was wir für Dinge messen.\n\n\n\n2.1.3 Warum t-Verteilung statt Normalverteilung?\nNach dem Zentralen Grenzwertsatz sind Mittelwerte bei großen Stichproben zwar normalverteilt, aber es gibt einen Haken: Die Varianz.\n\nWüssten wir die wahre Varianz \\(\\sigma^2\\) der Grundgesamtheit, dürften wir die Normalverteilung nutzen.\nIn der Realität müssen wir \\(\\sigma^2\\) aber durch die Stichprobenvarianz \\(S^2\\) schätzen.\nDiese Schätzung ist unsicher, besonders bei kleinen Stichproben.\n\nDie t-Verteilung korrigiert diese Unsicherheit. Sie hat im Vergleich zur Normalverteilung “Fat Tails” (breitere Ränder). Das bedeutet, dass extreme Abweichungen bei kleinen Stichproben öfter vorkommen können. Je größer die Stichprobe \\(n\\) wird, desto ähnlicher wird die t-Verteilung der Normalverteilung.\n\n\n\nT-Verteilung vs. Normalverteilung (https://analystprep.com/cfa-level-1-exam/quantitative-methods/t-distribution-and-degrees-of-freedom/)\n\n\n\n\n2.1.4 So wird das Resultat unseres Einstichproben-t-Tests berechnet:\n\nSetze ein Signifikanzniveau \\(\\alpha\\) (z.B. 0.05).\nBestimme die Freiheitsgrade: \\(df = n - 1\\).\nUnser Signifikanzniveau und unsere Freiheitsgrade definieren eine t-Verteilung, auf der wir nun testen.\nWir bestimmen die kritischen Werte für die Ablehnungsbereiche: qt(1 - alpha/2, df) (zweiseitige Tests).\nBerechnete den \\(T\\)-Wert unserer Stichprobe und vergleiche ihn mit dem kritischen Wert aus der t-Verteilung. Liegt der \\(T\\)-Wert außerhalb des kritischen Bereichs, lehnen wir \\(H_0\\) ab.\n\nIn R können wir diesen Test mit der Funktion t.test() durchführen, welche die oben genannten Schritte automatisch erledigt.\nIn R:\nt.test(stichprobe, alternative = \"two.sided\", mu = 100, conf.level = 0.95)\nDer resultierende p-Wert gibt an, wie wahrscheinlich es ist, ein so extremes Ergebnis zu erhalten, wenn \\(H_0\\) wahr ist. Ein p-Wert kleiner als \\(\\alpha\\) führt zur Ablehnung von \\(H_0\\), das heisst es gibt eine systematische Abweichung von 100 mg, wenn der p-Wert kleiner als unser Signifikanzniveau ist."
+  },
+  {
+    "objectID": "woche_09.html#zweistichproben-t-test-unabhängig",
+    "href": "woche_09.html#zweistichproben-t-test-unabhängig",
+    "title": "Woche 9: Hypothesentests und t-Tests",
+    "section": "2.2 Zweistichproben-t-Test (Unabhängig)",
+    "text": "2.2 Zweistichproben-t-Test (Unabhängig)\nVergleicht die Mittelwerte zweier unabhängiger Gruppen (z.B. Behandlungsgruppe vs. Kontrollgruppe).\n\nVoraussetzung: Beide Gruppen sind normalverteilt.\nVarianz: Man unterscheidet, ob die Varianzen der beiden Gruppen gleich oder verschieden sind (Welch-Test)."
+  },
+  {
+    "objectID": "woche_09.html#gepaarter-t-test",
+    "href": "woche_09.html#gepaarter-t-test",
+    "title": "Woche 9: Hypothesentests und t-Tests",
+    "section": "2.3 Gepaarter t-Test",
+    "text": "2.3 Gepaarter t-Test\nWird verwendet, wenn Messwerte paarweise zusammengehören (z.B. Messung vor und nach einem Training bei derselben Person). Hierbei wird der t-Test auf die Differenzen der Paare angewendet."
+  },
+  {
+    "objectID": "woche_08_1.html",
+    "href": "woche_08_1.html",
+    "title": "Woche 8_1: Deskriptive Statistik",
+    "section": "",
+    "text": "Die deskriptive (beschreibende) Statistik hat zum Ziel, grosse Datenmengen übersichtlich zusammenzufassen und deren charakteristische Merkmale durch Tabellen, Kennzahlen und Grafiken darzustellen.\n\nGrundgesamtheit (N): Die Menge aller Objekte, über die wir eine Aussage treffen wollen.\nStichprobe (n): Eine Teilmenge der Grundgesamtheit, die tatsächlich untersucht wird.\nMerkmal (Variable): Die Eigenschaft, die gemessen wird (z. B. Körpergrösse).\nMerkmalsausprägung: Der konkrete Wert, den ein Merkmal annehmen kann (z. B. 1.80 m)."
+  },
+  {
+    "objectID": "woche_08_1.html#arithmetisches-mittel-barx",
+    "href": "woche_08_1.html#arithmetisches-mittel-barx",
+    "title": "Woche 8_1: Deskriptive Statistik",
+    "section": "3.1 Arithmetisches Mittel (\\(\\bar{x}\\))",
+    "text": "3.1 Arithmetisches Mittel (\\(\\bar{x}\\))\nDer klassische Durchschnitt. Er ist sehr anfällig gegenüber Ausreissern. \\[\\bar{x} = \\frac{1}{n} \\sum_{i=1}^{n} x_i\\] In R: mean(x)"
+  },
+  {
+    "objectID": "woche_08_1.html#median-q_0.5",
+    "href": "woche_08_1.html#median-q_0.5",
+    "title": "Woche 8_1: Deskriptive Statistik",
+    "section": "3.2 Median (\\(q_{0.5}\\))",
+    "text": "3.2 Median (\\(q_{0.5}\\))\nDer Wert, der die sortierte Datenreihe genau in zwei Hälften teilt. Er ist robust gegenüber Ausreissern. In R: median(x)"
+  },
+  {
+    "objectID": "woche_02.html",
+    "href": "woche_02.html",
+    "title": "Woche 2: Wahrscheinlichkeitsrechnung",
+    "section": "",
+    "text": "Die Wahrscheinlichkeitsrechnung beschäftigt sich mit Zufallsexperimenten – das sind Vorgänge, deren Ausgang nicht exakt vorhersagbar ist. Um damit zu rechnen, brauchen wir einige Grundbegriffe:\n\nElementarereignis (\\(\\omega\\)): Ein einzelner, konkreter Ausgang eines Experiments.\nGrundmenge / Grundraum (\\(\\Omega\\)): Die Menge aller möglichen Ausgänge eines Experiments.\nEreignis (\\(A\\)): Eine Sammlung von bestimmten Elementarereignissen. Formal ist ein Ereignis eine Teilmenge der Grundmenge (\\(A \\subseteq \\Omega\\)).\n\nBeispiel Würfelwurf:\n\nGrundmenge: \\(\\Omega = \\{1, 2, 3, 4, 5, 6\\}\\)\nEreignis \\(A\\) (“eine gerade Zahl würfeln”): \\(A = \\{2, 4, 6\\}\\)"
+  },
+  {
+    "objectID": "woche_02.html#laplace-experimente",
+    "href": "woche_02.html#laplace-experimente",
+    "title": "Woche 2: Wahrscheinlichkeitsrechnung",
+    "section": "3.1 Laplace-Experimente",
+    "text": "3.1 Laplace-Experimente\nEin Laplace-Experiment liegt vor, wenn jeder mögliche Ausgang (\\(\\omega\\)) absolut gleich wahrscheinlich ist.\nFormel: \\[\\mathbb{P}[A] = \\frac{|A|}{|\\Omega|} = \\frac{\\text{Anzahl günstige Ausgänge}}{\\text{Anzahl mögliche Ausgänge}}\\]\nBeispiel: Wahrscheinlichkeit für eine gerade Zahl beim fairen Würfelwurf: \\(\\mathbb{P}[A] = 3 / 6 = 0.5\\)."
+  },
+  {
+    "objectID": "woche_01.html",
+    "href": "woche_01.html",
+    "title": "Woche 1: Einführung & Kombinatorik",
+    "section": "",
+    "text": "In dieser ersten Woche klären wir die fundamentale Frage: Was unterscheidet Statistik von der Wahrscheinlichkeitsrechnung?\n\n\nDer Unterschied lässt sich am besten anhand eines Urnenmodells verdeutlichen:\n\nWahrscheinlichkeitsrechnung: Wir kennen das Modell (wir wissen, was in der Urne ist) und berechnen die Wahrscheinlichkeit für bestimmte Daten (was wir ziehen werden).\n\nFrage: “Was werden wir mit welcher Wahrscheinlichkeit in den Händen halten?”\n\nStatistik: Wir haben Daten (die gezogenen Kugeln) und ziehen Rückschlüsse auf das zugrunde liegende Modell oder dessen Parameter.\n\nFrage: “Was können wir basierend auf den Daten über den Inhalt der Urne aussagen?”"
+  },
+  {
+    "objectID": "woche_01.html#statistik-vs.-wahrscheinlichkeitsrechnung",
+    "href": "woche_01.html#statistik-vs.-wahrscheinlichkeitsrechnung",
+    "title": "Woche 1: Einführung & Kombinatorik",
+    "section": "",
+    "text": "Der Unterschied lässt sich am besten anhand eines Urnenmodells verdeutlichen:\n\nWahrscheinlichkeitsrechnung: Wir kennen das Modell (wir wissen, was in der Urne ist) und berechnen die Wahrscheinlichkeit für bestimmte Daten (was wir ziehen werden).\n\nFrage: “Was werden wir mit welcher Wahrscheinlichkeit in den Händen halten?”\n\nStatistik: Wir haben Daten (die gezogenen Kugeln) und ziehen Rückschlüsse auf das zugrunde liegende Modell oder dessen Parameter.\n\nFrage: “Was können wir basierend auf den Daten über den Inhalt der Urne aussagen?”"
+  },
+  {
+    "objectID": "woche_01.html#die-produktregel",
+    "href": "woche_01.html#die-produktregel",
+    "title": "Woche 1: Einführung & Kombinatorik",
+    "section": "2.1 Die Produktregel",
+    "text": "2.1 Die Produktregel\nWenn ein Gesamtvorgang aus \\(k\\) nacheinander folgenden, unabhängigen Entscheidungen besteht, wobei es für die \\(i\\)-te Entscheidung \\(n_i\\) Möglichkeiten gibt, berechnet sich die Gesamtzahl durch:\n\\[N = n_1 \\cdot n_2 \\cdot \\dots \\cdot n_k\\]"
+  },
+  {
+    "objectID": "woche_01.html#variationen",
+    "href": "woche_01.html#variationen",
+    "title": "Woche 1: Einführung & Kombinatorik",
+    "section": "2.2 Variationen",
+    "text": "2.2 Variationen\nEine Auswahl von Objekten, bei der die Reihenfolge wichtig ist. Hierbei gibt es zwei Fälle:\nOhne Zurücklegen:\nEin Zahlenschloss, bei dem jede Zahl nur einmal gewählt werden kann. Für ein 3-stelliges Schloss \\((N = 10*9*8)\\)\nMit Zurücklegen:\nEin Zahlenschloss, bei dem jede Zahl mehrfach gewählt werden kann. Für ein 3-stelliges Schloss \\((N = 10*10*10)\\)"
+  },
+  {
+    "objectID": "woche_01.html#permutationen-anordnungen",
+    "href": "woche_01.html#permutationen-anordnungen",
+    "title": "Woche 1: Einführung & Kombinatorik",
+    "section": "2.3 Permutationen (Anordnungen)",
+    "text": "2.3 Permutationen (Anordnungen)\nWie viele Möglichkeiten gibt es, \\(n\\) unterscheidbare Objekte in einer bestimmten Reihenfolge anzuordnen? Beispiel: Anordnung von 3 Büchern auf einem Regal: \\(3! = 6\\) Möglichkeiten.\nFormel: \\[P(n) = n!\\]\nIn R: factorial(n)"
+  },
+  {
+    "objectID": "woche_01.html#kombinationen-auswahl",
+    "href": "woche_01.html#kombinationen-auswahl",
+    "title": "Woche 1: Einführung & Kombinatorik",
+    "section": "2.4 Kombinationen (Auswahl)",
+    "text": "2.4 Kombinationen (Auswahl)\nHier untersuchen wir, wie viele Möglichkeiten es gibt, \\(k\\) Objekte aus einer Menge von \\(n\\) Objekten auszuwählen. Dabei ist die Reihenfolge egal (ziehen von einstelligen Nummern: 012 ist das gleiche wie 021 oder 210).\nOhne Zurücklegen.\nTypisches Beispiel: Lotto oder die Auswahl von 2 Pizzabelägen aus 6 möglichen, Pilze+Salami ist das gleiche wie Salami+Pilze.\nFormel (Binomialkoeffizient): \\[\\binom{n}{k} = \\frac{n!}{k!(n-k)!}\\]\nIn R: choose(n, k)\nMit Zurücklegen.\nBeispiel: Auswahl von Objekten, die nach der Ziehung wieder zurückgelegt werden, wobei nur die Anzahl pro Kategorie zählt. Beispiel: Auswahl von 3 Kugeln aus einer Urne mit 5 verschiedenen Farben, wobei jede Farbe mehrfach gezogen werden kann (z.B. 2 rote und 1 blaue Kugel).\nFormel: \\[\\binom{n+k-1}{k}\\]\nIn R: choose(n + k - 1, k)"
+  },
+  {
+    "objectID": "woche_10.html",
+    "href": "woche_10.html",
+    "title": "Woche 10: Normalitätsannahme & Varianzhomogenität",
+    "section": "",
+    "text": "Eine der zentralen Voraussetzungen für die Durchführung eines t-Tests ist, dass die zugrundeliegenden Daten (zumindest annähernd) normalverteilt sind. Bevor wir also Mittelwerte vergleichen können, müssen wir prüfen, ob unsere Daten diese “Glockenkurven”-Form aufweisen.\n\n\nEin statistischer Test, um Daten auf Normalverteilung zu prüfen, ist der Shapiro-Wilk-Test. Er testet grob gesagt die Nullhypothese: Die Daten sind normalverteilt. In der Praxis, insbesondere im Vorfeld eines t-Tests, ist dieser Test jedoch oft nicht besonders hilfreich. Dafür gibt es zwei Hauptgründe:\n\nDas Problem kleiner Stichproben: Haben wir nur wenige Datenpunkte und die Daten sind nicht normalverteilt, hat der Test zu wenig Power (Macht). Die Wahrscheinlichkeit ist hoch, dass er die Abweichung schlichtweg nicht erkennt (“verpasster Effekt”).\nDas Problem grosser Stichproben: Haben wir extrem viele Datenpunkte, wird der Test zu streng. Selbst winzige, für die Praxis völlig unbedeutende Abweichungen von der perfekten Normalverteilung führen dazu, dass die Normalitätsannahme abgelehnt wird.\n\n\n\n\n\nDa statistische Tests hier Schwächen haben, greift man oft auf eine visuelle Methode zurück: den Quantil-Quantil-Plot (Q-Q-Plot). Untersucht man speziell auf eine Normalverteilung, nennt man dies auch ein Normal-Quantil-Diagramm.\n\n\nAnstatt die Daten in ein Histogramm zu pressen, vergleichen wir bei einem Q-Q-Plot bestimmte Positionen unserer Daten (die empirischen Quantile) mit den idealen Positionen einer perfekten Normalverteilung (den theoretischen Quantilen).\nEin Q-Q-Plot spannt sich zwischen zwei Achsen auf:\n\nx-Achse: Zeigt die theoretischen Quantile der perfekten Standardnormalverteilung.\ny-Achse: Zeigt die empirischen Quantile (die tatsächlichen Messwerte) unserer Stichprobe \\(X_1, ..., X_n\\).\n\n\n\n\nDie Interpretation eines fertigen Q-Q-Plots ist glücklicherweise sehr intuitiv:\n\nNormalverteilung liegt vor: Wenn die Datenpunkte der Stichprobe tatsächlich aus einer Normalverteilung stammen, reihen sich die Punkte im Q-Q-Plot annähernd wie auf einer geraden Linie auf (\\(y = \\mu + \\sigma x\\)).\n\nDer Schnittpunkt mit der y-Achse entspricht dabei dem Erwartungswert (\\(\\mu\\)).\nDie Steigung der Linie entspricht der Standardabweichung (\\(\\sigma\\)).\n\nKeine Normalverteilung: Weichen die Punkte deutlich und systematisch (z.B. in S-Form oder als Banane) von dieser gedachten geraden Linie ab, ist das ein starkes Indiz dafür, dass die Daten nicht normalverteilt sind.\n\nIn R:\nqqnorm(stichprobe)"
+  },
+  {
+    "objectID": "woche_10.html#der-shapiro-wilk-test-und-seine-tücken",
+    "href": "woche_10.html#der-shapiro-wilk-test-und-seine-tücken",
+    "title": "Woche 10: Normalitätsannahme & Varianzhomogenität",
+    "section": "",
+    "text": "Ein statistischer Test, um Daten auf Normalverteilung zu prüfen, ist der Shapiro-Wilk-Test. Er testet grob gesagt die Nullhypothese: Die Daten sind normalverteilt. In der Praxis, insbesondere im Vorfeld eines t-Tests, ist dieser Test jedoch oft nicht besonders hilfreich. Dafür gibt es zwei Hauptgründe:\n\nDas Problem kleiner Stichproben: Haben wir nur wenige Datenpunkte und die Daten sind nicht normalverteilt, hat der Test zu wenig Power (Macht). Die Wahrscheinlichkeit ist hoch, dass er die Abweichung schlichtweg nicht erkennt (“verpasster Effekt”).\nDas Problem grosser Stichproben: Haben wir extrem viele Datenpunkte, wird der Test zu streng. Selbst winzige, für die Praxis völlig unbedeutende Abweichungen von der perfekten Normalverteilung führen dazu, dass die Normalitätsannahme abgelehnt wird."
+  },
+  {
+    "objectID": "woche_10.html#visuelle-überprüfung-der-q-q-plot",
+    "href": "woche_10.html#visuelle-überprüfung-der-q-q-plot",
+    "title": "Woche 10: Normalitätsannahme & Varianzhomogenität",
+    "section": "",
+    "text": "Da statistische Tests hier Schwächen haben, greift man oft auf eine visuelle Methode zurück: den Quantil-Quantil-Plot (Q-Q-Plot). Untersucht man speziell auf eine Normalverteilung, nennt man dies auch ein Normal-Quantil-Diagramm.\n\n\nAnstatt die Daten in ein Histogramm zu pressen, vergleichen wir bei einem Q-Q-Plot bestimmte Positionen unserer Daten (die empirischen Quantile) mit den idealen Positionen einer perfekten Normalverteilung (den theoretischen Quantilen).\nEin Q-Q-Plot spannt sich zwischen zwei Achsen auf:\n\nx-Achse: Zeigt die theoretischen Quantile der perfekten Standardnormalverteilung.\ny-Achse: Zeigt die empirischen Quantile (die tatsächlichen Messwerte) unserer Stichprobe \\(X_1, ..., X_n\\).\n\n\n\n\nDie Interpretation eines fertigen Q-Q-Plots ist glücklicherweise sehr intuitiv:\n\nNormalverteilung liegt vor: Wenn die Datenpunkte der Stichprobe tatsächlich aus einer Normalverteilung stammen, reihen sich die Punkte im Q-Q-Plot annähernd wie auf einer geraden Linie auf (\\(y = \\mu + \\sigma x\\)).\n\nDer Schnittpunkt mit der y-Achse entspricht dabei dem Erwartungswert (\\(\\mu\\)).\nDie Steigung der Linie entspricht der Standardabweichung (\\(\\sigma\\)).\n\nKeine Normalverteilung: Weichen die Punkte deutlich und systematisch (z.B. in S-Form oder als Banane) von dieser gedachten geraden Linie ab, ist das ein starkes Indiz dafür, dass die Daten nicht normalverteilt sind.\n\nIn R:\nqqnorm(stichprobe)"
+  },
+  {
+    "objectID": "woche_10.html#die-grundidee-das-neue-messgerät",
+    "href": "woche_10.html#die-grundidee-das-neue-messgerät",
+    "title": "Woche 10: Normalitätsannahme & Varianzhomogenität",
+    "section": "2.1 Die Grundidee: Das neue Messgerät",
+    "text": "2.1 Die Grundidee: Das neue Messgerät\nStell dir vor, du entwickelst ein neues Messgerät oder eine neue Produktionsmaschine. Das Ziel ist meistens mehr Präzision – also weniger Schwankungen. Wenn wir nun alte und neue Messungen vergleichen, wollen wir wissen: Hat sich die Streuung (Varianz) tatsächlich messbar verkleinert, oder sind die Schwankungen bei beiden Geräten eigentlich noch gleich gross?"
+  },
+  {
+    "objectID": "woche_10.html#voraussetzungen-für-den-f-test",
+    "href": "woche_10.html#voraussetzungen-für-den-f-test",
+    "title": "Woche 10: Normalitätsannahme & Varianzhomogenität",
+    "section": "2.2 Voraussetzungen für den F-Test",
+    "text": "2.2 Voraussetzungen für den F-Test\nDamit die Ergebnisse des F-Tests verlässlich sind, müssen drei strikte Annahmen erfüllt sein:\n\nNormalverteilung: Die Daten beider Stichproben müssen normalverteilt sein (Q-Q-Plot).\nUnabhängigkeit (i.i.d.): Die Messwerte innerhalb einer Stichprobe sind unabhängig voneinander.\nUnabhängige Gruppen: Die beiden Stichproben hängen nicht miteinander zusammen (es sind also z.B. keine Messungen an denselben Personen vor und nach einer Behandlung)."
+  },
+  {
+    "objectID": "woche_10.html#die-hypothesen",
+    "href": "woche_10.html#die-hypothesen",
+    "title": "Woche 10: Normalitätsannahme & Varianzhomogenität",
+    "section": "2.3 Die Hypothesen",
+    "text": "2.3 Die Hypothesen\nWie beim t-Test formulieren wir wieder unsere “Gerichtsverfahren”-Hypothesen. Man unterscheidet zwischen zweiseitig (wir suchen nach irgendeinem Unterschied) und einseitig (wir haben eine konkrete Vermutung, wer grösser/kleiner ist).\nZweiseitiger Test (Unterscheiden sich die Varianzen?):\n\n\\(H_0: \\sigma_X^2 = \\sigma_Y^2\\) (Die Varianzen sind gleich)\n\\(H_1: \\sigma_X^2 \\neq \\sigma_Y^2\\) (Die Varianzen sind unterschiedlich)\n\nEinseitiger Test (z.B. Hat die alte Maschine eine grössere Varianz als die neue?):\n\n\\(H_0: \\sigma_{alt}^2 \\le \\sigma_{neu}^2\\)\n\\(H_1: \\sigma_{alt}^2 &gt; \\sigma_{neu}^2\\)"
+  },
+  {
+    "objectID": "woche_10.html#die-teststatistik-der-prüfwert",
+    "href": "woche_10.html#die-teststatistik-der-prüfwert",
+    "title": "Woche 10: Normalitätsannahme & Varianzhomogenität",
+    "section": "2.4 Die Teststatistik (Der Prüfwert)",
+    "text": "2.4 Die Teststatistik (Der Prüfwert)\nDer F-Test hat eine bestechend logische Teststatistik \\(\\hat{\\gamma}\\). Wir teilen einfach die Varianz der ersten Stichprobe (\\(S_X^2\\)) durch die Varianz der zweiten Stichprobe (\\(S_Y^2\\)):\n\\[\\hat{\\gamma} = \\frac{S_X^2}{S_Y^2}\\]\n\nIntuition: Wenn beide Varianzen ungefähr gleich sind, liegt der Quotient nahe bei 1. Je weiter der Wert von 1 abweicht (nach oben oder unten), desto stärker spricht dies gegen unsere Nullhypothese \\(H_0\\).\nUnter der Annahme, dass \\(H_0\\) stimmt, folgt dieser Quotient einer sogenannten F-Verteilung. Diese Verteilung ist (im Gegensatz zur Normalverteilung) asymmetrisch und rechtsschief.\n\nIn R:\nvar.test(stichprobe1, stichprobe2, \n         alternative = \"two.sided\", # oder \"less\", \"greater\"\n         conf.level = 0.95)         # 1 - alpha"
+  },
+  {
+    "objectID": "woche_10.html#binomialtest-anteilstest",
+    "href": "woche_10.html#binomialtest-anteilstest",
+    "title": "Woche 10: Normalitätsannahme & Varianzhomogenität",
+    "section": "3.1 Binomialtest (Anteilstest)",
+    "text": "3.1 Binomialtest (Anteilstest)\nDer Binomialtest wird angewendet, um zu überprüfen, ob der tatsächliche Anteil \\(p\\) eines Merkmals in einer Grundgesamtheit signifikant von einem vorab definierten Sollwert \\(p_0\\) abweicht. Ein klassisches Anwendungsbeispiel ist die Überprüfung einer Impfquote (z. B. ob die Polio-Impfquote mindestens 95 % beträgt).\n\n3.1.1 Allgemeines Vorgehen\n\nSignifikanzniveau festlegen: Wir definieren ein Signifikanzniveau \\(\\alpha \\in (0,1)\\), typischerweise \\(\\alpha = 0.05\\) oder \\(\\alpha = 0.01\\).\nHypothesen formulieren:\n\nNullhypothese \\(H_0: p = p_0\\)\nAlternativhypothese \\(H_1: p \\neq p_0\\) (bei einem zweiseitigen Test) oder einseitig (z. B. \\(p &lt; p_0\\)).\n\nTeststatistik bestimmen: Die Anzahl der beobachteten “Erfolge” \\(k\\) aus einer Stichprobe der Größe \\(n\\) wird ermittelt.\nVerteilung unter \\(H_0\\): Wenn die Nullhypothese wahr ist, folgt die Teststatistik \\(X\\) einer Binomialverteilung \\(Bin(n, p_0)\\).\nEntscheidung: Es wird der p-Wert der Beobachtung \\(k\\) berechnet. Ist der p-Wert kleiner als \\(\\alpha\\), wird die Nullhypothese verworfen. Ist er größer oder gleich \\(\\alpha\\), wird die Nullhypothese beibehalten.\n\nIn R:\nrbinom.test(k, n, p = p0, \n           alternative = \"two.sided\", # oder \"less\", \"greater\"\n           conf.level = 0.95)         # 1 - alpha\n\nk: Anzahl der beobachteten Erfolge (z. B. Anzahl geimpfter Personen).\nn: Gesamtzahl der Personen in der Stichprobe.\np: Der erwartete Anteil unter der Nullhypothese."
+  },
+  {
+    "objectID": "woche_10.html#poissontest-dichtetest",
+    "href": "woche_10.html#poissontest-dichtetest",
+    "title": "Woche 10: Normalitätsannahme & Varianzhomogenität",
+    "section": "3.2 Poissontest (Dichtetest)",
+    "text": "3.2 Poissontest (Dichtetest)\nDer Poissontest kommt zum Einsatz, wenn die Rate von Ereignissen (z. B. die Anzahl von Salmonelleninfektionen in einem bestimmten Zeitraum) untersucht werden sol. Ziel ist es zu prüfen, ob die wahre mittlere Ereignisrate \\(\\lambda\\) von einem bisherigen Durchschnitt abweicht.\n\n3.2.1 Allgemeines Vorgehen\n\nSignifikanzniveau festlegen: Auch hier wird zunächst \\(\\alpha\\) (z. B. \\(\\alpha = 0.05\\)) festgelegt.\nHypothesen formulieren:\n\nNullhypothese \\(H_0: \\lambda = \\lambda_0\\) (z. B. \\(\\lambda = 5\\))\nAlternativhypothese \\(H_1: \\lambda \\neq \\lambda_0\\)\n\nTeststatistik bestimmen: Die Teststatistik ist die Summe der aufgetretenen Ereignisse über alle betrachteten Zeiträume, also \\(s = X_1 + X_2 + \\dots + X_n\\).\nVerteilung unter \\(H_0\\): Unter der Nullhypothese sind die einzelnen Beobachtungen \\(X_i\\) unabhängig und poissonverteilt. Die Summe der Ereignisse folgt demnach einer Poissonverteilung, deren Parameter sich aus der Summe der Erwartungswerte ergibt.\nBesonderheit bei der p-Wert-Berechnung: Im Gegensatz zu symmetrischen Verteilungen (wie der Normalverteilung) ist die Poissonverteilung im Allgemeinen asymmetrisch. Bei der Bestimmung des p-Wertes für einen zweiseitigen Test können wir die Teststatistik nicht einfach spiegeln. Stattdessen müssen die Wahrscheinlichkeiten beider Verteilungsenden separat berechnet und aufaddiert werden.\nEntscheidung: Liegt der berechnete p-Wert unter \\(\\alpha\\), verwerfen wir \\(H_0\\). Ist er größer oder gleich \\(\\alpha\\), behalten wir die Nullhypothese bei.\n\nIn R:\nrpoisson.test(s, T, r = lambda0, \n            alternative = \"two.sided\", # oder \"less\", \"greater\"\n            conf.level = 0.95)         # 1 - alpha\n\ns: Die Summe der beobachteten Ereignisse über alle Zeiträume.\nT: Die Gesamtzeit, über die die Ereignisse beobachtet wurden.\nr: Der erwartete Wert unter der Nullhypothese."
+  },
+  {
+    "objectID": "woche_05.html",
+    "href": "woche_05.html",
+    "title": "Woche 5: Erwartungswert & Varianz",
+    "section": "",
+    "text": "Anstatt immer die gesamte Verteilung anzuschauen, fassen wir sie oft mit Parametern zusammen, die das “Zentrum” und die “Breite” der Verteilung beschreiben.\n\n\nDer Erwartungswert ist der “Schwerpunkt” der Verteilung. Er sagt uns: “Welchen Wert erwarten wir im Durchschnitt, wenn wir das Experiment unendlich oft wiederholen?” Die Berechnung unterscheidet sich je nach Typ der Zufallsvariablen:\n\nFür diskrete Zufallsvariablen: Wir multiplizieren jeden möglichen Wert \\(x_i\\) mit seiner Wahrscheinlichkeit und summieren das Ganze auf. \\[E(X) = \\sum_{i} x_i \\cdot P(X = x_i)\\]\nFür stetige Zufallsvariablen: Da wir kontinuierliche Werte haben, wird die Summe zu einem Integral. Wir integrieren über das Produkt aus dem Wert \\(x\\) und der Dichtefunktion \\(\\varphi(x)\\). \\[E(X) = \\int_{-\\infty}^{\\infty} x \\cdot \\varphi(x) \\, dx\\]\n\n\n\n\nDie Varianz ist ein Mass für die Streuung. Sie gibt an, wie stark die tatsächlichen Werte im Durchschnitt vom Erwartungswert abweichen (genauer: die durchschnittliche quadrierte Abweichung).\n\nAllgemeine Definition: \\(Var(X) = E[(X - E[X])^2]\\)\nIn Worten: Der Erwartungswert beschreibt die quadrierte durchschnittliche Abweichung \\((X - E[X])^2\\) vom Erwartungswert einer Zufallsvariable X, also den Erwartungswert (durchschnitt) der quadrierten Abweichung vom Erwartungswert.\nBeispiel Würfelwurf (Erwartungswert \\(E[X] = 3.5\\)):\n\nFür die Augenzahl 1: \\((1 - 3.5)^2 = 6.25\\)\n\nFür die Augenzahl 2: \\((2 - 3.5)^2 = 2.25\\)\n\nFür die Augenzahl 3: \\((3 - 3.5)^2 = 0.25\\)\n\nFür die Augenzahl 4: \\((4 - 3.5)^2 = 0.25\\)\n\nFür die Augenzahl 5: \\((5 - 3.5)^2 = 2.25\\)\n\nFür die Augenzahl 6: \\((6 - 3.5)^2 = 6.25\\)\nDie Varianz im Würfelwurf wäre dann der gewichtete Durchschnitt dieser quadrierten Abweichungen \\[Var(X) = 1/6\\cdot(6.25 + 2.25 + 0.25 + 0.25 + 2.25 + 6.25) = 17.5/6 = 2.91\\]\n\nVerschiebungssatz (oft leichter zu rechnen): \\(Var(X) = E[X^2] - E[X]^2\\).\nBeispiel Würfelwurf:\n\nBeim ersten Term werden die Augenzahlen quadriert:\n\\(E[X^2] = 1/6\\cdot(1^2+2^2+3^2+4^2+5^2+6^2) = 1/6\\cdot91 = 15.16\\).\n\nBeim zweiten Term wird der einfache Erwartungswert des Würfelwurfes quadriert:\n\\(E[X]^2 = 3.5^2 = 12.25\\).\n\nDie Varianz im Würfelwurf lautet \\(15.16-12.25 = 2.91\\)\n\n\n\n\n\\(Var(\\lambda \\cdot X) = \\lambda^2 \\cdot Var(X)\\) wenn \\(\\lambda\\) eine Konstante ist\n\\(Var(X+Y) = Var(X) + Var(Y)\\) wenn X und Y unabhängig sind\n\n\n\n\n\nDie Standardabweichung ist dann einfach die Quadratwurzel aus der Varianz: \\[\\sigma = \\sqrt{Var(X)}\\] Warum Standardabweichung? Die Varianz hat quadrierte Einheiten (z.B. \\(m^2\\)). Durch das Ziehen der Wurzel hat die Standardabweichung wieder dieselbe Einheit wie die ursprünglichen Daten (z.B. \\(m\\)), was sie für uns viel anschaulicher macht."
+  },
+  {
+    "objectID": "woche_05.html#erwartungswert-ex-oder-mu",
+    "href": "woche_05.html#erwartungswert-ex-oder-mu",
+    "title": "Woche 5: Erwartungswert & Varianz",
+    "section": "",
+    "text": "Der Erwartungswert ist der “Schwerpunkt” der Verteilung. Er sagt uns: “Welchen Wert erwarten wir im Durchschnitt, wenn wir das Experiment unendlich oft wiederholen?” Die Berechnung unterscheidet sich je nach Typ der Zufallsvariablen:\n\nFür diskrete Zufallsvariablen: Wir multiplizieren jeden möglichen Wert \\(x_i\\) mit seiner Wahrscheinlichkeit und summieren das Ganze auf. \\[E(X) = \\sum_{i} x_i \\cdot P(X = x_i)\\]\nFür stetige Zufallsvariablen: Da wir kontinuierliche Werte haben, wird die Summe zu einem Integral. Wir integrieren über das Produkt aus dem Wert \\(x\\) und der Dichtefunktion \\(\\varphi(x)\\). \\[E(X) = \\int_{-\\infty}^{\\infty} x \\cdot \\varphi(x) \\, dx\\]"
+  },
+  {
+    "objectID": "woche_05.html#varianz",
+    "href": "woche_05.html#varianz",
+    "title": "Woche 5: Erwartungswert & Varianz",
+    "section": "",
+    "text": "Die Varianz ist ein Mass für die Streuung. Sie gibt an, wie stark die tatsächlichen Werte im Durchschnitt vom Erwartungswert abweichen (genauer: die durchschnittliche quadrierte Abweichung).\n\nAllgemeine Definition: \\(Var(X) = E[(X - E[X])^2]\\)\nIn Worten: Der Erwartungswert beschreibt die quadrierte durchschnittliche Abweichung \\((X - E[X])^2\\) vom Erwartungswert einer Zufallsvariable X, also den Erwartungswert (durchschnitt) der quadrierten Abweichung vom Erwartungswert.\nBeispiel Würfelwurf (Erwartungswert \\(E[X] = 3.5\\)):\n\nFür die Augenzahl 1: \\((1 - 3.5)^2 = 6.25\\)\n\nFür die Augenzahl 2: \\((2 - 3.5)^2 = 2.25\\)\n\nFür die Augenzahl 3: \\((3 - 3.5)^2 = 0.25\\)\n\nFür die Augenzahl 4: \\((4 - 3.5)^2 = 0.25\\)\n\nFür die Augenzahl 5: \\((5 - 3.5)^2 = 2.25\\)\n\nFür die Augenzahl 6: \\((6 - 3.5)^2 = 6.25\\)\nDie Varianz im Würfelwurf wäre dann der gewichtete Durchschnitt dieser quadrierten Abweichungen \\[Var(X) = 1/6\\cdot(6.25 + 2.25 + 0.25 + 0.25 + 2.25 + 6.25) = 17.5/6 = 2.91\\]\n\nVerschiebungssatz (oft leichter zu rechnen): \\(Var(X) = E[X^2] - E[X]^2\\).\nBeispiel Würfelwurf:\n\nBeim ersten Term werden die Augenzahlen quadriert:\n\\(E[X^2] = 1/6\\cdot(1^2+2^2+3^2+4^2+5^2+6^2) = 1/6\\cdot91 = 15.16\\).\n\nBeim zweiten Term wird der einfache Erwartungswert des Würfelwurfes quadriert:\n\\(E[X]^2 = 3.5^2 = 12.25\\).\n\nDie Varianz im Würfelwurf lautet \\(15.16-12.25 = 2.91\\)\n\n\n\n\n\\(Var(\\lambda \\cdot X) = \\lambda^2 \\cdot Var(X)\\) wenn \\(\\lambda\\) eine Konstante ist\n\\(Var(X+Y) = Var(X) + Var(Y)\\) wenn X und Y unabhängig sind"
+  },
+  {
+    "objectID": "woche_05.html#standardabweichung",
+    "href": "woche_05.html#standardabweichung",
+    "title": "Woche 5: Erwartungswert & Varianz",
+    "section": "",
+    "text": "Die Standardabweichung ist dann einfach die Quadratwurzel aus der Varianz: \\[\\sigma = \\sqrt{Var(X)}\\] Warum Standardabweichung? Die Varianz hat quadrierte Einheiten (z.B. \\(m^2\\)). Durch das Ziehen der Wurzel hat die Standardabweichung wieder dieselbe Einheit wie die ursprünglichen Daten (z.B. \\(m\\)), was sie für uns viel anschaulicher macht."
+  },
+  {
+    "objectID": "woche_06.html",
+    "href": "woche_06.html",
+    "title": "Woche 6: Diskrete und stetige Standardverteilungen",
+    "section": "",
+    "text": "In der Statistik gibt es einige wichtige Standardverteilungen, die häufig verwendet werden, um verschiedene Arten von Daten und Phänomenen zu modellieren. In dieser Woche konzentrieren wir uns auf die Binomialverteilung, die Poisson-Verteilung und die Normalverteilung. Jede dieser Verteilungen hat ihre eigenen Eigenschaften, Parameter und Anwendungsbereiche.\n\n\nWird verwendet, wenn wir ein Experiment mit genau zwei Ausgängen (Erfolg/Misserfolg) \\(n\\)-mal unabhängig voneinander wiederholen und die Anzahl der Erfolge \\(k\\) zählen.\n\nParameter: \\(n\\) (Anzahl Versuche), \\(p\\) (Erfolgswahrscheinlichkeit)\nFormel für genau \\(k\\) Erfolge: \\[P(X = k) = \\binom{n}{k} \\cdot p^k \\cdot (1-p)^{n-k}\\]\n\nDer Erwartungswert der Binomialverteilung ist \\(E[X] = n \\cdot p\\) und die Varianz ist \\(Var(X) = n \\cdot p \\cdot (1-p)\\).\nIn R:\n\ndbinom(k, size = n, prob = p) Wahrscheinlichkeitfunktion \\(P(X = k)\\). Gibt die Wahrscheinlichkeit zurück, genau k Erfolge in n Versuchen mit Erfolgswahrscheinlichkeit p zu erzielen. k beschreibt die Anzahl der Erfolge, size gibt die Anzahl der Versuche an, und prob ist die Erfolgswahrscheinlichkeit pro Versuch.\npbinom(k, size = n, prob = p) Verteilungsfunktion (kumulierte Wahrscheinlichkeit) \\(P(X \\le k)\\). Gibt die Wahrscheinlichkeit zurück, höchstens k Erfolge zu erzielen. k ist die Anzahl der Erfolge, size die Anzahl der Versuche, und prob die Erfolgswahrscheinlichkeit pro Versuch.\nrbinom(k, size = n, prob = p) generiert n Zufallszahlen aus der Binomialverteilung mit Wahrscheinlichkeit p und Anzahl Versuche n.’ Was ist n und was ist die size? In rbinom, n ist die Anzahl der Zufallszahlen, die generiert werden sollen, während size die Anzahl der Versuche pro Zufallszahl angibt (also das n in der Binomialverteilung). Zum Beispiel, rbinom(10, size = 5, prob = 0.3) generiert 10 Zufallszahlen, wobei jede Zahl die Anzahl der Erfolge in 5 Versuchen mit einer Erfolgswahrscheinlichkeit von 0.3 darstellt.\n\nBeispiel: Wir treffen einen Basketballkorb mit 80% Wahrscheinlichkeit. Wie hoch ist die Wahrscheinlichkeit, dass wir in 10 Würfen genau 7 Körbe treffen? Das können wir mit dbinom(7, size = 10, prob = 0.8) berechnen.\n\n\n\nWird verwendet, um die Anzahl der Ereignisse in einem festen Zeitraum oder Raum zu modellieren, wenn diese Ereignisse mit einer bekannten durchschnittlichen Rate \\(\\lambda\\) auftreten und unabhängig voneinander sind.\n\nParameter: \\(\\lambda\\) (durchschnittliche Anzahl Ereignisse pro Intervall)\nFormel für genau \\(k\\) Ereignisse: \\[P(X = k) = \\frac{\\lambda^k \\cdot e^{-\\lambda}}{k!}\\]\n\nDer Erwartungswert und die Varianz der Poisson-Verteilung sind beide gleich \\(\\lambda\\).\nIn R:\n\ndpois(k, lambda = lambda) Wahrscheinlichkeitfunktion \\(P(X = k)\\). Gibt die Wahrscheinlichkeit zurück, genau k Ereignisse mit durchschnittlicher Rate lambda zu erzielen.\nppois(k, lambda = lambda) Verteilungsfunktion (kumulierte Wahrscheinlichkeit) \\(P(X \\le k)\\). Gibt die Wahrscheinlichkeit zurück, höchstens k Ereignisse mit durchschnittlicher Rate lambda zu erzielen.\nrpois(n, lambda = lambda) generiert n Zufallszahlen aus der Poisson-Verteilung mit durchschnittlicher Rate lambda. Zum Beispiel, rpois(10, lambda = 3) generiert 10 Zufallszahlen, wobei jede Zahl die Anzahl der Ereignisse in einem Intervall mit durchschnittlicher Rate von 3 darstellt.\n\nBeispiel: In einem Callcenter kommen durchschnittlich 5 Anrufe pro Stunde an. Wie hoch ist die Wahrscheinlichkeit, dass in einer Stunde genau 3 Anrufe eingehen? Das können wir mit dpois(3, lambda = 5) berechnen."
+  },
+  {
+    "objectID": "woche_06.html#die-binomialverteilung-diskret",
+    "href": "woche_06.html#die-binomialverteilung-diskret",
+    "title": "Woche 6: Diskrete und stetige Standardverteilungen",
+    "section": "",
+    "text": "Wird verwendet, wenn wir ein Experiment mit genau zwei Ausgängen (Erfolg/Misserfolg) \\(n\\)-mal unabhängig voneinander wiederholen und die Anzahl der Erfolge \\(k\\) zählen.\n\nParameter: \\(n\\) (Anzahl Versuche), \\(p\\) (Erfolgswahrscheinlichkeit)\nFormel für genau \\(k\\) Erfolge: \\[P(X = k) = \\binom{n}{k} \\cdot p^k \\cdot (1-p)^{n-k}\\]\n\nDer Erwartungswert der Binomialverteilung ist \\(E[X] = n \\cdot p\\) und die Varianz ist \\(Var(X) = n \\cdot p \\cdot (1-p)\\).\nIn R:\n\ndbinom(k, size = n, prob = p) Wahrscheinlichkeitfunktion \\(P(X = k)\\). Gibt die Wahrscheinlichkeit zurück, genau k Erfolge in n Versuchen mit Erfolgswahrscheinlichkeit p zu erzielen. k beschreibt die Anzahl der Erfolge, size gibt die Anzahl der Versuche an, und prob ist die Erfolgswahrscheinlichkeit pro Versuch.\npbinom(k, size = n, prob = p) Verteilungsfunktion (kumulierte Wahrscheinlichkeit) \\(P(X \\le k)\\). Gibt die Wahrscheinlichkeit zurück, höchstens k Erfolge zu erzielen. k ist die Anzahl der Erfolge, size die Anzahl der Versuche, und prob die Erfolgswahrscheinlichkeit pro Versuch.\nrbinom(k, size = n, prob = p) generiert n Zufallszahlen aus der Binomialverteilung mit Wahrscheinlichkeit p und Anzahl Versuche n.’ Was ist n und was ist die size? In rbinom, n ist die Anzahl der Zufallszahlen, die generiert werden sollen, während size die Anzahl der Versuche pro Zufallszahl angibt (also das n in der Binomialverteilung). Zum Beispiel, rbinom(10, size = 5, prob = 0.3) generiert 10 Zufallszahlen, wobei jede Zahl die Anzahl der Erfolge in 5 Versuchen mit einer Erfolgswahrscheinlichkeit von 0.3 darstellt.\n\nBeispiel: Wir treffen einen Basketballkorb mit 80% Wahrscheinlichkeit. Wie hoch ist die Wahrscheinlichkeit, dass wir in 10 Würfen genau 7 Körbe treffen? Das können wir mit dbinom(7, size = 10, prob = 0.8) berechnen."
+  },
+  {
+    "objectID": "woche_06.html#die-poisson-verteilung-diskret",
+    "href": "woche_06.html#die-poisson-verteilung-diskret",
+    "title": "Woche 6: Diskrete und stetige Standardverteilungen",
+    "section": "",
+    "text": "Wird verwendet, um die Anzahl der Ereignisse in einem festen Zeitraum oder Raum zu modellieren, wenn diese Ereignisse mit einer bekannten durchschnittlichen Rate \\(\\lambda\\) auftreten und unabhängig voneinander sind.\n\nParameter: \\(\\lambda\\) (durchschnittliche Anzahl Ereignisse pro Intervall)\nFormel für genau \\(k\\) Ereignisse: \\[P(X = k) = \\frac{\\lambda^k \\cdot e^{-\\lambda}}{k!}\\]\n\nDer Erwartungswert und die Varianz der Poisson-Verteilung sind beide gleich \\(\\lambda\\).\nIn R:\n\ndpois(k, lambda = lambda) Wahrscheinlichkeitfunktion \\(P(X = k)\\). Gibt die Wahrscheinlichkeit zurück, genau k Ereignisse mit durchschnittlicher Rate lambda zu erzielen.\nppois(k, lambda = lambda) Verteilungsfunktion (kumulierte Wahrscheinlichkeit) \\(P(X \\le k)\\). Gibt die Wahrscheinlichkeit zurück, höchstens k Ereignisse mit durchschnittlicher Rate lambda zu erzielen.\nrpois(n, lambda = lambda) generiert n Zufallszahlen aus der Poisson-Verteilung mit durchschnittlicher Rate lambda. Zum Beispiel, rpois(10, lambda = 3) generiert 10 Zufallszahlen, wobei jede Zahl die Anzahl der Ereignisse in einem Intervall mit durchschnittlicher Rate von 3 darstellt.\n\nBeispiel: In einem Callcenter kommen durchschnittlich 5 Anrufe pro Stunde an. Wie hoch ist die Wahrscheinlichkeit, dass in einer Stunde genau 3 Anrufe eingehen? Das können wir mit dpois(3, lambda = 5) berechnen."
+  },
+  {
+    "objectID": "woche_06.html#die-gleichverteilung-uniforme-verteilung-stetig",
+    "href": "woche_06.html#die-gleichverteilung-uniforme-verteilung-stetig",
+    "title": "Woche 6: Diskrete und stetige Standardverteilungen",
+    "section": "2.1 Die Gleichverteilung (Uniforme Verteilung, Stetig)",
+    "text": "2.1 Die Gleichverteilung (Uniforme Verteilung, Stetig)\nDie Gleichverteilung beschreibt eine Situation, in der alle Werte in einem bestimmten Intervall \\([a, b]\\) gleich wahrscheinlich sind.\n\nParameter: \\(a\\) (untere Grenze), \\(b\\) (obere Grenze)\nDichtefunktion: \\[\\varphi(x) = \\begin{cases}\\frac{1}{b-a} & \\text{für } a \\le x \\le b \\\\ 0 & \\text{sonst}\\end{cases}\\]\nVerteilungsfunktion: \\[F(x) = \\begin{cases}0 & \\text{für } x &lt; a \\\\ \\frac{x-a}{b-a} & \\text{für } a \\le x \\le b \\\\ 1 & \\text{für } x &gt; b\\end{cases}\\]\n\nDer Erwartungswert der Gleichverteilung ist \\(E[X] = \\frac{a + b}{2}\\) (Durchschnitt von a und b), und die Varianz ist \\(Var(X) = \\frac{(b - a)^2}{12}\\).\nIn R:\n\ndunif(x, min = a, max = b) Dichtefunktion \\(\\varphi(x)\\). Gibt die Dichte der Gleichverteilung an der Stelle x zurück. min und max geben die unteren und oberen Grenzen des Intervalls an.\npunif(x, min = a, max = b) Verteilungsfunktion \\(F(x)\\). Gibt die kumulierte Wahrscheinlichkeit zurück, dass eine Zufallsvariable aus der Gleichverteilung einen Wert kleiner oder gleich x annimmt. min und max geben die unteren und oberen Grenzen des Intervalls an.\nrunif(n, min = a, max = b) generiert n Zufallszahlen aus der Gleichverteilung mit den angegebenen Grenzen a und b. Zum Beispiel, runif(10, min = 0, max = 1) generiert 10 Zufallszahlen zwischen 0 und 1.\n\nBeispiel: Die Zeit, die ein Kunde in einem Geschäft verbringt, ist gleichmäßig zwischen 5 und 15 Minuten verteilt. Wie hoch ist die Wahrscheinlichkeit, dass ein Kunde weniger als 8 Minuten im Geschäft verbringt? Das können wir mit punif(8, min = 5, max = 15) berechnen."
+  },
+  {
+    "objectID": "woche_06.html#die-exponentialverteilung-stetig",
+    "href": "woche_06.html#die-exponentialverteilung-stetig",
+    "title": "Woche 6: Diskrete und stetige Standardverteilungen",
+    "section": "2.2 Die Exponentialverteilung (Stetig)",
+    "text": "2.2 Die Exponentialverteilung (Stetig)\nDie Exponentialverteilung modelliert die Zeit zwischen Ereignissen in einem Poisson-Prozess, also die Zeit, die vergeht, bis ein bestimmtes Ereignis eintritt. Beispielsweise könnte sie die Zeit bis zum nächsten Anruf in einem Callcenter oder die Lebensdauer eines elektronischen Geräts modellieren.\n\nParameter: \\(\\lambda\\) (Rate, durchschnittliche Anzahl Ereignisse pro Zeiteinheit)\nDichtefunktion: \\[\\varphi(x) = \\begin{cases}\\lambda e^{-\\lambda x} & \\text{für } x \\ge 0 \\\\ 0 & \\text{sonst}\\end{cases}\\]\nVerteilungsfunktion: \\[F(x) = \\begin{cases} 1 - e^{-\\lambda x} & \\text{für } x \\ge 0 \\\\ 0 & \\text{sonst} \\end{cases}\\]\n\nDer Erwartungswert der Exponentialverteilung ist \\(E[X] = \\frac{1}{\\lambda}\\), und die Varianz ist \\(Var(X) = \\frac{1}{\\lambda^2}\\).\nIn R:\n\ndexp(x, rate = lambda) Dichtefunktion \\(\\varphi(x)\\). Gibt die Dichte der Exponentialverteilung an der Stelle x zurück. rate gibt die Rate \\(\\lambda\\) an.\npexp(x, rate = lambda) Verteilungsfunktion \\(F(x)\\). Gibt die kumulierte Wahrscheinlichkeit zurück, dass eine Zufallsvariable aus der Exponentialverteilung einen Wert kleiner oder gleich x annimmt. rate gibt die Rate \\(\\lambda\\) an.\nrexp(n, rate = lambda) generiert n Zufallszahlen aus der Exponentialverteilung mit der angegebenen Rate lambda. Zum Beispiel, rexp(10, rate = 2) generiert 10 Zufallszahlen aus der Exponentialverteilung mit Rate 2.\n\nBeispiel: Die Zeit, die ein Kunde in einem Geschäft verbringt, folgt einer Exponentialverteilung mit einer durchschnittlichen Verweildauer von 10 Minuten (also \\(\\lambda = \\frac{1}{10}\\)). Wie hoch ist die Wahrscheinlichkeit, dass ein Kunde weniger als 5 Minuten im Geschäft verbringt? Das können wir mit pexp(5, rate = 1/10) berechnen."
+  },
+  {
+    "objectID": "woche_06.html#die-normalverteilung-gaussverteilung-stetig",
+    "href": "woche_06.html#die-normalverteilung-gaussverteilung-stetig",
+    "title": "Woche 6: Diskrete und stetige Standardverteilungen",
+    "section": "2.3 Die Normalverteilung (Gaussverteilung, Stetig)",
+    "text": "2.3 Die Normalverteilung (Gaussverteilung, Stetig)\nDie berühmte “Glockenkurve” (Gauss-Verteilung). Sehr viele Phänomene in der Natur und Gesellschaft sind (näherungsweise) normalverteilt.\n\nParameter: \\(\\mu\\) (Erwartungswert, Zentrum der Glocke), \\(\\sigma\\) (Standardabweichung, Breite der Glocke)\nStandardnormalverteilung: Eine spezielle Normalverteilung mit \\(\\mu = 0\\) und \\(\\sigma = 1\\).\n\nIn R:\n\ndnorm(x, mean = mu, sd = sigma) Dichtefunktion \\(\\varphi(x)\\). Gibt die Dichte der Normalverteilung an der Stelle x zurück. mean und sd geben den Erwartungswert \\(\\mu\\) und die Standardabweichung \\(\\sigma\\) an.\npnorm(x, mean = mu, sd = sigma) Verteilungsfunktion \\(F(x)\\). Gibt die kumulierte Wahrscheinlichkeit zurück, dass eine Zufallsvariable aus der Normalverteilung einen Wert kleiner oder gleich x annimmt. mean und sd geben den Erwartungswert \\(\\mu\\) und die Standardabweichung \\(\\sigma\\) an.\nrnorm(n, mean = mu, sd = sigma) generiert n Zufallszahlen aus der Normalverteilung mit den angegebenen Parametern mu und sigma. Zum Beispiel, rnorm(10, mean = 0, sd = 1) generiert 10 Zufallszahlen aus der Standardnormalverteilung."
+  },
+  {
+    "objectID": "woche_06.html#quantile",
+    "href": "woche_06.html#quantile",
+    "title": "Woche 6: Diskrete und stetige Standardverteilungen",
+    "section": "2.4 Quantile",
+    "text": "2.4 Quantile\nQuantile sind Werte, die eine Verteilung in bestimmte Teile aufteilen. Zum Beispiel teilt das 0.5-Quantil (auch Median genannt) die Verteilung in zwei Hälften: 50% der Werte liegen darunter und 50% darüber. In R können Sie Quantile mit der Funktion qnorm(p, mean = mu, sd = sigma) für die Normalverteilung berechnen, wobei p das gewünschte Quantil ist (z.B. 0.95 für das 95%-Quantil).\nQuantile der Verteilungen in R: Wir können die Quantile für die verschiedenen Verteilungen mit den entsprechenden q-Funktionen berechnen:\n\nqbinom(p, size = n, prob = p) für die Binomialverteilung\nqpois(p, lambda = lambda) für die Poisson-Verteilung\nqunif(p, min = a, max = b) für die Gleichverteilung\nqexp(p, rate = lambda) für die Exponentialverteilung\nqnorm(p, mean = mu, sd = sigma) für die Normalverteilung\n\n\n\n\n\n\n\nTipTipp für die Prüfung und R\n\n\n\nAchten Sie in R genau auf den Unterschied zwischen d (density/Wahrscheinlichkeit für genauen Wert bei diskreten) und p (probability/kumulierte Wahrscheinlichkeit für “kleiner gleich”). Wenn nach “höchstens 3 Erfolgen” gefragt wird, brauchen Sie pbinom(3, ...). Wenn nach “genau 3 Erfolgen” gefragt wird, dbinom(3, ...)."
   }
 ]
