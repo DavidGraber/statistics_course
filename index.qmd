@@ -3,13 +3,16 @@
 Dieses digitale Skript wird jede Woche erweitert. Hier finden Sie alle wichtigen Formeln, Definitionen und Beispiele aus den Vorlesungen.
 
 ## Semesterplan
-- **Woche 1:** Einführung & Kombinatorik
-- **Woche 2:** Wahrscheinlichkeitsrechnung
-- **Woche 3:** Bedingte Wahrscheinlichkeiten
-- **Woche 4:** Zufallsvariablen & Verteilungen
-- **Woche 5:** Erwartungswert & Varianz
-- **Woche 6:** Standardverteilungen
-- **Woche 7:** Grenzwertsätze
-- **Woche 8_1:** Deskriptive Statistik
-- **Woche 8_2:** Schätzer & Konfidenzintervalle
-- **Woche 9:** Hypothesentests & t-Tests
+- [**Woche 1:** Einführung & Kombinatorik](woche_01.qmd)
+- [**Woche 2:** Wahrscheinlichkeitsrechnung](woche_02.qmd)
+- [**Woche 3:** Bedingte Wahrscheinlichkeiten](woche_03.qmd)
+- [**Woche 4:** Zufallsvariablen & Verteilungen](woche_04.qmd)
+- [**Woche 5:** Erwartungswert & Varianz](woche_05.qmd)
+- [**Woche 6:** Standardverteilungen](woche_06.qmd)
+- [**Woche 7:** Grenzwertsätze](woche_07.qmd)
+- [**Woche 8_1:** Deskriptive Statistik](woche_08_1.qmd)
+- [**Woche 8_2:** Schätzer & Konfidenzintervalle](woche_08_2.qmd)
+- [**Woche 9:** Hypothesentests & t-Tests](woche_09.qmd)
+- [**Woche 10:** Normalitätsannahme & Varianzhomogenität](woche_10.qmd)
+- [**Woche 11:** Poweranalyse, Nichtparametrische Tests](woche_11.qmd)
+- [**Woche 12:** Chi-Quadrat-Tests](woche_12.qmd)

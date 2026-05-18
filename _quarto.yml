@@ -7,26 +7,34 @@ website:
     left:
       - href: index.qmd
         text: Home
-      - href: woche_01.qmd
-        text: "Woche 1: Kombinatorik"
-      - href: woche_02.qmd
-        text: "Woche 2: Wahrscheinlichkeitsrechnung"
-      - href: woche_03.qmd
-        text: "Woche 3: Bedingte Wahrscheinlichkeiten"
-      - href: woche_04.qmd
-        text: "Woche 4: Zufallsvariablen & Verteilungen"
-      - href: woche_05.qmd
-        text: "Woche 5: Erwartungswert & Varianz"
-      - href: woche_06.qmd
-        text: "Woche 6: Standardverteilungen"
-      - href: woche_07.qmd
-        text: "Woche 7: Grenzwertsätze"
-      - href: woche_08_1.qmd
-        text: "Woche 8_1: Deskriptive Statistik"
-      - href: woche_08_2.qmd
-        text: "Woche 8_2: Schätzer & Konfidenzintervalle"
-      - href: woche_09.qmd
-        text: "Woche 9: Hypothesentests & t-Tests"
+      - text: "Wochen"
+        menu:
+          - href: woche_01.qmd
+            text: "Woche 1: Kombinatorik"
+          - href: woche_02.qmd
+            text: "Woche 2: Wahrscheinlichkeitsrechnung"
+          - href: woche_03.qmd
+            text: "Woche 3: Bedingte Wahrscheinlichkeiten"
+          - href: woche_04.qmd
+            text: "Woche 4: Zufallsvariablen & Verteilungen"
+          - href: woche_05.qmd
+            text: "Woche 5: Erwartungswert & Varianz"
+          - href: woche_06.qmd
+            text: "Woche 6: Standardverteilungen"
+          - href: woche_07.qmd
+            text: "Woche 7: Grenzwertsätze"
+          - href: woche_08_1.qmd
+            text: "Woche 8_1: Deskriptive Statistik"
+          - href: woche_08_2.qmd
+            text: "Woche 8_2: Schätzer & Konfidenzintervalle"
+          - href: woche_09.qmd
+            text: "Woche 9: Hypothesentests & t-Tests"
+          - href: woche_10.qmd
+            text: "Woche 10: Normalitätsannahme & Varianzhomogenität"
+          - href: woche_11.qmd
+            text: "Woche 11: Poweranalyse, Nichtparametrische Tests"
+          - href: woche_12.qmd
+            text: "Woche 12: Chi-Quadrat-Tests"
 
 format:
   html:
