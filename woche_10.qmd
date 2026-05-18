@@ -1,0 +1,148 @@
+---
+title: "Woche 10: Normalitätsannahme & Varianzhomogenität"
+---
+
+# Tests zur Normalitätsannahme
+
+Eine der zentralen Voraussetzungen für die Durchführung eines t-Tests ist, dass die zugrundeliegenden Daten (zumindest annähernd) normalverteilt sind. Bevor wir also Mittelwerte vergleichen können, müssen wir prüfen, ob unsere Daten diese "Glockenkurven"-Form aufweisen.
+
+## Der Shapiro-Wilk-Test und seine Tücken
+Ein statistischer Test, um Daten auf Normalverteilung zu prüfen, ist der Shapiro-Wilk-Test. Er testet grob gesagt die Nullhypothese: *Die Daten sind normalverteilt.* In der Praxis, insbesondere im Vorfeld eines t-Tests, ist dieser Test jedoch oft **nicht besonders hilfreich**. Dafür gibt es zwei Hauptgründe:
+
+* **Das Problem kleiner Stichproben:** Haben wir nur wenige Datenpunkte und die Daten sind *nicht* normalverteilt, hat der Test zu wenig Power (Macht). Die Wahrscheinlichkeit ist hoch, dass er die Abweichung schlichtweg nicht erkennt ("verpasster Effekt").
+* **Das Problem grosser Stichproben:** Haben wir extrem viele Datenpunkte, wird der Test zu streng. Selbst winzige, für die Praxis völlig unbedeutende Abweichungen von der perfekten Normalverteilung führen dazu, dass die Normalitätsannahme abgelehnt wird.
+
+---
+
+## Visuelle Überprüfung: Der Q-Q-Plot
+
+Da statistische Tests hier Schwächen haben, greift man oft auf eine visuelle Methode zurück: den **Quantil-Quantil-Plot (Q-Q-Plot)**. Untersucht man speziell auf eine Normalverteilung, nennt man dies auch ein Normal-Quantil-Diagramm.
+
+### Die Grundidee des Q-Q-Plots
+Anstatt die Daten in ein Histogramm zu pressen, vergleichen wir bei einem Q-Q-Plot bestimmte Positionen unserer Daten (die empirischen Quantile) mit den idealen Positionen einer perfekten Normalverteilung (den theoretischen Quantilen).
+
+Ein Q-Q-Plot spannt sich zwischen zwei Achsen auf:
+
+* **x-Achse:** Zeigt die theoretischen Quantile der perfekten Standardnormalverteilung.
+* **y-Achse:** Zeigt die empirischen Quantile (die tatsächlichen Messwerte) unserer Stichprobe $X_1, ..., X_n$.
+
+
+### Interpretation: Die gerade Linie
+Die Interpretation eines fertigen Q-Q-Plots ist glücklicherweise sehr intuitiv:
+
+* **Normalverteilung liegt vor:** Wenn die Datenpunkte der Stichprobe tatsächlich aus einer Normalverteilung stammen, reihen sich die Punkte im Q-Q-Plot annähernd wie auf einer **geraden Linie** auf ($y = \mu + \sigma x$). 
+    * Der Schnittpunkt mit der y-Achse entspricht dabei dem Erwartungswert ($\mu$).
+    * Die Steigung der Linie entspricht der Standardabweichung ($\sigma$).
+* **Keine Normalverteilung:** Weichen die Punkte deutlich und systematisch (z.B. in S-Form oder als Banane) von dieser gedachten geraden Linie ab, ist das ein starkes Indiz dafür, dass die Daten **nicht** normalverteilt sind.
+
+**In R:**
+```r
+qqnorm(stichprobe)
+```
+
+# Der F-Test (Test auf Varianzhomogenität)"
+
+Beim Zweistichproben-t-Test der letzten Woche standen wir vor einer wichtigen Entscheidung: Haben die beiden Gruppen die gleiche Varianz (Varianzhomogenität $\rightarrow$ klassischer Student-t-Test) oder unterschiedliche Varianzen (Varianzheterogenität $\rightarrow$ Welch-Test)? 
+
+Der **F-Test** liefert uns genau hierfür das statistische Werkzeug. Er prüft, ob die Varianzen zweier unabhängiger Stichproben gleich gross sind.
+
+## Die Grundidee: Das neue Messgerät
+Stell dir vor, du entwickelst ein neues Messgerät oder eine neue Produktionsmaschine. Das Ziel ist meistens mehr Präzision – also **weniger Schwankungen**. 
+Wenn wir nun alte und neue Messungen vergleichen, wollen wir wissen: Hat sich die Streuung (Varianz) tatsächlich messbar verkleinert, oder sind die Schwankungen bei beiden Geräten eigentlich noch gleich gross?
+
+## Voraussetzungen für den F-Test
+Damit die Ergebnisse des F-Tests verlässlich sind, müssen drei strikte Annahmen erfüllt sein:
+
+1. **Normalverteilung:** Die Daten beider Stichproben müssen normalverteilt sein (Q-Q-Plot).
+2. **Unabhängigkeit (i.i.d.):** Die Messwerte innerhalb einer Stichprobe sind unabhängig voneinander.
+3. **Unabhängige Gruppen:** Die beiden Stichproben hängen nicht miteinander zusammen (es sind also z.B. keine Messungen an denselben Personen vor und nach einer Behandlung).
+
+## Die Hypothesen
+Wie beim t-Test formulieren wir wieder unsere "Gerichtsverfahren"-Hypothesen. Man unterscheidet zwischen zweiseitig (wir suchen nach *irgendeinem* Unterschied) und einseitig (wir haben eine konkrete Vermutung, wer grösser/kleiner ist).
+
+**Zweiseitiger Test (Unterscheiden sich die Varianzen?):**
+
+* $H_0: \sigma_X^2 = \sigma_Y^2$ (Die Varianzen sind gleich)
+* $H_1: \sigma_X^2 \neq \sigma_Y^2$ (Die Varianzen sind unterschiedlich)
+
+**Einseitiger Test (z.B. Hat die alte Maschine eine grössere Varianz als die neue?):**
+
+* $H_0: \sigma_{alt}^2 \le \sigma_{neu}^2$
+* $H_1: \sigma_{alt}^2 > \sigma_{neu}^2$
+
+## Die Teststatistik (Der Prüfwert)
+Der F-Test hat eine bestechend logische Teststatistik $\hat{\gamma}$. Wir teilen einfach die Varianz der ersten Stichprobe ($S_X^2$) durch die Varianz der zweiten Stichprobe ($S_Y^2$):
+
+$$\hat{\gamma} = \frac{S_X^2}{S_Y^2}$$
+
+* **Intuition:** Wenn beide Varianzen ungefähr gleich sind, liegt der Quotient nahe bei 1. Je weiter der Wert von 1 abweicht (nach oben oder unten), desto stärker spricht dies gegen unsere Nullhypothese $H_0$.
+* Unter der Annahme, dass $H_0$ stimmt, folgt dieser Quotient einer sogenannten **F-Verteilung**. Diese Verteilung ist (im Gegensatz zur Normalverteilung) asymmetrisch und rechtsschief.
+
+**In R:**
+```r
+var.test(stichprobe1, stichprobe2, 
+         alternative = "two.sided", # oder "less", "greater"
+         conf.level = 0.95)         # 1 - alpha
+```
+
+
+
+# Anteils- und Dichtetest
+
+Hier besprechen wir zwei wichtige statistische Testverfahren: dem Anteilstest (Binomialtest) und dem Dichtetest (Poissontest). Beide Tests dienen dazu, empirisch beobachtete Daten mit theoretischen Sollwerten abzugleichen.
+
+
+## Binomialtest (Anteilstest)
+
+Der Binomialtest wird angewendet, um zu überprüfen, ob der tatsächliche Anteil $p$ eines Merkmals in einer Grundgesamtheit signifikant von einem vorab definierten Sollwert $p_0$ abweicht. Ein klassisches Anwendungsbeispiel ist die Überprüfung einer Impfquote (z. B. ob die Polio-Impfquote mindestens 95 % beträgt).
+
+### Allgemeines Vorgehen
+
+1. **Signifikanzniveau festlegen:** Wir definieren ein Signifikanzniveau $\alpha \in (0,1)$, typischerweise $\alpha = 0.05$ oder $\alpha = 0.01$.
+2. **Hypothesen formulieren:** 
+
+   * Nullhypothese $H_0: p = p_0$
+   * Alternativhypothese $H_1: p \neq p_0$ (bei einem zweiseitigen Test) oder einseitig (z. B. $p < p_0$).
+3. **Teststatistik bestimmen:** Die Anzahl der beobachteten "Erfolge" $k$ aus einer Stichprobe der Größe $n$ wird ermittelt.
+4. **Verteilung unter $H_0$:** Wenn die Nullhypothese wahr ist, folgt die Teststatistik $X$ einer Binomialverteilung $Bin(n, p_0)$.
+5. **Entscheidung:** Es wird der p-Wert der Beobachtung $k$ berechnet. Ist der p-Wert kleiner als $\alpha$, wird die Nullhypothese verworfen. Ist er größer oder gleich $\alpha$, wird die Nullhypothese beibehalten.
+
+**In R:**
+```r
+rbinom.test(k, n, p = p0, 
+           alternative = "two.sided", # oder "less", "greater"
+           conf.level = 0.95)         # 1 - alpha
+```
+* k: Anzahl der beobachteten Erfolge (z. B. Anzahl geimpfter Personen).
+* n: Gesamtzahl der Personen in der Stichprobe.
+* p: Der erwartete Anteil unter der Nullhypothese.
+
+## Poissontest (Dichtetest)
+
+Der Poissontest kommt zum Einsatz, wenn die Rate von Ereignissen (z. B. die Anzahl von Salmonelleninfektionen in einem bestimmten Zeitraum) untersucht werden sol. Ziel ist es zu prüfen, ob die wahre mittlere Ereignisrate $\lambda$ von einem bisherigen Durchschnitt abweicht.
+
+### Allgemeines Vorgehen
+
+1. **Signifikanzniveau festlegen:** Auch hier wird zunächst $\alpha$ (z. B. $\alpha = 0.05$) festgelegt.
+2. **Hypothesen formulieren:**
+
+    * Nullhypothese $H_0: \lambda = \lambda_0$ (z. B. $\lambda = 5$)
+    * Alternativhypothese $H_1: \lambda \neq \lambda_0$
+
+3. **Teststatistik bestimmen:** Die Teststatistik ist die Summe der aufgetretenen Ereignisse über alle betrachteten Zeiträume, also $s = X_1 + X_2 + \dots + X_n$.
+
+4. **Verteilung unter $H_0$:** Unter der Nullhypothese sind die einzelnen Beobachtungen $X_i$ unabhängig und poissonverteilt. Die Summe der Ereignisse folgt demnach einer Poissonverteilung, deren Parameter sich aus der Summe der Erwartungswerte ergibt.
+
+5. **Besonderheit bei der p-Wert-Berechnung:** Im Gegensatz zu symmetrischen Verteilungen (wie der Normalverteilung) ist die Poissonverteilung im Allgemeinen asymmetrisch. Bei der Bestimmung des p-Wertes für einen zweiseitigen Test können wir die Teststatistik nicht einfach spiegeln. Stattdessen müssen die Wahrscheinlichkeiten beider Verteilungsenden separat berechnet und aufaddiert werden.
+
+6. **Entscheidung:** Liegt der berechnete p-Wert unter $\alpha$, verwerfen wir $H_0$. Ist er größer oder gleich $\alpha$, behalten wir die Nullhypothese bei.
+
+**In R:**
+```r
+rpoisson.test(s, T, r = lambda0, 
+            alternative = "two.sided", # oder "less", "greater"
+            conf.level = 0.95)         # 1 - alpha
+```
+* s: Die Summe der beobachteten Ereignisse über alle Zeiträume.
+* T: Die Gesamtzeit, über die die Ereignisse beobachtet wurden.
+* r: Der erwartete Wert unter der Nullhypothese.
